@@ -1,0 +1,50 @@
+{
+    "categories": [
+        {
+            "id": 69,
+            "name": "Щиты этажные",
+            "fullName": "Щиты этажные",
+            "slug": "shields-floor",
+            "description": "Щиты этажные - описание",
+            "fullDescription": "Щиты этажные - полное описание",
+            "image_url": "/images/categories/shield.png",
+            "titleSeo": "Щиты этажные - title SEO",
+            "descriptionSeo": "Щиты этажные -  описание SEO",
+            "type_category": "proizvodstvo",
+            "createdAt": "2025-03-03T14:13:44.701726+03:00",
+            "updatedAt": "2025-03-03T15:01:53.628343+03:00",
+            "parent": null
+        },
+        {
+            "id": 68,
+            "name": "Короба УЭРМ",
+            "fullName": "Короба УЭРМ",
+            "slug": "uerm",
+            "description": "Короба УЭРМ",
+            "fullDescription": "Короба УЭРМ",
+            "image_url": "/images/products/uerm.webp",
+            "titleSeo": "Короба УЭРМ - SEO",
+            "descriptionSeo": "Короба УЭРМ - description SEO",
+            "type_category": "proizvodstvo",
+            "createdAt": "2025-03-03T14:11:42.382465+03:00",
+            "updatedAt": "2025-03-03T14:11:42.382465+03:00",
+            "parent": null
+        },
+
+        {
+            "id": 67,
+            "name": "Корпуса ВРУ",
+            "fullName": "Корпуса ВРУ",
+            "slug": "korpus-vru",
+            "description": "Корпуса ВРУ по индивидуальному запросу",
+            "fullDescription": "Корпуса ВРУ по индивидуальному запросу",
+            "image_url": "/images/products/VRU-1.webp",
+            "titleSeo": "Корпуса ВРУ - SEO",
+            "descriptionSeo": "Корпуса ВРУ по индивидуальному запросу - SEO",
+            "type_category": "proizvodstvo",
+            "createdAt": "2025-03-03T14:09:57.398841+03:00",
+            "updatedAt": "2025-03-03T14:09:57.398841+03:00",
+            "parentId": null
+        }
+    ]
+}
