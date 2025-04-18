@@ -1,7 +1,14 @@
 {
-  "compilerOptions": {
-    "paths": {
-      "@/*": ["./*"]
+    "compilerOptions": {
+        "baseUrl": ".",
+        "paths": {
+            "@/components/*": ["components/*"],
+            "@/lib/*": ["lib/*"],
+            "@/styles/*": ["styles/*"],
+            "@/public/*": ["public/*"],
+            "@/prisma/*": ["prisma/*"],
+            "@/app/*": ["app/*"],
+            "@/": ["."]
+        }
     }
-  }
 }

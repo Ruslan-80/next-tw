@@ -79,9 +79,12 @@ export default function Header() {
                                     color="black"
                                 />
                             </div>
-                            <div className="rounded-full bg-gray-200 p-2 hover:bg-gray-400">
+                            <Link
+                                href="/admin"
+                                className="rounded-full bg-gray-200 p-2 hover:bg-gray-400"
+                            >
                                 <User size={24} strokeWidth={1} color="black" />
-                            </div>
+                            </Link>
                             <div className=" rounded-full bg-gray-200 p-2 hover:bg-gray-400">
                                 <ShoppingCart
                                     size={24}
