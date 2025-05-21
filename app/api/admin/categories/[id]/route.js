@@ -1,14 +1,12 @@
 import { prisma } from "@/prisma/client";
 import { slugify as slugifyRu } from "transliteration";
 
-export async function GET() {
-    const cats = await prisma.category.findMany({ orderBy: { id: "asc" } });
-    return new Response(JSON.stringify(cats), { status: 200 });
-}
-
-export async function POST(req) {
+export async function PUT(req) {
+    const { id } = req.params;
+    const idNum = parseInt(id, 10);
     const data = await req.json();
-    const newCat = await prisma.category.create({
+    const updated = await prisma.category.update({
+        where: { id: idNum },
         data: {
             name: data.name,
             fullName: data.fullName || data.name,
@@ -21,5 +19,5 @@ export async function POST(req) {
             parentId: data.parentId,
         },
     });
-    return new Response(JSON.stringify(newCat), { status: 201 });
+    return new Response(JSON.stringify(updated), { status: 200 });
 }

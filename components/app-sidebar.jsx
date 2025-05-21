@@ -59,11 +59,15 @@ const data = {
             items: [
                 {
                     title: "Категории",
-                    url: "./admin/categories",
+                    url: "/admin/categories",
                 },
                 {
                     title: "Товары",
-                    url: "./admin/products",
+                    url: "/admin/products",
+                },
+                {
+                    title: "Характеристики",
+                    url: "/admin/attributes",
                 },
                 {
                     title: "Настройки",

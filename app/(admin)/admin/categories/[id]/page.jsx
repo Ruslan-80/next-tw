@@ -1,31 +1,16 @@
+import EditCategoryForm from "./edit";
 import { prisma } from "@/prisma/client";
-import Link from "next/link";
 
-export default async function CategoriesPage() {
-    const categories = await prisma.category.findMany({
-        orderBy: { id: "asc" },
-    });
+export default async function CategoryPage({ params }) {
+    const { id } = await params;
+    const idNum = parseInt(id, 10);
+    if (Number.isNaN(idNum)) return <div>Invalid category ID</div>;
+    const category = await prisma.category.findUnique({ where: { id: idNum } });
+    if (!category) return <div>Category not found</div>;
     return (
-        <div>
-            <h1 className="text-2xl font-bold mb-4">Categories</h1>
-            <Link
-                href="/admin/categories/create"
-                className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
-            >
-                Create New Category
-            </Link>
-            <ul className="mt-6 space-y-3">
-                {categories.map(cat => (
-                    <li key={cat.id}>
-                        <Link
-                            href={`/admin/categories/${cat.id}`}
-                            className="text-blue-500 hover:underline"
-                        >
-                            {cat.name}
-                        </Link>
-                    </li>
-                ))}
-            </ul>
-        </div>
+        <EditCategoryForm
+            initialData={category}
+            categories={await prisma.category.findMany()}
+        />
     );
 }

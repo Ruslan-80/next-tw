@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Logo from "@/public/mainLogo.svg";
+import Link from "next/link";
 
 export default function Footer() {
     return (
@@ -8,11 +9,13 @@ export default function Footer() {
                 <div className="container mx-auto px-4">
                     <div className="flex flex-col md:flex-row">
                         <div className="mb-6 md:mb-0 md:w-1/4">
-                            <Image
-                                src={Logo}
-                                alt="Kapital Stroy"
-                                className="h-10 w-auto mb-4"
-                            />
+                            <Link href="/">
+                                <Image
+                                    src={Logo}
+                                    alt="Kapital Stroy"
+                                    className="h-10 w-auto mb-4"
+                                />
+                            </Link>
                             <div className="flex space-x-4 mt-4">
                                 <a href="tel:88007776008" className="text-sm">
                                     +7 (499) 390-14-67

@@ -16,7 +16,7 @@ import "@/styles/globals.css";
 export default function AdminLayout({ children }) {
     return (
         <SidebarProvider>
-            <div className="flex h-screen">
+            <div className="flex h-screen w-screen">
                 <AppSidebar /> {/* Ваш кастомный Sidebar */}
                 <SidebarInset className="flex-1 overflow-y-auto">
                     <header className="flex h-16 items-center gap-2 px-4">

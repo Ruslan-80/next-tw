@@ -25,6 +25,7 @@ CREATE TABLE `Cart` (
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `updatedAt` DATETIME(3) NOT NULL,
 
+    UNIQUE INDEX `Cart_token_key`(`token`),
     UNIQUE INDEX `Cart_userId_key`(`userId`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
@@ -211,7 +212,7 @@ CREATE TABLE `AttributeValue` (
     `slug` VARCHAR(191) NOT NULL,
     `unitName` VARCHAR(191) NULL,
 
-    INDEX `AttributeValue_attributeId_name_idx`(`attributeId`, `name`),
+    UNIQUE INDEX `AttributeValue_attributeId_name_key`(`attributeId`, `name`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
