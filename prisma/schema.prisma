@@ -16,7 +16,8 @@ model User {
   verified         DateTime          @default(now())
   provider         String?
   providerId       String?
-  cart             Cart?
+  cart             Cart?             @relation(fields: [cartId], references: [id], onDelete: Cascade)
+  cartId           Int?              @unique
   orders           Order[]
   verificationCode VerificationCode?
 
@@ -30,7 +31,7 @@ model Cart {
   id          Int        @id @default(autoincrement())
   token       String     @unique
   totalAmount Int        @default(0)
-  user        User?      @relation(fields: [userId], references: [id])
+  user        User?      @relation
   userId      Int?       @unique
   items       CartItem[]
 
@@ -40,10 +41,10 @@ model Cart {
 
 model CartItem {
   id            Int              @id @default(autoincrement())
-  productItem   ProductVariation @relation(fields: [productItemId], references: [id])
+  productItem   ProductVariation @relation(fields: [productItemId], references: [id], onDelete: Cascade)
   productItemId Int
   quantity      Int              @default(1)
-  cart          Cart             @relation(fields: [cartId], references: [id])
+  cart          Cart             @relation(fields: [cartId], references: [id], onDelete: Cascade)
   cartId        Int
 
   createdAt DateTime @default(now())
@@ -63,7 +64,7 @@ model Order {
   email        String
   phone        String
   comment      String?
-  user         User?       @relation(fields: [userId], references: [id])
+  user         User?       @relation(fields: [userId], references: [id], onDelete: SetNull)
   userId       Int?
 
   createdAt DateTime @default(now())
@@ -74,7 +75,7 @@ model Order {
 
 model VerificationCode {
   id        Int      @id @default(autoincrement())
-  user      User     @relation(fields: [userId], references: [id])
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId    Int      @unique
   code      String
   expiresAt DateTime @default(now())
@@ -104,9 +105,10 @@ model Category {
   titleSeo        String?
   descriptionSeo  String?
   children        Category[]    @relation("CategoryToParent")
-  parent          Category?     @relation("CategoryToParent", fields: [parentId], references: [id])
+  parent          Category?     @relation("CategoryToParent", fields: [parentId], references: [id], onDelete: SetNull)
   products        Product[]
   tags            CategoryTag[]
+  filters         Json          @default("[]")
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -117,7 +119,7 @@ model Category {
 model Product {
   id                Int                @id @default(autoincrement())
   categoryId        Int
-  categorySlug      String // Дублируем slug из Category
+  categorySlug      String
   article           String             @unique
   name              String
   slug              String             @unique
@@ -128,7 +130,7 @@ model Product {
   manufacturingTime String
   stock             Int
   visibility        Boolean            @default(true)
-  category          Category           @relation(fields: [categoryId], references: [id])
+  category          Category           @relation(fields: [categoryId], references: [id], onDelete: Cascade)
   variations        ProductVariation[]
   attributes        ProductAttribute[]
   mediaFiles        MediaFile[]
@@ -142,18 +144,17 @@ model Product {
 }
 
 model ProductVariation {
-  id             Int     @id @default(autoincrement())
+  id             Int        @id @default(autoincrement())
   productId      Int
-  sku            String  @unique
+  sku            String     @unique
   variationValue String
   titleSeo       String?
   descriptionSeo String?
   price          Int
   stock          Int
-  isDefault      Boolean @default(false)
-
-  product  Product    @relation(fields: [productId], references: [id])
-  cartItem CartItem[]
+  isDefault      Boolean    @default(false)
+  product        Product    @relation(fields: [productId], references: [id], onDelete: Cascade)
+  cartItem       CartItem[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -177,8 +178,8 @@ model ProductTag {
   id        Int     @id @default(autoincrement())
   productId Int
   tagId     Int
-  product   Product @relation(fields: [productId], references: [id])
-  tag       Tag     @relation(fields: [tagId], references: [id])
+  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+  tag       Tag     @relation(fields: [tagId], references: [id], onDelete: Cascade)
 
   @@unique([productId, tagId])
 }
@@ -187,8 +188,8 @@ model CategoryTag {
   id         Int      @id @default(autoincrement())
   categoryId Int
   tagId      Int
-  category   Category @relation(fields: [categoryId], references: [id])
-  tag        Tag      @relation(fields: [tagId], references: [id])
+  category   Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  tag        Tag      @relation(fields: [tagId], references: [id], onDelete: Cascade)
 
   @@unique([categoryId, tagId])
 }
@@ -211,10 +212,10 @@ model AttributeValue {
   name             String
   slug             String
   unitName         String?
-  attribute        Attribute          @relation(fields: [attributeId], references: [id])
+  attribute        Attribute          @relation(fields: [attributeId], references: [id], onDelete: Cascade)
   ProductAttribute ProductAttribute[]
 
-  @@unique([attributeId, name]) // Составной индекс
+  @@unique([attributeId, name])
 }
 
 model ProductAttribute {
@@ -222,11 +223,9 @@ model ProductAttribute {
   productId        Int
   attributeId      Int
   attributeValueId Int
-  product          Product        @relation(fields: [productId], references: [id])
-  attribute        Attribute      @relation(fields: [attributeId], references: [id])
-  attributeValue   AttributeValue @relation(fields: [attributeValueId], references: [id])
-
-  // Денормализованные поля для упрощения запросов
+  product          Product        @relation(fields: [productId], references: [id], onDelete: Cascade)
+  attribute        Attribute      @relation(fields: [attributeId], references: [id], onDelete: Cascade)
+  attributeValue   AttributeValue @relation(fields: [attributeValueId], references: [id], onDelete: Cascade)
   attributeName      String
   attributeValueName String
 
@@ -242,7 +241,7 @@ model MediaFile {
   productId Int
   type      FileType
   url       String
-  product   Product  @relation(fields: [productId], references: [id])
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

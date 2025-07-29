@@ -5,11 +5,13 @@ import dataProizvodstvo from "../../app/data/proizvodstvo.json";
 export default function Category() {
     const { categories } = dataCategory;
     const { categories: proizvodstvo } = dataProizvodstvo;
+
+    
     return (
         <>
             <CatalogUI
                 categories={proizvodstvo}
-                text="Производство металлокорпусов"
+                text="Щиты и этажные устройства"
                 key="proizvodstvo"
             />
             <CatalogUI

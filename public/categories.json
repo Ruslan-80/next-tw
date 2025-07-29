@@ -1,0 +1,92 @@
+[
+  {
+    "id": 1,
+    "slug": "glavnye-raspredelitelnye-shity-grsh",
+    "updatedAt": "2025-06-23T15:16:07.693Z"
+  },
+  {
+    "id": 2,
+    "slug": "shkafy-upravleniya-s-chastotnym-preobrazovatelyami-shup",
+    "updatedAt": "2025-06-23T15:16:07.693Z"
+  },
+  {
+    "id": 3,
+    "slug": "vvodno-raspredelitelnye-ustrojstva-vru",
+    "updatedAt": "2025-06-23T18:37:12.548Z"
+  },
+  {
+    "id": 4,
+    "slug": "shkafy-avtomatizacii",
+    "updatedAt": "2025-06-23T15:17:40.285Z"
+  },
+  {
+    "id": 5,
+    "slug": "shity-silovye",
+    "updatedAt": "2025-06-23T15:17:40.285Z"
+  },
+  {
+    "id": 6,
+    "slug": "shkafy-avtomaticheskogo-rezerva-avr",
+    "updatedAt": "2025-06-23T15:17:40.285Z"
+  },
+  {
+    "id": 7,
+    "slug": "punkty-raspredelitelnye-pr",
+    "updatedAt": "2025-06-23T15:17:40.285Z"
+  },
+  {
+    "id": 8,
+    "slug": "paneli-upravleniya",
+    "updatedAt": "2025-06-23T15:17:40.285Z"
+  },
+  {
+    "id": 9,
+    "slug": "ustrojstva-kompensacii-reaktivnoj-moshnosti-ukrm",
+    "updatedAt": "2025-06-23T15:17:40.285Z"
+  },
+  {
+    "id": 10,
+    "slug": "shity-etazhnye-she",
+    "updatedAt": "2025-06-27T17:57:45.863Z"
+  },
+  {
+    "id": 12,
+    "slug": "ustroystva-etazhnye",
+    "updatedAt": "2025-06-23T15:17:40.285Z"
+  },
+  {
+    "id": 13,
+    "slug": "uerm",
+    "updatedAt": "2025-06-23T15:17:40.285Z"
+  },
+  {
+    "id": 14,
+    "slug": "uerv",
+    "updatedAt": "2025-06-23T15:17:40.285Z"
+  },
+  {
+    "id": 15,
+    "slug": "uerb",
+    "updatedAt": "2025-06-23T15:17:40.285Z"
+  },
+  {
+    "id": 16,
+    "slug": "uerk",
+    "updatedAt": "2025-06-23T15:17:40.285Z"
+  },
+  {
+    "id": 17,
+    "slug": "uern",
+    "updatedAt": "2025-06-23T15:17:40.285Z"
+  },
+  {
+    "id": 18,
+    "slug": "shchity-i-etazhnye-ustroystva",
+    "updatedAt": "2025-06-25T13:29:40.079Z"
+  },
+  {
+    "id": 19,
+    "slug": "nakladki-shitov-etazhnyh-she",
+    "updatedAt": "2025-06-27T17:57:52.250Z"
+  }
+]

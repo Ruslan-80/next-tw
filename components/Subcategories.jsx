@@ -6,10 +6,10 @@ export default function Subcategories({ subcategories }) {
     }
 
     return (
-        <div className="mb-8">
-            <h2 className="text-2xl font-semibold text-gray-900 mb-4">
+        <div className="mb-8 mt-8">
+            {/* <h3 className="text-2xl font-semibold text-gray-900 mb-4">
                 Подкатегории
-            </h2>
+            </h3> */}
             <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                 {subcategories.map(subcategory => (
                     <li

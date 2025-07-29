@@ -1,121 +1,133 @@
-"use client";
+import { prisma } from "@/lib/prisma";
+import ClientFilters from "./ClientFilters";
 
-import { useRouter } from "next/navigation";
-import { useState, useEffect } from "react";
-import {
-    Accordion,
-    AccordionItem,
-    AccordionTrigger,
-    AccordionContent,
-} from "@/components/ui/accordion";
-import { Checkbox } from "@/components/ui/checkbox";
-import { Button } from "@/components/ui/button";
+export default async function Filters({
+  attributeIds,
+  searchParams,
+  baseUrl,
+  categorySlug,
+  totalProducts,
+}) {
+  // console.log("Filters.jsx - attributeIds:", attributeIds);
 
-export default function Filters({ slug, searchParams, attributes }) {
-    const router = useRouter();
+  if (!Array.isArray(attributeIds) || attributeIds.length === 0) {
+    console.log("Filters.jsx - No valid attributeIds provided");
+    return null;
+  }
 
-    // Preserve the full set of attributes from the initial render
-    const [allAttributes] = useState(attributes);
+  const category = await prisma.category.findUnique({
+    where: { slug: categorySlug },
+    include: {
+      children: {
+        select: {
+          id: true,
+          slug: true,
+          children: true,
+        },
+      },
+    },
+  });
 
-    // Initialize filters state: each attribute maps to an array of selected values
-    const [filters, setFilters] = useState(() => {
-        const init = {};
-        for (const attr in allAttributes) {
-            const param = searchParams[attr];
-            if (Array.isArray(param)) {
-                init[attr] = param;
-            } else if (param) {
-                // Разбиваем строку со слешами в массив
-                init[attr] = param.split("-").filter(v => v.trim() !== "");
-            } else {
-                init[attr] = [];
-            }
-        }
-        return init;
+  if (!category) {
+    console.log("Filters.jsx - Category not found:", categorySlug);
+    return null;
+  }
+
+  const categoryIds = [category.id];
+  const collectCategoryIds = (categories) => {
+    categories.forEach((cat) => {
+      categoryIds.push(cat.id);
+      if (cat.children && cat.children.length > 0) {
+        collectCategoryIds(cat.children);
+      }
     });
+  };
+  collectCategoryIds(category.children || []);
+  //   console.log('Filters.jsx - categoryIds:', categoryIds);
 
-    // Sync URL whenever filters change
-    useEffect(() => {
-        const params = new URLSearchParams();
-        for (const key in filters) {
-            if (filters[key].length > 0) {
-                // Объединяем значения в строку со слешами
-                params.set(key, filters[key].join("-"));
-            }
-        }
+  const attributesData = await prisma.attribute.findMany({
+    where: {
+      id: { in: attributeIds },
+    },
+    include: {
+      products: {
+        where: {
+          product: {
+            categoryId: { in: categoryIds },
+          },
+        },
+        select: {
+          attributeValueName: true,
+          productId: true,
+        },
+      },
+    },
+  });
+  // console.log("Filters.jsx - attributesData:", attributesData);
 
-        const qs = params.toString();
-        router.replace(`/catalog/${slug}${qs ? `?${qs}` : ""}`);
-    }, [filters, slug, router]);
+  const valueCounts = await prisma.productAttribute.groupBy({
+    by: ["attributeId", "attributeValueName"],
+    where: {
+      attributeId: { in: attributeIds },
+      product: { categoryId: { in: categoryIds } },
+    },
+    _count: {
+      productId: true,
+    },
+  });
+  //   console.log('Filters.jsx - valueCounts:', valueCounts);
 
-    // Toggle a checkbox value in state
-    const toggleCheckbox = (attributeSlug, value) => {
-        setFilters(prev => {
-            const current = new Set(prev[attributeSlug]);
-            if (current.has(value)) current.delete(value);
-            else current.add(value);
-            return { ...prev, [attributeSlug]: Array.from(current) };
-        });
-    };
-
-    // Clear all filters
-    const clearFilters = () => {
-        const reset = {};
-        for (const attr in allAttributes) {
-            reset[attr] = [];
-        }
-        setFilters(reset);
-    };
-
-    if (!Object.keys(allAttributes).length) return null;
-
-    return (
-        <div className="mb-6">
-            <h3 className="text-xl font-semibold mb-2">Фильтры</h3>
-            <div className="w-full space-y-4">
-                <Accordion type="multiple">
-                    {Object.entries(allAttributes).map(
-                        ([attributeSlug, { name, values }]) => (
-                            <AccordionItem
-                                value={attributeSlug}
-                                key={attributeSlug}
-                            >
-                                <AccordionTrigger>{name}</AccordionTrigger>
-                                <AccordionContent className="space-y-2 pl-2">
-                                    {values.map(option => (
-                                        <div
-                                            key={option}
-                                            className="flex items-center space-x-2"
-                                        >
-                                            <Checkbox
-                                                id={`${attributeSlug}-${option}`}
-                                                checked={filters[
-                                                    attributeSlug
-                                                ].includes(option)}
-                                                onCheckedChange={() =>
-                                                    toggleCheckbox(
-                                                        attributeSlug,
-                                                        option
-                                                    )
-                                                }
-                                            />
-                                            <label
-                                                htmlFor={`${attributeSlug}-${option}`}
-                                                className="text-sm"
-                                            >
-                                                {option}
-                                            </label>
-                                        </div>
-                                    ))}
-                                </AccordionContent>
-                            </AccordionItem>
-                        )
-                    )}
-                </Accordion>
-                <Button variant="outline" onClick={clearFilters}>
-                    Сбросить фильтры
-                </Button>
-            </div>
-        </div>
+  const valueCountsMap = new Map();
+  valueCounts.forEach((item) => {
+    valueCountsMap.set(
+      `${item.attributeId}-${item.attributeValueName}`,
+      item._count.productId
     );
+  });
+  // console.log("valueCounts:", valueCountsMap);
+
+  const attributes = attributesData.map((attr) => {
+    const uniqueValues = [
+      ...new Set(attr.products.map((pa) => pa.attributeValueName)),
+    ].sort();
+    const valuesWithCounts = uniqueValues
+      .map((value) => ({
+        name: value,
+        count: valueCountsMap.get(`${attr.id}-${value}`) || 0,
+      }))
+      .filter((v) => v.count > 0);
+
+    return {
+      name: attr.name,
+      slug: attr.slug,
+      values: valuesWithCounts,
+    };
+  });
+  // console.log("attributes:", attributes);
+
+  const validAttributes = attributes
+    .filter((attr) => attr.values.length > 0)
+    .reduce((acc, attr) => {
+      acc[attr.slug] = {
+        name: attr.name,
+        values: attr.values.map((v) => v.name),
+        counts: attr.values.reduce((c, v) => ({ ...c, [v.name]: v.count }), {}),
+      };
+      return acc;
+    }, {});
+
+  if (!Object.keys(validAttributes).length) {
+    console.log("Filters.jsx - No valid attributes found");
+    return null;
+  }
+  // console.log("validAttributes:", validAttributes);
+  return (
+    <ClientFilters
+      totalProducts={totalProducts}
+      attributes={validAttributes}
+      searchParams={searchParams}
+      baseUrl={baseUrl}
+      categorySlug={categorySlug}
+    />
+  );
 }

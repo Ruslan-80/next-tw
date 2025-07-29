@@ -1,0 +1,52 @@
+[
+    {
+        "name": "ВРУ1-11-10 УХЛ4",
+        "categoryName": "Вводно-распределительные устройства ВРУ",
+        "article": "VRU1-11-10",
+        "basePrice": 24500,
+        "manufacturingTime": "5 дней",
+        "stock": 8,
+        "attributes": [
+            {
+                "name": "Номинальное напряжение",
+                "value": "380",
+                "unitName": "Вольт"
+            },
+            {
+                "name": "Номинальный ток",
+                "value": "100",
+                "unitName": "Ампер"
+            },
+            {
+                "name": "Степень защиты",
+                "value": "IP54",
+                "unitName": "IP"
+            }
+        ]
+    },
+    {
+        "name": "ВРУ1-12-20 УХЛ4",
+        "categoryName": "Вводно-распределительные устройства ВРУ",
+        "article": "VRU1-12-20",
+        "basePrice": 26500,
+        "manufacturingTime": "7-10 дней",
+        "stock": 3,
+        "attributes": [
+            {
+                "name": "Номинальное напряжение",
+                "value": "380",
+                "unitName": "Вольт"
+            },
+            {
+                "name": "Номинальный ток",
+                "value": "250",
+                "unitName": "Ампер"
+            },
+            {
+                "name": "Степень защиты",
+                "value": "IP31",
+                "unitName": "IP"
+            }
+        ]
+    }
+]

@@ -1,18 +1,19 @@
 "use server";
 
 import { prisma } from "@/lib/prisma";
+import defaultImage from '@/public/images/product/713680920.webp';
 
 export async function searchProducts(query) {
-    console.log("Searching products with query:", query);
+    // console.log("Searching products with query:", query);
     if (!query || query.length < 2) {
         console.log("Query too short, returning empty array");
         return [];
     }
 
     try {
-        console.log("Executing Prisma query with:", {
-            where: { name: { contains: query } },
-        });
+        // console.log("Executing Prisma query with:", {
+        //     where: { name: { contains: query } },
+        // });
         const products = await prisma.product.findMany({
             where: {
                 OR: [
@@ -52,7 +53,7 @@ export async function searchProducts(query) {
                   slug: product.slug,
                   basePrice: product.basePrice,
                   article: product.article || null,
-                  image: product.mediaFiles[0]?.url || null,
+                  image: product.mediaFiles[0]?.url || defaultImage.src,
                   attributes: product.attributes.map(attr => ({
                       attributeName: attr.attributeName,
                       attributeSlug: attr.attribute.slug,

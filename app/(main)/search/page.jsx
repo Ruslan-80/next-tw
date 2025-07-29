@@ -1,5 +1,5 @@
 import { searchProducts } from "./actions";
-import ProductList from "@/components/shared/ProductList1";
+import ProductList from "@/components/shared/ProductList";
 
 export default async function SearchPage({ searchParams }) {
     const query = (await searchParams).query || "";
