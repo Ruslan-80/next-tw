@@ -6,6 +6,7 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import Subcategories from "@/components/Subcategories";
 import Pagination from "@/components/shared/Pagination";
 import { parseSlug } from "@/utils/slugParser";
+import PopularProducts from "@/components/PopularProduct";
 
 export async function generateMetadata({ params, searchParams }) {
   const { slug } = await params;
@@ -203,23 +204,8 @@ export default async function CategoryPage({ params, searchParams }) {
 
         <ProductList products={products} />
       </div>
-      {/* {products.length > 0 ? (
-        <div className="grid grid-cols-1 md:grid-cols-[1fr_3fr] gap-4">
-          <div className="hidden md:block p-4">
-            <Filters
-              totalProducts={totalProducts}
-              attributeIds={category.filters}
-              searchParams={resolvedSearchParams}
-              baseUrl={`/catalog/${baseSlug}`}
-              categorySlug={baseSlug}
-            />
-          </div>
 
-          <ProductList products={products} />
-        </div>
-      ) : (
-        <ProductList products={products} />
-      )} */}
+      <PopularProducts />
       <div>
         <div className="bg-blue-300/50 shadow-2xl rounded-4xl px-8 py-12 mx-auto border border-blue-200">
           <div className="flex items-center justify-center text-3xl font-bold mb-12 mt-4">

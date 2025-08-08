@@ -39,7 +39,7 @@ export default async function EditProductPage({ params }) {
         categorySlug: category?.slug || "",
       },
     });
-    redirect("/products");
+    redirect("admin/products");
   }
 
   const categories = await prisma.category.findMany();

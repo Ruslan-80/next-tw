@@ -154,6 +154,9 @@ export default function CardItem({ product, view }) {
                 <p className="text-sm text-gray-500 mb-2">
                   Артикул: {product.article || "N/A"}
                 </p>
+                <p className="text-sm text-gray-500 mb-2">
+                  ID: {product.id || "N/A"}
+                </p>
                 {product.description && (
                   <p
                     className={

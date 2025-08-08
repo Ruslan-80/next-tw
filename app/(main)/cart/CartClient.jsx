@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useActionState, useOptimistic } from "react";
 import { useState } from "react";
 import { updateCartItemQuantity, deleteCartItem, clearCart } from "./actions";
+import { IMaskInput } from "react-imask";
 
 export default function CartClient({ cartData, items }) {
   // Состояние для валидации телефона
@@ -110,90 +111,107 @@ export default function CartClient({ cartData, items }) {
             ))}
           </div>
 
-          {/* Итоговая сумма */}
-          <div className="flex justify-end mb-8">
-            <div className="bg-white rounded-lg shadow-sm p-4">
-              <p className="text-lg font-semibold text-gray-900">
-                Итого: {totalPrice.toLocaleString("ru-RU")} ₽
-              </p>
-            </div>
-          </div>
-
           {/* Форма заказа */}
-          <form
-            action="/api/order/create"
-            method="POST"
-            className="bg-white rounded-lg shadow-sm p-6 max-w-lg mx-auto"
-            onSubmit={handleSubmit}
-          >
-            <input type="hidden" name="cartToken" value={cartData.token} />
-            <div className="space-y-4">
-              <div>
-                <label
-                  htmlFor="fullName"
-                  className="block text-sm font-medium text-gray-700 mb-1"
-                >
-                  Имя
-                </label>
-                <input
-                  type="text"
-                  id="fullName"
-                  name="fullName"
-                  required
-                  className="block w-full border border-gray-300 rounded-md p-2 focus:ring-orange-400 focus:border-orange-400"
-                  placeholder="Введите ваше имя"
-                />
+          <div className="flex flex-col md:flex-row gap-8">
+            {/* Итоговая сумма с акцентом */}
+            <div className="bg-white rounded-lg shadow-sm p-6 flex-1 max-w-md">
+              <div className="flex justify-between items-center mb-4">
+                <h2 className="text-xl font-bold text-gray-900">Итого</h2>
+                <p className="text-2xl font-bold text-orange-500">
+                  {totalPrice.toLocaleString("ru-RU")} ₽
+                </p>
               </div>
-              <div>
-                <label
-                  htmlFor="phone"
-                  className="block text-sm font-medium text-gray-700 mb-1"
-                >
-                  Телефон
-                </label>
-                <input
-                  type="tel"
-                  id="phone"
-                  name="phone"
-                  required
-                  value={phone}
-                  onChange={(e) => {
-                    setPhone(e.target.value);
-                    validatePhone(e.target.value);
-                  }}
-                  className={`block w-full border ${
-                    phoneError ? "border-red-500" : "border-gray-300"
-                  } rounded-md p-2 focus:ring-orange-400 focus:border-orange-400`}
-                  placeholder="+7 (XXX) XXX-XX-XX"
-                />
-                {phoneError && (
-                  <p className="text-red-500 text-sm mt-1">{phoneError}</p>
-                )}
+              <p className="text-sm text-gray-500 mb-6">
+                Цены указаны с учетом НДС и стоимости доставки
+              </p>
+              <div className="bg-gray-50 p-4 rounded-md mb-6">
+                <p className="text-gray-600 text-sm">
+                  После оформления заказа с вами свяжется менеджер для
+                  подтверждения
+                </p>
               </div>
-              <div>
-                <label
-                  htmlFor="comment"
-                  className="block text-sm font-medium text-gray-700 mb-1"
-                >
-                  Комментарий
-                </label>
-                <textarea
-                  id="comment"
-                  name="comment"
-                  rows={4}
-                  className="block w-full border border-gray-300 rounded-md p-2 focus:ring-orange-400 focus:border-orange-400"
-                  placeholder="Дополнительные пожелания"
-                />
-              </div>
-              <button
-                type="submit"
-                className="w-full bg-orange-400 text-white py-2 px-4 rounded-md hover:bg-orange-500 transition-colors focus:ring-2 focus:ring-orange-400 focus:ring-offset-2"
-                disabled={phoneError}
-              >
-                Отправить заявку
-              </button>
             </div>
-          </form>
+
+            {/* Форма */}
+            <form
+              action="/api/order/create"
+              method="POST"
+              className="bg-white rounded-lg shadow-sm p-6 flex-1 max-w-lg"
+              onSubmit={handleSubmit}
+            >
+              <h2 className="text-xl font-bold text-gray-900 mb-6">
+                Контактные данные
+              </h2>
+              <input type="hidden" name="cartToken" value={cartData.token} />
+              <div className="space-y-6">
+                <div>
+                  <label
+                    htmlFor="fullName"
+                    className="block text-sm font-medium text-gray-700 mb-2"
+                  >
+                    Ваше имя
+                  </label>
+                  <input
+                    type="text"
+                    id="fullName"
+                    name="fullName"
+                    required
+                    className="block w-full border border-gray-300 rounded-lg p-3 focus:ring-orange-400 focus:border-orange-400"
+                    placeholder="Иван Иванов"
+                  />
+                </div>
+                <div>
+                  <label
+                    htmlFor="phone"
+                    className="block text-sm font-medium text-gray-700 mb-2"
+                  >
+                    Телефон
+                  </label>
+                  <IMaskInput
+                    mask="+7 (000) 000-00-00"
+                    value={phone}
+                    onAccept={(value) => {
+                      setPhone(value);
+                      validatePhone(value);
+                    }}
+                    className={`block w-full border ${
+                      phoneError ? "border-red-500" : "border-gray-300"
+                    } rounded-lg p-3 focus:ring-orange-400 focus:border-orange-400`}
+                    placeholder="+7 (XXX) XXX-XX-XX"
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    required
+                  />
+                  {phoneError && (
+                    <p className="text-red-500 text-sm mt-1">{phoneError}</p>
+                  )}
+                </div>
+                <div>
+                  <label
+                    htmlFor="comment"
+                    className="block text-sm font-medium text-gray-700 mb-2"
+                  >
+                    Комментарий к заказу
+                  </label>
+                  <textarea
+                    id="comment"
+                    name="comment"
+                    rows={4}
+                    className="block w-full border border-gray-300 rounded-lg p-3 focus:ring-orange-400 focus:border-orange-400"
+                    placeholder="Особенности доставки, пожелания и т.д."
+                  />
+                </div>
+                <button
+                  type="submit"
+                  className="w-full bg-orange-400 text-white py-3 px-4 rounded-lg hover:bg-orange-500 transition-colors focus:ring-2 focus:ring-orange-400 focus:ring-offset-2 text-lg font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+                  disabled={phoneError}
+                >
+                  Оформить заказ
+                </button>
+              </div>
+            </form>
+          </div>
         </>
       )}
     </div>
@@ -206,11 +224,6 @@ function CartItem({ item }) {
     item.quantity
   );
 
-  //   console.log(
-  //     "CartItem rendered with optimistic quantity:",
-  //     optimisticQuantity
-  //   );
-
   const [quantityState, quantityAction, quantityPending] = useActionState(
     async (_, formData) => {
       const action = formData.get("action");
@@ -220,14 +233,11 @@ function CartItem({ item }) {
       } else if (action === "decrease") {
         quantity -= 1;
       }
-      //   console.log("Submitting quantity:", quantity);
       setOptimisticQuantity(quantity);
       try {
         const result = await updateCartItemQuantity(item.id, quantity);
-        // console.log("Update result:", result);
         return result;
       } catch (error) {
-        // console.error("Update error:", error);
         return { success: false, error: error.message };
       }
     },
@@ -247,58 +257,62 @@ function CartItem({ item }) {
   );
 
   return (
-    <div className="grid md:grid-cols-6 gap-4 p-4 border-b last:border-b-0 items-center">
-      {/* Изображение */}
-      <div className="col-span-1">
-        {item.product.mediaFiles?.[0]?.url ? (
-          <div className="relative w-16 h-16">
-            <Image
-              src={item.product.mediaFiles[0].url}
-              alt={item.product.name}
-              fill
-              className="object-cover rounded-md"
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            />
+    <div className="flex flex-col md:grid md:grid-cols-6 gap-4 p-4 border-b last:border-b-0">
+      {/* Верхняя часть (мобильная) */}
+      <div className="flex items-center justify-between md:hidden">
+        {/* Изображение и название */}
+        <div className="flex items-center space-x-3">
+          <div className="w-16 h-16 flex-shrink-0">
+            {item.product.mediaFiles?.[0]?.url ? (
+              <div className="relative w-full h-full">
+                <Image
+                  src={item.product.mediaFiles[0].url}
+                  alt={item.product.name}
+                  fill
+                  className="object-cover rounded-md"
+                  sizes="(max-width: 768px) 100vw"
+                />
+              </div>
+            ) : (
+              <div className="w-full h-full bg-gray-100 rounded-md flex items-center justify-center">
+                <span className="text-gray-400 text-xs">Нет фото</span>
+              </div>
+            )}
           </div>
-        ) : (
-          <div className="flex justify-center w-16 h-16 bg-gray-100 rounded-md items-center ">
-            <span className=" text-gray-400 text-center">Нет фото</span>
+          <div>
+            <Link
+              href={`/product/${item.product.slug}`}
+              className="font-medium hover:text-orange-400 transition-colors line-clamp-2"
+            >
+              {item.product.name}
+            </Link>
           </div>
-        )}
+        </div>
+
+        {/* Цена */}
+        <div className="text-right">
+          <p className="text-gray-900 font-medium">
+            {(item.product.basePrice * optimisticQuantity).toLocaleString(
+              "ru-RU"
+            )}{" "}
+            ₽
+          </p>
+          <p className="text-sm text-gray-500">
+            {item.product.basePrice.toLocaleString("ru-RU")} ₽ / шт.
+          </p>
+        </div>
       </div>
 
-      {/* Название */}
-      <div className="col-span-2">
-        <Link
-          href={`/product/${item.product.slug}`}
-          className="text-gray-900 font-medium hover:text-orange-400 transition-colors"
-        >
-          {item.product.name}
-        </Link>
-      </div>
-
-      {/* Цена */}
-      <div className="col-span-1">
-        <p className="text-gray-900">
-          {(item.product.basePrice * optimisticQuantity).toLocaleString(
-            "ru-RU"
-          )}{" "}
-          ₽
-        </p>
-        <p className="text-sm text-gray-500">
-          {item.product.basePrice.toLocaleString("ru-RU")} ₽ / шт.
-        </p>
-      </div>
-
-      {/* Количество */}
-      <div className="col-span-1">
+      {/* Нижняя часть (мобильная) */}
+      <div className="flex items-center justify-between md:hidden mt-2">
+        {/* Количество */}
         <form action={quantityAction} className="flex items-center space-x-2">
           <button
             type="submit"
             name="action"
             value="decrease"
             disabled={optimisticQuantity <= 1 || quantityPending}
-            className="p-1 bg-gray-100 rounded-md hover:bg-gray-200 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="p-2 bg-gray-100 rounded-md hover:bg-gray-200 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             <svg
               className="w-4 h-4"
@@ -327,7 +341,7 @@ function CartItem({ item }) {
             name="action"
             value="increase"
             disabled={quantityPending}
-            className="p-1 bg-gray-100 rounded-md hover:bg-gray-200 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="p-2 bg-gray-100 rounded-md hover:bg-gray-200 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             <svg
               className="w-4 h-4"
@@ -343,23 +357,13 @@ function CartItem({ item }) {
               />
             </svg>
           </button>
-          {quantityPending && (
-            <span className="ml-2 text-gray-500">Обновление...</span>
-          )}
         </form>
-        {quantityState.success === false && (
-          <p className="text-red-500 text-sm mt-1">
-            Ошибка: {quantityState.error}
-          </p>
-        )}
-      </div>
 
-      {/* Удаление */}
-      <div className="col-span-1">
+        {/* Удаление */}
         <form action={deleteAction}>
           <button
             type="submit"
-            className="text-red-500 hover:text-red-600 transition-colors"
+            className="text-red-500 hover:text-red-600 transition-colors p-2"
             disabled={deletePending}
           >
             <svg
@@ -376,15 +380,149 @@ function CartItem({ item }) {
               />
             </svg>
           </button>
-          {deletePending && (
-            <span className="ml-2 text-gray-500">Удаление...</span>
-          )}
         </form>
-        {deleteState.success === false && (
-          <p className="text-red-500 text-sm mt-1">
-            Ошибка: {deleteState.error}
+      </div>
+
+      {/* Десктопная версия */}
+      <div className="hidden md:contents">
+        {/* Изображение */}
+        <div className="col-span-1">
+          {item.product.mediaFiles?.[0]?.url ? (
+            <div className="relative w-16 h-16">
+              <Image
+                src={item.product.mediaFiles[0].url}
+                alt={item.product.name}
+                fill
+                className="object-cover rounded-md"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              />
+            </div>
+          ) : (
+            <div className="flex justify-center w-16 h-16 bg-gray-100 rounded-md items-center ">
+              <span className="text-gray-400 text-center">Нет фото</span>
+            </div>
+          )}
+        </div>
+
+        {/* Название */}
+        <div className="col-span-2">
+          <Link
+            href={`/product/${item.product.slug}`}
+            className="text-gray-900 font-medium hover:text-orange-400 transition-colors line-clamp-2"
+          >
+            {item.product.name}
+          </Link>
+        </div>
+
+        {/* Цена */}
+        <div className="col-span-1">
+          <p className="text-gray-900">
+            {(item.product.basePrice * optimisticQuantity).toLocaleString(
+              "ru-RU"
+            )}{" "}
+            ₽
           </p>
-        )}
+          <p className="text-sm text-gray-500">
+            {item.product.basePrice.toLocaleString("ru-RU")} ₽ / шт.
+          </p>
+        </div>
+
+        {/* Количество */}
+        <div className="col-span-1">
+          <form action={quantityAction} className="flex items-center space-x-2">
+            <button
+              type="submit"
+              name="action"
+              value="decrease"
+              disabled={optimisticQuantity <= 1 || quantityPending}
+              className="p-1 bg-gray-100 rounded-md hover:bg-gray-200 disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              <svg
+                className="w-4 h-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M20 12H4"
+                />
+              </svg>
+            </button>
+            <input
+              type="number"
+              name="quantity"
+              value={optimisticQuantity}
+              min="1"
+              readOnly
+              className="w-12 text-center border rounded-md p-1"
+            />
+            <button
+              type="submit"
+              name="action"
+              value="increase"
+              disabled={quantityPending}
+              className="p-1 bg-gray-100 rounded-md hover:bg-gray-200 disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              <svg
+                className="w-4 h-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M12 4v16m8-8H4"
+                />
+              </svg>
+            </button>
+            {quantityPending && (
+              <span className="ml-2 text-gray-500">Обновление...</span>
+            )}
+          </form>
+          {quantityState.success === false && (
+            <p className="text-red-500 text-sm mt-1">
+              Ошибка: {quantityState.error}
+            </p>
+          )}
+        </div>
+
+        {/* Удаление */}
+        <div className="col-span-1">
+          <form action={deleteAction}>
+            <button
+              type="submit"
+              className="text-red-500 hover:text-red-600 transition-colors"
+              disabled={deletePending}
+            >
+              <svg
+                className="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5-4h4M4 7h16"
+                />
+              </svg>
+            </button>
+            {deletePending && (
+              <span className="ml-2 text-gray-500">Удаление...</span>
+            )}
+          </form>
+          {deleteState.success === false && (
+            <p className="text-red-500 text-sm mt-1">
+              Ошибка: {deleteState.error}
+            </p>
+          )}
+        </div>
       </div>
     </div>
   );
