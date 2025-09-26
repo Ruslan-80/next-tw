@@ -1,72 +1,83 @@
-import React from "react";
+import Link from "next/link";
 
-export default function Delivery() {
+export const metadata = {
+  title: "Доставка и оплата | ЭЛЕКТРОЩИТ-ПРО",
+  description: "Доставка и оплата",
+};
+
+export default function DeliveryPayment() {
   return (
-    <div className="container mx-auto min-h-screen">
-      <div className="flex justify-center items-center py-10">
-        <h1 className="text-3xl font-bold text-gray-900 mb-10">
-          Доставка и оплата
-        </h1>
-      </div>
-      <div>
-        <div className="bg-blue-300/50 shadow-2xl rounded-4xl px-8 py-12 mx-auto border border-blue-200">
-          <div className="flex items-center justify-center text-3xl font-bold mb-12 mt-4">
-            Преимущества и особенности конструкции
-          </div>
-          <ul className="list-disc pl-6 text-2xl space-y-2 text-gray-900 max-w-[1200px] mx-auto">
-            <li className="mb-4">
-              <strong>Безопасность:</strong> Металлический корпус с классами
-              защиты I или II минимизирует риск поражения током. Дверца с замком
-              исключает доступ к токоведущим частям{" "}
-              <a href="https://docs.cntd.ru/document/9018351\">
-                <strong className="bg-amber-200">
-                  (ГОСТ 32395-2020, п. 6.1.2, 6.2.16).
-                </strong>
-              </a>
-            </li>
-            <li className="mb-4">
-              <strong>Низкое излучение:</strong> Электрическое поле ≤ 0,5 кВ/м,
-              магнитное ≤ 4 А/м, что обеспечивает безопасное пространство (п.
-              6.1.3).
-            </li>
-            <li className="mb-4">
-              <strong>Прочное крепление:</strong> Конструкция для ниши
-              гарантирует долговечность и стабильность (п. 6.2.10).
-            </li>
-            <li className="mb-4">
-              <strong>Эстетика:</strong> Обрамления защищают от повреждений,
-              создавая аккуратный вид (п. 6.2.12).
-            </li>
-            <li className="mb-4">
-              <strong>Соответствие ГОСТ:</strong> Размеры соответствуют{" "}
-              <a href="https://docs.cntd.ru/document/1200165116\">
-                <strong className="bg-amber-200">Приложению Г</strong>
-              </a>
-              , упрощая монтаж (п. 6.2.13).
-            </li>
-            <li className="mb-4">
-              <strong>Лёгкое обслуживание:</strong> Замена аппаратов и счетчиков
-              без демонтажа (п. 6.2.24).
-            </li>
-            <li className="mb-4">
-              <strong>Удобный доступ:</strong> Дверца открывается на ≥ 95°,
-              упрощая доступ к аппаратам (п. 6.2.15).
-            </li>
-            <li className="mb-4 pb-12">
-              <strong>Защита:</strong> Замок и люк для вводных аппаратов
-              усиливают безопасность (п. 6.2.17).
-            </li>
-          </ul>
-        </div>
-        <p className="mx-auto mt-10 text-gray-900 text-3xl px-4">
-          Щит этажный серии <strong>ЩЭ-6</strong> — надёжный выбор для этажей с
-          шестью квартирами, обеспечивающий учет электроэнергии и
-          функциональность.{" "}
-          <a href="#order\">
-            <strong>Закажите с доставкой!</strong>
-          </a>
+    <div className="container mx-auto px-4 py-8 max-w-4xl">
+      <h1 className="text-3xl font-bold mb-6">Доставка и оплата</h1>
+
+      <section className="mb-6">
+        <h2 className="text-2xl font-semibold mb-4">1. Способы доставки</h2>
+        <p className="mb-4">Мы предлагаем следующие варианты доставки:</p>
+        <ul className="list-disc pl-6 mb-4">
+          <li>
+            <strong>Курьерская доставка:</strong> 2–5 рабочих дней, стоимость от
+            300 рублей.
+          </li>
+          <li>
+            <strong>Почта России:</strong> 5–10 рабочих дней, стоимость от 200
+            рублей.
+          </li>
+          <li>
+            <strong>Пункты выдачи:</strong> 3–7 рабочих дней, стоимость от 150
+            рублей.
+          </li>
+        </ul>
+        <p>
+          Точные сроки и стоимость зависят от региона. Рассчитываются при
+          оформлении заказа.
         </p>
-      </div>
+      </section>
+
+      <section className="mb-6">
+        <h2 className="text-2xl font-semibold mb-4">2. Бесплатная доставка</h2>
+        <p className="mb-4">
+          Бесплатная доставка на заказы от 10 000 рублей любым способом.
+        </p>
+      </section>
+
+      <section className="mb-6">
+        <h2 className="text-2xl font-semibold mb-4">3. Способы оплаты</h2>
+        <p className="mb-4">Мы принимаем:</p>
+        <ul className="list-disc pl-6 mb-4">
+          <li>Банковские карты (Visa, MasterCard, Мир)</li>
+          <li>Электронные кошельки (ЮMoney, Qiwi)</li>
+          <li>Банковский перевод</li>
+        </ul>
+        <p>Оплата происходит через защищенные платежные системы.</p>
+      </section>
+
+      <section className="mb-6">
+        <h2 className="text-2xl font-semibold mb-4">4. Возврат и обмен</h2>
+        <p className="mb-4">
+          Если товар не подошел или имеет дефекты, вы можете вернуть его в
+          течение 14 дней. Подробности в разделе{" "}
+          <Link href="/guarantees" className="text-blue-600 hover:underline">
+            Гарантии и возврат
+          </Link>
+          .
+        </p>
+      </section>
+
+      <section className="mb-6">
+        <h2 className="text-2xl font-semibold mb-4">5. Отслеживание заказа</h2>
+        <p className="mb-4">
+          После отправки заказа вы получите трек-номер для отслеживания на email
+          или в личном кабинете.
+        </p>
+      </section>
+
+      <p className="text-sm text-gray-600">
+        По вопросам доставки или оплаты обращайтесь в{" "}
+        <Link href="/support" className="text-blue-600 hover:underline">
+          службу поддержки
+        </Link>
+        .
+      </p>
     </div>
   );
 }

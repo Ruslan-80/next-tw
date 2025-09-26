@@ -18,12 +18,12 @@ async function deleteProduct(formData) {
 // Главная страница админки товаров
 export default async function ProductsPageAdmin() {
   const products = await prisma.product.findMany({
-    orderBy: { id: "asc" },
+    orderBy: { slug: "asc" },
     include: { category: true },
   });
 
   return (
-    <div className="p-4 mx-auto w-full max-w-7xl">
+    <div className="p-4  w-full ">
       <h1 className="text-2xl font-bold mb-4">Товары</h1>
       <div className="flex items-center gap-4 mb-6">
         <Link
@@ -33,6 +33,7 @@ export default async function ProductsPageAdmin() {
           Создать новый товар
         </Link>
       </div>
+
       <UniversalTable
         data={products}
         caption="Список товаров"
@@ -52,7 +53,7 @@ export default async function ProductsPageAdmin() {
         actions={(item) => (
           <div className="flex gap-2 text-blue-100 ">
             <Link
-              href={`products/${item.id}`}
+              href={`products/${item.slug}`}
               className="px-2 py-1 bg-blue-500 text-white rounded hover:bg-blue-600"
             >
               Редактировать

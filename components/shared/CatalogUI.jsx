@@ -34,7 +34,7 @@ export default function CatalogUI({ categories, text }) {
 
   // Функция обработки клика, принимающая slug категории
   const handleCardClick = (e, slug) => {
-    if (e.target.closest('a')) return; // Пропускаем клики по ссылкам подкатегорий
+    if (e.target.closest("a")) return; // Пропускаем клики по ссылкам подкатегорий
     router.push(`/catalog/${slug}`);
   };
 
@@ -65,8 +65,8 @@ export default function CatalogUI({ categories, text }) {
                   className="catalog__item"
                 >
                   <h3 className="cursor-pointer">{category.name}</h3>
-                  {category.chaild &&
-                    category.chaild.map((subcategory, subIndex) => (
+                  {category.child &&
+                    category.child.map((subcategory, subIndex) => (
                       <div key={subIndex}>
                         <Link href={`/catalog/${subcategory.slug}`}>
                           <span className="text-[#f47b20] text-xl cursor-pointer hover:text-[#4d479d] transition duration-300 ease-in-out">

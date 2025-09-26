@@ -12,9 +12,11 @@ export default function Advantages() {
       icon: "✅",
       path: "M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z",
     },
+
     {
       title: "Выезд специалиста",
-      description: "Наши специалисты готовы выехать на объект для консультации.",
+      description:
+        "Наши специалисты готовы выехать на объект для консультации.",
       icon: "👷‍♂️",
       path: "M18 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0ZM3 19.235v-.11a6.375 6.375 0 0 1 12.75 0v.109A12.318 12.318 0 0 1 9.374 21c-2.331 0-4.512-.645-6.374-1.766Z",
     },
@@ -43,65 +45,38 @@ export default function Advantages() {
       path: "M9 15 3 9m0 0 6-6M3 9h12a6 6 0 0 1 0 12h-3",
     },
   ];
-  
   return (
-    <div className="mb-12">
-      <h2 className="text-2xl font-bold mb-6 text-center">Наши преимущества</h2>
-      
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
-        {advantages.map((advantage, index) => (
-          <div
-            key={index}
-            className="relative h-48 perspective-1000 group"
-          >
-            <div className="relative w-full h-full transition-transform duration-700 transform-style-3d group-hover:rotate-y-180">
-              {/* Front side */}
-              <div className="absolute w-full h-full backface-hidden bg-gradient-to-br from-blue-50 to-indigo-100 rounded-xl shadow-md p-6 flex flex-col items-center justify-center border border-gray-200">
-                <div className="bg-blue-100 p-3 rounded-full mb-4">
-                  <svg
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth="1.5"
-                    stroke="currentColor"
-                    className="size-8 text-blue-600"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d={advantage.path}
-                    />
-                  </svg>
-                </div>
-                <h3 className="font-bold text-lg text-center text-gray-800">
-                  {advantage.title}
-                </h3>
-              </div>
-              
-              {/* Back side */}
-              <div className="absolute w-full h-full backface-hidden bg-gradient-to-br from-blue-100 to-indigo-200 rounded-xl shadow-lg p-6 flex items-center justify-center rotate-y-180 border border-blue-200">
-                <p className="text-gray-700 text-center font-medium">
-                  {advantage.description}
-                </p>
-              </div>
+    <div className="flex justify-between items-center mb-8">
+      {advantages.map((advantage, index) => (
+        <div
+          key={index}
+          className="flex flex-col min-w-45 min-h-30 wrap-anywhere items-center text-center mx-auto text-sm lg:text-sm px-3 py-5 rounded-2xl shadow-md relative perspective-1000"
+        >
+          <div className="flip-card-inner w-full h-full absolute inset-0 transition-transform duration-500 preserve-3d hover:rotate-y-180">
+            {/* Front side */}
+            <div className="flip-card-front bg-blue-700/10 rounded-2xl absolute w-full h-full flex flex-col items-center justify-center backface-hidden">
+              <svg
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth="1.5"
+                stroke="currentColor"
+                className="size-8 text-orange-900"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d={advantage.path}
+                />
+              </svg>
+              <span className="text-black mt-2">{advantage.title}</span>
+            </div>
+            {/* Back side */}
+            <div className="flip-card-back bg-blue-700/20 rounded-2xl text-[16px] absolute w-full h-full flex items-center justify-center text-black rotate-y-180 backface-hidden">
+              <p className="p-4 text-center">{advantage.description}</p>
             </div>
           </div>
-        ))}
-      </div>
-      
-      <style jsx>{`
-        .perspective-1000 {
-          perspective: 1000px;
-        }
-        .transform-style-3d {
-          transform-style: preserve-3d;
-        }
-        .backface-hidden {
-          backface-visibility: hidden;
-        }
-        .rotate-y-180 {
-          transform: rotateY(180deg);
-        }
-      `}</style>
+        </div>
+      ))}
     </div>
   );
 }

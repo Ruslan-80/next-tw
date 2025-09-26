@@ -1,6 +1,11 @@
 import { cookies } from "next/headers";
-import { prisma } from "@/lib/prisma";
+import { prisma } from "../../../lib/prisma";
 import CartClient from "./CartClient";
+
+export const metadata = {
+  title: "Корзина | ЭЛЕКТРОЩИТ-ПРО",
+  description: "Корзина",
+};
 
 export default async function CartPage() {
   // Получаем куки асинхронно

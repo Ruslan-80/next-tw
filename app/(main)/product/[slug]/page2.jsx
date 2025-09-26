@@ -38,7 +38,7 @@ export async function generateMetadata({ params }) {
 
   if (!product) {
     return {
-      metadataBase: new URL("https://electroshit-pro.ru"), // Замените на ваш реальный домен
+      metadataBase: new URL("http://172.16.10.216:3000"), // Замените на ваш реальный домен
       title: "Товар не найден | ЭЛЕКТРОЩИТ-ПРО",
       description: "Запрашиваемый товар не существует.",
     };
@@ -52,7 +52,7 @@ export async function generateMetadata({ params }) {
   const imageUrl = product.mediaFiles[0]?.url || "/default-og-image.jpg"; // Используем первое изображение или заглушку
 
   return {
-    metadataBase: new URL("https://electroshit-pro.ru"), // Замените на ваш реальный домен
+    metadataBase: new URL("http://172.16.10.216:3000"), // Замените на ваш реальный домен
     title,
     description,
     alternates: {
@@ -125,8 +125,8 @@ export default async function Page({ params }) {
               `Купить ${product.name} в категории ${product.category.name}`,
             image:
               product.mediaFiles[0]?.url ||
-              "https://electroshit-pro.ru/default-og-image.jpg",
-            url: `https://electroshit-pro.ru/product/${slug}`,
+              "http://172.16.10.216:3000/default-og-image.jpg",
+            url: `http://172.16.10.216:3000/product/${slug}`,
             // Дополнительные поля, такие как price или sku, можно добавить, если они есть в модели
           }),
         }}

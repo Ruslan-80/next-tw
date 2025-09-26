@@ -92,235 +92,232 @@ async function importProductsFromExcel(buffer) {
     }
 
     // Создаём/проверяем категории
-    const categoryMap = new Map();
-    for (const product of sheets.Products) {
-      if (!product.categoryId && product.categorySlug) {
-        let category = await prisma.category.findUnique({
-          where: { slug: product.categorySlug },
-        });
-        if (!category) {
-          category = await prisma.category.create({
-            data: {
-              name: product.categoryName || product.categorySlug,
-              fullName: product.categoryName || product.categorySlug,
-              slug: product.categorySlug,
-            },
-          });
-          console.log(
-            `Created category: ${product.categorySlug} (ID: ${category.id})`
-          );
-        }
-        categoryMap.set(product.categorySlug, category.id);
-      }
-    }
+    // const categoryMap = new Map();
+    // for (const product of sheets.Products) {
+    //   if (!product.categoryId && product.categorySlug) {
+    //     let category = await prisma.category.findUnique({
+    //       where: { slug: product.categorySlug },
+    //     });
+    //     if (!category) {
+    //       category = await prisma.category.create({
+    //         data: {
+    //           name: product.categoryName || product.categorySlug,
+    //           fullName: product.categoryName || product.categorySlug,
+    //           slug: product.categorySlug,
+    //         },
+    //       });
+    //       console.log(
+    //         `Created category: ${product.categorySlug} (ID: ${category.id})`
+    //       );
+    //     }
+    //     categoryMap.set(product.categorySlug, category.id);
+    //   }
+    // }
 
     // Создаём/проверяем атрибуты и их значения
-    const attributeMap = new Map();
-    const attributeValueMap = new Map();
-    for (const attr of sheets.ProductAttributes) {
-      if (!attr.attributeId && attr.attributeName) {
-        let attribute = await prisma.attribute.findUnique({
-          where: { name: attr.attributeName },
-        });
-        if (!attribute) {
-          attribute = await prisma.attribute.create({
-            data: {
-              name: attr.attributeName,
-              slug: slugify(attr.attributeName, { lower: true }),
-            },
-          });
-          console.log(
-            `Created attribute: ${attr.attributeName} (ID: ${attribute.id})`
-          );
-        }
-        attributeMap.set(attr.attributeName, attribute.id);
+    // const attributeMap = new Map();
+    // const attributeValueMap = new Map();
+    // for (const attr of sheets.ProductAttributes) {
+    //   if (!attr.attributeId && attr.attributeName) {
+    //     let attribute = await prisma.attribute.findUnique({
+    //       where: { name: attr.attributeName },
+    //     });
+    //     if (!attribute) {
+    //       attribute = await prisma.attribute.create({
+    //         data: {
+    //           name: attr.attributeName,
+    //           slug: slugify(attr.attributeName, { lower: true }),
+    //         },
+    //       });
+    //       console.log(
+    //         `Created attribute: ${attr.attributeName} (ID: ${attribute.id})`
+    //       );
+    //     }
+    //     attributeMap.set(attr.attributeName, attribute.id);
 
-        if (!attr.attributeValueId && attr.attributeValueName) {
-          let attrValue = await prisma.attributeValue.findFirst({
-            where: {
-              attributeId: attribute.id,
-              name: attr.attributeValueName,
-            },
-          });
-          if (!attrValue) {
-            attrValue = await prisma.attributeValue.create({
-              data: {
-                attributeId: attribute.id,
-                name: attr.attributeValueName,
-                slug: slugify(attr.attributeValueName, { lower: true }),
-              },
-            });
-            console.log(
-              `Created attribute value: ${attr.attributeValueName} (ID: ${attrValue.id})`
-            );
-          }
-          attributeValueMap.set(
-            `${attribute.id}-${attr.attributeValueName}`,
-            attrValue.id
-          );
-        }
-      }
-    }
+    //     if (!attr.attributeValueId && attr.attributeValueName) {
+    //       let attrValue = await prisma.attributeValue.findFirst({
+    //         where: {
+    //           attributeId: attribute.id,
+    //           name: attr.attributeValueName,
+    //         },
+    //       });
+    //       if (!attrValue) {
+    //         attrValue = await prisma.attributeValue.create({
+    //           data: {
+    //             attributeId: attribute.id,
+    //             name: attr.attributeValueName,
+    //             slug: slugify(attr.attributeValueName, { lower: true }),
+    //           },
+    //         });
+    //         console.log(
+    //           `Created attribute value: ${attr.attributeValueName} (ID: ${attrValue.id})`
+    //         );
+    //       }
+    //       attributeValueMap.set(
+    //         `${attribute.id}-${attr.attributeValueName}`,
+    //         attrValue.id
+    //       );
+    //     }
+    //   }
+    // }
 
     // Создаём/проверяем теги
-    const tagMap = new Map();
-    for (const tag of sheets.ProductTags) {
-      if (!tag.tagId && tag.tagName) {
-        let tagRecord = await prisma.tag.findUnique({
-          where: { name: tag.tagName },
-        });
-        if (!tagRecord) {
-          tagRecord = await prisma.tag.create({
-            data: {
-              name: tag.tagName,
-              slug: slugify(tag.tagName, { lower: true }),
-            },
-          });
-          console.log(`Created tag: ${tag.tagName} (ID: ${tagRecord.id})`);
-        }
-        tagMap.set(tag.tagName, tagRecord.id);
-      }
-    }
+    // const tagMap = new Map();
+    // for (const tag of sheets.ProductTags) {
+    //   if (!tag.tagId && tag.tagName) {
+    //     let tagRecord = await prisma.tag.findUnique({
+    //       where: { name: tag.tagName },
+    //     });
+    //     if (!tagRecord) {
+    //       tagRecord = await prisma.tag.create({
+    //         data: {
+    //           name: tag.tagName,
+    //           slug: slugify(tag.tagName, { lower: true }),
+    //         },
+    //       });
+    //       console.log(`Created tag: ${tag.tagName} (ID: ${tagRecord.id})`);
+    //     }
+    //     tagMap.set(tag.tagName, tagRecord.id);
+    //   }
+    // }
 
     // Импорт товаров
     for (const product of sheets.Products) {
       const data = {
         article: product.article,
-        name: product.name,
-        slug: product.slug,
-        description: product.description || null,
-        titleSeo: product.titleSeo || null,
-        descriptionSeo: product.descriptionSeo || null,
+        // name: product.name,
+        // slug: product.slug,
+        // description: product.description || null,
+        // titleSeo: product.titleSeo || null,
+        // descriptionSeo: product.descriptionSeo || null,
         basePrice: Number(product.basePrice),
-        manufacturingTime: product.manufacturingTime,
-        stock: Number(product.stock),
-        visibility: Boolean(product.visibility),
-        categoryId: product.categoryId
-          ? Number(product.categoryId)
-          : categoryMap.get(product.categorySlug),
+        // manufacturingTime: product.manufacturingTime,
+        // stock: Number(product.stock),
+        // visibility: Boolean(product.visibility),
+        // categoryId: product.categoryId
+        //   ? Number(product.categoryId)
+        //   : categoryMap.get(product.categorySlug),
       };
 
       if (product.id) {
         await prisma.product.update({
-          where: { id: Number(product.id) },
+          where: { article: product.article },
           data,
         });
-        console.log(`Updated product: ${product.name} (ID: ${product.id})`);
+        console.log(`Updated product: ${product.article}`);
       } else {
-        const newProduct = await prisma.product.create({
-          data,
-        });
-        console.log(`Created product: ${product.name} (ID: ${newProduct.id})`);
+        console.log(`Not product: ${product.article}`);
       }
     }
 
     // Импорт вариантов товаров
-    for (const variation of sheets.ProductVariations) {
-      const data = {
-        productId: Number(variation.productId),
-        sku: variation.sku,
-        variationValue: variation.variationValue,
-        titleSeo: variation.titleSeo || null,
-        descriptionSeo: variation.descriptionSeo || null,
-        price: Number(variation.price),
-        stock: Number(variation.stock),
-        isDefault: Boolean(variation.isDefault),
-      };
+    // for (const variation of sheets.ProductVariations) {
+    //   const data = {
+    //     productId: Number(variation.productId),
+    //     sku: variation.sku,
+    //     variationValue: variation.variationValue,
+    //     titleSeo: variation.titleSeo || null,
+    //     descriptionSeo: variation.descriptionSeo || null,
+    //     price: Number(variation.price),
+    //     stock: Number(variation.stock),
+    //     isDefault: Boolean(variation.isDefault),
+    //   };
 
-      if (variation.id) {
-        await prisma.productVariation.update({
-          where: { id: Number(variation.id) },
-          data,
-        });
-        console.log(
-          `Updated variation: ${variation.sku} (ID: ${variation.id})`
-        );
-      } else {
-        await prisma.productVariation.create({
-          data,
-        });
-        console.log(`Created variation: ${variation.sku}`);
-      }
-    }
+    //   if (variation.id) {
+    //     await prisma.productVariation.update({
+    //       where: { id: Number(variation.id) },
+    //       data,
+    //     });
+    //     console.log(
+    //       `Updated variation: ${variation.sku} (ID: ${variation.id})`
+    //     );
+    //   } else {
+    //     await prisma.productVariation.create({
+    //       data,
+    //     });
+    //     console.log(`Created variation: ${variation.sku}`);
+    //   }
+    // }
 
     // Импорт атрибутов товаров
-    for (const attr of sheets.ProductAttributes) {
-      const data = {
-        productId: Number(attr.productId),
-        attributeId: attr.attributeId
-          ? Number(attr.attributeId)
-          : attributeMap.get(attr.attributeName),
-        attributeValueId: attr.attributeValueId
-          ? Number(attr.attributeValueId)
-          : attributeValueMap.get(
-              `${attr.attributeId || attributeMap.get(attr.attributeName)}-${
-                attr.attributeValueName
-              }`
-            ),
-        attributeName: attr.attributeName,
-        attributeValueName: attr.attributeValueName,
-      };
+    // for (const attr of sheets.ProductAttributes) {
+    //   const data = {
+    //     productId: Number(attr.productId),
+    //     attributeId: attr.attributeId
+    //       ? Number(attr.attributeId)
+    //       : attributeMap.get(attr.attributeName),
+    //     attributeValueId: attr.attributeValueId
+    //       ? Number(attr.attributeValueId)
+    //       : attributeValueMap.get(
+    //           `${attr.attributeId || attributeMap.get(attr.attributeName)}-${
+    //             attr.attributeValueName
+    //           }`
+    //         ),
+    //     attributeName: attr.attributeName,
+    //     attributeValueName: attr.attributeValueName,
+    //   };
 
-      if (attr.id) {
-        await prisma.productAttribute.update({
-          where: { id: Number(attr.id) },
-          data,
-        });
-        console.log(
-          `Updated attribute: ${attr.attributeName} - ${attr.attributeValueName} (ID: ${attr.id})`
-        );
-      } else {
-        await prisma.productAttribute.create({
-          data,
-        });
-        console.log(
-          `Created attribute: ${attr.attributeName} - ${attr.attributeValueName}`
-        );
-      }
-    }
+    //   if (attr.id) {
+    //     await prisma.productAttribute.update({
+    //       where: { id: Number(attr.id) },
+    //       data,
+    //     });
+    //     console.log(
+    //       `Updated attribute: ${attr.attributeName} - ${attr.attributeValueName} (ID: ${attr.id})`
+    //     );
+    //   } else {
+    //     await prisma.productAttribute.create({
+    //       data,
+    //     });
+    //     console.log(
+    //       `Created attribute: ${attr.attributeName} - ${attr.attributeValueName}`
+    //     );
+    //   }
+    // }
 
     // Импорт медиафайлов
-    for (const media of sheets.MediaFiles) {
-      const data = {
-        productId: Number(media.productId),
-        type: media.type,
-        url: media.url,
-      };
+    // for (const media of sheets.MediaFiles) {
+    //   const data = {
+    //     productId: Number(media.productId),
+    //     type: media.type,
+    //     url: media.url,
+    //   };
 
-      if (media.id) {
-        await prisma.mediaFile.update({
-          where: { id: Number(media.id) },
-          data,
-        });
-        console.log(`Updated media: ${media.url} (ID: ${media.id})`);
-      } else {
-        await prisma.mediaFile.create({
-          data,
-        });
-        console.log(`Created media: ${media.url}`);
-      }
-    }
+    //   if (media.id) {
+    //     await prisma.mediaFile.update({
+    //       where: { id: Number(media.id) },
+    //       data,
+    //     });
+    //     console.log(`Updated media: ${media.url} (ID: ${media.id})`);
+    //   } else {
+    //     await prisma.mediaFile.create({
+    //       data,
+    //     });
+    //     console.log(`Created media: ${media.url}`);
+    //   }
+    // }
 
     // Импорт тегов
-    for (const tag of sheets.ProductTags) {
-      const data = {
-        productId: Number(tag.productId),
-        tagId: tag.tagId ? Number(tag.tagId) : tagMap.get(tag.tagName),
-      };
+    // for (const tag of sheets.ProductTags) {
+    //   const data = {
+    //     productId: Number(tag.productId),
+    //     tagId: tag.tagId ? Number(tag.tagId) : tagMap.get(tag.tagName),
+    //   };
 
-      if (tag.id) {
-        await prisma.productTag.update({
-          where: { id: Number(tag.id) },
-          data,
-        });
-        console.log(`Updated tag: ${tag.tagName} (ID: ${tag.id})`);
-      } else {
-        await prisma.productTag.create({
-          data,
-        });
-        console.log(`Created tag: ${tag.tagName}`);
-      }
-    }
+    //   if (tag.id) {
+    //     await prisma.productTag.update({
+    //       where: { id: Number(tag.id) },
+    //       data,
+    //     });
+    //     console.log(`Updated tag: ${tag.tagName} (ID: ${tag.id})`);
+    //   } else {
+    //     await prisma.productTag.create({
+    //       data,
+    //     });
+    //     console.log(`Created tag: ${tag.tagName}`);
+    //   }
+    // }
 
     console.log("Import completed!");
     return { success: true, message: "Import completed successfully" };

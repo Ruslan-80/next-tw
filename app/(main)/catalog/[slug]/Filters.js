@@ -1,4 +1,4 @@
-import { prisma } from "@/lib/prisma";
+import { prisma } from "../../../../lib/prisma";
 import ClientFilters from "./ClientFilters";
 
 export default async function Filters({
@@ -11,7 +11,7 @@ export default async function Filters({
   // console.log("Filters.jsx - attributeIds:", attributeIds);
 
   if (!Array.isArray(attributeIds) || attributeIds.length === 0) {
-    console.log("Filters.jsx - No valid attributeIds provided");
+    // console.log("Filters.jsx - No valid attributeIds provided");
     return null;
   }
 

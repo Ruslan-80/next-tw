@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { Squares2X2Icon, ListBulletIcon } from "@heroicons/react/24/solid";
 import CardItem from "./CardItem";
 
-export default function ProductList({ products = [] }) {
+export default function ProductList({ products = [], totalProducts = 0 }) {
   const [view, setView] = useState("grid");
 
   useEffect(() => {
@@ -60,10 +60,17 @@ export default function ProductList({ products = [] }) {
 
   return (
     <div className="mb-8">
-      <div className="hidden md:flex justify-end items-center mb-6">
-        <h3 className="hidden text-2xl md:text-3xl font-semibold text-gray-900">
-          Товары
-        </h3>
+      <div className=" flex justify-between items-center mb-6">
+        <div className=" text-xl text-gray-700 ">
+          Найдено {totalProducts} товар
+          {totalProducts % 10 === 1 && totalProducts % 100 !== 11
+            ? ""
+            : totalProducts % 10 >= 2 &&
+              totalProducts % 10 <= 4 &&
+              (totalProducts % 100 < 10 || totalProducts % 100 >= 20)
+            ? "а"
+            : "ов"}
+        </div>
         <div className="flex space-x-2">
           <button
             onClick={() => setView("grid")}

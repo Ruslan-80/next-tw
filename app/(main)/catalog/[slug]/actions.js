@@ -1,14 +1,13 @@
 "use server";
 
-import { prisma } from "@/lib/prisma";
-import defaultImage from "@/public/images/product/713680920.webp";
+import { prisma } from "../../../../lib/prisma";
+import defaultImage from "../../../../public/images/product/713680920.webp";
 
 export async function getProductsByCategory(slug, searchParams = {}) {
   // Ожидаем searchParams
-  const resolvedSearchParams = await searchParams;
+  const resolvedSearchParams = searchParams;
   const page = Math.max(1, parseInt(resolvedSearchParams.page, 10) || 1);
   const perPage = 12;
-  // console.log(resolvedSearchParams);
 
   const category = await prisma.category.findUnique({
     where: { slug },

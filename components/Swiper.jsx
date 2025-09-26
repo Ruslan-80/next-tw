@@ -52,16 +52,16 @@ function Slider() {
           style={{ width: "100%" }}
         />
       </SwiperSlide>
-      <SwiperSlide>
+      {/* <SwiperSlide>
         <img
           src="/images/slider/image2.jpg"
           alt="slider 2"
           style={{ width: "100%" }}
         />
-      </SwiperSlide>
+      </SwiperSlide> */}
       <SwiperSlide>
         <img
-          src="/images/slider/image3.jpg"
+          src="/images/slider/test.png"
           alt="slider 3"
           style={{ width: "100%" }}
         />
@@ -70,6 +70,20 @@ function Slider() {
         <img
           src="/images/slider/image4.jpg"
           alt="slider 4"
+          style={{ width: "100%" }}
+        />
+      </SwiperSlide>
+      <SwiperSlide>
+        <img
+          src="/images/slider/image5.jpg"
+          alt="slider 5"
+          style={{ width: "100%" }}
+        />
+      </SwiperSlide>
+      <SwiperSlide>
+        <img
+          src="/images/slider/image6.jpg"
+          alt="slider 6"
           style={{ width: "100%" }}
         />
       </SwiperSlide>

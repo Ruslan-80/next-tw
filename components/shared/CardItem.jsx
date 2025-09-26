@@ -3,8 +3,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import PropTypes from "prop-types";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { useFavorites } from "../../context/FavoritesContext";
 import {
   Dialog,
   DialogContent,
@@ -12,18 +13,27 @@ import {
   DialogTitle,
   DialogDescription,
   DialogFooter,
-} from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Label } from "@/components/ui/label";
+} from "../../components/ui/dialog";
+import { Button } from "../../components/ui/button";
+import { Input } from "../../components/ui/input";
+import { Textarea } from "../../components/ui/textarea";
+import { Label } from "../../components/ui/label";
 import { useForm } from "react-hook-form";
+import { Skeleton } from "../../components/ui/skeleton";
+import { useCartStore } from "../../lib/store/testCartStore";
 
 export default function CardItem({ product, view }) {
   const [adding, setAdding] = useState(false);
   const [showAllAttrs, setShowAllAttrs] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isFavorite, setIsFavorite] = useState(false);
   const router = useRouter();
+  const { toggleFavorite, favorites } = useFavorites();
+  const { setCart } = useCartStore();
+
+  useEffect(() => {
+    setIsFavorite(favorites.some((item) => item.id === product.id));
+  }, [favorites, product.id]);
   const {
     register,
     handleSubmit,
@@ -32,41 +42,26 @@ export default function CardItem({ product, view }) {
   } = useForm();
 
   const handleAddToCart = async () => {
-    if (!product) {
-      alert("Вариант товара недоступен");
-      return;
-    }
+    if (!product) return alert("Вариант товара недоступен");
+
     setAdding(true);
     try {
       const res = await fetch("/api/cart/add", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          productId: product.id,
-          quantity: 1,
-        }),
+        body: JSON.stringify({ productId: product.id, quantity: 1 }),
       });
 
-      if (!res.ok) {
-        let errorMsg = "Не удалось добавить в корзину";
-        const resClone = res.clone();
-        try {
-          const errJson = await resClone.json();
-          if (errJson.error) errorMsg = errJson.error;
-        } catch {
-          try {
-            const errText = await res.text();
-            if (errText) errorMsg = errText;
-          } catch {
-            // тело не прочитать
-          }
-        }
-        throw new Error(errorMsg);
-      }
-      setAdding(false);
+      if (!res.ok) throw new Error("Не удалось добавить в корзину");
+
+      const data = await res.json();
+      console.log("Added to cart:", data);
+
+      setCart({ count: data.count, total: data.total }); // ⬅ обновляем zustand
     } catch (err) {
       console.error(err);
       alert(err.message);
+    } finally {
       setAdding(false);
     }
   };
@@ -109,7 +104,7 @@ export default function CardItem({ product, view }) {
             className={
               view === "grid"
                 ? "flex flex-col h-full"
-                : "flex flex-col md:flex-row h-full"
+                : "flex flex-col items-center md:flex-row h-full"
             }
           >
             {product.image && (
@@ -120,17 +115,21 @@ export default function CardItem({ product, view }) {
                     : "relative w-full max-h-80 md:w-48 md:h-48 aspect-square p-2"
                 }
               >
-                <Image
-                  src={product.image}
-                  alt={product.name}
-                  fill
-                  className="object-contain rounded-lg transition-transform duration-300 hover:scale-105 p-4"
-                  sizes={
-                    view === "grid"
-                      ? "(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                      : "(max-width: 768px) 100vw, 192px"
-                  }
-                />
+                {product.image ? (
+                  <Image
+                    src={product.image}
+                    alt={product.name}
+                    fill
+                    className="object-contain rounded-lg transition-transform duration-300 hover:scale-105 p-4"
+                    sizes={
+                      (view || "grid") === "grid"
+                        ? "(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        : "(max-width: 768px) 100vw, 192px"
+                    }
+                  />
+                ) : (
+                  <Skeleton className="w-full h-full rounded-lg" />
+                )}
               </div>
             )}
             <div
@@ -152,11 +151,12 @@ export default function CardItem({ product, view }) {
                   <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-500/30 transition-all duration-300 group-hover:w-full" />
                 </h4>
                 <p className="text-sm text-gray-500 mb-2">
-                  Артикул: {product.article || "N/A"}
+                  Артикул: {product.article || "N/A"} <br />
+                  Артикул: {product.id || "N/A"}
                 </p>
-                <p className="text-sm text-gray-500 mb-2">
+                {/* <p className="text-sm text-gray-500 mb-2">
                   ID: {product.id || "N/A"}
-                </p>
+                </p> */}
                 {product.description && (
                   <p
                     className={
@@ -178,7 +178,9 @@ export default function CardItem({ product, view }) {
                     product.stock > 0 ? "text-green-600" : "text-red-600"
                   }`}
                 >
-                  {product.stock > 0 ? "В наличии" : "Нет в наличии"}
+                  {product.stock > 0
+                    ? "В наличии"
+                    : "Срок изготовления 7-14 дней"}
                 </p>
                 {product.tags?.length > 0 && (
                   <div className="flex flex-wrap gap-2 mb-3">
@@ -221,9 +223,9 @@ export default function CardItem({ product, view }) {
                         ))}
                       </div>
                       {product.attributes.length > 3 && !showAllAttrs && (
-                        <div className="absolute bottom-0 left-0 right-0 h-6 bg-gradient-to-t from-white to-transparent" />
+                        <div className="absolute bottom-0 left-0 right-0 h-6 " />
                       )}
-                      {product.attributes.length > 3 && (
+                      {/* {product.attributes.length > 3 && (
                         <button
                           onClick={() => setShowAllAttrs(!showAllAttrs)}
                           className="text-xs text-gray-500 hover:text-gray-700 mt-1"
@@ -232,7 +234,7 @@ export default function CardItem({ product, view }) {
                             ? "Скрыть"
                             : `Показать все (${product.attributes.length})`}
                         </button>
-                      )}
+                      )} */}
                     </div>
                   )}
                 </div>
@@ -242,23 +244,31 @@ export default function CardItem({ product, view }) {
         </Link>
         <div
           className={
-            view === "grid" ? "p-4" : "p-4 flex-shrink-0 flex flex-col "
+            view === "grid"
+              ? "p-4"
+              : "p-4 flex-shrink-0 flex flex-col justify-center "
           }
         >
+          {/* <Button
+            onClick={() => toggleFavorite(product)}
+            className={isFavorite ? "bg-gray-200" : ""}
+          >
+            {isFavorite ? "Удалить из избранного" : "В избранное"}
+          </Button> */}
           <Button
             onClick={() => setIsModalOpen(true)}
             className="w-full bg-blue-500 mb-2 px-4 hover:bg-blue-600 text-white font-medium rounded-lg py-2 transition-all duration-300"
           >
-            Заказать бесплатный расчет
+            Расчитать индивидуальный размер
           </Button>
           <Button
             onClick={handleAddToCart}
-            disabled={adding || product.stock === 0}
+            disabled={adding || product.basePrice === 0}
             className={`w-full py-2 px-4 rounded-lg text-white font-medium transition-all duration-300 mb-2 ${
               adding
                 ? "bg-orange-400 opacity-50"
-                : product.stock > 0
-                ? "bg-orange-400 hover:bg-blue-300/30"
+                : product.basePrice > 0
+                ? "bg-orange-400/80 hover:bg-orange-400"
                 : "bg-gray-400 cursor-not-allowed"
             }`}
           >

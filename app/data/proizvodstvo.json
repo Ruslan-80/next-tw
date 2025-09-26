@@ -7,14 +7,30 @@
       "slug": "shity-etazhnye-she",
       "description": "Щиты этажные ЩЭ - описание",
       "fullDescription": "Щиты этажные ЩЭ - полное описание",
-      "image_url": "/images/categories/shield.png",
+      "image_url": "/images/categories/SE43-N.webp",
       "titleSeo": "Щиты этажные ЩЭ - title SEO",
       "descriptionSeo": "Щиты этажные ЩЭ -  описание SEO",
       "type_category": "proizvodstvo",
       "createdAt": "2025-03-03T14:13:44.701726+03:00",
       "updatedAt": "2025-03-03T15:01:53.628343+03:00",
       "parent": null,
-      "chaild": []
+      "child": [
+        {
+          "id": 80,
+          "name": "Кожух щэ для этажного щита",
+          "fullName": "Кожух щэ для этажного щита",
+          "slug": "kozhukh-dlya-etazhnogo-shita",
+          "description": "Кожух щэ  для навесного исполнения применяется совместно с щитом этажным распределительным щрэ для монтажа на стену. Универсальные размеры в наличии и под заказ",
+          "fullDescription": "Кожух щэ  для навесного исполнения применяется совместно с щитом этажным распределительным щрэ для монтажа на стену. Универсальные размеры в наличии и под заказ",
+          "image_url": "/images/categories/kozuh.png",
+          "titleSeo": "Кожух щэ для этажного щита",
+          "descriptionSeo": "Кожух щэ  для навесного исполнения применяется совместно с щитом этажным распределительным щрэ для монтажа на стену. Универсальные размеры в наличии и под заказ",
+          "type_category": "proizvodstvo",
+          "createdAt": "2025-03-03T14:09:57.398841+03:00",
+          "updatedAt": "2025-03-03T14:09:57.398841+03:00",
+          "parentId": 69
+        }
+      ]
     },
     {
       "id": 68,
@@ -23,30 +39,30 @@
       "slug": "nakladki-shitov-etazhnyh-she",
       "description": "Накладки щитов этажных ЩЭ",
       "fullDescription": "Накладки щитов этажных ЩЭ",
-      "image_url": "/images/categories/shield.png",
+      "image_url": "/images/categories/nakladnoy.png",
       "titleSeo": "Накладки щитов этажных ЩЭ - SEO",
       "descriptionSeo": "Накладки щитов этажных ЩЭ - description SEO",
       "type_category": "proizvodstvo",
       "createdAt": "2025-03-03T14:11:42.382465+03:00",
       "updatedAt": "2025-03-03T14:11:42.382465+03:00",
       "parent": null,
-      "chaild": []
+      "child": []
     },
     {
       "id": 67,
       "name": "Устройства этажные",
       "fullName": "Устройства этажные",
-      "slug": "ustroystva-etazhnye",
+      "slug": "../landing/ustroystva-etazhnye",
       "description": "Устройства этажные по индивидуальному запросу",
       "fullDescription": "Устройства этажные по индивидуальному запросу",
-      "image_url": "/images/products/UERM.webp",
+      "image_url": "/images/categories/uerm1.png",
       "titleSeo": "Устройства этажные - SEO",
       "descriptionSeo": "Устройства этажные по индивидуальному запросу - SEO",
       "type_category": "proizvodstvo",
       "createdAt": "2025-03-03T14:09:57.398841+03:00",
       "updatedAt": "2025-03-03T14:09:57.398841+03:00",
       "parentId": null,
-      "chaild": [
+      "child": [
         {
           "id": 70,
           "name": "УЭРМ",
@@ -108,7 +124,7 @@
           "parentId": 67
         },
         {
-          "id": 70,
+          "id": 74,
           "name": "УЭРН",
           "fullName": "УЭРН",
           "slug": "uern",

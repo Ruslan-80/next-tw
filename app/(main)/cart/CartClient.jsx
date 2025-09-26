@@ -6,11 +6,13 @@ import { useActionState, useOptimistic } from "react";
 import { useState } from "react";
 import { updateCartItemQuantity, deleteCartItem, clearCart } from "./actions";
 import { IMaskInput } from "react-imask";
+import { useCartStore } from "../../../lib/store/testCartStore";
 
-export default function CartClient({ cartData, items }) {
+export default function CartClient({ cartData, items, item }) {
   // Состояние для валидации телефона
   const [phone, setPhone] = useState("");
   const [phoneError, setPhoneError] = useState("");
+  const { setCart } = useCartStore();
 
   // Вычисляем итоговую сумму
   const totalPrice = items.reduce(
@@ -42,6 +44,9 @@ export default function CartClient({ cartData, items }) {
     async () => {
       try {
         const result = await clearCart(cartData.token);
+        if (result.success) {
+          setCart({ count: result.count, total: result.total });
+        }
         return result;
       } catch (error) {
         return { success: false, error: error.message };
@@ -99,7 +104,7 @@ export default function CartClient({ cartData, items }) {
 
           {/* Таблица товаров */}
           <div className="bg-white rounded-lg shadow-sm mb-8">
-            <div className="hidden md:grid md:grid-cols-6 gap-4 p-4 bg-gray-50 rounded-t-lg font-medium text-gray-700">
+            <div className="hidden md:grid md:grid-cols-6 gap-4 p-4 bg-blue-100/50 rounded-t-lg font-medium text-gray-700">
               <div className="col-span-1">Изображение</div>
               <div className="col-span-2">Товар</div>
               <div className="col-span-1">Цена</div>
@@ -223,6 +228,7 @@ function CartItem({ item }) {
   const [optimisticQuantity, setOptimisticQuantity] = useOptimistic(
     item.quantity
   );
+  const { setCart } = useCartStore();
 
   const [quantityState, quantityAction, quantityPending] = useActionState(
     async (_, formData) => {
@@ -236,6 +242,9 @@ function CartItem({ item }) {
       setOptimisticQuantity(quantity);
       try {
         const result = await updateCartItemQuantity(item.id, quantity);
+        if (result.success) {
+          setCart({ count: result.count, total: result.total }); // 🔥 обновляем zustand
+        }
         return result;
       } catch (error) {
         return { success: false, error: error.message };
@@ -248,6 +257,9 @@ function CartItem({ item }) {
     async () => {
       try {
         const result = await deleteCartItem(item.id);
+        if (result.success) {
+          setCart({ count: result.count, total: result.total }); // 🔥 обновляем zustand
+        }
         return result;
       } catch (error) {
         return { success: false, error: error.message };
@@ -257,7 +269,7 @@ function CartItem({ item }) {
   );
 
   return (
-    <div className="flex flex-col md:grid md:grid-cols-6 gap-4 p-4 border-b last:border-b-0">
+    <div className="flex flex-col md:grid md:grid-cols-6 gap-4 p-4 border-b border-gray-200 last:border-b-0">
       {/* Верхняя часть (мобильная) */}
       <div className="flex items-center justify-between md:hidden">
         {/* Изображение и название */}
@@ -405,7 +417,7 @@ function CartItem({ item }) {
         </div>
 
         {/* Название */}
-        <div className="col-span-2">
+        <div className="col-span-2 flex items-center">
           <Link
             href={`/product/${item.product.slug}`}
             className="text-gray-900 font-medium hover:text-orange-400 transition-colors line-clamp-2"
@@ -415,7 +427,7 @@ function CartItem({ item }) {
         </div>
 
         {/* Цена */}
-        <div className="col-span-1">
+        <div className="col-span-1 flex flex-col justify-center items-start">
           <p className="text-gray-900">
             {(item.product.basePrice * optimisticQuantity).toLocaleString(
               "ru-RU"
@@ -428,7 +440,7 @@ function CartItem({ item }) {
         </div>
 
         {/* Количество */}
-        <div className="col-span-1">
+        <div className="col-span-1 flex items-center">
           <form action={quantityAction} className="flex items-center space-x-2">
             <button
               type="submit"
@@ -457,7 +469,7 @@ function CartItem({ item }) {
               value={optimisticQuantity}
               min="1"
               readOnly
-              className="w-12 text-center border rounded-md p-1"
+              className="w-12 flex justify-center text-center border rounded-md p-1"
             />
             <button
               type="submit"
@@ -480,9 +492,9 @@ function CartItem({ item }) {
                 />
               </svg>
             </button>
-            {quantityPending && (
+            {/* {quantityPending && (
               <span className="ml-2 text-gray-500">Обновление...</span>
-            )}
+            )} */}
           </form>
           {quantityState.success === false && (
             <p className="text-red-500 text-sm mt-1">
@@ -492,7 +504,7 @@ function CartItem({ item }) {
         </div>
 
         {/* Удаление */}
-        <div className="col-span-1">
+        <div className="col-span-1 flex items-center">
           <form action={deleteAction}>
             <button
               type="submit"

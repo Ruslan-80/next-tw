@@ -1,6 +1,8 @@
-import { prisma } from "@/lib/prisma";
+import { prisma } from "../../../../lib/prisma";
 import ProductPageClient from "./ProductPageClient";
-import Breadcrumbs from "@/components/Breadcrumbs";
+import Breadcrumbs from "../../../../components/Breadcrumbs";
+import JsonLd from "@/components/JsonLdComponent";
+import getProductJsonLd from "@/lib/productJsonLd";
 
 // Функция для получения данных о продукте
 async function getProductData(slug) {
@@ -38,7 +40,7 @@ export async function generateMetadata({ params }) {
 
   if (!product) {
     return {
-      metadataBase: new URL("https://electroshit-pro.ru"), // Замените на ваш реальный домен
+      metadataBase: new URL("http://172.16.10.216:3000"), // Замените на ваш реальный домен
       title: "Товар не найден | ЭЛЕКТРОЩИТ-ПРО",
       description: "Запрашиваемый товар не существует.",
     };
@@ -52,7 +54,7 @@ export async function generateMetadata({ params }) {
   const imageUrl = product.mediaFiles[0]?.url || "/default-og-image.jpg"; // Используем первое изображение или заглушку
 
   return {
-    metadataBase: new URL("https://electroshit-pro.ru"), // Замените на ваш реальный домен
+    metadataBase: new URL("http://172.16.10.216:3000"), // Замените на ваш реальный домен
     title,
     description,
     alternates: {
@@ -111,26 +113,11 @@ export default async function Page({ params }) {
     slug: product.slug,
   });
 
+  const productJsonLd = getProductJsonLd(product, slug);
+
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Product",
-            name: product.name,
-            description:
-              product.description ||
-              `Купить ${product.name} в категории ${product.category.name}`,
-            image:
-              product.mediaFiles[0]?.url ||
-              "https://electroshit-pro.ru/default-og-image.jpg",
-            url: `https://electroshit-pro.ru/product/${slug}`,
-            // Дополнительные поля, такие как price или sku, можно добавить, если они есть в модели
-          }),
-        }}
-      />
+      <JsonLd data={productJsonLd} />
       <div className="container mx-auto px-4">
         <Breadcrumbs items={breadcrumbs} />
         <ProductPageClient product={product} />

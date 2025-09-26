@@ -1,32 +1,45 @@
-import { Geist, Geist_Mono } from "next/font/google";
-import Header from "@/components/shared/Header";
-import Footer from "@/components/shared/Footer";
-import "@/styles/globals.css";
+import { Roboto, Roboto_Mono } from "next/font/google";
+import Header from "../../components/shared/Header";
+import Footer from "../../components/shared/Footer";
+import { CompareProvider } from "../../context/CompareContext";
+import { FavoritesProvider } from "../../context/FavoritesContext";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+import "../../styles/globals.css";
+
+const roboto = Roboto({
+  subsets: ["latin", "cyrillic"],
+  weight: ["300", "400", "500", "700"],
+  variable: "--font-roboto",
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+const robotoMono = Roboto_Mono({
+  subsets: ["latin", "cyrillic"],
+  variable: "--font-roboto-mono",
+  display: "swap",
 });
-
-export const metadata = {
-  metadataBase: new URL("https://electroshit-pro.ru"),
-  title: "Интернет магазин Электрощит-про",
-  description: "Заказать щиты этажные в интернет магазине Электрощит-ПРО",
-};
 
 export default function MainLayout({ children }) {
   return (
     <div
-      style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}
+      lang="ru"
+      className={`${roboto.variable} ${robotoMono.variable} antialiased`}
     >
-      <Header />
-      <div style={{ flex: 1 }}>{children}</div>
-      <Footer />
+      <CompareProvider>
+        <FavoritesProvider>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              minHeight: "100vh",
+            }}
+          >
+            <Header />
+            <div style={{ flex: 1 }}>{children}</div>
+            <Footer />
+          </div>
+        </FavoritesProvider>
+      </CompareProvider>
     </div>
   );
 }

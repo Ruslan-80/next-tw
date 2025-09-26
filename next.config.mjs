@@ -3,14 +3,37 @@ const nextConfig = {
   // experimental: {
   //     allowedDevOrigins: "all",
   // },
-  // async rewrites() {
-  //   return [
-  //     {
-  //       source: "/catalog/:slug?kolichestvo-kvartir-schetchikov=:count",
-  //       destination: "/catalog/:slug-na-:count-kvartiry",
-  //     },
-  //   ];
-  // },
+
+  async rewrites() {
+    return [
+      // Перехват URL-адреса для /catalog/ustroystva-etazhnye
+      {
+        source: "/catalog/ustroystva-etazhnye",
+        destination: "/landing/ustroystva-etazhnye",
+      },
+      // Перехват URL-адреса для /catalog/ustroystva-etazhnye/[slug]
+      {
+        source: "/catalog/uerk",
+        destination: "/landing/uerk",
+      },
+      {
+        source: "/catalog/uerv",
+        destination: "/landing/uerv",
+      },
+      {
+        source: "/catalog/uerb",
+        destination: "/landing/uerb",
+      },
+      {
+        source: "/catalog/uern",
+        destination: "/landing/uern",
+      },
+      {
+        source: "/catalog/uerm",
+        destination: "/landing/uerm",
+      },
+    ];
+  },
 };
 
 export default nextConfig;

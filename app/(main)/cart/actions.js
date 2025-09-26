@@ -1,13 +1,27 @@
 "use server";
 
-import { prisma } from "@/lib/prisma";
+import { prisma } from "../../../lib/prisma";
 import { revalidatePath } from "next/cache";
+
+async function getCartTotals(cartId) {
+  const cartItems = await prisma.cartItem.findMany({
+    where: { cartId },
+    include: { productItem: true },
+  });
+
+  const count = cartItems.reduce((acc, item) => acc + item.quantity, 0);
+  const total = cartItems.reduce(
+    (acc, item) => acc + item.quantity * item.productItem.price,
+    0
+  );
+
+  return { count, total };
+}
 
 /**
  * Обновляет количество товара в корзине
  */
 export async function updateCartItemQuantity(cartItemId, quantity) {
-  //   console.log("Updating item:", cartItemId, "with quantity:", quantity);
   try {
     const parsedQuantity = Number(quantity);
     if (isNaN(parsedQuantity) || parsedQuantity < 1) {
@@ -17,56 +31,47 @@ export async function updateCartItemQuantity(cartItemId, quantity) {
     const updatedItem = await prisma.cartItem.update({
       where: { id: cartItemId },
       data: { quantity: parsedQuantity },
+      include: { cart: true },
     });
 
-    // Перерендерим страницу корзины
+    const totals = await getCartTotals(updatedItem.cartId);
+
     revalidatePath("/cart");
 
-    return { success: true, data: updatedItem };
+    return { success: true, data: updatedItem, ...totals };
   } catch (error) {
-    console.error("Error updating cart item:", error);
     return { success: false, error: error.message };
   }
 }
 
-/**
- * Удаляет товар из корзины
- */
 export async function deleteCartItem(cartItemId) {
   try {
-    await prisma.cartItem.delete({
+    const deletedItem = await prisma.cartItem.delete({
       where: { id: cartItemId },
+      include: { cart: true },
     });
 
-    // Перерендерим страницу корзины
+    const totals = await getCartTotals(deletedItem.cartId);
+
     revalidatePath("/cart");
 
-    return { success: true };
+    return { success: true, ...totals };
   } catch (error) {
-    console.error("Error deleting cart item:", error);
     return { success: false, error: error.message };
   }
 }
 
-/**
- * Очищает корзину (удаляет все элементы)
- */
 export async function clearCart(cartToken) {
   try {
-    await prisma.cartItem.deleteMany({
-      where: {
-        cart: {
-          token: cartToken,
-        },
-      },
-    });
+    const cart = await prisma.cart.findUnique({ where: { token: cartToken } });
+    if (!cart) return { success: true, count: 0, total: 0 };
 
-    // Перерендерим страницу корзины
+    await prisma.cartItem.deleteMany({ where: { cartId: cart.id } });
+
     revalidatePath("/cart");
 
-    return { success: true };
+    return { success: true, count: 0, total: 0 };
   } catch (error) {
-    console.error("Error clearing cart:", error);
     return { success: false, error: error.message };
   }
 }

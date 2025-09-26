@@ -10,10 +10,14 @@ import {
   ShoppingCart,
 } from "lucide-react";
 import Image from "next/image";
-import Logo from "@/public/mainLogo.svg";
+import Logo from "../../public/mainLogo.svg";
 import { Search } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
+import { Skeleton } from "../ui/skeleton";
 import { useRouter } from "next/navigation";
+import { Button } from "../ui/button";
+import CatalogButton from "./CatalogButton";
+import { useCartStore } from "../../lib/store/testCartStore";
 
 export default function Header() {
   const [query, setQuery] = useState("");
@@ -22,6 +26,17 @@ export default function Header() {
   const router = useRouter();
   const inputRef = useRef(null);
   const dropdownRef = useRef(null);
+  const { count, total } = useCartStore();
+  const [isLoading, setIsLoading] = useState(true);
+
+  // useEffect(() => {
+  //   const timer = setTimeout(() => {
+  //     setIsLoading(false);
+  //   }, 1000); // Симуляция загрузки в течение 1 секунды
+  //   return () => clearTimeout(timer);
+  // }, []);
+
+  // const { totalItems, totalAmount, fetchCart } = useCartStore();
 
   // Debounce для поиска
   useEffect(() => {
@@ -68,6 +83,10 @@ export default function Header() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  // useEffect(() => {
+  //   fetchCart(); // Загружаем корзину
+  // }, [fetchCart]);
+
   // Обработка отправки формы
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -82,7 +101,7 @@ export default function Header() {
   return (
     <header className=" top-0 z-50 bg-white shadow-md">
       {/* Верхняя панель контактов */}
-      <div className="bg-gray-800 text-white py-2">
+      <div className=" md:flex bg-gray-800 text-white py-2">
         <div className="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center">
           <nav className="flex space-x-4 text-sm mb-2 md:mb-0">
             <Link
@@ -110,7 +129,7 @@ export default function Header() {
               href="mailto:snab@kplstroy.ru"
               className="flex items-center gap-1 hover:text-red-300 transition-colors"
             >
-              <Mail size={14} /> snab@kplstroy.ru
+              <Mail size={14} /> info@electroshit-pro.ru
             </Link>
             <Link
               href="tel:+74993901467"
@@ -127,16 +146,31 @@ export default function Header() {
 
       {/* Основная навигация */}
       <div className="container mx-auto px-4 py-3">
-        <div className="flex flex-col md:flex-row items-center justify-between">
-          {/* Логотип */}
-          <div className="mb-4 md:mb-0">
-            <Link href="/">
-              <Image src={Logo} alt="Kapital Stroy" width={180} height={40} />
+        <div className="flex flex-col md:flex-row items-center justify-between w-full">
+          <div className="flex items-center justify-between w-full md:w-auto md:order-none order-1">
+            <CatalogButton />
+            {/* Логотип */}
+            <Link href="/" className="mx-4">
+              <Image src={Logo} alt="Electroshit-pro" />
+            </Link>
+            {/* Корзина */}
+            <Link
+              href="/cart"
+              className="md:hidden flex flex-col items-center p-2 rounded-2xl w-24 hover:bg-gray-100 transition-colors gap-2"
+            >
+              <div className="relative">
+                <ShoppingCart size={24} />
+                <span className="absolute -top-1 -right-7 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                  {count}
+                </span>
+              </div>
+              <span className="flex justify-center text-sm font-semibold ml-1">
+                {total.toLocaleString("ru-RU")} ₽
+              </span>
             </Link>
           </div>
-
           {/* Поиск */}
-          <div className="w-full md:w-1/2 relative mb-4 md:mb-0">
+          <div className="w-full md:w-1/2 md:order-none order-2 mt-4 md:mt-0 relative">
             <form onSubmit={handleSubmit} className="relative">
               <input
                 ref={inputRef}
@@ -147,6 +181,10 @@ export default function Header() {
                 className="w-full border border-gray-300 rounded-lg px-4 py-3 pr-10 focus:outline-none focus:ring-2 focus:ring-red-500"
               />
               <button
+                id="search"
+                aria-label="search"
+                aria-labelledby="search"
+                title="search"
                 type="submit"
                 className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-red-500"
               >
@@ -217,42 +255,30 @@ export default function Header() {
           </div>
 
           {/* Иконки действий */}
-          <div className="flex space-x-4">
-            <Link
-              href="/compare"
-              className="p-2 rounded-full hover:bg-gray-100 transition-colors relative"
-            >
-              <ChartNoAxesColumn size={24} />
-              <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
-                3
-              </span>
-            </Link>
-
-            <Link
-              href="/account"
-              className="p-2 rounded-full hover:bg-gray-100 transition-colors"
-            >
-              <User size={24} />
-            </Link>
-
+          <div className="hidden md:flex space-x-4">
             <Link
               href="/cart"
-              className="p-2 rounded-full hover:bg-gray-100 transition-colors relative"
+              className="flex flex-col items-center p-2 rounded-2xl w-24  hover:bg-gray-100 transition-colors gap-2"
             >
-              <ShoppingCart size={24} />
-              <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
-                2
+              <div className="relative">
+                <ShoppingCart size={24} />
+                <span className="absolute -top-1 -right-7 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                  {count}
+                </span>
+              </div>
+              <span className="flex justify-center text-sm font-semibold ml-1">
+                {total.toLocaleString("ru-RU")} ₽
               </span>
             </Link>
           </div>
         </div>
 
         {/* Категории */}
-        <nav className="mt-4 hidden lg:block">
+        {/* <nav className="mt-4 hidden lg:block">
           <ul className="flex justify-center space-x-6 text-gray-800 font-medium">
             <li>
               <Link
-                href="/catalog/shchity-i-etazhnye-ustroystva"
+                href="/catalog/shity-etazhnye-she"
                 className="hover:text-red-600 transition-colors py-2 border-b-2 border-transparent hover:border-red-600"
               >
                 Щиты и устройства этажные
@@ -291,7 +317,7 @@ export default function Header() {
               </Link>
             </li>
           </ul>
-        </nav>
+        </nav> */}
       </div>
     </header>
   );

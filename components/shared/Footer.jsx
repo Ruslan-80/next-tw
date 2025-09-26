@@ -1,7 +1,16 @@
 import Image from "next/image";
-import Logo from "@/public/mainLogo.svg";
+import Logo from "../../public/mainLogo.svg";
 import Link from "next/link";
-import { Mail, Phone, MapPin, Facebook, Instagram, Twitter, Youtube } from "lucide-react";
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Facebook,
+  Instagram,
+  Twitter,
+  Youtube,
+  Vk,
+} from "lucide-react";
 
 export default function Footer() {
   return (
@@ -18,26 +27,36 @@ export default function Footer() {
               />
             </Link>
             <p className="text-gray-400 mb-4 text-sm">
-              Комплексные поставки электротехнического оборудования и автоматики
+              Комплексные поставки электротехнических щитов и оборудования для
+              жилых и коммерческих объектов.
             </p>
-            
+
             <div className="space-y-2">
               <div className="flex items-center gap-2">
                 <Phone size={16} className="text-gray-400" />
-                <a href="tel:+74993901467" className="hover:text-red-500 transition-colors">
+                <a
+                  href="tel:+74993901467"
+                  className="hover:text-red-500 transition-colors"
+                >
                   +7 (499) 390-14-67
                 </a>
               </div>
               <div className="flex items-center gap-2">
                 <Phone size={16} className="text-gray-400" />
-                <a href="tel:+79262762415" className="hover:text-red-500 transition-colors">
+                <a
+                  href="tel:+79262762415"
+                  className="hover:text-red-500 transition-colors"
+                >
                   +7 (926) 276-24-15
                 </a>
               </div>
               <div className="flex items-center gap-2">
                 <Mail size={16} className="text-gray-400" />
-                <a href="mailto:snab@kplstroy.ru" className="hover:text-red-500 transition-colors">
-                  snab@kplstroy.ru
+                <a
+                  href="mailto:snab@kplstroy.ru"
+                  className="hover:text-red-500 transition-colors"
+                >
+                  info@electroshit-pro.ru
                 </a>
               </div>
               <div className="flex items-start gap-2 mt-3">
@@ -51,11 +70,13 @@ export default function Footer() {
 
           {/* Каталог */}
           <div>
-            <h3 className="text-lg font-semibold mb-4 border-b border-gray-700 pb-2">Каталог</h3>
+            <h3 className="text-lg font-semibold mb-4 border-b border-gray-700 pb-2">
+              Каталог
+            </h3>
             <ul className="space-y-2">
               <li>
                 <Link
-                  href="/catalog/shchity-i-etazhnye-ustroystva"
+                  href="/catalog/shhity-etazhnye-i-ustrojstva-podezdnye"
                   className="text-gray-400 hover:text-red-500 transition-colors"
                 >
                   Щиты и устройства этажные
@@ -98,7 +119,9 @@ export default function Footer() {
 
           {/* Покупателям */}
           <div>
-            <h3 className="text-lg font-semibold mb-4 border-b border-gray-700 pb-2">Покупателям</h3>
+            <h3 className="text-lg font-semibold mb-4 border-b border-gray-700 pb-2">
+              Покупателям
+            </h3>
             <ul className="space-y-2">
               <li>
                 <Link
@@ -145,10 +168,10 @@ export default function Footer() {
 
           {/* Соцсети и подписка */}
           <div>
-            <h3 className="text-lg font-semibold mb-4 border-b border-gray-700 pb-2">Подписка</h3>
-            <p className="text-gray-400 mb-4">
-              Подпишитесь на новости и акции
-            </p>
+            <h3 className="text-lg font-semibold mb-4 border-b border-gray-700 pb-2">
+              Подписка
+            </h3>
+            <p className="text-gray-400 mb-4">Подпишитесь на новости и акции</p>
             <form className="flex mb-6">
               <input
                 type="email"
@@ -156,6 +179,7 @@ export default function Footer() {
                 className="bg-gray-800 text-white rounded-l-lg px-4 py-2 w-full focus:outline-none focus:ring-2 focus:ring-red-500"
               />
               <button
+                id="footer_submit"
                 type="submit"
                 className="bg-red-600 hover:bg-red-700 text-white rounded-r-lg px-4 py-2 transition-colors"
               >
@@ -164,18 +188,32 @@ export default function Footer() {
             </form>
 
             <div className="mt-6">
-              <h3 className="text-lg font-semibold mb-4 border-b border-gray-700 pb-2">Социальные сети</h3>
+              <h3 className="text-lg font-semibold mb-4 border-b border-gray-700 pb-2">
+                Социальные сети
+              </h3>
               <div className="flex space-x-4">
-                <a href="#" className="bg-gray-800 p-2 rounded-full hover:bg-red-600 transition-colors">
+                <a
+                  href="#"
+                  className="bg-gray-800 p-2 rounded-full hover:bg-red-600 transition-colors"
+                >
                   <Facebook size={20} />
                 </a>
-                <a href="#" className="bg-gray-800 p-2 rounded-full hover:bg-red-600 transition-colors">
+                <a
+                  href="#"
+                  className="bg-gray-800 p-2 rounded-full hover:bg-red-600 transition-colors"
+                >
                   <Instagram size={20} />
                 </a>
-                <a href="#" className="bg-gray-800 p-2 rounded-full hover:bg-red-600 transition-colors">
+                <a
+                  href="#"
+                  className="bg-gray-800 p-2 rounded-full hover:bg-red-600 transition-colors"
+                >
                   <Twitter size={20} />
                 </a>
-                <a href="#" className="bg-gray-800 p-2 rounded-full hover:bg-red-600 transition-colors">
+                <a
+                  href="#"
+                  className="bg-gray-800 p-2 rounded-full hover:bg-red-600 transition-colors"
+                >
                   <Youtube size={20} />
                 </a>
               </div>
@@ -186,7 +224,7 @@ export default function Footer() {
         {/* Нижняя панель */}
         <div className="pt-6 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center">
           <div className="text-gray-500 text-sm mb-4 md:mb-0">
-            © 2025 Kapital Stroy. Все права защищены.
+            © 2025 ElectroShit-PRO. Все права защищены.
           </div>
           <div className="flex space-x-6">
             <Link

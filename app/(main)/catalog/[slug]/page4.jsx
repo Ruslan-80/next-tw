@@ -21,7 +21,7 @@ export async function generateMetadata({ params, searchParams }) {
     pageType,
   } = parseSlug(slug, resolvedSearchParams);
 
-  console.log("Page Type:", pageType);
+  // console.log("Page Type:", pageType);
 
   const category = await prisma.category.findUnique({
     where: { slug: baseSlug },

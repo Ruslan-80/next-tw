@@ -7,11 +7,11 @@ import {
   AccordionItem,
   AccordionTrigger,
   AccordionContent,
-} from "@/components/ui/accordion";
-import { Checkbox } from "@/components/ui/checkbox";
-import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
-import seoMetadata from "@/app/data/seoMetadata.json";
+} from "../../../../components/ui/accordion";
+import { Checkbox } from "../../../../components/ui/checkbox";
+import { Button } from "../../../../components/ui/button";
+import { cn } from "../../../../lib/utils";
+import seoMetadata from "../../../../app/data/seoMetadata.json";
 import { X, Filter, ChevronDown, ChevronUp } from "lucide-react";
 
 export default function ClientFilters({
@@ -144,9 +144,9 @@ export default function ClientFilters({
   );
 
   return (
-    <div className="mb-6">
+    <div className="mb-4">
       {/* Кнопка для мобильного меню */}
-      <div className="md:hidden flex items-center justify-between mb-4 p-3 bg-white rounded-xl shadow-md">
+      <div className="md:hidden flex items-center justify-between mb-4 p-4 bg-white rounded-xl shadow-md">
         <Button
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           className="flex items-center gap-2 w-full justify-between"
@@ -179,7 +179,7 @@ export default function ClientFilters({
       >
         <div className="flex justify-between items-center mb-4">
           <h3 className="text-xl font-bold text-gray-800">Фильтры</h3>
-          <span className="text-sm text-gray-500">{totalProducts} товаров</span>
+          {/* <span className="text-sm text-gray-500">{totalProducts} товаров</span> */}
         </div>
 
         {/* Чипсы выбранных фильтров */}

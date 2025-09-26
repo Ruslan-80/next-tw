@@ -1,5 +1,5 @@
 // utils/slugParser.js
-import seoMetadata from "@/app/data/seoMetadata.json";
+import seoMetadata from "../app/data/seoMetadata.json";
 
 export function parseSlug(slug, searchParams) {
   let baseSlug = slug;

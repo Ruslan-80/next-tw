@@ -5,13 +5,13 @@ export async function GET() {
   try {
     const products = await prisma.product.findMany({
       where: {
-        description: { not: null },
+        visibility: true,
         // Добавляем условие для популярных товаров, например, по количеству заказов
         // orderItems: {
         //   some: {},
         // },
       },
-      // take: 8, // Ограничим до 8 популярных товаров
+      take: 8, // Ограничим до 8 популярных товаров
       // orderBy: {
       //   orderItems: {
       //     _count: "desc", // Сортировка по количеству заказов
