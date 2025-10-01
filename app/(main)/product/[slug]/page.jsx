@@ -38,6 +38,8 @@ export async function generateMetadata({ params }) {
   // Получаем данные о продукте
   const product = await getProductData(slug);
 
+  console.log("Product data for metadata:", product);
+
   if (!product) {
     return {
       metadataBase: new URL("http://172.16.10.216:3000"), // Замените на ваш реальный домен
@@ -46,7 +48,7 @@ export async function generateMetadata({ params }) {
     };
   }
 
-  const title = `${product.name} | ЭЛЕКТРОЩИТ-ПРО`;
+  const title = product.titleSeo || `${product.name} | ЭЛЕКТРОЩИТ-ПРО`;
   const description =
     product.descriptionSeo ||
     `Купить ${product.name} в категории ${product.category.name} по выгодной цене. Быстрая доставка и высокое качество.`;

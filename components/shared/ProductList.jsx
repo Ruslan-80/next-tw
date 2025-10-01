@@ -31,9 +31,9 @@ export default function ProductList({ products = [], totalProducts = 0 }) {
   if (!Array.isArray(products) || products.length === 0) {
     return (
       <div className="flex justify-center items-center py-12 text-lg">
-        <div className="mx-auto w-full max-w-sm rounded-md border border-blue-300 p-4">
+        <div className="mx-auto w-full max-w-lg  rounded-md border border-blue-300 p-4">
           <div className="flex animate-pulse space-x-4">
-            <div className="size-10 rounded-full bg-gray-200"></div>
+            <div className="size-30 rounded-full bg-gray-200"></div>
             <div className="flex-1 space-y-6 py-1">
               <div className="h-2 rounded bg-gray-200"></div>
               <div className="space-y-3">

@@ -47,12 +47,12 @@
   {
     "id": 10,
     "slug": "shity-etazhnye-she",
-    "updatedAt": "2025-09-24T11:18:24.790Z"
+    "updatedAt": "2025-09-25T14:16:01.646Z"
   },
   {
     "id": 12,
     "slug": "ustroystva-etazhnye",
-    "updatedAt": "2025-09-19T15:01:54.588Z"
+    "updatedAt": "2025-09-29T11:30:39.344Z"
   },
   {
     "id": 13,
@@ -62,7 +62,7 @@
   {
     "id": 14,
     "slug": "uerv",
-    "updatedAt": "2025-08-20T13:27:29.091Z"
+    "updatedAt": "2025-10-01T14:05:48.272Z"
   },
   {
     "id": 15,
@@ -88,5 +88,10 @@
     "id": 19,
     "slug": "nakladki-shitov-etazhnyh-she",
     "updatedAt": "2025-09-04T10:09:38.799Z"
+  },
+  {
+    "id": 21,
+    "slug": "kozhuh-she-dlya-etazhnogo-shita",
+    "updatedAt": "2025-10-01T12:03:26.766Z"
   }
 ]

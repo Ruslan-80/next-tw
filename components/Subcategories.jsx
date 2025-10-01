@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 export default function Subcategories({ subcategories }) {
@@ -8,8 +9,8 @@ export default function Subcategories({ subcategories }) {
   return (
     <div className="mb-8 mt-8">
       {/* <h3 className="text-2xl font-semibold text-gray-900 mb-4">
-                Подкатегории
-            </h3> */}
+        Подкатегории
+      </h3> */}
       <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {subcategories.map((subcategory) => (
           <li
@@ -22,10 +23,12 @@ export default function Subcategories({ subcategories }) {
             >
               {subcategory.imageUrl && (
                 // Проверяем наличие imageUrl перед использованием
-                <img
+                <Image
                   src={subcategory.imageUrl}
                   alt={subcategory.name}
-                  className="w-14 h-14 object-cover rounded-t-lg "
+                  width={156}
+                  height={156}
+                  className="w-14 h-14 object-contain hover:scale-115 transition-transform transform duration-300"
                 />
               )}
               <h3 className="text-lg font-medium text-gray-900 hover:text-orange-400 transition-colors">

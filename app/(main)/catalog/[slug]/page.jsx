@@ -23,9 +23,12 @@ export async function generateMetadata({ params, searchParams }) {
     where: { slug: baseSlug },
     select: {
       name: true,
+      titleSeo: true,
       descriptionSeo: true,
     },
   });
+
+  const titleSeo = category.titleSeo;
 
   if (!category) {
     return {
@@ -46,12 +49,15 @@ export async function generateMetadata({ params, searchParams }) {
     selectedValue &&
     categoryMetadata[selectedAttribute]?.[selectedValue]
   ) {
-    title = categoryMetadata[selectedAttribute][selectedValue].title;
+    title =
+      titleSeo || categoryMetadata[selectedAttribute][selectedValue].title;
     description =
       categoryMetadata[selectedAttribute][selectedValue].description;
   } else {
     title =
-      categoryMetadata.default?.title || `${category.name} | ЭЛЕКТРОЩИТ-ПРО`;
+      titleSeo ||
+      categoryMetadata.default?.title ||
+      `${category.name} | ЭЛЕКТРОЩИТ-ПРО`;
     description =
       categoryMetadata.default?.description ||
       category.descriptionSeo ||

@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Card, CardContent } from "@/components/ui/card";
 import Image from "next/image";
 
-export function TitleHead() {
+export function UstrojstvaEtazhnyepodeznyeTop() {
   return (
     <section>
       <div className="flex bg-blue-300/20 shadow-xl items-center rounded-4xl px-8 py-12 mx-auto border border-blue-200">
@@ -81,7 +81,7 @@ export function TitleHead() {
   );
 }
 
-export function UstrojstvaEtazhnye() {
+export function UstrojstvaEtazhnyepodeznyeBottom() {
   return (
     <div className="container mx-auto p-6 space-y-10 text-2xl mt-12">
       <h2 className="flex justify-center text-4xl font-bold text-gray-900 mb-10">
