@@ -229,10 +229,10 @@ const ComparisonTable = () => {
 
   return (
     <div className="container mx-auto p-6">
-      <h1 className="text-3xl font-bold text-center mb-6">
+      <h2 className="text-3xl font-bold text-center mb-6">
         Сравнительная таблица устройств этажных распределительных: УЭРВ, УЭРБ,
         УЭРН, УЭРК, УЭРМ
-      </h1>
+      </h2>
       <div className="shadow-lg rounded-lg">
         <Table className="w-full">
           <TableHeader>

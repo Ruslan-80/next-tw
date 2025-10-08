@@ -7,7 +7,12 @@ export default function Modal({
   onSubmit,
   submitError,
 }) {
-  const [formData, setFormData] = useState({ contact: "", name: "" });
+  const [formData, setFormData] = useState({
+    contact: "",
+    name: "",
+    message: "",
+  });
+
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [formError, setFormError] = useState("");
 
@@ -24,7 +29,6 @@ export default function Modal({
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (formData.name) {
-      // Если поле name заполнено, это бот, игнорируем отправку
       setFormError("Ошибка: Форма не отправлена.");
       return;
     }
@@ -42,22 +46,31 @@ export default function Modal({
 
   const handleClose = () => {
     setIsSubmitted(false);
-    setFormData({ contact: "", name: "" });
+    setFormData({ contact: "", name: "", message: "" });
     setFormError("");
     onClose();
+  };
+
+  const handleOverlayClick = (e) => {
+    if (e.target === e.currentTarget) {
+      handleClose();
+    }
   };
 
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black/40 backdrop-blur-md flex items-center justify-center z-50 transition-opacity duration-500 ease-in-out">
-      <div className="bg-white text-lg p-8 rounded-2xl max-w-md w-full shadow-2xl transform transition-all duration-500 ease-in-out scale-100 hover:scale-105">
+    <div
+      className="fixed inset-0 bg-black/40 backdrop-blur-md flex items-center justify-center z-50 transition-opacity duration-500 ease-in-out"
+      onClick={handleOverlayClick}
+    >
+      <div className="bg-white text-lg p-8 rounded-2xl max-w-md w-full shadow-2xl transform transition-all duration-500 ease-in-out scale-100 hover:scale-105 dark:bg-gray-900 dark:text-white">
         {isSubmitted ? (
           <div className="text-center">
-            <p className="mb-6 text-xl text-gray-600">
+            <p className="mb-6 text-xl text-gray-600 dark:text-white">
               {`Ваш контакт ${formData.contact} отправлен менеджеру.`}
             </p>
-            <p className="mb-6 text-xl text-gray-600">
+            <p className="mb-6 text-xl text-gray-600 dark:text-white">
               В ближайшее время менеджер с вами свяжется.
             </p>
             <button
@@ -70,11 +83,11 @@ export default function Modal({
           </div>
         ) : (
           <>
-            <h2 className="text-2xl font-bold mb-4 text-gray-800">
+            <h2 className="text-2xl font-bold mb-4 text-gray-800 dark:text-white">
               {initialContent}
             </h2>
-            <p className="mb-6 text-xl text-gray-600">
-              Укажите ваш телефон или email, и мы свяжемся с вами!
+            <p className="mb-6 text-xl text-gray-600 dark:text-white">
+              Укажите Ваш телефон или email, и мы свяжемся с вами!
             </p>
             <form onSubmit={handleSubmit}>
               <input
@@ -83,7 +96,15 @@ export default function Modal({
                 value={formData.contact}
                 onChange={handleChange}
                 placeholder="Телефон или email"
-                className="w-full p-3 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300"
+                className="w-full p-3 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300 dark:bg-gray-800 dark:border-gray-600 dark:text-white"
+              />
+              <textarea
+                name="message"
+                value={formData.message}
+                onChange={handleChange}
+                placeholder="Сообщение (опционально)"
+                rows={3}
+                className="w-full p-3 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300 dark:bg-gray-800 dark:border-gray-600 dark:text-white"
               />
               <input
                 type="text"

@@ -2,10 +2,17 @@ export default function DocumentationTab() {
   const documents = [
     {
       id: 2,
-      name: "Документация",
+      name: "Сертификат соответствия",
       format: "PDF",
-      size: "161.2 КБ",
-      link: "#",
+      size: "3.37 МБ",
+      link: "/docs/sertifikat_sootvetstvia.pdf",
+    },
+    {
+      id: 3,
+      name: "Отказное письмо",
+      format: "PDF",
+      size: "1.56 МБ",
+      link: "/docs/otkaznoe_pismo.pdf",
     },
   ];
 

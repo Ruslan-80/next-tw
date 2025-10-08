@@ -291,7 +291,7 @@ export default function Header() {
           <ul className="flex justify-center space-x-6 text-gray-800 font-medium">
             <li>
               <Link
-                href="/catalog/shhity-etazhnye-i-ustrojstva-podezdnye"
+                href="/catalog/schity-etazhnye-i-ustroystva-podezdnye"
                 className="hover:text-red-600 transition-colors py-2 border-b-2 border-transparent hover:border-red-600"
               >
                 Щиты и устройства этажные

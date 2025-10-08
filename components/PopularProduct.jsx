@@ -15,15 +15,41 @@ import Link from "next/link";
 //   tags: { tag: { name: string } }[];
 // };
 
-export default function PopularProducts() {
+export default function PopularProducts({ categorySlug }) {
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  // console.log("categorySlug:", categorySlug);
+
+  // useEffect(() => {
+  //   async function fetchProducts() {
+  //     try {
+  //       const response = await fetch("/api/products/popular");
+  //       if (!response.ok) {
+  //         throw new Error("Failed to fetch products");
+  //       }
+  //       const data = await response.json();
+  //       setProducts(data);
+  //     } catch (err) {
+  //       setError("Error loading products");
+  //       console.error(err);
+  //     } finally {
+  //       setIsLoading(false);
+  //     }
+  //   }
+
+  //   fetchProducts();
+  // }, []);
+
   useEffect(() => {
     async function fetchProducts() {
       try {
-        const response = await fetch("/api/products/popular");
+        const response = await fetch("/api/products/popular", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ categorySlug }),
+        });
         if (!response.ok) {
           throw new Error("Failed to fetch products");
         }
@@ -37,8 +63,8 @@ export default function PopularProducts() {
       }
     }
 
-    fetchProducts();
-  }, []);
+    if (categorySlug) fetchProducts();
+  }, [categorySlug]);
 
   if (isLoading)
     return (
@@ -95,6 +121,7 @@ export default function PopularProducts() {
                     alt={product.name}
                     fill
                     className="object-cover"
+                    sizes={"(max-width: 768px) 100vw, 192px"}
                   />
                 ) : (
                   <div className="w-full h-full bg-gray-100 flex items-center justify-center">
@@ -108,12 +135,12 @@ export default function PopularProducts() {
 
             <div className="p-5">
               <Link href={`/product/${product.slug}`}>
-                <h3 className="text-lg font-bold mb-2 hover:text-blue-600 transition-colors">
+                <h3 className="flex  text-lg h-30 font-bold mb-2 hover:text-blue-600 transition-colors items-center">
                   {product.name}
                 </h3>
               </Link>
 
-              <div className="flex items-center mb-2">
+              <div className="flex items-center mt-5 mb-2">
                 <div className="flex text-yellow-400">
                   {[...Array(5)].map((_, i) => (
                     <svg
@@ -127,18 +154,23 @@ export default function PopularProducts() {
                     </svg>
                   ))}
                 </div>
-                <span className="text-gray-600 ml-2">4.8</span>
+                <span className="text-gray-600 text-lg ml-2">4.8</span>
               </div>
 
-              <p className="text-gray-600 mb-3 line-clamp-2">
+              {/* <p className="text-gray-600 mb-3 line-clamp-2">
                 {product.description?.slice(0, 100)}...
-              </p>
+              </p> */}
 
-              <div className="flex justify-between items-center">
-                <span className="text-xl font-bold text-green-600">
-                  {product.price} руб.
-                </span>
-                <button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors">
+              <div className="flex flex-col items-center mt-10 gap-5">
+                {/* <span className="text-2xl font-bold text-green-600">
+                  {product.basePrice} руб.
+                </span> */}
+                <div className="text-3xl font-bold text-blue-600 mb-5">
+                  {product.basePrice
+                    ? `${product.basePrice.toLocaleString("ru-RU")} руб.`
+                    : "Цена недоступна"}
+                </div>
+                <button className="bg-primary w-full hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors">
                   В корзину
                 </button>
               </div>

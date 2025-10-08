@@ -27,7 +27,7 @@ export default function CatalogButton() {
       <DropdownMenu open={open} onOpenChange={setOpen}>
         <DropdownMenuTrigger asChild>
           <button
-            className="inline-flex items-center justify-center px-4 py-2 mr-2 bg-black text-white text-xl rounded-md "
+            className="inline-flex items-center justify-center px-4 py-2 mr-2 bg-primary text-white text-xl rounded-md"
             aria-label="Open catalog menu"
           >
             <Menu

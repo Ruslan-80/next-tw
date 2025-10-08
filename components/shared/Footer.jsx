@@ -76,7 +76,7 @@ export default function Footer() {
             <ul className="space-y-2">
               <li>
                 <Link
-                  href="/catalog/shhity-etazhnye-i-ustrojstva-podezdnye"
+                  href="/catalog/schity-etazhnye-i-ustroystva-podezdnye"
                   className="text-gray-400 hover:text-red-500 transition-colors"
                 >
                   Щиты и устройства этажные

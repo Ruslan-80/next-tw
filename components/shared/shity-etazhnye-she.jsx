@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Card, CardContent } from "@/components/ui/card";
 import Image from "next/image";
+import FaqShity from "../faqShity";
 
 export function ShityEtazhnyeTop() {
   return (
@@ -106,10 +107,6 @@ export function ShityEtazhnyeBottom() {
   ];
   return (
     <div className="container mx-auto p-6 space-y-10 text-2xl mt-12">
-      {/* <h2 className="flex justify-center text-4xl font-bold text-gray-900 mb-10">
-        1. Виды производимых этажных щитов
-      </h2> */}
-
       <Card>
         <CardContent className="px-6">
           <h3 className="text-3xl font-semibold text-orange-600">
@@ -374,9 +371,9 @@ export function ShityEtazhnyeBottom() {
         </CardContent>
       </Card>
       <div className="container mx-auto p-4">
-        <h1 className="text-2xl md:text-3xl font-bold text-center text-gray-800 mb-6">
+        <h3 className="text-2xl md:text-3xl font-bold text-center text-gray-800 mb-6">
           Классификация этажных щитков по ГОСТ 32395-2020
-        </h1>
+        </h3>
         <div className="overflow-x-auto">
           <table className="w-full max-w-5xl mx-auto bg-white shadow-md border-collapse">
             <thead>
@@ -457,6 +454,7 @@ export function ShityEtazhnyeBottom() {
           </table>
         </div>
       </div>
+      <FaqShity />
     </div>
   );
 }

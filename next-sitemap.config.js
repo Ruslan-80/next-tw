@@ -8,7 +8,15 @@ const config = {
   generateRobotsTxt: true,
   sitemapSize: 7000,
   outDir: "./public",
-  exclude: ["/admin/*", "/test", "./landing/*", "./search/*", "/vng", "/api/*"],
+  exclude: [
+    "/*?*",
+    "/admin*",
+    "/test*",
+    "./landing*",
+    "./search*",
+    "/vng*",
+    "/api*",
+  ],
 
   additionalPaths: async () => {
     const productsPath = path.resolve(process.cwd(), "public/products.json");
@@ -57,7 +65,14 @@ const config = {
       {
         userAgent: "*",
         allow: "/",
-        disallow: ["/admin", "/test"],
+        disallow: [
+          "/admin/*",
+          "/test",
+          "./landing/*",
+          "./search/*",
+          "/vng",
+          "/api/*",
+        ],
       },
     ],
   },

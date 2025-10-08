@@ -30,10 +30,10 @@ export default function ComponentUERM() {
     setIsModalOpen(true);
   };
 
-  const pageTaitle = "Устройство Этажное Распределительное с модулями (УЭРМ)";
+  const pageTitle = "Устройство Этажное Распределительное с модулями (УЭРМ)";
 
   return (
-    <div className="container mx-auto p-6 bg-background text-2xl">
+    <div className="container mx-auto p-6 bg-white text-2xl">
       <nav className="py-4">
         <ol className="hidden md:flex flex-wrap items-center space-x-2 text-sm text-gray-600">
           <li>
@@ -42,7 +42,7 @@ export default function ComponentUERM() {
           <li className="flex items-center space-x-2">
             <span className="text-gray-400">/</span>
             <Link
-              className="hover:text-orange-400 transition-colors truncate"
+              className="hover:text-accent transition-colors truncate"
               href="/catalog/schity-etazhnye-i-ustroystva-podezdnye"
             >
               Щиты этажные и устройства подъездные
@@ -51,7 +51,7 @@ export default function ComponentUERM() {
           <li className="flex items-center space-x-2">
             <span className="text-gray-400">/</span>
             <Link
-              className="hover:text-orange-400 transition-colors truncate"
+              className="hover:text-accent transition-colors truncate"
               href="/catalog/ustroystva-etazhnye"
             >
               Устройства этажные
@@ -90,9 +90,9 @@ export default function ComponentUERM() {
                 Получить консультацию
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
-              <Button variant="outline" size="lg" className="text-xl py-8">
+              {/* <Button variant="outline" size="lg" className="text-xl py-8">
                 Скачать каталог
-              </Button>
+              </Button> */}
             </div>
 
             <div className="grid grid-cols-3 gap-6 pt-4">
@@ -156,7 +156,7 @@ export default function ComponentUERM() {
 
                 <div className="grid md:grid-cols-3 gap-6 pb-4">
                   <div className="flex items-start gap-3">
-                    <CheckCircle className="h-5 w-5 text-accent mt-1 flex-shrink-0" />
+                    <CheckCircle className="h-7 w-7 text-accent mt-1 flex-shrink-0" />
                     <div>
                       <div className="font-semibold text-2xl mb-3">
                         Применение
@@ -168,7 +168,7 @@ export default function ComponentUERM() {
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
-                    <CheckCircle className="h-5 w-5 text-accent mt-1 flex-shrink-0" />
+                    <CheckCircle className="h-7 w-7 text-accent mt-1 flex-shrink-0" />
                     <div>
                       <div className="font-semibold text-2xl mb-3">
                         Обслуживание
@@ -180,7 +180,7 @@ export default function ComponentUERM() {
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
-                    <CheckCircle className="h-5 w-5 text-accent mt-1 flex-shrink-0" />
+                    <CheckCircle className="h-7 w-7 text-accent mt-1 flex-shrink-0" />
                     <div>
                       <div className="font-semibold text-2xl mb-3">
                         Универсальность
@@ -338,7 +338,7 @@ export default function ComponentUERM() {
                       "Срок службы: До 25 лет, гарантия 3 года.",
                     ].map((spec, index) => (
                       <div key={index} className="flex items-start gap-3">
-                        <CheckCircle className="h-4 w-4 text-accent mt-1 flex-shrink-0" />
+                        <CheckCircle className="h-7 w-7 text-green-600 mt-1 flex-shrink-0" />
                         <span className="text-2xl text-muted-foreground leading-relaxed">
                           {spec}
                         </span>
@@ -369,7 +369,7 @@ export default function ComponentUERM() {
                       "Удобство обслуживания: Ревизионные окошки, DIN-рейки, запираемые двери с замками.",
                     ].map((advantage, index) => (
                       <div key={index} className="flex items-start gap-3">
-                        <CheckCircle className="h-4 w-4 text-accent mt-1 flex-shrink-0" />
+                        <CheckCircle className="h-7 w-7 text-green-600 mt-1 flex-shrink-0" />
                         <span className="text-2xl text-muted-foreground leading-relaxed">
                           {advantage}
                         </span>
@@ -402,7 +402,7 @@ export default function ComponentUERM() {
                       "По запросу: Дополнительные ключи, документация, аксессуары (хомуты, компенсаторы).",
                     ].map((spec, index) => (
                       <div key={index} className="flex items-start gap-3">
-                        <CheckCircle className="h-4 w-4 text-accent mt-1 flex-shrink-0" />
+                        <CheckCircle className="h-7 w-7 text-green-600 mt-1 flex-shrink-0" />
                         <span className="text-2xl text-muted-foreground leading-relaxed">
                           {spec}
                         </span>
@@ -431,7 +431,7 @@ export default function ComponentUERM() {
                       "Режим работы: Продолжительный, одностороннее обслуживание на лестничных площадках.",
                     ].map((spec, index) => (
                       <div key={index} className="flex items-start gap-3">
-                        <CheckCircle className="h-4 w-4 text-accent mt-1 flex-shrink-0" />
+                        <CheckCircle className="h-7 w-7 text-green-600 mt-1 flex-shrink-0" />
                         <span className="text-2xl text-muted-foreground leading-relaxed">
                           {spec}
                         </span>

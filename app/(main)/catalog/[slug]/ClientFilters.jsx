@@ -146,7 +146,7 @@ export default function ClientFilters({
   return (
     <div className="mb-4">
       {/* Кнопка для мобильного меню */}
-      <div className="md:hidden flex items-center justify-between mb-4 p-4 bg-white rounded-xl shadow-md">
+      <div className="md:hidden flex items-center justify-between mb-4 p-4 bg-white rounded-xl shadow-md ">
         <Button
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           className="flex items-center gap-2 w-full justify-between"
@@ -172,13 +172,15 @@ export default function ClientFilters({
       {/* Основной контейнер фильтров */}
       <div
         className={cn(
-          "bg-white rounded-2xl shadow-lg p-4 transition-all duration-300",
+          "bg-white rounded-2xl shadow-lg p-4 transition-all duration-300 dark:bg-gray-800 dark:text-white",
           "md:block",
           isMobileMenuOpen ? "block" : "hidden"
         )}
       >
         <div className="flex justify-between items-center mb-4">
-          <h3 className="text-xl font-bold text-gray-800">Фильтры</h3>
+          <h3 className="text-xl font-bold text-gray-800 dark:bg-gray-800 dark:text-white">
+            Фильтры
+          </h3>
           {/* <span className="text-sm text-gray-500">{totalProducts} товаров</span> */}
         </div>
 
@@ -189,14 +191,14 @@ export default function ClientFilters({
               values.map((value) => (
                 <div
                   key={`${attrSlug}-${value}`}
-                  className="bg-blue-100 text-blue-800 rounded-full px-3 py-1 text-sm flex items-center"
+                  className="bg-blue-100 text-blue-800 rounded-full px-3 py-1 text-sm flex items-center "
                 >
                   <span>
                     {attributes[attrSlug]?.name}: {value}
                   </span>
                   <button
                     onClick={() => toggleCheckbox(attrSlug, value)}
-                    className="ml-2 text-blue-600 hover:text-blue-800"
+                    className="ml-2 text-blue-600 hover:text-blue-800 "
                   >
                     <X size={14} />
                   </button>
@@ -219,14 +221,16 @@ export default function ClientFilters({
                 <AccordionItem
                   value={attributeSlug}
                   key={attributeSlug}
-                  className="border-b border-gray-200 last:border-0"
+                  className="border-b border-gray-200 last:border-0 "
                 >
                   <AccordionTrigger className="py-3 hover:no-underline">
                     <div className="flex items-center">
                       <span className="mr-2">
                         {getIconForCategory(attributeSlug)}
                       </span>
-                      <span className="font-medium text-gray-800">{name}</span>
+                      <span className="font-medium text-gray-800 dark:bg-gray-800 dark:text-white">
+                        {name}
+                      </span>
                     </div>
                   </AccordionTrigger>
                   <AccordionContent className="pt-2 pb-4">
@@ -242,9 +246,9 @@ export default function ClientFilters({
                             <div
                               key={option}
                               className={cn(
-                                "flex items-center p-2 rounded-lg transition-all",
+                                "flex items-center p-2 rounded-lg transition-all dark:bg-gray-800 dark:text-white",
                                 isChecked
-                                  ? "bg-blue-50 border border-blue-200"
+                                  ? "bg-blue-50 border border-blue-200 dark:bg-gray-800 dark:text-white"
                                   : "bg-gray-50 hover:bg-gray-100"
                               )}
                             >
@@ -254,15 +258,15 @@ export default function ClientFilters({
                                 onCheckedChange={() =>
                                   toggleCheckbox(attributeSlug, option)
                                 }
-                                className="h-5 w-5 border-gray-300 data-[state=checked]:bg-blue-500 data-[state=checked]:border-blue-500"
+                                className="h-5 w-5 border-gray-300 data-[state=checked]:bg-blue-500 data-[state=checked]:border-blue-500 "
                               />
                               <label
                                 htmlFor={`${attributeSlug}-${option}`}
-                                className="ml-3 flex-1 flex justify-between items-center text-sm cursor-pointer"
+                                className="ml-3 flex-1 flex justify-between items-center text-sm cursor-pointer dark:bg-gray-800 dark:text-white"
                               >
                                 <span
                                   className={cn(
-                                    "text-gray-700",
+                                    "text-gray-700 dark:bg-gray-800 dark:text-white",
                                     isChecked && "font-medium text-blue-600"
                                   )}
                                 >
@@ -270,7 +274,7 @@ export default function ClientFilters({
                                 </span>
                                 <span
                                   className={cn(
-                                    "text-xs px-2 py-0.5 rounded-full",
+                                    "text-xs px-2 py-0.5 rounded-full dark:bg-gray-800 dark:text-white",
                                     isChecked
                                       ? "bg-blue-100 text-blue-800"
                                       : "bg-gray-100 text-gray-600"

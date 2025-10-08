@@ -32,10 +32,10 @@ export function uervTop() {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-8 animate-fade-in-up">
             <div className="space-y-4">
-              <h1 className="text-4xl lg:text-5xl font-bold text-balance leading-tight">
+              <h2 className="text-4xl lg:text-5xl font-bold text-balance leading-tight">
                 Устройство этажное распределительное встроенное типа{" "}
                 <span className="text-accent">УЭРВ</span>
-              </h1>
+              </h2>
             </div>
 
             <div className="flex flex-wrap gap-4">

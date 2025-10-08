@@ -1,5 +1,6 @@
 "use client";
 
+import { m } from "framer-motion";
 import { useState } from "react";
 
 export default function useFormSubmit() {
@@ -19,6 +20,8 @@ export default function useFormSubmit() {
         },
         body: JSON.stringify({
           contact: formData.contact,
+          email: formData.email || "",
+          message: formData.message || "",
           buttonId: buttonId,
         }),
       });

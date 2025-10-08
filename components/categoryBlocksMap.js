@@ -12,10 +12,18 @@ const UstrojstvaEtazhnyepodeznyeBottom = dynamic(() =>
 );
 
 const ShityEtazhnyeTop = dynamic(() =>
-  import("./shared/shity-etazhnye-she").then((mod) => mod.ShityEtazhnyeTop)
+  import("./shared/ShityEtazhnyeShe").then((mod) => mod.ShityEtazhnyeTop)
 );
 const ShityEtazhnyeBottom = dynamic(() =>
-  import("./shared/shity-etazhnye-she").then((mod) => mod.ShityEtazhnyeBottom)
+  import("./shared/ShityEtazhnyeShe").then((mod) => mod.ShityEtazhnyeBottom)
+);
+const NakladkyEtazhnyeTop = dynamic(() =>
+  import("./shared/NakladkyEtazgnyeSen").then((mod) => mod.NakladkyEtazhnyeTop)
+);
+const NakladkyEtazhnyeBottom = dynamic(() =>
+  import("./shared/NakladkyEtazgnyeSen").then(
+    (mod) => mod.NakladkyEtazhnyeBottom
+  )
 );
 const UstroystvaEtazhnyeTop = dynamic(() =>
   import("./shared/ustroystva-etazhnye").then(
@@ -32,6 +40,12 @@ const uervTop = dynamic(() =>
 );
 const uervBottom = dynamic(() =>
   import("./shared/uerv").then((mod) => mod.uervBottom)
+);
+const uermTop = dynamic(() =>
+  import("./shared/uerm").then((mod) => mod.uermTop)
+);
+const uermBottom = dynamic(() =>
+  import("./shared/uerm").then((mod) => mod.uermBottom)
 );
 const KozhukhTop = dynamic(() =>
   import("./shared/kozhuh-she-dlya-etazhnogo-shita").then(
@@ -53,6 +67,10 @@ const categoryComponents = {
     top: ShityEtazhnyeTop,
     bottom: ShityEtazhnyeBottom,
   },
+  "nakladki-shitov-etazhnyh-she": {
+    top: NakladkyEtazhnyeTop,
+    bottom: NakladkyEtazhnyeBottom,
+  },
   "ustroystva-etazhnye": {
     top: UstroystvaEtazhnyeTop,
     bottom: UstroystvaEtazhnyeBottom,
@@ -60,6 +78,10 @@ const categoryComponents = {
   uerv: {
     top: uervTop,
     bottom: uervBottom,
+  },
+  uerm: {
+    top: uermTop,
+    bottom: uermBottom,
   },
   "kozhuh-she-dlya-etazhnogo-shita": {
     top: KozhukhTop,

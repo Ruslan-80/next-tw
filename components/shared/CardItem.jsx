@@ -22,14 +22,25 @@ import { useForm } from "react-hook-form";
 import { Skeleton } from "../../components/ui/skeleton";
 import { useCartStore } from "../../lib/store/testCartStore";
 
+import Modal from "@/components/ui/modal";
+import useFormSubmit from "hooks/useFormSubmit";
+
 export default function CardItem({ product, view }) {
   const [adding, setAdding] = useState(false);
   const [showAllAttrs, setShowAllAttrs] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const [isFavorite, setIsFavorite] = useState(false);
   const router = useRouter();
   const { toggleFavorite, favorites } = useFavorites();
   const { setCart } = useCartStore();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalContent, setModalContent] = useState("");
+  const { handleFormSubmit, error } = useFormSubmit();
+
+  const handleButtonClick = (content) => {
+    setModalContent(content);
+    setIsModalOpen(true);
+  };
 
   useEffect(() => {
     setIsFavorite(favorites.some((item) => item.id === product.id));
@@ -95,24 +106,24 @@ export default function CardItem({ product, view }) {
       <li
         className={
           view === "grid"
-            ? "border border-gray-200 rounded-xl shadow-md hover:shadow-xl hover:border-blue-500/30 transition-all duration-300 bg-white overflow-hidden transform hover:-translate-y-1"
-            : "border border-gray-200 rounded-xl shadow-md hover:shadow-xl hover:border-blue-500/30 transition-all duration-300 bg-white flex flex-col md:flex-row"
+            ? "border border-gray-200 rounded-xl shadow-md hover:shadow-xl hover:border-blue-500/30 transition-all duration-300 bg-white overflow-hidden transform hover:-translate-y-1  dark:bg-gray-800 dark:text-white"
+            : "border border-gray-200 rounded-xl shadow-md hover:shadow-xl hover:border-blue-500/30 transition-all duration-300 bg-white flex flex-col md:flex-row  dark:bg-gray-800 dark:text-white"
         }
       >
         <Link href={`/product/${product.slug}`} className="block flex-1">
           <div
             className={
               view === "grid"
-                ? "flex flex-col h-full"
-                : "flex flex-col items-center md:flex-row h-full"
+                ? "flex flex-col h-full  dark:bg-gray-800 dark:text-white"
+                : "flex flex-col items-center md:flex-row h-full  dark:bg-gray-800 dark:text-white"
             }
           >
             {product.image && (
               <div
                 className={
                   view === "grid"
-                    ? "relative w-full aspect-square max-h-48 p-2"
-                    : "relative w-full max-h-80 md:w-48 md:h-48 aspect-square p-2"
+                    ? "relative w-full aspect-square max-h-48 p-2  dark:bg-gray-800 dark:text-white"
+                    : "relative w-full max-h-80 md:w-48 md:h-48 aspect-square p-2  dark:bg-gray-800 dark:text-white"
                 }
               >
                 {product.image ? (
@@ -120,7 +131,7 @@ export default function CardItem({ product, view }) {
                     src={product.image}
                     alt={product.name}
                     fill
-                    className="object-contain rounded-lg transition-transform duration-300 hover:scale-105 p-4"
+                    className="object-contain rounded-lg transition-transform duration-300 hover:scale-105 p-4  dark:bg-gray-800 dark:text-white"
                     sizes={
                       (view || "grid") === "grid"
                         ? "(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
@@ -143,12 +154,12 @@ export default function CardItem({ product, view }) {
                 <h4
                   className={
                     view === "grid"
-                      ? "h-[140px] text-xl font-semibold text-gray-900 mb-2 group relative"
-                      : "text-2xl font-semibold text-gray-900 mb-2 group relative"
+                      ? "h-[140px] text-xl font-semibold text-gray-900 mb-2 group relative  dark:bg-gray-800 dark:text-white"
+                      : "text-2xl font-semibold text-gray-900 mb-2 group relative  dark:bg-gray-800 dark:text-white"
                   }
                 >
                   {product.name}
-                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-500/30 transition-all duration-300 group-hover:w-full" />
+                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-500/30 transition-all duration-300 group-hover:w-full  dark:bg-gray-800 dark:text-white" />
                 </h4>
                 <p className="text-sm text-gray-500 mb-2">
                   Артикул: {product.article || "N/A"} <br />
@@ -161,14 +172,14 @@ export default function CardItem({ product, view }) {
                   <p
                     className={
                       view === "grid"
-                        ? "text-sm text-gray-600 mb-3 line-clamp-2"
-                        : "text-sm text-gray-600 mb-3"
+                        ? "text-sm text-gray-600 mb-3 line-clamp-2  dark:bg-gray-800 dark:text-white"
+                        : "text-sm text-gray-600 mb-3  dark:bg-gray-800 dark:text-white"
                     }
                   >
                     {product.description}
                   </p>
                 )}
-                <p className="text-lg font-bold text-gray-900 mb-3">
+                <p className="text-lg font-bold text-gray-900 mb-3 dark:bg-gray-800 dark:text-white">
                   {product.basePrice == 0
                     ? "По запросу"
                     : `${product.basePrice.toLocaleString("ru-RU")} ₽`}
@@ -213,10 +224,10 @@ export default function CardItem({ product, view }) {
                             key={`${product.id}-${attr.attributeName}-${attr.attributeValueName}`}
                             className="flex"
                           >
-                            <span className="font-medium">
+                            <span className="font-medium dark:bg-gray-800 dark:text-white">
                               {attr.attributeName}:
                             </span>
-                            <span className="ml-1">
+                            <span className="ml-1 dark:bg-gray-800 dark:text-white">
                               {attr.attributeValueName}
                             </span>
                           </div>
@@ -256,8 +267,8 @@ export default function CardItem({ product, view }) {
             {isFavorite ? "Удалить из избранного" : "В избранное"}
           </Button> */}
           <Button
-            onClick={() => setIsModalOpen(true)}
-            className="w-full bg-blue-500 mb-2 px-4 hover:bg-blue-600 text-white font-medium rounded-lg py-2 transition-all duration-300"
+            onClick={() => handleButtonClick("Расчитать индивидуальный размер")}
+            className="w-full bg-blue-500 mb-2 px-4 hover:bg-blue-600 text-white font-medium rounded-lg py-2 transition-all duration-300  dark:bg-gray-500 dark:text-white"
           >
             Расчитать индивидуальный размер
           </Button>
@@ -276,7 +287,14 @@ export default function CardItem({ product, view }) {
           </Button>
         </div>
       </li>
-      <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
+      <Modal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        initialContent={modalContent}
+        onSubmit={handleFormSubmit}
+        submitError={error}
+      />
+      {/* <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
         <DialogContent
           className="sm:max-w-[425px] bg-white text-2xl p-8 text-gray-600"
           data-testid="dialog-content"
@@ -359,7 +377,7 @@ export default function CardItem({ product, view }) {
             </DialogFooter>
           </form>
         </DialogContent>
-      </Dialog>
+      </Dialog> */}
     </>
   );
 }

@@ -99,7 +99,7 @@ export default function Header() {
   };
 
   return (
-    <header className=" top-0 z-50 bg-white shadow-md">
+    <header className=" top-0 z-50 bg-white shadow-md dark:bg-gray-800 dark:text-white">
       {/* Верхняя панель контактов */}
       <div className=" md:flex bg-gray-800 text-white py-2">
         <div className="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center">

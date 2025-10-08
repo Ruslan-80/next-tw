@@ -7,6 +7,7 @@ export function parseSlug(slug, searchParams) {
   let selectedValue = null;
   let categoryMetadata = null;
   let h1Text = null;
+  let titleText = null;
   let fullDescription = null;
   let advantageText = null; // Поиск категории и атрибутов в seoMetadata
 
@@ -32,6 +33,7 @@ export function parseSlug(slug, searchParams) {
           categoryMetadata = seoMetadata[categoryKey];
           searchParams[attrSlug] = value;
           h1Text = categoryMetadata[attrSlug][value].h1;
+          titleText = categoryMetadata[attrSlug][value].title;
           fullDescription = categoryMetadata[attrSlug][value].fulldescription;
           advantageText = categoryMetadata[attrSlug][value].advantage;
           break;
@@ -45,6 +47,7 @@ export function parseSlug(slug, searchParams) {
   if (!categoryMetadata) {
     categoryMetadata = seoMetadata[slug] || {};
     h1Text = categoryMetadata.default?.h1;
+    titleText = categoryMetadata.default?.title;
     fullDescription = categoryMetadata.default?.fulldescription;
     advantageText = categoryMetadata.default?.advantage;
   }
@@ -55,6 +58,7 @@ export function parseSlug(slug, searchParams) {
     selectedValue,
     categoryMetadata,
     h1Text,
+    titleText,
     fullDescription,
     advantageText,
     pageType,

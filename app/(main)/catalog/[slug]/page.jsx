@@ -25,10 +25,15 @@ export async function generateMetadata({ params, searchParams }) {
       name: true,
       titleSeo: true,
       descriptionSeo: true,
+      imageUrl: true,
     },
   });
 
-  const titleSeo = category.titleSeo;
+  // console.log("Category in metadata:", category);
+
+  const titleSeo = category.titleSeo || null;
+
+  const imgUrl = category.imageUrl || null;
 
   if (!category) {
     return {
@@ -50,7 +55,7 @@ export async function generateMetadata({ params, searchParams }) {
     categoryMetadata[selectedAttribute]?.[selectedValue]
   ) {
     title =
-      titleSeo || categoryMetadata[selectedAttribute][selectedValue].title;
+      categoryMetadata[selectedAttribute][selectedValue].title || titleSeo;
     description =
       categoryMetadata[selectedAttribute][selectedValue].description;
   } else {
@@ -71,7 +76,7 @@ export async function generateMetadata({ params, searchParams }) {
 
   // Правильный каноникал: без ?page=1, но с ?page=N для остальных
   const canonicalUrl =
-    page > 1 ? `/catalog/${slug}?page=${page}` : `/catalog/${slug}`;
+    page >= 1 ? `/catalog/${slug}` : `/catalog/${slug}?page=${page}`;
 
   return {
     metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL),
@@ -251,7 +256,7 @@ export default async function CategoryPage({ params, searchParams }) {
 
         {BottomComponent && <BottomComponent />}
 
-        <PopularProducts />
+        <PopularProducts categorySlug={baseSlug} />
       </div>
     </>
   );

@@ -17,6 +17,7 @@ import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import "./swiper.css";
 import { useRef } from "react";
+import Link from "next/link";
 
 function Slider() {
   const progressCircle = useRef(null);
@@ -62,6 +63,29 @@ function Slider() {
       <SwiperSlide>
         <img
           src="/images/slider/test.png"
+          alt="slider 3"
+          style={{ width: "100%" }}
+        />
+      </SwiperSlide>
+      <SwiperSlide>
+        <Link href="catalog/shity-etazhnye-she">
+          <img
+            src="/images/slider/abstract.jpg"
+            alt="slider 3"
+            style={{ width: "100%" }}
+          />
+        </Link>
+      </SwiperSlide>
+      <SwiperSlide>
+        <img
+          src="/images/slider/abstract1.jpg"
+          alt="slider 3"
+          style={{ width: "100%" }}
+        />
+      </SwiperSlide>
+      <SwiperSlide>
+        <img
+          src="/images/slider/abstract2.jpg"
           alt="slider 3"
           style={{ width: "100%" }}
         />

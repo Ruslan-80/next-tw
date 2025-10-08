@@ -20,14 +20,14 @@ import Modal from "@/components/ui/modal";
 import useFormSubmit from "hooks/useFormSubmit";
 
 export function KozhukhTop() {
-  //   const [isModalOpen, setIsModalOpen] = useState(false);
-  //   const [modalContent, setModalContent] = useState("");
-  //   const { handleFormSubmit, error } = useFormSubmit();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalContent, setModalContent] = useState("");
+  const { handleFormSubmit, error } = useFormSubmit();
 
-  //   const handleButtonClick = (content) => {
-  //     setModalContent(content);
-  //     setIsModalOpen(true);
-  //   };
+  const handleButtonClick = (content) => {
+    setModalContent(content);
+    setIsModalOpen(true);
+  };
   return (
     <>
       <section>
@@ -44,7 +44,7 @@ export function KozhukhTop() {
               </p>
             </div>
 
-            {/* <div className="flex flex-wrap gap-4">
+            <div className="flex flex-wrap gap-4">
               <Button
                 onClick={() => handleButtonClick("Получить консультацию")}
                 size="lg"
@@ -53,10 +53,10 @@ export function KozhukhTop() {
                 Получить консультацию
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
-              <Button variant="outline" size="lg" className="text-xl py-8">
+              {/* <Button variant="outline" size="lg" className="text-xl py-8">
                 Скачать каталог
-              </Button>
-            </div> */}
+              </Button> */}
+            </div>
             {/* 
             <div className="grid grid-cols-3 gap-6 pt-4">
               <div className="text-center">
@@ -88,58 +88,14 @@ export function KozhukhTop() {
           </div>
         </div>
       </section>
-      {/* <section className="mb-4">
-        <div className="flex bg-blue-300/20 shadow-xl items-center rounded-4xl px-8 py-12 mx-auto border border-blue-200">
-          <div className="p-4">
-            <Image
-              src="/images/categories/SE24L.png"
-              alt="Этажные электрические щиты (ЩЭ)"
-              height={1000}
-              width={1000}
-              className="rounded object-cover"
-            />
-          </div>
 
-          <div className="text-justify text-2xl pl-8   mb-8">
-            <p className="text-gray-600">
-              Устройство этажное распределительное встроенное типа УЭРВ
-              предназначено для приема, распределения и учета электроэнергии в
-              многоквартирных жилых домах. Оно обеспечивает защиту групповых
-              линий квартир от перегрузок, короткого замыкания и токов утечки в
-              сетях с глухозаземленной нейтралью (230/400 В, 50 Гц, TN-S, TN-C,
-              TN-C-S), а также служит для размещения слаботочных систем
-              (телефонной, телевизионной, интернет-сетей, сигнализации, АСКУЭ).
-              УЭРВ — современная альтернатива устаревшим этажным щитам типа ЩЭ,
-              ЩЛС, УЭРП, предлагая комплексное электрощитовое решение с высокой
-              надежностью и эстетикой. Соответствует стандартам ГОСТ Р
-              51321.1-2007, ГОСТ IEC 60439.3-2012, ТР ТС 004/2011 и ТУ
-              (например, ТУ 3434-002-52681400-2019 ).
-            </p>
-            <ul className="list-disc pl-6 mt-2 text-gray-600">
-              <li>
-                Применение: Установка в подготовленную нишу на этажах жилых
-                зданий.
-              </li>
-              <li>
-                Обслуживание: До 6–10 квартир в зависимости от типа счетчиков и
-                конфигурации.
-              </li>
-              <li>
-                Универсальность: Поддержка однофазных (до 11 кВт) и трехфазных
-                (до 32 кВт) систем для эффективного контроля расхода
-                электроэнергии.
-              </li>
-            </ul>
-          </div>
-        </div>
-      </section> */}
-      {/* <Modal
+      <Modal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
         initialContent={modalContent}
         onSubmit={handleFormSubmit}
         submitError={error}
-      /> */}
+      />
     </>
   );
 }

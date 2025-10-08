@@ -92,7 +92,7 @@ export function UstrojstvaEtazhnyepodeznyeBottom() {
       <Card>
         <CardContent className="px-6">
           <Link
-            href="shity-etazhnye-she-vstraivaemyj"
+            href="shity-etazhnye-she-vstraivaemye"
             className="text-3xl font-semibold text-orange-600 hover:underline"
           >
             Встраиваемые щиты
@@ -115,7 +115,7 @@ export function UstrojstvaEtazhnyepodeznyeBottom() {
       <Card>
         <CardContent className="p-6">
           <Link
-            href="shity-etazhnye-she?sposob-montazha=накладной"
+            href="shity-etazhnye-she-nakladnye"
             className="text-3xl font-semibold text-orange-600 hover:underline"
           >
             Навесные щиты
@@ -175,7 +175,7 @@ export function UstrojstvaEtazhnyepodeznyeBottom() {
           <ul className="list-disc list-inside space-y-1 text-gray-700">
             <li>
               <Link
-                href="shity-etazhnye-she?slabotochnyj-otsek=Справа"
+                href="shity-etazhnye-she-so-slabotochnym-otsekom"
                 className="text-orange-500 hover:underline"
               >
                 Справа от основного отсека
@@ -193,7 +193,7 @@ export function UstrojstvaEtazhnyepodeznyeBottom() {
             <li>
               {" "}
               <Link
-                href="shity-etazhnye-she?slabotochnyj-otsek=Нет"
+                href="shity-etazhnye-she-bez-slabotochnogo-otseka"
                 className="text-orange-500 hover:underline"
               >
                 Отсутствовать в базовых конфигурациях
@@ -255,7 +255,7 @@ export function UstrojstvaEtazhnyepodeznyeBottom() {
           </div>
           <div>
             <Link
-              href="shity-etazhnye-she?nalichie-revizionnogo-okoshka=нет"
+              href="shity-etazhnye-she-she-bez-okon"
               className="text-orange-500 hover:underline"
             >
               Щиты без ревизионного окошка
@@ -326,10 +326,110 @@ export function UstrojstvaEtazhnyepodeznyeBottom() {
             Этажные щиты производятся для обслуживания от 1 до 12 квартир:
           </p>
           <ul className="list-disc list-inside text-gray-600 space-y-1">
+            <li key={0}>
+              <Link
+                href="shity-etazhnye-she-na-1-kvartiry"
+                className="text-orange-500 hover:underline"
+              >
+                Щит этажный на 1 квартиру
+              </Link>
+            </li>
+            <li key={1}>
+              <Link
+                href="shity-etazhnye-she-na-2-kvartiry"
+                className="text-orange-500 hover:underline"
+              >
+                Щит этажный на 2 квартиры
+              </Link>
+            </li>
+            <li key={2}>
+              <Link
+                href="shity-etazhnye-she-na-3-kvartiry"
+                className="text-orange-500 hover:underline"
+              >
+                Щит этажный на 3 квартиры
+              </Link>
+            </li>
+            <li key={3}>
+              <Link
+                href="shity-etazhnye-she-na-4-kvartiry"
+                className="text-orange-500 hover:underline"
+              >
+                Щит этажный на 4 квартиры
+              </Link>
+            </li>
+            <li key={4}>
+              <Link
+                href="shity-etazhnye-she-na-5-kvartir"
+                className="text-orange-500 hover:underline"
+              >
+                Щит этажный на 5 квартир
+              </Link>
+            </li>
+            <li key={5}>
+              <Link
+                href="shity-etazhnye-she-na-6-kvartir"
+                className="text-orange-500 hover:underline"
+              >
+                Щит этажный на 6 квартир
+              </Link>
+            </li>
+            <li key={6}>
+              <Link
+                href="shity-etazhnye-she-na-7-kvartir"
+                className="text-orange-500 hover:underline"
+              >
+                Щит этажный на 7 квартир
+              </Link>
+            </li>
+            <li key={7}>
+              <Link
+                href="shity-etazhnye-she-na-8-kvartir"
+                className="text-orange-500 hover:underline"
+              >
+                Щит этажный на 8 квартир
+              </Link>
+            </li>
+            <li key={8}>
+              <Link
+                href="shity-etazhnye-she-na-9-kvartir"
+                className="text-orange-500 hover:underline"
+              >
+                Щит этажный на 9 квартир
+              </Link>
+            </li>
+            <li key={9}>
+              <Link
+                href="shity-etazhnye-she-na-10-kvartir"
+                className="text-orange-500 hover:underline"
+              >
+                Щит этажный на 10 квартир
+              </Link>
+            </li>
+            <li key={10}>
+              <Link
+                href="shity-etazhnye-she?kolichestvo-kvartir-schetchikov=11"
+                className="text-orange-500 hover:underline"
+              >
+                Щит этажный на 11 квартир
+              </Link>
+            </li>
+            <li key={11}>
+              <Link
+                href="shity-etazhnye-she-na-12-kvartir"
+                className="text-orange-500 hover:underline"
+              >
+                Щит этажный на 12 квартир
+              </Link>
+            </li>
+          </ul>
+          {/* <ul className="list-disc list-inside text-gray-600 space-y-1">
             {[...Array(12)].map((_, i) => (
               <li key={i}>
                 <Link
-                  href={`shity-etazhnye-she-na-${i + 1}-kvartiry`}
+                  href={`shity-etazhnye-she-na-${i + 1}-${
+                    i === 0 ? "kvartiry" : i < 4 ? "kvartiry" : "kvartir"
+                  }`}
                   className="text-orange-500 hover:underline"
                 >
                   Щит этажный на {i + 1}{" "}
@@ -337,7 +437,7 @@ export function UstrojstvaEtazhnyepodeznyeBottom() {
                 </Link>
               </li>
             ))}
-          </ul>
+          </ul> */}
         </CardContent>
       </Card>
 

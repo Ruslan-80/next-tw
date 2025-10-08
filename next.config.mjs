@@ -1,5 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  images: {
+    formats: ["image/avif", "image/webp"],
+  },
   // experimental: {
   //     allowedDevOrigins: "all",
   // },
@@ -27,10 +30,10 @@ const nextConfig = {
         source: "/catalog/uern",
         destination: "/landing/uern",
       },
-      {
-        source: "/catalog/uerm",
-        destination: "/landing/uerm",
-      },
+      // {
+      //   source: "/catalog/uerm",
+      //   destination: "/landing/uerm",
+      // },
     ];
   },
 };

@@ -38,8 +38,6 @@ export async function generateMetadata({ params }) {
   // Получаем данные о продукте
   const product = await getProductData(slug);
 
-  console.log("Product data for metadata:", product);
-
   if (!product) {
     return {
       metadataBase: new URL("http://172.16.10.216:3000"), // Замените на ваш реальный домен
@@ -120,7 +118,7 @@ export default async function Page({ params }) {
   return (
     <>
       <JsonLd data={productJsonLd} />
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-4 dark:bg-gray-900 dark:text-white">
         <Breadcrumbs items={breadcrumbs} />
         <ProductPageClient product={product} />
       </div>

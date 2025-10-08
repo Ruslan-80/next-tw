@@ -12,11 +12,13 @@ import { Skeleton } from "../../../../components/ui/skeleton";
 import Advantages from "./Advantages2";
 import { useCartStore } from "../../../../lib/store/testCartStore";
 import { ArrowRight } from "lucide-react";
+import Modal from "@/components/ui/modal";
+import useFormSubmit from "hooks/useFormSubmit";
 
 export default function ProductPageClient({ product }) {
   const [activeTab, setActiveTab] = useState("characteristics");
   const [adding, setAdding] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const [formData, setFormData] = useState({ contact: "" });
   const [formError, setFormError] = useState("");
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
@@ -24,6 +26,14 @@ export default function ProductPageClient({ product }) {
   const router = useRouter();
   const [currentUrl, setCurrentUrl] = useState("");
   const { setCart } = useCartStore();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalContent, setModalContent] = useState("");
+  const { handleFormSubmit, error } = useFormSubmit();
+
+  const handleButtonClick = (content) => {
+    setModalContent(content);
+    setIsModalOpen(true);
+  };
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -109,7 +119,7 @@ export default function ProductPageClient({ product }) {
   // Список миниатюр - не нужен отдельный thumbnails, используем images напрямую
 
   return (
-    <main className="container mx-auto py-8">
+    <main className="container mx-auto py-8 dark:bg-gray-900 dark:text-white">
       <h1
         className="lg:text-3xl 
         font-bold mb-4 max-w-[900px]"
@@ -117,7 +127,7 @@ export default function ProductPageClient({ product }) {
         {product.name || "Продукт"}
       </h1>
 
-      <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
+      <div className="bg-white rounded-2xl shadow-xl overflow-hidden dark:bg-gray-900 dark:text-white">
         {/* Modern Product Layout */}
         <div>
           <div className="flex flex-col lg:flex-row">
@@ -141,7 +151,7 @@ export default function ProductPageClient({ product }) {
                         alt={`Thumbnail ${index + 1}`}
                         height={75}
                         width={75}
-                        className="object-contain"
+                        className="object-contain w-full h-full"
                       />
                     </div>
                   ))}
@@ -155,7 +165,7 @@ export default function ProductPageClient({ product }) {
                       alt={product.name || "Продукт"}
                       height={700}
                       width={700}
-                      className="object-contain p-4 transition-all duration-500 hover:scale-105 cursor-zoom-in"
+                      className="object-contain w-full h-full p-4 transition-all duration-500 hover:scale-105 cursor-zoom-in"
                       onClick={() => handleImageZoom(selectedImageIndex)}
                     />
                   ) : (
@@ -183,7 +193,7 @@ export default function ProductPageClient({ product }) {
             </div>
 
             {/* Product Details */}
-            <div className="lg:w-1/2 p-6 bg-gray-50">
+            <div className="lg:w-1/2 p-6 bg-gray-50 dark:bg-gray-900 dark:text-white">
               <div className="mb-8">
                 {/* <h1 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-4">
                   {product.name}
@@ -199,7 +209,7 @@ export default function ProductPageClient({ product }) {
 
                   <div className="flex gap-3">
                     <button
-                      onClick={() => setIsModalOpen(true)}
+                      onClick={() => handleButtonClick("Купить в 1 клик")}
                       className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg"
                     >
                       Купить в 1 клик
@@ -215,7 +225,7 @@ export default function ProductPageClient({ product }) {
                 </div>
 
                 {/* Rating */}
-                <div className="flex items-center bg-yellow-50 p-4 rounded-xl mb-6">
+                <div className="flex items-center bg-yellow-50 p-4 rounded-xl mb-6 dark:bg-gray-900 dark:text-white">
                   <div className="flex text-yellow-400 mr-3">
                     {[...Array(5)].map((_, i) => (
                       <svg
@@ -234,9 +244,9 @@ export default function ProductPageClient({ product }) {
                 </div>
 
                 {/* Info Cards */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
-                  <div className="bg-white p-4 rounded-xl shadow-sm flex items-center">
-                    <div className="bg-blue-100 p-3 rounded-full mr-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8 ">
+                  <div className="bg-white p-4 rounded-xl shadow-sm flex items-center dark:bg-gray-500 dark:text-white">
+                    <div className="bg-blue-100 p-3 rounded-full mr-4 ">
                       <svg
                         className="w-6 h-6 text-blue-600"
                         fill="none"
@@ -252,7 +262,7 @@ export default function ProductPageClient({ product }) {
                       </svg>
                     </div>
                     <div>
-                      <h3 className="font-bold text-gray-900">
+                      <h3 className="font-bold text-gray-900 dark:bg-gray-500 dark:text-white ">
                         Обратный звонок
                       </h3>
                       <button
@@ -264,7 +274,7 @@ export default function ProductPageClient({ product }) {
                     </div>
                   </div>
 
-                  <div className="bg-white p-4 rounded-xl shadow-sm flex items-center">
+                  <div className="bg-white p-4 rounded-xl shadow-sm flex items-center dark:bg-gray-500 dark:text-white">
                     <div className="bg-green-100 p-3 rounded-full mr-4">
                       <svg
                         className="w-6 h-6 text-green-600"
@@ -286,7 +296,7 @@ export default function ProductPageClient({ product }) {
                     </div>
                   </div>
 
-                  <div className="bg-white p-4 rounded-xl shadow-sm flex items-center">
+                  <div className="bg-white p-4 rounded-xl shadow-sm flex items-center dark:bg-gray-500 dark:text-white">
                     <div className="bg-purple-100 p-3 rounded-full mr-4">
                       <svg
                         className="w-6 h-6 text-purple-600"
@@ -310,7 +320,7 @@ export default function ProductPageClient({ product }) {
                     </div>
                   </div>
 
-                  <div className="bg-white p-4 rounded-xl shadow-sm flex items-center">
+                  <div className="bg-white p-4 rounded-xl shadow-sm flex items-center dark:bg-gray-500 dark:text-white">
                     <div className="bg-red-100 p-3 rounded-full mr-4">
                       <svg
                         className="w-6 h-6 text-red-600"
@@ -338,14 +348,20 @@ export default function ProductPageClient({ product }) {
                 {/* Additional Actions */}
                 <div className="flex flex-col gap-3">
                   <button
-                    onClick={() => setIsModalOpen(true)}
+                    onClick={() =>
+                      handleButtonClick("Заказать бесплатный расчет")
+                    }
                     className="w-full py-3 px-6 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg border border-blue-200 transition-colors duration-300"
                   >
                     Заказать бесплатный расчет
                   </button>
                   <button
-                    onClick={() => setIsModalOpen(true)}
-                    className="w-full py-3 px-6 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg border border-blue-200  transition-colors duration-300"
+                    onClick={() =>
+                      handleButtonClick(
+                        "Заказать бесплатный замер с выездом специалиста"
+                      )
+                    }
+                    className="w-full py-3 px-6 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg border border-blue-200  transition-colors duration-300 "
                   >
                     Заказать бесплатный замер с выездом специалиста
                   </button>
@@ -460,14 +476,14 @@ export default function ProductPageClient({ product }) {
           </div> */}
         {/* </div> */}
         {/* Process Section */}
-        <div className="mt-8 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl shadow-xl p-6">
+        <div className="mt-8 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl shadow-xl p-6  ">
           <div className="flex flex-col md:grid md:grid-cols-7 md:items-center md:gap-x-4">
             {/* Этап 1 */}
             <div className="flex flex-col items-center text-center p-4">
               <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mb-3">
                 <span className="text-2xl font-bold text-blue-600">1</span>
               </div>
-              <h3 className="font-bold text-lg mb-2">Заявка</h3>
+              <h3 className="font-bold text-gray-600 text-lg mb-2">Заявка</h3>
               <p className="text-gray-600">
                 Оставьте заявку на сайте или по телефону
               </p>
@@ -483,7 +499,9 @@ export default function ProductPageClient({ product }) {
               <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mb-3">
                 <span className="text-2xl font-bold text-blue-600">2</span>
               </div>
-              <h3 className="font-bold text-lg mb-2">Консультация</h3>
+              <h3 className="font-bold text-gray-600 text-lg mb-2">
+                Консультация
+              </h3>
               <p className="text-gray-600">
                 Наш специалист уточнит детали заказа
               </p>
@@ -499,7 +517,9 @@ export default function ProductPageClient({ product }) {
               <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mb-3">
                 <span className="text-2xl font-bold text-blue-600">3</span>
               </div>
-              <h3 className="font-bold text-lg mb-2">Производство</h3>
+              <h3 className="font-bold text-gray-600 text-lg mb-2">
+                Производство
+              </h3>
               <p className="text-gray-600">
                 Изготовление продукции по вашему заказу
               </p>
@@ -515,7 +535,7 @@ export default function ProductPageClient({ product }) {
               <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mb-3">
                 <span className="text-2xl font-bold text-blue-600">4</span>
               </div>
-              <h3 className="font-bold text-lg mb-2">Доставка</h3>
+              <h3 className="font-bold text-gray-600 text-lg mb-2">Доставка</h3>
               <p className="text-gray-600">
                 Быстрая доставка в любой регион РФ
               </p>
@@ -659,8 +679,15 @@ export default function ProductPageClient({ product }) {
         </div>
       </div>
       {/* Feedback Modal */}
-      {isModalOpen && (
-        <div className="fixed inset-0 bg-black/40 backdrop-blur-md flex items-center justify-center z-50 transition-opacity duration-500 ease-in-out">
+      <Modal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        initialContent={modalContent}
+        onSubmit={handleFormSubmit}
+        submitError={error}
+      />
+      {/* {isModalOpen && (
+        <div className="fixed inset-0 bg-black/40 backdrop-blur-md flex items-center justify-center z-50 transition-opacity duration-500 ease-in-out ">
           <div className="bg-white p-8 rounded-2xl max-w-md w-full shadow-2xl transform transition-all duration-500 ease-in-out scale-100 hover:scale-105">
             <h2 className="text-2xl font-bold mb-4 text-gray-800">
               Заказать бесплатный расчет
@@ -697,7 +724,7 @@ export default function ProductPageClient({ product }) {
             </form>
           </div>
         </div>
-      )}
+      )} */}
 
       {/* Zoomed Image Modal */}
       {isImageZoomed && (

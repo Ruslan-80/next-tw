@@ -1,8 +1,12 @@
 # *
 User-agent: *
 Allow: /
-Disallow: /admin
+Disallow: /admin/*
 Disallow: /test
+Disallow: ./landing/*
+Disallow: ./search/*
+Disallow: /vng
+Disallow: /api/*
 
 # Host
 Host: http://172.16.10.216:3000

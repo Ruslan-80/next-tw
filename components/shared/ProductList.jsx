@@ -74,7 +74,7 @@ export default function ProductList({ products = [], totalProducts = 0 }) {
         <div className="flex space-x-2">
           <button
             onClick={() => setView("grid")}
-            className={`p-2.5 border border-gray-200 rounded-lg transition-all duration-200 ${
+            className={`p-2.5 border border-gray-200 rounded-lg transition-all duration-200 dark:bg-gray-800 dark:text-white ${
               view === "grid"
                 ? "bg-orange-400 text-white"
                 : "bg-gray-50 text-gray-600 hover:bg-gray-100"
@@ -85,7 +85,7 @@ export default function ProductList({ products = [], totalProducts = 0 }) {
           </button>
           <button
             onClick={() => setView("list")}
-            className={`p-2.5 border border-gray-200 rounded-lg transition-all duration-200 ${
+            className={`p-2.5 border border-gray-200 rounded-lg transition-all duration-200 dark:bg-gray-800 dark:text-white ${
               view === "list"
                 ? "bg-orange-400 text-white"
                 : "bg-gray-50 text-gray-600 hover:bg-gray-100"
