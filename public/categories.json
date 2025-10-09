@@ -2,96 +2,96 @@
   {
     "id": 1,
     "slug": "glavnye-raspredelitelnye-shity-grsh",
-    "updatedAt": "2025-06-23T15:16:07.693Z"
+    "updatedAt": "2025-10-09T12:32:22.806Z"
   },
   {
     "id": 2,
     "slug": "shkafy-upravleniya-s-chastotnym-preobrazovatelyami-shup",
-    "updatedAt": "2025-06-23T15:16:07.693Z"
+    "updatedAt": "2025-10-09T12:41:59.520Z"
   },
   {
     "id": 3,
     "slug": "vvodno-raspredelitelnye-ustrojstva-vru",
-    "updatedAt": "2025-06-23T18:37:12.548Z"
+    "updatedAt": "2025-10-09T12:42:17.437Z"
   },
   {
     "id": 4,
     "slug": "shkafy-avtomatizacii",
-    "updatedAt": "2025-06-23T15:17:40.285Z"
+    "updatedAt": "2025-10-09T12:42:25.755Z"
   },
   {
     "id": 5,
     "slug": "shity-silovye",
-    "updatedAt": "2025-06-23T15:17:40.285Z"
+    "updatedAt": "2025-10-09T12:42:44.593Z"
   },
   {
     "id": 6,
     "slug": "shkafy-avtomaticheskogo-rezerva-avr",
-    "updatedAt": "2025-06-23T15:17:40.285Z"
+    "updatedAt": "2025-10-09T12:42:59.731Z"
   },
   {
     "id": 7,
     "slug": "punkty-raspredelitelnye-pr",
-    "updatedAt": "2025-06-23T15:17:40.285Z"
+    "updatedAt": "2025-10-09T12:43:11.562Z"
   },
   {
     "id": 8,
     "slug": "paneli-upravleniya",
-    "updatedAt": "2025-06-23T15:17:40.285Z"
+    "updatedAt": "2025-10-09T12:43:19.796Z"
   },
   {
     "id": 9,
     "slug": "ustrojstva-kompensacii-reaktivnoj-moshnosti-ukrm",
-    "updatedAt": "2025-06-23T15:17:40.285Z"
+    "updatedAt": "2025-10-09T12:43:27.969Z"
   },
   {
     "id": 10,
     "slug": "shity-etazhnye-she",
-    "updatedAt": "2025-09-25T14:16:01.646Z"
+    "updatedAt": "2025-10-09T12:44:08.239Z"
   },
   {
     "id": 12,
     "slug": "ustroystva-etazhnye",
-    "updatedAt": "2025-10-06T16:49:42.530Z"
+    "updatedAt": "2025-10-09T12:44:24.224Z"
   },
   {
     "id": 13,
     "slug": "uerm",
-    "updatedAt": "2025-10-06T12:07:43.136Z"
+    "updatedAt": "2025-10-09T12:44:33.020Z"
   },
   {
     "id": 14,
     "slug": "uerv",
-    "updatedAt": "2025-10-01T15:22:25.070Z"
+    "updatedAt": "2025-10-09T12:44:42.523Z"
   },
   {
     "id": 15,
     "slug": "uerb",
-    "updatedAt": "2025-10-01T15:25:05.566Z"
+    "updatedAt": "2025-10-09T12:44:50.418Z"
   },
   {
     "id": 16,
     "slug": "uerk",
-    "updatedAt": "2025-10-01T15:24:25.912Z"
+    "updatedAt": "2025-10-09T12:44:59.002Z"
   },
   {
     "id": 17,
     "slug": "uern",
-    "updatedAt": "2025-10-01T15:23:39.239Z"
+    "updatedAt": "2025-10-09T12:45:07.101Z"
   },
   {
     "id": 18,
     "slug": "schity-etazhnye-i-ustroystva-podezdnye",
-    "updatedAt": "2025-09-24T11:24:26.407Z"
+    "updatedAt": "2025-10-09T12:45:41.012Z"
   },
   {
     "id": 19,
     "slug": "nakladki-shitov-etazhnyh-she",
-    "updatedAt": "2025-10-06T16:30:30.702Z"
+    "updatedAt": "2025-10-09T12:45:57.576Z"
   },
   {
     "id": 21,
     "slug": "kozhuh-she-dlya-etazhnogo-shita",
-    "updatedAt": "2025-10-01T12:03:26.766Z"
+    "updatedAt": "2025-10-09T12:46:15.444Z"
   }
 ]

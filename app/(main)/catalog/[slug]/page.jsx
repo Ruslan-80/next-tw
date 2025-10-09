@@ -31,9 +31,19 @@ export async function generateMetadata({ params, searchParams }) {
 
   // console.log("Category in metadata:", category);
 
-  const titleSeo = category.titleSeo || null;
+  let titleSeo = "";
 
-  const imgUrl = category.imageUrl || null;
+  if (category) {
+    // Если категория найдена, используем ее свойства
+    titleSeo = category.titleSeo || "";
+    // ... и другие свойства
+  } else {
+    // Если категория не найдена, можно установить значения по умолчанию
+    // или пробросить ошибку, если наличие категории обязательно.
+    console.error(`Category with slug '${baseSlug}' not found.`);
+  }
+
+  const imgUrl = category.imageUrl || "/default-og-image.jpg";
 
   if (!category) {
     return {
