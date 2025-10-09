@@ -8,11 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "seed": "prisma db seed",
-    "build": "next build",
-    "postbuild": "node scripts/generate-categories.js && node scripts/generate-products.js && next-sitemap --config next-sitemap.config.js"
-  },
-  "prisma": {
-    "seed": "node prisma/seed.js"
+    "build": "next build"
   },
   "dependencies": {
     "@heroicons/react": "^2.2.0",
