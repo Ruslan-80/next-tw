@@ -25,6 +25,7 @@ model User {
   updatedAt DateTime @updatedAt
 
   @@index([email, role])
+  @@map("user")
 }
 
 model Cart {
@@ -37,6 +38,7 @@ model Cart {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  @@map("cart")
 }
 
 model CartItem {
@@ -49,6 +51,7 @@ model CartItem {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  @@map("cartitem")
 }
 
 model Order {
@@ -71,6 +74,7 @@ model Order {
   updatedAt DateTime @updatedAt
 
   @@index([userId, status])
+  @@map("order")
 }
 
 model VerificationCode {
@@ -91,6 +95,7 @@ model TopSlider {
   order     Int?     @unique
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  @@map("topslider")
 }
 
 model Category {
@@ -114,6 +119,7 @@ model Category {
   updatedAt DateTime @updatedAt
 
   @@index([parentId, slug])
+  @@map("category")
 }
 
 model Product {
@@ -141,6 +147,7 @@ model Product {
 
   @@index([categoryId, slug])
   @@fulltext([name, description, article])
+  @@map("product")
 }
 
 model ProductVariation {
@@ -160,6 +167,7 @@ model ProductVariation {
   updatedAt DateTime @updatedAt
 
   @@index([productId, sku])
+  @@map("productvariation")
 }
 
 model Tag {
@@ -172,6 +180,7 @@ model Tag {
   updatedAt  DateTime      @updatedAt
 
   @@index([name, slug])
+  @@map("tag")
 }
 
 model ProductTag {
@@ -182,6 +191,7 @@ model ProductTag {
   tag       Tag     @relation(fields: [tagId], references: [id], onDelete: Cascade)
 
   @@unique([productId, tagId])
+  @@map("producttag")
 }
 
 model CategoryTag {
@@ -192,6 +202,7 @@ model CategoryTag {
   tag        Tag      @relation(fields: [tagId], references: [id], onDelete: Cascade)
 
   @@unique([categoryId, tagId])
+  @@map("categorytag")
 }
 
 model Attribute {
@@ -204,6 +215,7 @@ model Attribute {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  @@map("attribute")
 }
 
 model AttributeValue {
@@ -216,6 +228,7 @@ model AttributeValue {
   ProductAttribute ProductAttribute[]
 
   @@unique([attributeId, name])
+  @@map("attributevalue")
 }
 
 model ProductAttribute {
@@ -234,6 +247,7 @@ model ProductAttribute {
 
   @@unique([productId, attributeId, attributeValueId])
   @@index([attributeName, attributeValueName])
+  @@map("productattribute")
 }
 
 model MediaFile {
@@ -247,6 +261,7 @@ model MediaFile {
   updatedAt DateTime @updatedAt
 
   @@index([productId, type])
+  @@map("mediafile")
 }
 
 enum FileType {
