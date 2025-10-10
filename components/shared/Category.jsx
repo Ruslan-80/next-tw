@@ -1,24 +1,19 @@
 import CatalogUI from "./CatalogUI";
-import dataCategory from "../../app/data/categories.json";
-import dataProizvodstvo from "../../app/data/proizvodstvo.json";
+import dataCategory from "@/app/data/categories.json";
+import dataProizvodstvo from "@/app/data/proizvodstvo.json";
 
 export default function Category() {
-    const { categories } = dataCategory;
-    const { categories: proizvodstvo } = dataProizvodstvo;
+  const { categories } = dataCategory;
+  const { categories: proizvodstvo } = dataProizvodstvo;
 
-    
-    return (
-        <>
-            <CatalogUI
-                categories={proizvodstvo}
-                text="Щиты и этажные устройства"
-                key="proizvodstvo"
-            />
-            <CatalogUI
-                categories={categories}
-                text="Сборка щитов"
-                key="categories"
-            />
-        </>
-    );
+  return (
+    <>
+      <CatalogUI
+        categories={proizvodstvo}
+        text="Щиты и этажные устройства"
+        key="proizvodstvo"
+      />
+      <CatalogUI categories={categories} text="Сборка щитов" key="categories" />
+    </>
+  );
 }
