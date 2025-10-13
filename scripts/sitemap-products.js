@@ -11,7 +11,8 @@ export async function getProductSlugs() {
 
     const data = await response.json();
 
-    const siteUrl = "http://172.16.10.216:3000";
+    // const siteUrl = "http://172.16.10.216:3000";
+    const siteUrl = "https://electroshit-pro.ru";
 
     // Форматируем данные для sitemap.xml
     return data.map((product) => ({

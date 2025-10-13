@@ -1,7 +1,8 @@
 import fs from "fs";
 import path from "path";
 
-const siteUrl = "http://172.16.10.216:3000";
+// const siteUrl = "http://172.16.10.216:3000";
+const siteUrl = "https://electroshit-pro.ru";
 
 const config = {
   siteUrl: siteUrl,
@@ -12,8 +13,8 @@ const config = {
     "/*?*",
     "/admin*",
     "/test*",
-    "./landing*",
-    "./search*",
+    "/landing*",
+    "/search*",
     "/vng*",
     "/api*",
   ],
@@ -68,8 +69,8 @@ const config = {
         disallow: [
           "/admin/*",
           "/test",
-          "./landing/*",
-          "./search/*",
+          "/landing/*",
+          "/search/*",
           "/vng",
           "/api/*",
         ],
