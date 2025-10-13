@@ -3,13 +3,13 @@ User-agent: *
 Allow: /
 Disallow: /admin/*
 Disallow: /test
-Disallow: ./landing/*
-Disallow: ./search/*
+Disallow: /landing/*
+Disallow: /search/*
 Disallow: /vng
 Disallow: /api/*
 
 # Host
-Host: http://172.16.10.216:3000
+Host: https://electroshit-pro.ru
 
 # Sitemaps
-Sitemap: http://172.16.10.216:3000/sitemap.xml
+Sitemap: https://electroshit-pro.ru/sitemap.xml
