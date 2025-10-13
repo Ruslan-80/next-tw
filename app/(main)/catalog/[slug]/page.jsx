@@ -247,13 +247,13 @@ export default async function CategoryPage({ params, searchParams }) {
         )}
         <div className="grid grid-cols-1 md:grid-cols-[1fr_3fr] gap-4">
           <div className="hidden md:block p-4">
-            {/* <Filters
+            <Filters
               totalProducts={totalProducts}
               attributeIds={category.filters}
               searchParams={resolvedSearchParams}
               baseUrl={`/catalog/${baseSlug}`}
               categorySlug={baseSlug}
-            /> */}
+            />
           </div>
           <ProductList products={products} totalProducts={totalProducts} />
         </div>
