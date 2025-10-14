@@ -78,11 +78,11 @@
     "shity-etazhnye-she-na-9-kvartir",
     "shity-etazhnye-she-na-10-kvartir",
     "shity-etazhnye-she-na-12-kvartir",
-    "shity-etazhnye-she-vstraivaemyj",
-    "nalichie-revizionnogo-okoshka",
-    "slabotochnyj-otsek-bez-slabotochnogo-otseka",
-    "slabotochnyj-otsek-so-slabotochnym-otsekom",
-    "sposob-montazha-nakladnye"
+    "shity-etazhnye-she-vstraivaemye",
+    "shity-etazhnye-she-bez-okon",
+    "shity-etazhnye-she-bez-slabotochnogo-otseka",
+    "shity-etazhnye-she-so-slabotochnym-otsekom",
+    "shity-etazhnye-she-nakladnye"
   ],
   "sitemapPaths": [
     "/catalog/glavnye-raspredelitelnye-shity-grsh",
@@ -109,10 +109,10 @@
     "/catalog/shity-etazhnye-she-na-9-kvartir",
     "/catalog/shity-etazhnye-she-na-10-kvartir",
     "/catalog/shity-etazhnye-she-na-12-kvartir",
-    "/catalog/shity-etazhnye-she-vstraivaemyj",
-    "/catalog/nalichie-revizionnogo-okoshka",
-    "/catalog/slabotochnyj-otsek-bez-slabotochnogo-otseka",
-    "/catalog/slabotochnyj-otsek-so-slabotochnym-otsekom",
-    "/catalog/sposob-montazha-nakladnye"
+    "/catalog/shity-etazhnye-she-vstraivaemye",
+    "/catalog/shity-etazhnye-she-bez-okon",
+    "/catalog/shity-etazhnye-she-bez-slabotochnogo-otseka",
+    "/catalog/shity-etazhnye-she-so-slabotochnym-otsekom",
+    "/catalog/shity-etazhnye-she-nakladnye"
   ]
 }

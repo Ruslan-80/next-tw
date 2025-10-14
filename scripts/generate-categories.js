@@ -25,11 +25,11 @@ async function generateCategoriesJson() {
     "shity-etazhnye-she-na-9-kvartir",
     "shity-etazhnye-she-na-10-kvartir",
     "shity-etazhnye-she-na-12-kvartir",
-    "shity-etazhnye-she-vstraivaemyj",
-    "nalichie-revizionnogo-okoshka",
-    "slabotochnyj-otsek-bez-slabotochnogo-otseka",
-    "slabotochnyj-otsek-so-slabotochnym-otsekom",
-    "sposob-montazha-nakladnye",
+    "shity-etazhnye-she-vstraivaemye",
+    "shity-etazhnye-she-bez-okon",
+    "shity-etazhnye-she-bez-slabotochnogo-otseka",
+    "shity-etazhnye-she-so-slabotochnym-otsekom",
+    "shity-etazhnye-she-nakladnye",
   ];
   try {
     const categories = await prisma.category.findMany({
