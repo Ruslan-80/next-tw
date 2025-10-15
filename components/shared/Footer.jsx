@@ -226,6 +226,10 @@ export default function Footer() {
           <div className="text-gray-500 text-sm mb-4 md:mb-0">
             © 2025 ElectroShit-PRO. Все права защищены.
           </div>
+          <div className="text-gray-500 text-sm mb-4 md:mb-0">
+            Сайт носит информационный характер и не является публичной офертой.
+            Стоимость товаров и их наличие не гарантируются.
+          </div>
           <div className="flex space-x-6">
             <Link
               href="/privacy"

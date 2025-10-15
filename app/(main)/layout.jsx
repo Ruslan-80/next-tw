@@ -1,4 +1,5 @@
-import { Roboto, Roboto_Mono } from "next/font/google";
+import Script from "next/script";
+import YandexMetrika from "./YandexMetrika";
 import Header from "../../components/shared/Header";
 import Footer from "../../components/shared/Footer";
 import { CompareProvider } from "../../context/CompareContext";
@@ -6,40 +7,61 @@ import { FavoritesProvider } from "../../context/FavoritesContext";
 
 import "../../styles/globals.css";
 
-const roboto = Roboto({
-  subsets: ["latin", "cyrillic"],
-  weight: ["300", "400", "500", "700"],
-  variable: "--font-roboto",
-  display: "swap",
-});
-
-const robotoMono = Roboto_Mono({
-  subsets: ["latin", "cyrillic"],
-  variable: "--font-roboto-mono",
-  display: "swap",
-});
+export const metadata = {
+  title: "ЭЛЕКТРОЩИТ-ПРО — Главная",
+  description: "Производство и сборка электрощитового оборудования.",
+};
 
 export default function MainLayout({ children }) {
   return (
-    <div
-      lang="ru"
-      className={`${roboto.variable} ${robotoMono.variable} antialiased`}
-    >
+    <>
+      {/* Скрипт Яндекс.Метрики с задержкой 3 секунды */}
+      <Script id="yandex-metrika" strategy="afterInteractive">
+        {`
+          setTimeout(() => {
+            (function(m,e,t,r,i,k,a){
+                m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+                m[i].l=1*new Date();
+                for (var j = 0; j < document.scripts.length; j++) {
+                    if (document.scripts[j].src === r) return;
+                }
+                k=e.createElement(t),a=e.getElementsByTagName(t)[0];
+                k.async=1;k.src=r;a.parentNode.insertBefore(k,a);
+            })(window, document, 'script', 'https://mc.yandex.ru/metrika/tag.js', 'ym');
+
+            ym(104651483, 'init', {
+                webvisor:true,
+                clickmap:true,
+                trackLinks:true,
+                accurateTrackBounce:true,
+                ecommerce:"dataLayer"
+            });
+          }, 3000);
+        `}
+      </Script>
+
+      {/* noscript для пользователей без JS */}
+      <noscript>
+        <img
+          src="https://mc.yandex.ru/watch/104651483"
+          style={{ position: "absolute", left: "-9999px" }}
+          alt=""
+        />
+      </noscript>
+
+      {/* Оборачиваем всё в провайдеры */}
       <CompareProvider>
         <FavoritesProvider>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              minHeight: "100vh",
-            }}
-          >
+          <div className="flex flex-col min-h-screen">
             <Header />
-            <div style={{ flex: 1 }}>{children}</div>
+            <main className="flex-1">{children}</main>
             <Footer />
           </div>
         </FavoritesProvider>
       </CompareProvider>
-    </div>
+
+      {/* SPA-трекинг переходов */}
+      <YandexMetrika />
+    </>
   );
 }
