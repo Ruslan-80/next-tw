@@ -255,7 +255,7 @@ export function UstrojstvaEtazhnyepodeznyeBottom() {
           </div>
           <div>
             <Link
-              href="shity-etazhnye-she-she-bez-okon"
+              href="shity-etazhnye-she-bez-okon"
               className="text-orange-500 hover:underline"
             >
               Щиты без ревизионного окошка

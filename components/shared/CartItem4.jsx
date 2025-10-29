@@ -5,7 +5,7 @@ import Link from "next/link";
 import PropTypes from "prop-types";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { useFavorites } from "../../context/FavoritesContext";
+import { useFavorites } from "@/context/FavoritesContext";
 import {
   Dialog,
   DialogContent,

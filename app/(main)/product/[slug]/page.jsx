@@ -35,26 +35,29 @@ export async function generateMetadata({ params }) {
   const resolvedParams = await params;
   const { slug } = resolvedParams;
 
+  const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL;
+
   // Получаем данные о продукте
   const product = await getProductData(slug);
 
   if (!product) {
     return {
-      metadataBase: new URL("http://172.16.10.216:3000"), // Замените на ваш реальный домен
       title: "Товар не найден | ЭЛЕКТРОЩИТ-ПРО",
       description: "Запрашиваемый товар не существует.",
     };
   }
 
+  // console.log(product);
+
   const title = product.titleSeo || `${product.name} | ЭЛЕКТРОЩИТ-ПРО`;
   const description =
     product.descriptionSeo ||
     `Купить ${product.name} в категории ${product.category.name} по выгодной цене. Быстрая доставка и высокое качество.`;
-  const canonicalUrl = `/product/${slug}`;
-  const imageUrl = product.mediaFiles[0]?.url || "/default-og-image.jpg"; // Используем первое изображение или заглушку
+  const canonicalUrl = `${BASE_URL}/product/${slug}`;
+  const imageUrl =
+    `${BASE_URL}${product.mediaFiles[0]?.url}` || "/default-og-image.jpg"; // Используем первое изображение или заглушку
 
   return {
-    metadataBase: new URL("http://172.16.10.216:3000"), // Замените на ваш реальный домен
     title,
     description,
     alternates: {
@@ -117,7 +120,7 @@ export default async function Page({ params }) {
 
   return (
     <>
-      <JsonLd data={productJsonLd} />
+      <JsonLd data={productJsonLd} script_name="product-jsonld" />
       <div className="container mx-auto px-4 dark:bg-gray-900 dark:text-white">
         <Breadcrumbs items={breadcrumbs} />
         <ProductPageClient product={product} />

@@ -23,7 +23,8 @@ export default function RootLayout({ children }) {
       className={`${roboto.variable} ${robotoMono.variable} antialiased`}
     >
       <body className="bg-white dark:bg-gray-900 dark:text-white">
-        <JsonLd data={organizationJsonLd} />
+        <JsonLd data={organizationJsonLd} script_name="organization-jsonld" />
+
         {children}
       </body>
     </html>

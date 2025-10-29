@@ -22,7 +22,9 @@ export default function Footer() {
             <Link href="/">
               <Image
                 src={Logo}
-                alt="Kapital Stroy"
+                width={200}
+                height={80}
+                alt="Электрощит-ПРО"
                 className="h-12 w-auto mb-4"
               />
             </Link>
@@ -58,6 +60,12 @@ export default function Footer() {
                 >
                   info@electroshit-pro.ru
                 </a>
+              </div>
+              <div className="flex items-start gap-2 mt-3">
+                <MapPin size={16} className="text-gray-400 mt-1" />
+                <span className="text-gray-400">
+                  Режим работы: Пн-Пт 9:00 - 18:00
+                </span>
               </div>
               <div className="flex items-start gap-2 mt-3">
                 <MapPin size={16} className="text-gray-400 mt-1" />
@@ -226,9 +234,23 @@ export default function Footer() {
           <div className="text-gray-500 text-sm mb-4 md:mb-0">
             © 2025 ElectroShit-PRO. Все права защищены.
           </div>
-          <div className="text-gray-500 text-sm mb-4 md:mb-0">
-            Сайт носит информационный характер и не является публичной офертой.
-            Стоимость товаров и их наличие не гарантируются.
+          <div className="flex flex-col text-justify px-4">
+            <div className="text-gray-500 text-sm mb-4 md:mb-0">
+              Сайт носит информационный характер и не является публичной
+              офертой. Стоимость товаров и их наличие не гарантируются.
+            </div>
+            <div className="text-gray-500 text-sm mb-4 md:mb-0">
+              Отправляя свой запрос на адреса электронной почты sale@el-com.ru и
+              info@electroshit-pro.ru (в случае заказа на сайте), Вы даете свое
+              согласие на обработку персональных данных, файлов cookie и
+              рассылку информационных, рекламных и новостных сообщений, согласно{" "}
+              <Link
+                href="/privacy"
+                className="text-gray-500 hover:text-white transition-colors text-sm"
+              >
+                политике конфиденциальности и обработки персональных данных.
+              </Link>{" "}
+            </div>
           </div>
           <div className="flex space-x-6">
             <Link

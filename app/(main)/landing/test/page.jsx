@@ -13,6 +13,19 @@ export default function MainComponent() {
     setIsModalOpen(true);
   };
 
+  console.log({
+    screen: {
+      width: window.screen.width,
+      height: window.screen.height,
+    },
+    language: navigator.language,
+    timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+    plugins: navigator.plugins,
+    platform: navigator.platform,
+    battery: navigator.getBattery ? navigator.getBattery() : null,
+    // all: req.all,
+  });
+
   return (
     <div>
       <button

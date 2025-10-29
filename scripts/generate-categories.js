@@ -61,7 +61,7 @@ async function generateCategoriesJson() {
     const filePath = path.join(process.cwd(), "public", "categories.json");
     await fs.writeFile(filePath, JSON.stringify(result, null, 2), "utf8");
 
-    console.log("Successfully generated public/categories.json");
+    // console.log("Successfully generated public/categories.json");
     console.log(
       `Generated ${categories.length} categories and ${manualFilters.length} filters`
     );

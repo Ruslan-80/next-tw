@@ -1,4 +1,5 @@
 import { prisma } from "@/lib/prisma";
+import { notFound } from "next/navigation";
 import { getProductsByCategory } from "./actions";
 import Filters from "./Filters";
 import ProductList from "@/components/shared/ProductList";
@@ -10,6 +11,7 @@ import PopularProducts from "@/components/PopularProduct";
 import JsonLd from "@/components/JsonLdComponent";
 import getCategoryJsonLd from "@/lib/categoryJsonLd";
 import categoryComponents from "@/components/categoryBlocksMap";
+import PopularNabor from "@/components/PopularNabor";
 
 export async function generateMetadata({ params, searchParams }) {
   const { slug } = await params;
@@ -37,19 +39,28 @@ export async function generateMetadata({ params, searchParams }) {
     // Если категория найдена, используем ее свойства
     titleSeo = category.titleSeo || "";
     // ... и другие свойства
-  } else {
-    // Если категория не найдена, можно установить значения по умолчанию
-    // или пробросить ошибку, если наличие категории обязательно.
-    console.error(`Category with slug '${baseSlug}' not found.`);
   }
+  //  else {
+  //   // Если категория не найдена, можно установить значения по умолчанию
+  //   // или пробросить ошибку, если наличие категории обязательно.
+  //   console.error(`Category with slug '${baseSlug}' not found.`);
+  // }
 
-  const imgUrl = category.imageUrl || "/default-og-image.jpg";
+  // const imgUrl = category.imageUrl || "/default-og-image.jpg";
 
   if (!category) {
+    // console.error(`Category with slug '${baseSlug}' not found.`);
     return {
       title: "Категория не найдена | ЭЛЕКТРОЩИТ-ПРО",
-      description: "Запрашиваемая категория не существует.",
+      description: "Запрошенная категория не существует.",
+      openGraph: {
+        title: "Категория не найдена | ЭЛЕКТРОЩИТ-ПРО",
+        description: "Запрошенная категория не существует.",
+        images: ["/default-og-image.jpg"],
+      },
     };
+    // 👇 Или если нужно реально отдать 404:
+    // notFound();
   }
 
   // Определяем текущую страницу
@@ -88,6 +99,10 @@ export async function generateMetadata({ params, searchParams }) {
   const canonicalUrl =
     page >= 1 ? `/catalog/${slug}` : `/catalog/${slug}?page=${page}`;
 
+  const imgCategoryUrl = category.imageUrl
+    ? `${process.env.NEXT_PUBLIC_SITE_URL}${category.imageUrl}`
+    : null;
+
   return {
     metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL),
     title,
@@ -102,7 +117,7 @@ export async function generateMetadata({ params, searchParams }) {
       type: "website",
       images: [
         {
-          url: "/default-og-image.jpg",
+          url: imgCategoryUrl || "/default-og-image.jpg",
           width: 1200,
           height: 630,
           alt: title,
@@ -113,7 +128,7 @@ export async function generateMetadata({ params, searchParams }) {
       card: "summary_large_image",
       title,
       description,
-      images: ["/default-og-image.jpg"],
+      images: [imgCategoryUrl || "/default-og-image.jpg"],
     },
     robots: {
       index: true,
@@ -227,7 +242,7 @@ export default async function CategoryPage({ params, searchParams }) {
 
   return (
     <>
-      <JsonLd data={categoryJsonLd} />
+      <JsonLd data={categoryJsonLd} script_name="category-jsonld" />
 
       <div className="container mx-auto px-4">
         <Breadcrumbs items={breadcrumbs} />
@@ -265,78 +280,10 @@ export default async function CategoryPage({ params, searchParams }) {
         />
 
         {BottomComponent && <BottomComponent />}
+        <PopularNabor excludeSlug={slug} />
 
         <PopularProducts categorySlug={baseSlug} />
       </div>
     </>
   );
-}
-
-{
-  /* <div>
-          <div className="bg-blue-300/50 shadow-2xl rounded-4xl px-8 py-12 mx-auto border border-blue-200">
-            <div className="flex items-center justify-center text-3xl font-bold mb-12 mt-4">
-              Преимущества и особенности конструкции
-            </div>
-            <ul className="list-disc pl-6 text-2xl space-y-2 text-gray-900 max-w-[1200px] mx-auto">
-              <li className="mb-4">
-                <strong>Безопасность:</strong> Металлический корпус с классами
-                защиты I или II минимизирует риск поражения током. Дверца с
-                замком исключает доступ к токоведущим частям{" "}
-                <a href="https://docs.cntd.ru/document/9018351">
-                  <strong className="bg-amber-200">
-                    (ГОСТ 32395-2020, п. 6.1.2, 6.2.16).
-                  </strong>
-                </a>
-              </li>
-              <li className="mb-4">
-                <strong>Низкое излучение:</strong> Электрическое поле ≤ 0,5
-                кВ/м, магнитное ≤ 4 А/м, что обеспечивает безопасное
-                пространство (п. 6.1.3).
-              </li>
-              <li className="mb-4">
-                <strong>Прочное крепление:</strong> Конструкция для ниши
-                гарантирует долговечность и стабильность (п. 6.2.10).
-              </li>
-              <li className="mb-4">
-                <strong>Эстетика:</strong> Обрамления защищают от повреждений,
-                создавая аккуратный вид (п. 6.2.12).
-              </li>
-              <li className="mb-4">
-                <strong>Соответствие ГОСТ:</strong> Размеры соответствуют{" "}
-                <a href="https://docs.cntd.ru/document/1200165116">
-                  <strong className="bg-amber-200">Приложению Г</strong>
-                </a>
-                , упрощая монтаж (п. 6.2.13).
-              </li>
-              <li className="mb-4">
-                <strong>Лёгкое обслуживание:</strong> Замена аппаратов и
-                счетчиков без демонтажа (п. 6.2.24).
-              </li>
-              <li className="mb-4">
-                <strong>Удобный доступ:</strong> Дверца открывается на ≥ 95°,
-                упрощая доступ к аппаратам (п. 6.2.15).
-              </li>
-              <li className="mb-4 pb-12">
-                <strong>Защита:</strong> Замок и люк для вводных аппаратов
-                усиливают безопасность (п. 6.2.17).
-              </li>
-            </ul>
-          </div>
-          <section className="max-w-7xl mx-auto px-6 py-12 bg-white rounded-lg shadow-md my-16">
-            <h3 className="text-center text-3xl font-extrabold mb-8 text-gray-800">
-              {category.name}
-            </h3>
-            <p className="text-center text-lg leading-relaxed text-gray-700 mb-8 px-4">
-              {fullDescription ? fullDescription : category.fullDescription}{" "}
-              <a
-                href="#order"
-                className="text-indigo-600 font-semibold hover:underline transition-colors duration-200"
-                aria-label="Закажите с доставкой"
-              >
-                Закажите с доставкой!
-              </a>
-            </p>
-          </section>
-        </div> */
 }

@@ -1,20 +1,10 @@
+import PopularNabor from "@/components/PopularNabor";
 import React from "react";
-import {
-  KozhukhTop,
-  KozhukhBottom,
-} from "components/shared/kozhuh-she-dlya-etazhnogo-shita.jsx";
-import {
-  ShityEtazhnyeBottom,
-  ShityEtazhnyeTop,
-} from "@/components/shared/shity-etazhnye-she";
 
-const page = () => {
+export default function test() {
   return (
-    <div className="container mx-auto p-6 bg-background text-2xl">
-      <ShityEtazhnyeTop />
-      <ShityEtazhnyeBottom />
+    <div className="container mx-auto px-4">
+      <PopularNabor />
     </div>
   );
-};
-
-export default page;
+}

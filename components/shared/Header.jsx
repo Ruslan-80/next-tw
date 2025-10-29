@@ -151,7 +151,7 @@ export default function Header() {
             <CatalogButton />
             {/* Логотип */}
             <Link href="/" className="mx-4">
-              <Image src={Logo} alt="Electroshit-pro" />
+              <Image src={Logo} alt="Electroshit-pro" priority />
             </Link>
             {/* Корзина */}
             <Link

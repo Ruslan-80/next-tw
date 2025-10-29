@@ -2,42 +2,78 @@
 
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
+import { useEffect, useMemo } from "react";
 
 export default function Breadcrumbs({ items }) {
   const searchParams = useSearchParams();
   const queryString = searchParams.toString();
 
-  if (!items || items.length === 0) {
-    return null;
-  }
+  if (!items || items.length === 0) return null;
+
+  // Формируем список хлебных крошек
+  const breadcrumbItems = useMemo(() => {
+    return [
+      { name: "Главная", slug: "", href: "/" },
+      ...items.map((item) => ({
+        name: item.name,
+        slug: item.slug,
+        href: `/catalog/${item.slug}${queryString ? `?${queryString}` : ""}`,
+      })),
+    ];
+  }, [items, queryString]);
+
+  // Формируем JSON-LD структуру
+  const breadcrumbJsonLd = useMemo(
+    () => ({
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: breadcrumbItems.map((item, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        name: item.name,
+        item: `${process.env.NEXT_PUBLIC_SITE_URL || "https://example.com"}${
+          item.href
+        }`,
+      })),
+    }),
+    [breadcrumbItems]
+  );
+
+  // Вставляем/обновляем JSON-LD в <head> при каждом изменении items
+  useEffect(() => {
+    const scriptId = "breadcrumbs-jsonld";
+    let script = document.getElementById(scriptId);
+
+    if (!script) {
+      script = document.createElement("script");
+      script.type = "application/ld+json";
+      script.id = scriptId;
+      document.head.appendChild(script);
+    }
+
+    script.textContent = JSON.stringify(breadcrumbJsonLd);
+  }, [breadcrumbJsonLd]);
 
   return (
     <nav aria-label="Breadcrumb" className="p-4">
       <ol className="hidden md:flex flex-wrap items-center space-x-2 text-sm text-gray-600">
-        <li>
-          <Link href="/" className="hover:text-orange-400 transition-colors">
-            Главная
-          </Link>
-        </li>
-        {items.map((item, index) => {
-          const isLast = index === items.length - 1;
+        {breadcrumbItems.map((item, index) => {
+          const isLast = index === breadcrumbItems.length - 1;
           return (
-            <li key={item.slug} className="flex items-center space-x-2 ">
-              <span className="text-gray-400">/</span>
+            <li key={index} className="flex items-center space-x-2">
+              {index > 0 && <span className="text-gray-400">/</span>}
               {isLast ? (
                 <span
                   className="font-medium text-gray-900 break-words"
-                  title={item.name} // Tooltip с полным названием
+                  title={item.name}
                 >
                   {item.name}
                 </span>
               ) : (
                 <Link
-                  href={`/catalog/${item.slug}${
-                    queryString ? `?${queryString}` : ""
-                  }`}
+                  href={item.href}
                   className="hover:text-orange-400 transition-colors break-words"
-                  title={item.name} // Tooltip при обрезке
+                  title={item.name}
                 >
                   {item.name}
                 </Link>

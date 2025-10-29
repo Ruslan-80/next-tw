@@ -22,6 +22,7 @@ import FaqShity from "../faqShity";
 import WorksGallery from "../imageDoPosle";
 import FAQPageShityJSONLD from "@/lib/faqshityJsonLd";
 import JsonLd from "@/components/JsonLdComponent";
+import PopularNabor from "../PopularNabor";
 
 export function ShityEtazhnyeTop() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -35,7 +36,7 @@ export function ShityEtazhnyeTop() {
   const FaqJsonLd = FAQPageShityJSONLD();
   return (
     <>
-      <JsonLd data={FaqJsonLd} />
+      <JsonLd data={FaqJsonLd} script_name="FAQ-jsonld" />
       <section>
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-8 animate-fade-in-up">
@@ -540,6 +541,7 @@ export function ShityEtazhnyeBottom() {
         </div>
       </div>
       <WorksGallery />
+      <PopularNabor excludeSlug="shity-etazhnye-she" />
       <FaqShity />
     </div>
   );

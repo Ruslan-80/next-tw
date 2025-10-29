@@ -2,18 +2,19 @@ import Link from "next/link";
 import { Card, CardContent } from "@/components/ui/card";
 import Image from "next/image";
 import FaqShity from "../faqShity";
+import PopularNabor from "../PopularNabor";
 
 export function ShityEtazhnyeTop() {
   return (
     <section className="mb-4">
       <div className="flex bg-blue-300/20 shadow-xl items-center rounded-4xl px-8 py-12 mx-auto border border-blue-200">
-        <div className="p-4">
+        <div className="p-4 relative w-[500px] h-[500px] rounded overflow-hidden">
           <Image
             src="/images/categories/SE24L.png"
             alt="Этажные электрические щиты (ЩЭ)"
-            height={1000}
-            width={1000}
-            className="rounded object-cover"
+            fill
+            className="object-cover"
+            sizes="(max-width: 768px) 100vw, 500px"
           />
         </div>
 
@@ -454,6 +455,7 @@ export function ShityEtazhnyeBottom() {
           </table>
         </div>
       </div>
+      <PopularNabor excludeSlug="shity-etazhnye-she" />
       <FaqShity />
     </div>
   );

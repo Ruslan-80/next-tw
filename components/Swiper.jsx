@@ -92,25 +92,25 @@ function Slider() {
       </SwiperSlide>
       <SwiperSlide>
         <img
-          src="/images/slider/image4.jpg"
+          src="/images/slider/image-4.jpg"
           alt="slider 4"
           style={{ width: "100%" }}
         />
       </SwiperSlide>
       <SwiperSlide>
         <img
-          src="/images/slider/image5.jpg"
+          src="/images/slider/image-5.jpg"
           alt="slider 5"
           style={{ width: "100%" }}
         />
       </SwiperSlide>
-      <SwiperSlide>
+      {/* <SwiperSlide>
         <img
           src="/images/slider/image6.jpg"
           alt="slider 6"
           style={{ width: "100%" }}
         />
-      </SwiperSlide>
+      </SwiperSlide> */}
       <div className="autoplay-progress" slot="container-end">
         <svg viewBox="0 0 48 48" ref={progressCircle}>
           <circle cx="24" cy="24" r="20"></circle>

@@ -20,7 +20,7 @@ async function generateProductsJson() {
     // Запись данных в файл
     await fs.writeFile(filePath, JSON.stringify(products, null, 2), "utf8");
 
-    console.log("Successfully generated public/products.json");
+    // console.log("Successfully generated public/products.json");
   } catch (error) {
     console.error("Error generating products.json:", error);
     process.exit(1);
