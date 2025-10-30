@@ -180,8 +180,9 @@ export default function Footer() {
               Подписка
             </h3>
             <p className="text-gray-400 mb-4">Подпишитесь на новости и акции</p>
-            <form className="flex mb-6">
+            <form className="flex mb-6" id="footer_form" name="footer_form">
               <input
+                id="footer_email"
                 type="email"
                 placeholder="Ваш email"
                 className="bg-gray-800 text-white rounded-l-lg px-4 py-2 w-full focus:outline-none focus:ring-2 focus:ring-red-500"

@@ -171,8 +171,14 @@ export default function Header() {
           </div>
           {/* Поиск */}
           <div className="w-full md:w-1/2 md:order-none order-2 mt-4 md:mt-0 relative">
-            <form onSubmit={handleSubmit} className="relative">
+            <form
+              onSubmit={handleSubmit}
+              className="relative"
+              id="search-form"
+              name="search-form"
+            >
               <input
+                id="search-input"
                 ref={inputRef}
                 name="query"
                 placeholder="Поиск товаров..."
@@ -188,7 +194,7 @@ export default function Header() {
                 type="submit"
                 className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-red-500"
               >
-                <Search size={20} />
+                <Search size={20} name="search" />
               </button>
             </form>
 

@@ -1,0 +1,77 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "model": "Щит этажный ЩЭ-4 на 4 квартиры (счетчика) 3-дверный накладной со слаботочным отсеком слева (1000x950x135) IP31 УХЛ3",
+  "name": "Щит этажный ЩЭ-4 на 4 квартиры (счетчика) 3-дверный накладной со слаботочным отсеком слева (1000x950x135) IP31 УХЛ3",
+  "description": "Купить Щит этажный ЩЭ-4 на 4 квартиры (счетчика) 3-дверный накладной со слаботочным отсеком слева (1000x950x135) IP31 УХЛ3 в категории Щиты этажный ЩЭ",
+  "image": "https://electroshit-pro.ru/images/product/se/SE34L.webp",
+  "sku": "SE34L-N",
+  "brand": { "@type": "Brand", "name": "Electroshit-pro" },
+  "url": "https://electroshit-pro.ru/product/se34l-n",
+  "offers": {
+    "@type": "Offer",
+    "availability": "https://schema.org/InStock",
+    "price": 7840,
+    "priceCurrency": "RUB",
+    "priceValidUntil": "2026-10-30",
+    "url": "https://electroshit-pro.ru/product/se34l-n",
+    "shippingDetails": {
+      "@type": "OfferShippingDetails",
+      "shippingRate": {
+        "@type": "MonetaryAmount",
+        "value": "0.00",
+        "currency": "RUB"
+      },
+      "shippingDestination": {
+        "@type": "DefinedRegion",
+        "addressCountry": "RU"
+      },
+      "deliveryTime": {
+        "@type": "ShippingDeliveryTime",
+        "businessDays": {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "http://schema.org/Monday",
+            "http://schema.org/Tuesday",
+            "http://schema.org/Wednesday",
+            "http://schema.org/Thursday",
+            "http://schema.org/Friday"
+          ]
+        },
+        "transitTime": {
+          "@type": "QuantitativeValue",
+          "minValue": 1,
+          "maxValue": 5,
+          "unitCode": "DAY"
+        }
+      }
+    },
+    "hasMerchantReturnPolicy": {
+      "@type": "MerchantReturnPolicy",
+      "applicableCountry": "RU",
+      "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+      "returnWindow": {
+        "@type": "QuantitativeValue",
+        "value": 14,
+        "unitCode": "DAY"
+      }
+    }
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": 4.5,
+    "ratingCount": 100,
+    "reviewCount": 100,
+    "worstRating": 0,
+    "bestRating": 5
+  },
+  "review": [
+    {
+      "@type": "Review",
+      "reviewRating": { "@type": "Rating", "ratingValue": 4 },
+      "author": { "@type": "Person", "name": "Аноним" },
+      "reviewBody": "Общий отзыв о Щит этажный ЩЭ-4 на 4 квартиры (счетчика) 3-дверный накладной со слаботочным отсеком слева (1000x950x135) IP31 УХЛ3",
+      "datePublished": "2025-10-30"
+    }
+  ]
+}

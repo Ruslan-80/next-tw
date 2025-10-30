@@ -80,13 +80,13 @@ export function uermTop() {
 
           <div className="relative animate-slide-in-right">
             <div className="absolute inset-0 bg-gradient-to-br from-accent/20 to-primary/20 rounded-3xl blur-3xl"></div>
-            <div className="relative bg-card rounded-3xl p-8 shadow-2xl flex justify-center mx-auto">
+            <div className="relative w-[500px] h-[500px] bg-card rounded-3xl p-8 shadow-2xl flex justify-center mx-auto">
               <Image
                 src="/images/landing/uerm1.png"
                 alt="УЭРМ - Устройство этажное распределительное модульное"
-                width={250}
-                height={250}
-                className="object-contain hover:scale-105 transition-transform duration-500"
+                fill
+                className="object-contain hover:scale-105 transition-transform duration-500 p-4"
+                sizes="(max-width: 768px) 100vw, 500px"
               />
             </div>
           </div>
