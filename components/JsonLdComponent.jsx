@@ -1,20 +1,22 @@
 "use client";
 import { useEffect } from "react";
 
-const JsonLd = ({ data, script_name }) => {
+export default function JsonLd({ data, script_name }) {
   useEffect(() => {
-    const script = document.createElement("script");
-    script.type = "application/ld+json";
-    script.id = script_name || "jsonld-script";
-    script.text = JSON.stringify(data);
-    document.head.appendChild(script);
+    if (!data) return;
 
-    return () => {
-      document.head.removeChild(script);
-    };
-  }, [data]);
+    const scriptId = script_name || "jsonld-script";
+    let script = document.getElementById(scriptId);
 
-  return null;
-};
+    if (!script) {
+      script = document.createElement("script");
+      script.type = "application/ld+json";
+      script.id = scriptId;
+      document.head.appendChild(script);
+    }
 
-export default JsonLd;
+    script.textContent = JSON.stringify(data, null, 2);
+  }, [data, script_name]);
+
+  return null; // не выводим ничего в DOM
+}

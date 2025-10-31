@@ -1,5 +1,7 @@
 import Category from "../../components/shared/Category";
 import Partners from "../../components/shared/Partners";
+import JsonLd from "@/components/JsonLdComponent";
+import getOrganizationJsonLd from "@/lib/organizationJsonLd";
 
 import Slider from "../../components/Swiper";
 
@@ -11,8 +13,10 @@ export const metadata = {
 };
 
 export default function Home() {
+  const organizationJsonLd = getOrganizationJsonLd();
   return (
     <>
+      <JsonLd data={organizationJsonLd} script_name="organization-jsonld" />
       <main className=" container mx-auto bg-white">
         <h1 className="hidden">
           Производство электрощитового оборудования и металлокорпусов

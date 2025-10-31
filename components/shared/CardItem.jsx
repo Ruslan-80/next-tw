@@ -109,6 +109,8 @@ export default function CardItem({ product, view }) {
             ? "border border-gray-200 rounded-xl shadow-md hover:shadow-xl hover:border-blue-500/30 transition-all duration-300 bg-white overflow-hidden transform hover:-translate-y-1  dark:bg-gray-800 dark:text-white"
             : "border border-gray-200 rounded-xl shadow-md hover:shadow-xl hover:border-blue-500/30 transition-all duration-300 bg-white flex flex-col md:flex-row  dark:bg-gray-800 dark:text-white"
         }
+        itemScope
+        itemType="https://schema.org/Product"
       >
         <Link href={`/product/${product.slug}`} className="block flex-1">
           <div
@@ -158,11 +160,12 @@ export default function CardItem({ product, view }) {
                       : "text-2xl font-semibold text-gray-900 mb-2 group relative  dark:bg-gray-800 dark:text-white"
                   }
                 >
-                  {product.name}
+                  <span itemProp="name">{product.name}</span>
                   <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-500/30 transition-all duration-300 group-hover:w-full  dark:bg-gray-800 dark:text-white" />
                 </h4>
                 <p className="text-sm text-gray-500 mb-2">
-                  Артикул: {product.article || "N/A"} <br />
+                  Артикул:{" "}
+                  <span itemProp="sku">{product.article || "N/A"}</span> <br />
                   Артикул: {product.id || "N/A"}
                 </p>
                 {/* <p className="text-sm text-gray-500 mb-2">
@@ -175,15 +178,43 @@ export default function CardItem({ product, view }) {
                         ? "text-sm text-gray-600 mb-3 line-clamp-2  dark:bg-gray-800 dark:text-white"
                         : "text-sm text-gray-600 mb-3  dark:bg-gray-800 dark:text-white"
                     }
+                    itemProp="description"
                   >
                     {product.description}
                   </p>
                 )}
-                <p className="text-lg font-bold text-gray-900 mb-3 dark:bg-gray-800 dark:text-white">
-                  {product.basePrice == 0
-                    ? "По запросу"
-                    : `${product.basePrice.toLocaleString("ru-RU")} ₽`}
-                </p>
+                {/* Бренд */}
+                <meta itemProp="brand" content="Electroshit-pro" />
+                {/* Цена и оффер */}
+                <div
+                  itemProp="offers"
+                  itemScope
+                  itemType="https://schema.org/Offer"
+                  className="mb-3"
+                >
+                  <p className="text-lg font-bold text-gray-900 mb-3 dark:bg-gray-800 dark:text-white">
+                    {product.basePrice == 0
+                      ? "По запросу"
+                      : `${product.basePrice.toLocaleString("ru-RU")} ₽`}
+                  </p>
+                  {/* Микроразметка оффера */}
+                  <meta
+                    itemProp="price"
+                    content={
+                      product.basePrice ? product.basePrice.toString() : "0.00"
+                    }
+                  />
+                  <meta itemProp="priceCurrency" content="RUB" />
+                  <link
+                    itemProp="availability"
+                    href={
+                      product.stock > 0
+                        ? "http://schema.org/InStock"
+                        : "http://schema.org/PreOrder"
+                    }
+                  />
+                </div>
+                {/* Статус наличия */}
                 <p
                   className={`text-sm mb-3 ${
                     product.stock > 0 ? "text-green-600" : "text-red-600"
@@ -193,6 +224,7 @@ export default function CardItem({ product, view }) {
                     ? "В наличии"
                     : "Срок изготовления 7-14 дней"}
                 </p>
+
                 {product.tags?.length > 0 && (
                   <div className="flex flex-wrap gap-2 mb-3">
                     {product.tags.slice(0, 3).map((tag) => (

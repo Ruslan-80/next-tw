@@ -3,9 +3,8 @@ const nextConfig = {
   images: {
     formats: ["image/avif", "image/webp"],
   },
-  // experimental: {
-  //     allowedDevOrigins: "all",
-  // },
+  allowedDevOrigins: ["http://172.16.10.216:3000"],
+
   async rewrites() {
     return [
       // Перехват URL-адреса для /catalog/ustroystva-etazhnye

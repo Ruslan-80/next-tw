@@ -119,10 +119,15 @@ export default function ProductPageClient({ product }) {
   // Список миниатюр - не нужен отдельный thumbnails, используем images напрямую
 
   return (
-    <main className="container mx-auto py-8 dark:bg-gray-900 dark:text-white">
+    <main
+      className="container mx-auto py-8 dark:bg-gray-900 dark:text-white"
+      itemScope
+      itemType="https://schema.org/Product"
+    >
       <h1
         className="lg:text-3xl 
         font-bold mb-4 max-w-[900px]"
+        itemProp="name"
       >
         {product.name || "Продукт"}
       </h1>
@@ -167,6 +172,7 @@ export default function ProductPageClient({ product }) {
                       width={700}
                       className="object-contain w-full h-full p-4 transition-all duration-500 hover:scale-105 cursor-zoom-in"
                       onClick={() => handleImageZoom(selectedImageIndex)}
+                      itemProp="image"
                     />
                   ) : (
                     <Skeleton className="w-full h-full rounded-lg" />
@@ -194,6 +200,8 @@ export default function ProductPageClient({ product }) {
 
             {/* Product Details */}
             <div className="lg:w-1/2 p-6 bg-gray-50 dark:bg-gray-900 dark:text-white">
+              <meta itemProp="sku" content={product.article || "N/A"} />
+              <meta itemProp="brand" content="Электрощит PRO" />
               <div className="mb-8">
                 {/* <h1 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-4">
                   {product.name}
@@ -201,7 +209,27 @@ export default function ProductPageClient({ product }) {
 
                 {/* Price and Actions */}
                 <div className="flex flex-wrap items-center gap-4 mb-6">
-                  <div className="text-3xl font-bold text-blue-600">
+                  <div
+                    className="text-3xl font-bold text-blue-600"
+                    itemProp="offers"
+                    itemScope
+                    itemType="https://schema.org/Offer"
+                  >
+                    <meta itemProp="priceCurrency" content="RUB" />
+                    <meta
+                      itemProp="price"
+                      content={
+                        product.basePrice ? product.basePrice.toString() : "0"
+                      }
+                    />
+                    <link
+                      itemProp="availability"
+                      href={
+                        product.stock > 0
+                          ? "http://schema.org/InStock"
+                          : "http://schema.org/PreOrder"
+                      }
+                    />
                     {product.basePrice
                       ? `${product.basePrice.toLocaleString("ru-RU")} руб.`
                       : "Цена недоступна"}
