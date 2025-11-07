@@ -117,6 +117,12 @@ export default function Header() {
               Гарантии и возврат
             </Link>
             <Link
+              href="/blogs"
+              className="hover:text-red-300 transition-colors"
+            >
+              Статьи
+            </Link>
+            <Link
               href="/contacts"
               className="hover:text-red-300 transition-colors"
             >

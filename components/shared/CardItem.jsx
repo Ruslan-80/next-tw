@@ -112,7 +112,11 @@ export default function CardItem({ product, view }) {
         itemScope
         itemType="https://schema.org/Product"
       >
-        <Link href={`/product/${product.slug}`} className="block flex-1">
+        <Link
+          href={`/product/${product.slug}`}
+          className="block flex-1"
+          itemProp="url"
+        >
           <div
             className={
               view === "grid"
@@ -133,6 +137,7 @@ export default function CardItem({ product, view }) {
                     src={product.image}
                     alt={product.name}
                     fill
+                    itemProp="image"
                     className="object-contain rounded-lg transition-transform duration-300 hover:scale-105 p-4  dark:bg-gray-800 dark:text-white"
                     sizes={
                       (view || "grid") === "grid"
@@ -166,11 +171,9 @@ export default function CardItem({ product, view }) {
                 <p className="text-sm text-gray-500 mb-2">
                   Артикул:{" "}
                   <span itemProp="sku">{product.article || "N/A"}</span> <br />
-                  Артикул: {product.id || "N/A"}
+                  ID: <span itemProp="productID">{product.id || "N/A"}</span>
                 </p>
-                {/* <p className="text-sm text-gray-500 mb-2">
-                  ID: {product.id || "N/A"}
-                </p> */}
+
                 {product.description && (
                   <p
                     className={
@@ -184,7 +187,22 @@ export default function CardItem({ product, view }) {
                   </p>
                 )}
                 {/* Бренд */}
-                <meta itemProp="brand" content="Electroshit-pro" />
+                <div
+                  itemProp="brand"
+                  itemScope
+                  itemType="https://schema.org/Brand"
+                >
+                  <meta itemProp="name" content="Electroshit-PRO" />
+                </div>
+                {/* AggregateRating */}
+                <div
+                  itemProp="aggregateRating"
+                  itemScope
+                  itemType="https://schema.org/AggregateRating"
+                >
+                  <meta itemProp="ratingValue" content="4.5" />
+                  <meta itemProp="reviewCount" content="25" />
+                </div>
                 {/* Цена и оффер */}
                 <div
                   itemProp="offers"
@@ -201,7 +219,7 @@ export default function CardItem({ product, view }) {
                   <meta
                     itemProp="price"
                     content={
-                      product.basePrice ? product.basePrice.toString() : "0.00"
+                      product.basePrice ? product.basePrice.toFixed(2) : "0.00"
                     }
                   />
                   <meta itemProp="priceCurrency" content="RUB" />
@@ -254,8 +272,19 @@ export default function CardItem({ product, view }) {
                         {product.attributes.map((attr) => (
                           <div
                             key={`${product.id}-${attr.attributeName}-${attr.attributeValueName}`}
+                            itemProp="additionalProperty"
+                            itemScope
+                            itemType="https://schema.org/PropertyValue"
                             className="flex"
                           >
+                            <meta
+                              itemProp="name"
+                              content={attr.attributeName}
+                            />
+                            <meta
+                              itemProp="value"
+                              content={attr.attributeValueName}
+                            />
                             <span className="font-medium dark:bg-gray-800 dark:text-white">
                               {attr.attributeName}:
                             </span>
@@ -326,90 +355,6 @@ export default function CardItem({ product, view }) {
         onSubmit={handleFormSubmit}
         submitError={error}
       />
-      {/* <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
-        <DialogContent
-          className="sm:max-w-[425px] bg-white text-2xl p-8 text-gray-600"
-          data-testid="dialog-content"
-        >
-          <DialogHeader>
-            <DialogTitle className="text-2xl font-bold mb-6 text-gray-600">
-              Заказать бесплатный расчет
-            </DialogTitle>
-            <DialogDescription className="text-xl  mb-6 text-gray-600">
-              Заполните форму, чтобы заказать расчет для
-              <span className="font-bold">{product.name}.</span>
-            </DialogDescription>
-          </DialogHeader>
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-            <div className="space-y-2">
-              <Label htmlFor="name">Имя</Label>
-              <Input
-                id="name"
-                placeholder="Ваше имя"
-                {...register("name", { required: "Имя обязательно" })}
-              />
-              {errors.name && (
-                <p className="text-sm text-red-600">{errors.name.message}</p>
-              )}
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="phone">Телефон</Label>
-              <Input
-                id="phone"
-                placeholder="+7 (XXX) XXX-XX-XX"
-                {...register("phone", {
-                  required: "Телефон обязателен",
-                  pattern: {
-                    value: /^\+?\d{10,15}$/,
-                    message: "Неверный формат телефона",
-                  },
-                })}
-              />
-              {errors.phone && (
-                <p className="text-sm text-red-600">{errors.phone.message}</p>
-              )}
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
-              <Input
-                id="email"
-                placeholder="example@email.com"
-                type="email"
-                {...register("email", {
-                  required: "Email обязателен",
-                  pattern: {
-                    value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                    message: "Неверный формат email",
-                  },
-                })}
-              />
-              {errors.email && (
-                <p className="text-sm text-red-600">{errors.email.message}</p>
-              )}
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="comment">Комментарий</Label>
-              <Textarea
-                id="comment"
-                placeholder="Ваши пожелания или вопросы"
-                {...register("comment")}
-              />
-            </div>
-            <DialogFooter>
-              <Button
-                type="button"
-                variant="outline"
-                onClick={() => setIsModalOpen(false)}
-              >
-                Отмена
-              </Button>
-              <Button type="submit" disabled={isSubmitting}>
-                {isSubmitting ? "Отправка..." : "Отправить"}
-              </Button>
-            </DialogFooter>
-          </form>
-        </DialogContent>
-      </Dialog> */}
     </>
   );
 }

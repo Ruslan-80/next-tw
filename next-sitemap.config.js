@@ -1,11 +1,10 @@
 import fs from "fs";
 import path from "path";
 
-// const siteUrl = "http://172.16.10.216:3000";
 const siteUrl = "https://electroshit-pro.ru";
 
 const config = {
-  siteUrl: siteUrl,
+  siteUrl,
   generateRobotsTxt: true,
   sitemapSize: 7000,
   outDir: "./public",
@@ -17,6 +16,7 @@ const config = {
     "/search*",
     "/vng*",
     "/api*",
+    "/blogs/*",
   ],
 
   additionalPaths: async () => {
@@ -25,40 +25,55 @@ const config = {
       process.cwd(),
       "public/categories.json"
     );
+    const blogsPath = path.resolve(process.cwd(), "public/blogs.json");
 
-    const products = JSON.parse(fs.readFileSync(productsPath, "utf-8"));
-    const categoriesData = JSON.parse(fs.readFileSync(categoriesPath, "utf-8"));
+    // Проверяем существование файлов
+    const products = fs.existsSync(productsPath)
+      ? JSON.parse(fs.readFileSync(productsPath, "utf-8"))
+      : [];
 
-    // Обрабатываем продукты
+    const categoriesData = fs.existsSync(categoriesPath)
+      ? JSON.parse(fs.readFileSync(categoriesPath, "utf-8"))
+      : [];
+
+    const blogsData = fs.existsSync(blogsPath)
+      ? JSON.parse(fs.readFileSync(blogsPath, "utf-8"))
+      : { sitemapPaths: [] };
+
+    // -------------------------
+    // Продукты
+    // -------------------------
     const productPaths = products.map((product) => ({
       loc: `${siteUrl}/product/${product.slug}`,
-      lastmod: product.updatedAt,
+      lastmod: product.updatedAt || new Date().toISOString(),
       priority: 0.7,
       changefreq: "weekly",
     }));
 
-    // Обрабатываем плоскую структуру категорий и фильтров
-    let sitemapPaths = [];
+    // -------------------------
+    // Категории
+    // -------------------------
+    const categoryPaths = categoriesData.map((cat) => ({
+      loc: `${siteUrl}/catalog/${cat.slug}`,
+      lastmod: cat.updatedAt || new Date().toISOString(),
+      priority: 0.8,
+      changefreq: "weekly",
+    }));
 
-    if (
-      categoriesData.sitemapPaths &&
-      Array.isArray(categoriesData.sitemapPaths)
-    ) {
-      sitemapPaths = categoriesData.sitemapPaths.map((path) => {
-        const isCategory = categoriesData.categories.some(
-          (cat) => path === `/catalog/${cat.slug}`
-        );
+    // -------------------------
+    // Блог
+    // -------------------------
+    const blogPaths = (blogsData.sitemapPaths || []).map((pathUrl) => ({
+      loc: `${siteUrl}${pathUrl}`,
+      lastmod: new Date().toISOString(),
+      priority: 0.5,
+      changefreq: "monthly",
+    }));
 
-        return {
-          loc: `${siteUrl}${path}`,
-          lastmod: new Date().toISOString(),
-          priority: isCategory ? 0.8 : 0.6, // Категории выше приоритетом
-          changefreq: "weekly",
-        };
-      });
-    }
-
-    return [...productPaths, ...sitemapPaths];
+    // -------------------------
+    // Итог
+    // -------------------------
+    return [...productPaths, ...categoryPaths, ...blogPaths];
   },
 
   robotsTxtOptions: {
@@ -78,14 +93,12 @@ const config = {
     ],
   },
 
-  transform: async (cfg, path) => {
-    return {
-      loc: path,
-      changefreq: "daily",
-      priority: 0.7,
-      lastmod: cfg.autoLastmod ? new Date().toISOString() : undefined,
-    };
-  },
+  transform: async (cfg, path) => ({
+    loc: path,
+    changefreq: "daily",
+    priority: 0.7,
+    lastmod: cfg.autoLastmod ? new Date().toISOString() : undefined,
+  }),
 };
 
 export default config;

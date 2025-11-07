@@ -4,16 +4,16 @@ import { useConsentStore } from "@/lib/store/useConsentStore";
 import { useState, useEffect } from "react";
 
 export default function MetricsInitializer() {
-  const { isAccepted } = useConsentStore();
-  const [isMounted, setIsMounted] = useState(false);
+  // const { isAccepted } = useConsentStore();
+  // const [isMounted, setIsMounted] = useState(false);
 
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
+  // useEffect(() => {
+  //   setIsMounted(true);
+  // }, []);
 
-  if (!isMounted || !isAccepted) {
-    return null;
-  }
+  // if (!isMounted || !isAccepted) {
+  //   return null;
+  // }
 
   return (
     <>
