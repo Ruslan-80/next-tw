@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import Knopka from "../knopka";
+import JsonLd from "@/components/JsonLdComponent";
 
 export const metadata = {
   title: "Схема подключения этажного щита ЩЭ 2025",
@@ -8,6 +9,8 @@ export const metadata = {
   description:
     "Расключение этажного щита серии ЩЭ. Руководство с пошаговой инструкцией, основные этапы монтажа, схема подключения и типичные ошибки при монтаже...",
   image: "/images/categories/SE24L.png",
+  images: ["/images/categories/SE24L.png"],
+  slug: "shit-etazhnyi-she",
   robots: {
     index: true,
     follow: true,
@@ -15,8 +18,126 @@ export const metadata = {
 };
 
 export default function Blog() {
+  const blogJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": "https://electroshit-pro.ru/blogs/shit-etazhnyi-she",
+    },
+    headline:
+      "Щит этажный ЩЭ: расключение, монтаж и выбор — полное руководство 2025",
+    description:
+      "Щит этажный (ЩЭ) является критически важным элементом электроснабжения многоквартирных домов...",
+    image: ["https://electroshit-pro.ru/images/categories/SE24L.png"],
+    datePublished: "2025-11-07",
+    dateModified: "2025-11-07",
+    author: {
+      "@type": "Person",
+      name: "Алексей Шитов",
+      url: "https://electroshit-pro.ru",
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "ElectroShit Pro",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://electroshit-pro.ru/mainLogo.svg",
+      },
+    },
+    articleSection: [
+      "Что такое щит этажный ЩЭ",
+      "Конструкция и устройство ЩЭ",
+      "Виды этажных щитов по способу установки",
+      "Технические характеристики ЩЭ",
+      "Расключение этажного щита: пошаговая инструкция",
+      "Схемы подключения этажных щитов",
+      "Типичные ошибки при монтаже ЩЭ",
+      "Техническое обслуживание и эксплуатация",
+    ],
+    wordCount: 1133,
+  };
+
+  const HowTo = {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    name: "Расключение этажного щита (ЩЭ) пошаговая инструкция",
+    step: [
+      {
+        "@type": "HowToStep",
+        name: "Этап 1: Разделение PEN проводника",
+        text: "Критически важный этап — правильное разделение совмещенного PEN проводника на рабочий нуль N и защитное заземление PE. Главная заземляющая шина PE подключается к корпусу щита.",
+      },
+      {
+        "@type": "HowToStep",
+        name: "Этап 2: Установка модульного оборудования",
+        text: "На DIN-рейки устанавливаются вводные автоматические выключатели, групповые автоматы и УЗО. Монтируются нулевые шины N (синяя) и защитные шины PE (желто-зеленая).",
+      },
+      {
+        "@type": "HowToStep",
+        name: "Этап 3: Выполнение внутренних соединений",
+        text: "Фазные соединения между автоматами выполняются с помощью гребенок. Все PE проводники подключаются к шине заземления. Между УЗО и автоматами устанавливаются перемычки.",
+      },
+      {
+        "@type": "HowToStep",
+        name: "Этап 4: Подключение отходящих линий",
+        text: "Кабели от каждой квартиры подключаются к соответствующим автоматам с обязательной маркировкой всех проводников. Многожильные провода обязательно опрессовываются наконечниками НШВИ для надежного контакта.",
+      },
+    ],
+    supply: [
+      {
+        "@type": "HowToSupply",
+        name: "Автоматические выключатели соответствующих номиналов",
+      },
+      {
+        "@type": "HowToSupply",
+        name: "УЗО и дифференциальные автоматы для защиты от утечек",
+      },
+      {
+        "@type": "HowToSupply",
+        name: "Соединительные гребенки (шинопроводы) для фазных соединений",
+      },
+      {
+        "@type": "HowToSupply",
+        name: "Провода ПуГВ для внутренних соединений сечением 6 мм²",
+      },
+      {
+        "@type": "HowToSupply",
+        name: "Наконечники НШВИ для опрессовки многожильных проводов",
+      },
+      {
+        "@type": "HowToSupply",
+        name: "Провода ПуГВ для внутренних соединений сечением 6 мм²",
+      },
+      {
+        "@type": "HowToSupply",
+        name: "Кабельные стяжки и маркировочные элементы",
+      },
+    ],
+    tool: [
+      { "@type": "HowToTool", name: "Крестовые и шлицевые отвертки" },
+      {
+        "@type": "HowToTool",
+        name: "Кусачки, стрипперы для зачистки проводов",
+      },
+      {
+        "@type": "HowToTool",
+        name: "Пресс-клещи для опрессовки наконечников НШВИ",
+      },
+      {
+        "@type": "HowToTool",
+        name: "Мультиметр, указатель напряжения для проверок",
+      },
+      {
+        "@type": "HowToTool",
+        name: "Маркер для маркировки проводов и групп",
+      },
+    ],
+  };
   return (
     <>
+      <JsonLd data={blogJsonLd} script_name="blog-jsonld" />
+      <JsonLd data={HowTo} script_name="howto-jsonld" />
       <div className="min-h-screen bg-white text-gray-900">
         {/* Header/Navigation */}
         <header className="sticky top-0 z-50 border-b border-gray-200 bg-gray-100/95 backdrop-blur supports-[backdrop-filter]:bg-gray-100/60">
@@ -395,7 +516,7 @@ export default function Blog() {
                     <ul className="text-2xl list-disc list-inside space-y-1 pl-4 text-gray-700 dark:text-gray-300 mb-8">
                       <li>Крестовые и шлицевые отвертки различных размеров</li>
                       <li>Кусачки, стрипперы для зачистки проводов</li>
-                      <li>Пресс-клещи для опрессовки наконечников НШVI</li>
+                      <li>Пресс-клещи для опрессовки наконечников НШВИ</li>
                       <li>Мультиметр, указатель напряжения для проверок</li>
                       <li>Маркер для маркировки проводов и групп </li>
                     </ul>
@@ -420,7 +541,7 @@ export default function Blog() {
                         Провода ПуГВ для внутренних соединений сечением 6 мм²{" "}
                       </li>
                       <li>
-                        Наконечники НШVI для опрессовки многожильных проводов{" "}
+                        Наконечники НШВИ для опрессовки многожильных проводов{" "}
                       </li>
                       <li>Кабельные стяжки и маркировочные элементы </li>
                     </ul>
@@ -487,7 +608,7 @@ export default function Blog() {
                         <li>Защитный: PE (желто-зеленый)</li>
                       </ul>
                       Многожильные провода обязательно опрессовываются
-                      наконечниками НШVI. Это предотвращает распушивание жил и
+                      наконечниками НШВИ. Это предотвращает распушивание жил и
                       обеспечивает надежный контакт.
                     </div>
                   </li>
