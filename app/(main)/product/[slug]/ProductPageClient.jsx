@@ -166,13 +166,13 @@ export default function ProductPageClient({ product }) {
                 <div className="relative flex-1 aspect-square  rounded-xl overflow-hidden">
                   {images[selectedImageIndex] ? (
                     <Image
+                      itemProp="image"
                       src={images[selectedImageIndex] || mainImage}
                       alt={product.name || "Продукт"}
                       height={700}
                       width={700}
                       className="object-contain w-full h-full p-4 transition-all duration-500 hover:scale-105 cursor-zoom-in"
                       onClick={() => handleImageZoom(selectedImageIndex)}
-                      itemProp="image"
                     />
                   ) : (
                     <Skeleton className="w-full h-full rounded-lg" />
