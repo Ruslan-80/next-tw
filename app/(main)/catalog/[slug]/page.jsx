@@ -195,7 +195,7 @@ export default async function CategoryPage({ params, searchParams }) {
       : selectedValue
       ? ` (${selectedValue})`
       : "";
-  const finalH1 = h1Text || `${category.name}${displaySuffix}`;
+  const finalH1 = h1Text || `${category.fullName}${displaySuffix}`;
 
   const breadcrumbs = [];
   let currentCategory = category;

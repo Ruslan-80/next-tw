@@ -45,6 +45,9 @@ export default function ProductPageClient({ product }) {
     return <div className="container mx-auto py-8 px-4">Загрузка...</div>;
   }
 
+  const averageRating = product.yandexRating || 4.5;
+  const totalReviews = product.yandexReviewCount || 15;
+
   const images =
     product.mediaFiles && Array.isArray(product.mediaFiles)
       ? product.mediaFiles.map((file) => file.url)
@@ -202,6 +205,9 @@ export default function ProductPageClient({ product }) {
             <div className="lg:w-1/2 p-6 bg-gray-50 dark:bg-gray-900 dark:text-white">
               <meta itemProp="sku" content={product.article || "N/A"} />
               <meta itemProp="brand" content="Электрощит PRO" />
+              <div className="hidden" itemProp="description">
+                {product.description}
+              </div>
               <div className="mb-8">
                 {/* <h1 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-4">
                   {product.name}
@@ -570,85 +576,19 @@ export default function ProductPageClient({ product }) {
             </div>
           </div>
         </div>
-
-        {/* Advantages Section */}
-        {/* <div className="p-6 mt-8 mb-15 bg-gray-50 border-t border-gray-200">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="flex flex-col items-center text-center p-4">
-              <div className="bg-blue-100 p-3 rounded-full mb-3">
-                <svg
-                  className="w-8 h-8 text-blue-600"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
-                  />
-                </svg>
-              </div>
-              <h3 className="text-lg font-bold mb-2">Гарантия качества</h3>
-              <p className="text-gray-600">
-                Все товары проходят многоступенчатый контроль качества
-              </p>
-            </div>
-
-            <div className="flex flex-col items-center text-center p-4">
-              <div className="bg-green-100 p-3 rounded-full mb-3">
-                <svg
-                  className="w-8 h-8 text-green-600"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                  />
-                </svg>
-              </div>
-              <h3 className="text-lg font-bold mb-2">Доставка по РФ</h3>
-              <p className="text-gray-600">
-                Быстрая доставка в любой регион России от 2 дней
-              </p>
-            </div>
-
-            <div className="flex flex-col items-center text-center p-4">
-              <div className="bg-purple-100 p-3 rounded-full mb-3">
-                <svg
-                  className="w-8 h-8 text-purple-600"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
-                  />
-                </svg>
-              </div>
-              <h3 className="text-lg font-bold mb-2">Безопасная оплата</h3>
-              <p className="text-gray-600">
-                Оплата после получения товара или предоплата
-              </p>
-            </div>
-          </div>
-        </div> */}
       </div>
 
-      {/* Новый блок - Детализация услуги (процесс) */}
-      {/* <ProcessPage /> */}
-      {/* Новый блок - Преимущества компании (инфографика) */}
-      {/* <AdvantageCompany /> */}
       {/* Tabs */}
-      <div className="mt-8">
+      <div className="mt-8" itemScope itemType="https://schema.org/Product">
+        <div
+          itemProp="aggregateRating"
+          itemScope
+          itemType="https://schema.org/AggregateRating"
+          style={{ display: "none" }} // Скрываем, так как виден виджет Яндекса
+        >
+          <span itemProp="ratingValue">{averageRating}</span>
+          <span itemProp="reviewCount">{totalReviews}</span>
+        </div>
         <div className="flex flex-wrap gap-5 mb-3 text-xs lg:text-2xl md:flex-nowrap">
           <button
             className={`w-full py-3 px-6 font-medium bg-gray-300 border rounded-2xl transition-all duration-300 ${
@@ -692,18 +632,42 @@ export default function ProductPageClient({ product }) {
           </button>
         </div>
         <div>
-          {activeTab === "characteristics" && (
+          {/* Характеристики (используем класс hidden для скрытия) */}
+          <div
+            className={`tab-content ${
+              activeTab !== "characteristics" ? "seo-hidden" : ""
+            }`}
+          >
             <CharacteristicsTab attributes={product.attributes || []} />
-          )}
-          {activeTab === "description" && (
+          </div>
+
+          {/* Описание */}
+          <div
+            className={`tab-content ${
+              activeTab !== "description" ? "seo-hidden" : ""
+            }`}
+            itemProp="description"
+          >
             <DescriptionsTab description={product.description || []} />
-          )}
-          {activeTab === "documentation" && (
+          </div>
+
+          {/* Документация */}
+          <div
+            className={`tab-content ${
+              activeTab !== "documentation" ? "seo-hidden" : ""
+            }`}
+          >
             <DocumentationTab files={product.documentationFiles || []} />
-          )}
-          {activeTab === "reviews" && (
+          </div>
+
+          {/* Отзывы */}
+          <div
+            className={`tab-content ${
+              activeTab !== "reviews" ? "seo-hidden" : ""
+            }`}
+          >
             <ReviewsTab reviews={product.reviews || []} />
-          )}
+          </div>
         </div>
       </div>
       {/* Feedback Modal */}
@@ -714,45 +678,6 @@ export default function ProductPageClient({ product }) {
         onSubmit={handleFormSubmit}
         submitError={error}
       />
-      {/* {isModalOpen && (
-        <div className="fixed inset-0 bg-black/40 backdrop-blur-md flex items-center justify-center z-50 transition-opacity duration-500 ease-in-out ">
-          <div className="bg-white p-8 rounded-2xl max-w-md w-full shadow-2xl transform transition-all duration-500 ease-in-out scale-100 hover:scale-105">
-            <h2 className="text-2xl font-bold mb-4 text-gray-800">
-              Заказать бесплатный расчет
-            </h2>
-            <p className="mb-6 text-gray-600">
-              Укажите ваш телефон или email, и мы свяжемся с вами!
-            </p>
-            <form onSubmit={handleFeedbackSubmit}>
-              <input
-                type="text"
-                value={formData.contact}
-                onChange={(e) => setFormData({ contact: e.target.value })}
-                placeholder="Телефон или email"
-                className="w-full p-3 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300"
-              />
-              {formError && (
-                <p className="text-red-500 mb-4 text-sm">{formError}</p>
-              )}
-              <div className="flex justify-end gap-4">
-                <button
-                  type="button"
-                  onClick={() => setIsModalOpen(false)}
-                  className="px-6 py-2 bg-gray-200 rounded-lg text-gray-700 hover:bg-gray-300 transition-all duration-300"
-                >
-                  Отмена
-                </button>
-                <button
-                  type="submit"
-                  className="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-all duration-300"
-                >
-                  Отправить
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      )} */}
 
       {/* Zoomed Image Modal */}
       {isImageZoomed && (

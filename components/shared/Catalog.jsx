@@ -8,7 +8,9 @@ export default function Catalog() {
   return (
     <section className="new__catalog bg-white">
       <div className="container_my">
-        <h2 className="text-3xl font-bold text-gray-900 mb-10">Каталог</h2>
+        <h2 className="hidden text-3xl font-bold text-gray-900 mb-10">
+          Каталог
+        </h2>
         <div className="catalog__inner">
           {categories &&
             categories.map((category, index) => (
@@ -18,7 +20,7 @@ export default function Catalog() {
                 key={category.id}
               >
                 <div className="catalog__item">
-                  <h3>{category.name}</h3>
+                  <h3>{category.fullName}</h3>
                   <Image
                     src={category.image_url}
                     width={215}

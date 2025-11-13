@@ -1,7 +1,15 @@
 import Link from "next/link";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Image from "next/image";
-import { Cable, Server, Shield, Home, Zap } from "lucide-react";
+import {
+  Cable,
+  Server,
+  Shield,
+  Home,
+  Zap,
+  ArrowRight,
+  CheckCircle,
+} from "lucide-react";
 import ComparisonTable from "@/app/(main)/landing/ustroystva-etazhnye/table";
 
 export function UstroystvaEtazhnyeTop() {
@@ -82,124 +90,203 @@ export function UstroystvaEtazhnyeBottom() {
   return (
     <>
       <div className="container mx-auto p-6 space-y-10 text-2xl mt-12">
-        <section className="mb-8">
-          <h2 className="text-2xl font-semibold mb-4 text-gray-700 flex items-center">
-            <Shield className="mr-2" /> Конструкция
-          </h2>
-          <p className="text-gray-600">
-            Металлические корпуса (цельносварные/сборные) с полиэфирным
-            покрытием (RAL 9003/7035, шагрень). Модульная/блочная компоновка с
-            отсеками для силовых и слаботочных линий.
-          </p>
-        </section>
+        {/* Construction Section */}
+        <section className="py-4 bg-secondary/30">
+          <div className="container mx-auto px-6">
+            <div className="max-w-8xl mx-auto">
+              <div className="flex items-center gap-3 mb-8">
+                <Shield className="h-8 w-8 text-accent" />
+                <h2 className="text-3xl lg:text-4xl font-bold">Конструкция</h2>
+              </div>
 
-        <section className="mb-8">
-          <h2 className="text-2xl font-semibold mb-4 text-gray-700 flex items-center">
-            <Home className="mr-2" /> Типы устройств
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <Link
-              href="/catalog/uerv"
-              className="p-4 bg-white rounded-lg shadow-md"
-            >
-              <h3 className="text-xl font-semibold text-gray-800">УЭРВ</h3>
-              <p className="text-gray-600">
-                Встроенное, в нишу, открыто кроме фасада, ГВЛ-отделка.
-              </p>
-            </Link>
-            <Link
-              href="/catalog/uerb"
-              className="p-4 bg-white rounded-lg shadow-md"
-            >
-              <h3 className="text-xl font-semibold text-gray-800">УЭРБ</h3>
-              <p className="text-gray-600">
-                Блочное, навесное/встроенное, выламываемые отверстия.
-              </p>
-            </Link>
-            <Link
-              href="/catalog/uern"
-              className="p-4 bg-white rounded-lg shadow-md"
-            >
-              <h3 className="text-xl font-semibold text-gray-800">УЭРН</h3>
-              <p className="text-gray-600">
-                Навесное, полная оболочка, до 12 квартир.
-              </p>
-            </Link>
-            <Link
-              href="/catalog/uerk"
-              className="p-4 bg-white rounded-lg shadow-md"
-            >
-              <h3 className="text-xl font-semibold text-gray-800">УЭРК</h3>
-              <p className="text-gray-600">
-                Навесное с кабельным отсеком, компенсатор высоты.
-              </p>
-            </Link>
-            <Link
-              href="/catalog/uerm"
-              className="p-4 bg-white rounded-lg shadow-md"
-            >
-              <h3 className="text-xl font-semibold text-gray-800">УЭРМ</h3>
-              <p className="text-gray-600">
-                Модульное, сборное, для домов без ниш.
-              </p>
-            </Link>
+              <Card>
+                <CardContent className="p-8">
+                  <p className="text-justify text-2xl leading-relaxed text-muted-foreground indent-20">
+                    Металлические корпуса (цельносварные/сборные) с полиэфирным
+                    покрытием (RAL 9003/7035, шагрень). Модульная/блочная
+                    компоновка с отсеками для силовых и слаботочных линий.
+                  </p>
+                </CardContent>
+              </Card>
+            </div>
           </div>
         </section>
 
-        <section className="mb-8">
-          <h2 className="text-2xl font-semibold mb-4 text-gray-700 flex items-center">
-            <Cable className="mr-2" /> Отсеки/блоки
-          </h2>
-          <ul className="list-disc pl-6 text-gray-600">
-            <li>
-              <strong>Слаботочный (КСС):</strong> Телефон, интернет,
-              сигнализация, АСКУЭ.
-            </li>
-            <li>
-              <strong>Вводно-учетный (ЯУР):</strong> Счетчики, выключатели,
-              ревизионное окно.
-            </li>
-            <li>
-              <strong>Распределительный:</strong> Автоматы, АВДТ, УЗО, УЗИП
-              (12–24 модуля).
-            </li>
-            <li>
-              <strong>Силовых магистралей (КЭТ):</strong> Стояки, шины N/PE,
-              зажимы.
-            </li>
-          </ul>
+        {/* Related Products */}
+        <section className="py-16 lg:py-24 bg-secondary/30">
+          <div className="container mx-auto px-6">
+            <div className="flex items-center gap-3 mb-12">
+              <Home className="h-8 w-8 text-accent" />
+              <h2 className="text-3xl lg:text-4xl font-bold">Типы устройств</h2>
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-4">
+              {[
+                {
+                  href: "/catalog/uerv",
+                  title: "УЭРВ",
+                  description:
+                    "Встроенное, в нишу, открыто кроме фасада, ГВЛ-отделка.",
+                },
+                {
+                  href: "/catalog/uerb",
+                  title: "УЭРБ",
+                  description:
+                    "Блочное, навесное/встроенное, выламываемые отверстия.",
+                },
+                {
+                  href: "/catalog/uerk",
+                  title: "УЭРК",
+                  description:
+                    "Навесное с кабельным отсеком, компенсатор высоты.",
+                },
+                {
+                  href: "/catalog/uern",
+                  title: "УЭРН",
+                  description: "Навесное, полная оболочка, до 12 квартир.",
+                },
+                {
+                  href: "/catalog/uerm",
+                  title: "УЭРМ",
+                  description: "Модульное, сборное, для домов без ниш.",
+                },
+              ].map((product, index) => (
+                <Link key={index} href={product.href}>
+                  <Card className="h-full hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+                    <CardHeader>
+                      <CardTitle className="text-3xl text-accent">
+                        {product.title}
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <p className="text-xl text-muted-foreground leading-relaxed">
+                        {product.description}
+                      </p>
+                    </CardContent>
+                  </Card>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+        {/* Modules Section */}
+        <section className="py-4">
+          <div className="container mx-auto px-6">
+            <div className="flex items-center gap-3 mb-12">
+              <Home className="h-8 w-8 text-accent" />
+              <h2 className="text-3xl lg:text-4xl font-bold">Отсеки/блоки</h2>
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-6">
+              {[
+                {
+                  title: "Слаботочный отсек",
+                  description: "Телефон, интернет, сигнализация, АСКУЭ.",
+                },
+                {
+                  title: "Вводно-учетный (ЯУР) отсек",
+                  description: "Счетчики, выключатели, ревизионное окно.",
+                },
+                {
+                  title: "Распределительный отсек",
+                  description: "Автоматы, АВДТ, УЗО, УЗИП (12–24 модуля).",
+                },
+                {
+                  title: "Силовых магистралей (КЭТ)",
+                  description: "Стояки, шины N/PE, зажимы.",
+                },
+              ].map((module, index) => (
+                <Card
+                  key={index}
+                  className="hover:shadow-lg transition-shadow duration-300"
+                >
+                  <CardHeader>
+                    <CardTitle className="text-2xl text-accent">
+                      {module.title}
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-muted-foreground text-xl leading-relaxed">
+                      {module.description}
+                    </p>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+        {/* Technical Specs & Advantages */}
+        <section className="py-4 bg-secondary/30">
+          <div className="container mx-auto px-6">
+            <div className="grid  gap-12">
+              {/* Technical Specifications */}
+              <div>
+                <div className="flex items-center gap-3 mb-8">
+                  <Zap className="h-8 w-8 text-accent" />
+                  <h2 className="text-3xl font-bold">
+                    Технические характеристики
+                  </h2>
+                </div>
+
+                <Card>
+                  <CardContent className="p-6">
+                    <div className="space-y-4">
+                      {[
+                        "Номинальное напряжение: 230/400 В (AC), 50 Гц.",
+                        "Системы заземления: TN-S, TN-C, TN-C-S.",
+                        "Номинальные токи выключателей: 25, 32, 40, 50, 63, 100, 125 А.",
+                        "Дифференциальные токи АВДТ/УЗО: 10, 30, 100, 300 мА.",
+                        "Отключающая способность: ≥ 4,5 кА.",
+                        "Максимальное сечение проводников: 95 мм².",
+                        "Степень защиты: IP31 (фасад), IP00 (несмонтированное).",
+                        "Климатическое исполнение: УХЛ3/УХЛ4 (температура от -25°C до +40°C, влажность до 60% при +20°C).",
+                        "Материал корпуса: Листовой металл с полиэфирным порошковым покрытием (RAL 7035, шагрень).",
+                        "Срок службы: До 25 лет, гарантия 3 года.",
+                      ].map((spec, index) => (
+                        <div key={index} className="flex items-start gap-3">
+                          <CheckCircle className="h-7 w-7 text-green-600 mt-1 flex-shrink-0" />
+                          <span className="text-2xl text-muted-foreground leading-relaxed">
+                            {spec}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+
+              {/* Advantages */}
+              <div>
+                <div className="flex items-center gap-3 mb-8">
+                  <Server className="h-8 w-8 text-accent" />
+                  <h2 className="text-3xl font-bold">Преимущества</h2>
+                </div>
+
+                <Card>
+                  <CardContent className="p-6">
+                    <div className="space-y-4">
+                      {[
+                        "Современная альтернатива устаревшим щитам.",
+                        "Универсальность для одно- и трехфазных сетей.",
+                        "Экологичные материалы, прочное покрытие.",
+                        "Гибкая компоновка отсеков.",
+                        "Безопасность: защита от перегрузок, КЗ, утечек.",
+                      ].map((advantage, index) => (
+                        <div key={index} className="flex items-start gap-3">
+                          <CheckCircle className="h-7 w-7 text-green-600 mt-1 flex-shrink-0" />
+                          <span className="text-2xl text-muted-foreground leading-relaxed">
+                            {advantage}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
+          </div>
         </section>
 
-        <section className="mb-8">
-          <h2 className="text-2xl font-semibold mb-4 text-gray-700 flex items-center">
-            <Zap className="mr-2" /> Технические характеристики
-          </h2>
-          <ul className="list-disc pl-6 text-gray-600">
-            <li>Напряжение: 230/400 В, 50 Гц.</li>
-            <li>Заземление: TN-S, TN-C, TN-C-S.</li>
-            <li>Токи выключателей: 25–125 А.</li>
-            <li>Диф. токи: 10–300 мА.</li>
-            <li>Отключающая способность: ≥4,5 кА.</li>
-            <li>Сечение проводников: до 95 мм².</li>
-            <li>Степень защиты: IP31 (фасад), IP00 (несмонтированное).</li>
-            <li>Климат: УХЛ3/УХЛ4, -25°C до +40°C, влажность до 60%.</li>
-            <li>Материал: Листовой металл, порошковое покрытие.</li>
-            <li>Срок службы: 25 лет, гарантия 3 года.</li>
-          </ul>
-        </section>
-
-        <section className="mb-8">
-          <h2 className="text-2xl font-semibold mb-4 text-gray-700 flex items-center">
-            <Server className="mr-2" /> Преимущества
-          </h2>
-          <ul className="list-disc pl-6 text-gray-600">
-            <li>Современная альтернатива устаревшим щитам.</li>
-            <li>Универсальность для одно- и трехфазных сетей.</li>
-            <li>Экологичные материалы, прочное покрытие.</li>
-            <li>Гибкая компоновка отсеков.</li>
-            <li>Безопасность: защита от перегрузок, КЗ, утечек.</li>
-          </ul>
-        </section>
         <ComparisonTable />
       </div>
     </>

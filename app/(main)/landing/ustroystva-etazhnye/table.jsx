@@ -1,5 +1,8 @@
 "use client";
 import { useState } from "react";
+import Link from "next/link";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+
 import {
   Table,
   TableBody,
@@ -8,12 +11,34 @@ import {
   TableHeader,
   TableRow,
 } from "../../../../components/ui/table";
-import { ChevronDown, ChevronUp } from "lucide-react";
+import {
+  ChevronDown,
+  ChevronUp,
+  Cable,
+  Server,
+  Shield,
+  Home,
+  Zap,
+  ArrowRight,
+  CheckCircle,
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
+
+import Modal from "@/components/ui/modal";
+import useFormSubmit from "hooks/useFormSubmit";
 
 const ComparisonTable = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalContent, setModalContent] = useState("");
+  const { handleFormSubmit, error } = useFormSubmit();
+
   const [sortColumn, setSortColumn] = useState(null);
   const [sortDirection, setSortDirection] = useState("asc");
 
+  const handleButtonClick = (content) => {
+    setModalContent(content);
+    setIsModalOpen(true);
+  };
   const tableData = [
     {
       parameter: "Тип устройства",
@@ -281,48 +306,134 @@ const ComparisonTable = () => {
           </TableBody>
         </Table>
       </div>
-      <div className="mt-6">
-        <h2 className="text-2xl font-semibold mb-4">Примечания</h2>
-        <ul className="list-disc pl-6 space-y-2">
-          <li>
-            <strong>УЭРВ</strong>: Оптимально для ниш в панельных/монолитных
-            домах, эстетичная ГВЛ-отделка.
-          </li>
-          <li>
-            <strong>УЭРБ</strong>: Гибкость компоновки благодаря выламываемым
-            отверстиям, эстетичное закрытие стены.
-          </li>
-          <li>
-            <strong>УЭРН</strong>: Простота монтажа без ниши, полная оболочка,
-            вместимость до 12 квартир.
-          </li>
-          <li>
-            <strong>УЭРК</strong>: Быстрая установка, отдельный кабельный отсек,
-            компенсатор высоты.
-          </li>
-          <li>
-            <strong>УЭРМ</strong>: Модульная сборка, универсальность для домов
-            без ниш, поддержка АСКУЭ.
-          </li>
-        </ul>
-      </div>
-      <div className="mt-6">
-        <h2 className="text-2xl font-semibold mb-4">Заказ и покупка</h2>
-        <p className="text-gray-700">
-          Предлагаем купить этажные распределительные устройства УЭРВ, УЭРБ,
-          УЭРН, УЭРК, УЭРМ по выгодной цене в интернет-магазине нашей компании.
-          Продукция доступна оптом и в розницу с быстрой доставкой по Москве, MO
-          и всей России. Изготовление по индивидуальным проектам заказчика.
-          Свяжитесь по телефону +7 (499) 390-14-67 или через сайт{" "}
-          <a
-            href="https://electroshit-pro.ru"
-            className="text-blue-600 hover:underline"
-          >
-            electroshit-pro.ru
-          </a>
-          . Каталог, фото, схемы и отзывы доступны онлайн.
-        </p>
-      </div>
+      <section className="py-16 lg:py-24 bg-secondary/30">
+        <div className="container mx-auto px-6">
+          <div className="flex items-center gap-3 mb-12">
+            <Home className="h-8 w-8 text-accent" />
+            <h2 className="text-3xl lg:text-4xl font-bold">Примечания</h2>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[
+              {
+                href: "/catalog/uerv",
+                title: "УЭРВ",
+                description:
+                  "Оптимально для ниш в панельных/монолитных домах, эстетичная ГВЛ-отделка.",
+              },
+              {
+                href: "/catalog/uerb",
+                title: "УЭРБ",
+                description:
+                  "Гибкость компоновки благодаря выламываемым отверстиям, эстетичное закрытие стены.",
+              },
+              {
+                href: "/catalog/uerk",
+                title: "УЭРК",
+                description:
+                  "Быстрая установка, отдельный кабельный отсек, компенсатор высоты.",
+              },
+              {
+                href: "/catalog/uern",
+                title: "УЭРН",
+                description:
+                  "Простота монтажа без ниши, полная оболочка, вместимость до 12 квартир.",
+              },
+              {
+                href: "/catalog/uerm",
+                title: "УЭРМ",
+                description:
+                  "Модульная сборка, универсальность для домов без ниш, поддержка АСКУЭ.",
+              },
+            ].map((product, index) => (
+              <Link key={index} href={product.href}>
+                <Card className="h-full hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+                  <CardHeader>
+                    <CardTitle className="text-3xl text-accent">
+                      {product.title}
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-xl text-muted-foreground leading-relaxed">
+                      {product.description}
+                    </p>
+                  </CardContent>
+                </Card>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+      <section className="py-4">
+        <div className="container mx-auto px-6">
+          <div className="max-w-8xl  ">
+            <h2 className="text-3xl text-center lg:text-4xl font-bold mb-4 text-balance">
+              Заказ и покупка
+            </h2>
+            <p className="text-2xl justify-center text-muted-foreground mb-8  leading-relaxed">
+              Предлагаем купить этажные распределительные устройства УЭРВ, УЭРБ,
+              УЭРН, УЭРК, УЭРМ по выгодной цене в интернет-магазине нашей
+              компании. Продукция доступна оптом и в розницу с быстрой доставкой
+              по Москве, MO и всей России. Изготовление по индивидуальным
+              проектам заказчика. Свяжитесь по телефону +7 (499) 390-14-67 или
+              через сайт{" "}
+              <a
+                href="https://electroshit-pro.ru"
+                className="text-blue-600 hover:underline"
+              >
+                electroshit-pro.ru
+              </a>
+              . Каталог, фото, схемы и отзывы доступны онлайн.
+            </p>
+            <p className="text-2xl text-left text-muted-foreground mb-8 text-balance leading-relaxed">
+              Для заказа укажите:
+            </p>
+
+            <ul className="list-disc text-left pl-6 text-muted-foreground leading-relaxed pb-4">
+              <li>Количество квартир (1–12).</li>
+              <li>
+                Тип счетчиков и аппаратуры (одно-/трехфазные, АСКУЭ, УЗИП).
+              </li>
+              <li>Габариты, компоновку отсеков, цвет (RAL 7035).</li>
+              <li>Дополнительные аксессуары (замки, кронштейны).</li>
+            </ul>
+
+            <div className="flex flex-wrap justify-center gap-4 my-4">
+              <Button
+                onClick={() =>
+                  handleButtonClick("Получить коммерческое предложение")
+                }
+                size="lg"
+                className="bg-accent hover:bg-accent/90 text-accent-foreground text-xl py-8"
+              >
+                Получить коммерческое предложение
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
+              <Button
+                onClick={() => handleButtonClick("Связаться с менеджером")}
+                variant="outline"
+                size="lg"
+                className="py-8 text-xl"
+              >
+                Связаться с менеджером
+              </Button>
+            </div>
+            <p className="text-left text-muted-foreground leading-relaxed">
+              Каталог, фото, схемы и отзывы доступны онлайн. Заказывайте
+              качественное электрощитовое оборудование от производителя с
+              доставкой!
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <Modal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        initialContent={modalContent}
+        onSubmit={handleFormSubmit}
+        submitError={error}
+      />
     </div>
   );
 };

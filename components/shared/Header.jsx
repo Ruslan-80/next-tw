@@ -132,7 +132,7 @@ export default function Header() {
 
           <div className="flex items-center space-x-4 text-sm">
             <Link
-              href="mailto:snab@kplstroy.ru"
+              href="mailto:info@electroschit-pro.ru"
               className="flex items-center gap-1 hover:text-red-300 transition-colors"
             >
               <Mail size={14} /> info@electroshit-pro.ru

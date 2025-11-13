@@ -69,7 +69,9 @@ const ContactsComponent = () => {
               <CardTitle className="text-2xl">Телефон</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-muted-foreground">+7 (499) 390-14-67</p>
+              <Link href="tel:+74993901467" className="text-muted-foreground">
+                +7 (499) 390-14-67
+              </Link>
             </CardContent>
           </Card>
           <Card>
@@ -78,7 +80,12 @@ const ContactsComponent = () => {
               <CardTitle className="text-2xl">Email</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-muted-foreground">info@electroschit-pro.ru</p>
+              <Link
+                href="mailto:info@electroschit-pro.ru"
+                className="text-muted-foreground"
+              >
+                info@electroschit-pro.ru
+              </Link>
             </CardContent>
           </Card>
           <Card>
@@ -88,7 +95,7 @@ const ContactsComponent = () => {
             </CardHeader>
             <CardContent>
               <p className="text-muted-foreground">
-                г. Москва, ул. Чермянская, д1с1
+                г. Москва, ул. Чермянская, дом 1с1
               </p>
             </CardContent>
           </Card>
@@ -102,13 +109,65 @@ const ContactsComponent = () => {
             <CardTitle className="text-3xl">Карта</CardTitle>
           </CardHeader>
           <CardContent>
-            <iframe
-              src="https://yandex.ru/map-widget/v1/?um=constructor%3Ayour_map_id&lang=ru_RU"
-              width="100%"
-              height="400"
-              frameBorder="0"
-              className="rounded-md"
-            />
+            <div
+              style={{
+                position: "relative",
+                overflow: "hidden",
+                width: "100%",
+                height: "600px",
+              }}
+            >
+              {/* Ссылки, наложенные поверх карты */}
+              <a
+                href="https://yandex.ru/maps/org/elektroshchit_pro/43074692917/?utm_medium=mapframe&utm_source=maps"
+                style={{
+                  color: "#eee",
+                  fontSize: "12px",
+                  position: "absolute",
+                  top: "0px",
+                }}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Электрощит Pro
+              </a>
+              <a
+                href="https://yandex.ru/maps/213/moscow/category/electrical_products/184107066/?utm_medium=mapframe&utm_source=maps"
+                style={{
+                  color: "#eee",
+                  fontSize: "12px", // font-size -> fontSize
+                  position: "absolute",
+                  top: "14px",
+                }}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Электротехническая продукция в Москве
+              </a>
+              <a
+                href="https://yandex.ru/maps/213/moscow/category/lamps/184108003/?utm_medium=mapframe&utm_source=maps"
+                style={{
+                  color: "#eee",
+                  fontSize: "12px",
+                  position: "absolute",
+                  top: "28px",
+                }}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Светильники в Москве
+              </a>
+
+              {/* Iframe карты */}
+              <iframe
+                src="https://yandex.ru/map-widget/v1/?ll=37.634865%2C55.884479&mode=search&oid=43074692917&ol=biz&sctx=ZAAAAAgBEAAaKAoSCZ5eKcsQz0JAEdOgaB7A4EtAEhIJs3xdhv%2B0%2FT8RJezbSUR45D8iBgABAgMEBSgKOABAAUgBagJydZ0BzczMPaABAKgBAL0BJs0cq8IBBrXOzrugAYICG9GN0LvQtdC60YLRgNC%2B0YnQuNGCINCf0YDQvooCAJICBTk4NTg4mgIMZGVza3RvcC1tYXBz&sll=37.634865%2C55.884479&sspn=0.010458%2C0.004615&text=%D1%8D%D0%BB%D0%B5%D0%BA%D1%82%D1%80%D0%BE%D1%89%D0%B8%D1%82%20%D0%9F%D1%80%D0%BE&z=17.11"
+                width="100%"
+                height="600"
+                allowFullScreen={true}
+                style={{ position: "relative" }}
+                title="Яндекс Карта с местоположением"
+              ></iframe>
+            </div>
           </CardContent>
         </Card>
       </section>
