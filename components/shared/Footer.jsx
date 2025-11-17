@@ -14,7 +14,18 @@ import {
 
 export default function Footer() {
   return (
-    <footer className="bg-gray-900 text-white pt-12 pb-6">
+    <footer
+      className="bg-gray-900 text-white pt-12 pb-6"
+      itemScope
+      itemType="http://schema.org/Store"
+    >
+      <meta itemProp="name" content="ElectroShit-PRO" />
+      <meta itemProp="priceRange" content="От 1000 до 50000 рублей" />
+
+      <meta
+        itemProp="image"
+        content="https://electroshit-pro.ru/mainLogo.svg"
+      />
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
           {/* Лого и контакты */}
@@ -37,6 +48,7 @@ export default function Footer() {
               <div className="flex items-center gap-2">
                 <Phone size={16} className="text-gray-400" />
                 <a
+                  itemProp="telephone"
                   href="tel:+74993901467"
                   className="hover:text-red-500 transition-colors"
                 >
@@ -46,6 +58,7 @@ export default function Footer() {
               <div className="flex items-center gap-2">
                 <Phone size={16} className="text-gray-400" />
                 <a
+                  itemProp="telephone"
                   href="tel:+79262762415"
                   className="hover:text-red-500 transition-colors"
                 >
@@ -55,6 +68,7 @@ export default function Footer() {
               <div className="flex items-center gap-2">
                 <Mail size={16} className="text-gray-400" />
                 <a
+                  itemProp="email"
                   href="mailto:snab@kplstroy.ru"
                   className="hover:text-red-500 transition-colors"
                 >
@@ -69,7 +83,7 @@ export default function Footer() {
               </div>
               <div className="flex items-start gap-2 mt-3">
                 <MapPin size={16} className="text-gray-400 mt-1" />
-                <span className="text-gray-400">
+                <span itemProp="address" className="text-gray-400">
                   г. Москва, улица Чермянская, дом 1, строение 1
                 </span>
               </div>

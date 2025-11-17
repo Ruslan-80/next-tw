@@ -22,6 +22,7 @@ import FaqNakladky from "../faqNakladky";
 import WorksGallery from "../imageDoPosle";
 import FAQPageNakladkyJSONLD from "@/lib/faqNakldkyJsonLd";
 import JsonLd from "@/components/JsonLdComponent";
+import VideoGallery from "../VideoGallery";
 
 export function NakladkyEtazhnyeTop() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -233,6 +234,8 @@ export function NakladkyEtazhnyeBottom() {
           </div>
         </div>
       </section>
+      {/* Video */}
+      <VideoGallery />
       {/* Technical Specs & Advantages */}
       <section className="py-4 bg-secondary/30">
         <div className="container mx-auto px-6">

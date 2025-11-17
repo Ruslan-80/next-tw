@@ -81,10 +81,10 @@ const ContactsComponent = () => {
             </CardHeader>
             <CardContent>
               <Link
-                href="mailto:info@electroschit-pro.ru"
+                href="mailto:info@electroshit-pro.ru"
                 className="text-muted-foreground"
               >
-                info@electroschit-pro.ru
+                info@electroshit-pro.ru
               </Link>
             </CardContent>
           </Card>

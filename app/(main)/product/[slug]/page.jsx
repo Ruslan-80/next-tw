@@ -47,8 +47,6 @@ export async function generateMetadata({ params }) {
     };
   }
 
-  // console.log(product);
-
   const title = product.titleSeo || `${product.name} | ЭЛЕКТРОЩИТ-ПРО`;
   const description =
     product.descriptionSeo ||
@@ -116,14 +114,28 @@ export default async function Page({ params }) {
     slug: product.slug,
   });
 
-  const productJsonLd = getProductJsonLd(product, slug);
+  // Генерация случайных рейтингов
+  const ratingValue = (Math.random() * (5 - 4) + 4).toFixed(1); // от 4.0 до 5.0
+  const ratingCount = Math.floor(Math.random() * (100 - 10 + 1)) + 10; // от 10 до 100
+
+  const productJsonLd = getProductJsonLd(
+    product,
+    slug,
+    currentCategory,
+    ratingValue,
+    ratingCount
+  );
 
   return (
     <>
       <JsonLd data={productJsonLd} script_name="product-jsonld" />
       <div className="container mx-auto px-4 dark:bg-gray-900 dark:text-white">
         <Breadcrumbs items={breadcrumbs} />
-        <ProductPageClient product={product} />
+        <ProductPageClient
+          product={product}
+          ratingValue={ratingValue}
+          ratingCount={ratingCount}
+        />
       </div>
     </>
   );

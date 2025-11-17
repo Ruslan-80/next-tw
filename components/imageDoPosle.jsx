@@ -61,6 +61,7 @@ export default function WorksGallery() {
     "/images/after/after-3.jpg",
     "/images/after/after-4.jpg",
     "/images/after/after-5.jpg",
+    "/images/after/after-6.jpg",
   ];
 
   return (

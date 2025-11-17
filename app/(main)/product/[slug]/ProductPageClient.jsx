@@ -1,10 +1,12 @@
 "use client";
 
 import Image from "next/image";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import CharacteristicsTab from "./CharacteristicsTab";
 import DocumentationTab from "../../../../components/DocumentationTab";
+import DostavkaTab from "../../../../components/DostavkaTab";
+
 import ReviewsTab from "../../../../components/ReviewsTab";
 import DescriptionsTab from "../../../../components/DescriptionsTab";
 import mainImage from "../../../../public/images/product/713680920.webp";
@@ -14,11 +16,18 @@ import { useCartStore } from "../../../../lib/store/testCartStore";
 import { ArrowRight } from "lucide-react";
 import Modal from "@/components/ui/modal";
 import useFormSubmit from "hooks/useFormSubmit";
+import RatingDisplay from "@/components/RatingDisplay";
+import WorksGallery from "@/components/imageDoPosle";
+import VideoGallery from "@/components/VideoGallery";
 
-export default function ProductPageClient({ product }) {
+export default function ProductPageClient({
+  product,
+  ratingValue,
+  ratingCount,
+}) {
   const [activeTab, setActiveTab] = useState("characteristics");
   const [adding, setAdding] = useState(false);
-
+  const [showAllAttrs, setShowAllAttrs] = useState(false);
   const [formData, setFormData] = useState({ contact: "" });
   const [formError, setFormError] = useState("");
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
@@ -29,6 +38,7 @@ export default function ProductPageClient({ product }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalContent, setModalContent] = useState("");
   const { handleFormSubmit, error } = useFormSubmit();
+  const characteristicsRef = useRef(null);
 
   const handleButtonClick = (content) => {
     setModalContent(content);
@@ -44,6 +54,15 @@ export default function ProductPageClient({ product }) {
   if (!product) {
     return <div className="container mx-auto py-8 px-4">Загрузка...</div>;
   }
+
+  const allowed = [
+    "количество дверей",
+    "количество квартир (счетчиков)",
+    "способ монтажа",
+    "толщина металла, мм",
+    "напряжение",
+    "ip",
+  ];
 
   const averageRating = product.yandexRating || 4.5;
   const totalReviews = product.yandexReviewCount || 15;
@@ -205,9 +224,9 @@ export default function ProductPageClient({ product }) {
             <div className="lg:w-1/2 p-6 bg-gray-50 dark:bg-gray-900 dark:text-white">
               <meta itemProp="sku" content={product.article || "N/A"} />
               <meta itemProp="brand" content="Электрощит PRO" />
-              <div className="hidden" itemProp="description">
+              {/* <div className="hidden" itemProp="description">
                 {product.description}
-              </div>
+              </div> */}
               <div className="mb-8">
                 {/* <h1 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-4">
                   {product.name}
@@ -259,23 +278,10 @@ export default function ProductPageClient({ product }) {
                 </div>
 
                 {/* Rating */}
-                <div className="flex items-center bg-yellow-50 p-4 rounded-xl mb-6 dark:bg-gray-900 dark:text-white">
-                  <div className="flex text-yellow-400 mr-3">
-                    {[...Array(5)].map((_, i) => (
-                      <svg
-                        key={i}
-                        className="w-5 h-5"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                      >
-                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                      </svg>
-                    ))}
-                  </div>
-                  <span className="text-gray-700 font-medium">
-                    4.8 (125 отзывов)
-                  </span>
-                </div>
+                <RatingDisplay
+                  ratingValue={parseFloat(ratingValue)}
+                  ratingCount={parseInt(ratingCount)}
+                />
 
                 {/* Info Cards */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8 ">
@@ -401,6 +407,84 @@ export default function ProductPageClient({ product }) {
                   </button>
                 </div>
               </div>
+              {/* Часть характеристик */}
+              {/* <div
+                className={
+                  "grid grid-cols-1 gap-2 text-xl text-gray-700 md:pr-4"
+                }
+              >
+                {product.attributes?.length > 0 && (
+                  <div className="relative space-y-1 mb-3">
+                    <div
+                      className={`space-y-1 overflow-hidden ${
+                        showAllAttrs ? "" : "max-h-[180px]"
+                      }`}
+                    >
+                      {product.attributes.map((attr) => (
+                        <div
+                          key={`${product.id}-${attr.attributeName}-${attr.attributeValueName}`}
+                          className="flex justify-between "
+                        >
+                          <span className="font-medium dark:bg-gray-800 dark:text-white">
+                            {attr.attributeName}:
+                          </span>
+                          <span className="ml-1 dark:bg-gray-800 dark:text-white">
+                            {attr.attributeValueName}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                    {product.attributes.length > 3 && (
+                      <div className="absolute" />
+                    )}
+                    {product.attributes.length > 3 && (
+                      <button
+                        onClick={() => {
+                          setActiveTab("characteristics");
+                          characteristicsRef.current?.scrollIntoView({
+                            behavior: "smooth",
+                          });
+                        }}
+                        className="text-xl text-blue-500 hover:text-gray-700"
+                      >
+                        Все характеристики ({product.attributes.length})
+                      </button>
+                    )}
+                  </div>
+                )}
+              </div> */}
+              {product.attributes
+                .filter((attr) =>
+                  allowed.some((word) =>
+                    attr.attributeName.toLowerCase().includes(word)
+                  )
+                )
+                .map((attr) => (
+                  <div
+                    key={`${product.id}-${attr.attributeName}-${attr.attributeValueName}`}
+                    className="flex justify-between mb-2"
+                  >
+                    <span className="font-medium dark:bg-gray-800 dark:text-white">
+                      {attr.attributeName}:
+                    </span>
+                    <span className="dark:bg-gray-800 dark:text-white">
+                      {attr.attributeValueName}
+                    </span>
+                  </div>
+                ))}
+              {product.attributes.length > 3 && (
+                <button
+                  onClick={() => {
+                    setActiveTab("characteristics");
+                    characteristicsRef.current?.scrollIntoView({
+                      behavior: "smooth",
+                    });
+                  }}
+                  className="text-xl text-blue-500 hover:text-gray-700"
+                >
+                  Все характеристики ({product.attributes.length})
+                </button>
+              )}
 
               {/* Share and Production Time */}
               <div className="border-t border-gray-200 pt-6">
@@ -589,7 +673,10 @@ export default function ProductPageClient({ product }) {
           <span itemProp="ratingValue">{averageRating}</span>
           <span itemProp="reviewCount">{totalReviews}</span>
         </div>
-        <div className="flex flex-wrap gap-5 mb-3 text-xs lg:text-2xl md:flex-nowrap">
+        <div
+          className="flex flex-wrap gap-5 mb-3 text-xs lg:text-2xl md:flex-nowrap"
+          ref={characteristicsRef}
+        >
           <button
             className={`w-full py-3 px-6 font-medium bg-gray-300 border rounded-2xl transition-all duration-300 ${
               activeTab === "characteristics"
@@ -619,6 +706,16 @@ export default function ProductPageClient({ product }) {
             onClick={() => setActiveTab("documentation")}
           >
             Документация
+          </button>
+          <button
+            className={`w-full py-3 px-6 font-medium bg-gray-300 border rounded-2xl transition-all duration-300 ${
+              activeTab === "dostavka"
+                ? "bg-white"
+                : "text-gray-500 hover:text-black"
+            }`}
+            onClick={() => setActiveTab("dostavka")}
+          >
+            Доставка
           </button>
           <button
             className={`w-full py-3 px-6 font-medium bg-gray-300 border rounded-2xl transition-all duration-300 ${
@@ -660,6 +757,15 @@ export default function ProductPageClient({ product }) {
             <DocumentationTab files={product.documentationFiles || []} />
           </div>
 
+          {/* Доставка */}
+          <div
+            className={`tab-content ${
+              activeTab !== "dostavka" ? "seo-hidden" : ""
+            }`}
+          >
+            <DostavkaTab />
+          </div>
+
           {/* Отзывы */}
           <div
             className={`tab-content ${
@@ -670,6 +776,8 @@ export default function ProductPageClient({ product }) {
           </div>
         </div>
       </div>
+      <WorksGallery />
+      <VideoGallery />
       {/* Feedback Modal */}
       <Modal
         isOpen={isModalOpen}
