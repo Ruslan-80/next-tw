@@ -19,6 +19,7 @@ import useFormSubmit from "hooks/useFormSubmit";
 import RatingDisplay from "@/components/RatingDisplay";
 import WorksGallery from "@/components/imageDoPosle";
 import VideoGallery from "@/components/VideoGallery";
+import ProductFaq from "../../faq/voprosiky";
 
 export default function ProductPageClient({
   product,
@@ -137,8 +138,6 @@ export default function ProductPageClient({
       prev === images.length - 1 ? 0 : prev + 1
     );
   };
-
-  // Список миниатюр - не нужен отдельный thumbnails, используем images напрямую
 
   return (
     <main
@@ -763,7 +762,7 @@ export default function ProductPageClient({
               activeTab !== "dostavka" ? "seo-hidden" : ""
             }`}
           >
-            <DostavkaTab />
+            <DostavkaTab article={product.article} />
           </div>
 
           {/* Отзывы */}
@@ -776,6 +775,7 @@ export default function ProductPageClient({
           </div>
         </div>
       </div>
+      <ProductFaq />
       <WorksGallery />
       <VideoGallery />
       {/* Feedback Modal */}

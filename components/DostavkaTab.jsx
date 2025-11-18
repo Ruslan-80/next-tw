@@ -1,4 +1,5 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import data from "@/app/data/dostavka.json";
 import {
   CheckCircle,
   Truck,
@@ -10,20 +11,22 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 
-export default function Dostavka({}) {
+export default function Dostavka({ article }) {
+  const text = data[article] || "";
   return (
     <div className="bg-white shadow text-xs lg:text-base rounded-md p-6">
       <section className="py-4">
         <div className="container mx-auto px-6">
           <div className="flex items-center gap-3 mb-8">
             <Truck className="h-8 w-8 text-accent" />
-            <h2 className="text-3xl lg:text-4xl font-bold">
-              1. Способы доставки
-            </h2>
+            <h2 className="text-3xl lg:text-4xl font-bold">Способы доставки</h2>
           </div>
           <Card>
             <CardContent className="p-8 space-y-6">
-              <p className="text-justify leading-relaxed text-muted-foreground mb-6">
+              <div className="text-gray-900 text-2xl text-justify indent-30">
+                {text}
+              </div>
+              <p className="text-justify text-xl leading-relaxed text-muted-foreground mb-6">
                 Мы предлагаем следующие варианты доставки:
               </p>
 

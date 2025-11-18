@@ -7,20 +7,11 @@ const nextConfig = {
 
   async rewrites() {
     return [
-      // Перехват URL-адреса для /catalog/ustroystva-etazhnye
-      // {
-      //   source: "/catalog/ustroystva-etazhnye",
-      //   destination: "/landing/ustroystva-etazhnye",
-      // },
       // Перехват URL-адреса для /catalog/ustroystva-etazhnye/[slug]
       {
         source: "/catalog/uerk",
         destination: "/landing/uerk",
       },
-      // {
-      //   source: "/catalog/uerv",
-      //   destination: "/landing/uerv",
-      // },
       {
         source: "/catalog/uerb",
         destination: "/landing/uerb",
@@ -29,10 +20,6 @@ const nextConfig = {
         source: "/catalog/uern",
         destination: "/landing/uern",
       },
-      // {
-      //   source: "/catalog/uerm",
-      //   destination: "/landing/uerm",
-      // },
       {
         source: "/catalog/vru-1",
         destination: "/landing/razrabotka",
@@ -55,6 +42,10 @@ const nextConfig = {
       },
       {
         source: "/catalog/vvodno-raspredelitelnye-ustrojstva-vru",
+        destination: "/landing/razrabotka",
+      },
+      {
+        source: "/promotions",
         destination: "/landing/razrabotka",
       },
     ];

@@ -15,11 +15,11 @@ export default function Promotions() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="border p-4 rounded-lg">
             <h3 className="text-xl font-bold mb-2">
-              Скидка 20% на первый заказ
+              Скидка 5% на первый заказ
             </h3>
             <p className="mb-4">
-              Зарегистрируйтесь и получите скидку 20% на ваш первый заказ при
-              покупке от 5000 рублей.
+              Зарегистрируйтесь и получите скидку 5% на ваш первый заказ при
+              покупке от 50000 рублей.
             </p>
             <p className="text-sm text-gray-600">
               Действует до 31 декабря 2025 года.
@@ -28,10 +28,12 @@ export default function Promotions() {
           <div className="border p-4 rounded-lg">
             <h3 className="text-xl font-bold mb-2">Бесплатная доставка</h3>
             <p className="mb-4">
-              Бесплатная доставка на все заказы от 10000 рублей.
+              от 50 000 рублей — в пределах МКАД или до терминала ТТК которую вы
+              укажите. (Работаем со всеми ТТК региона)
             </p>
+            <p className="mb-4">от 100 000 рублей — в пределах ЦКАД.</p>
             <p className="text-sm text-gray-600">Без ограничения по времени.</p>
-            <Link href="/catalog" className="text-blue-600 hover:underline">
+            <Link href="/" className="text-blue-600 hover:underline">
               К покупкам
             </Link>
           </div>
@@ -43,7 +45,7 @@ export default function Promotions() {
         <div className="border p-4 rounded-lg">
           <h3 className="text-xl font-bold mb-2">Осенняя распродажа</h3>
           <p className="mb-4">
-            Скидки до 50% на избранные товары из осенней коллекции.
+            Скидки до 20% на избранные товары из осенней коллекции.
           </p>
           <p className="text-sm text-gray-600">
             Действует до 30 ноября 2025 года.
