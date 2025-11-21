@@ -15,7 +15,7 @@ export default function DescriptionsTab({ description }) {
       <div className="divide-y">
         <div className="py-3 grid">
           <span
-            className="text-gray-900 text-2xl text-justify indent-30"
+            className="text-gray-900 text-sm lg:text-2xl text-justify indent-30"
             itemProp="description"
           >
             {description}

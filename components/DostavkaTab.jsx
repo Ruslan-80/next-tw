@@ -14,24 +14,24 @@ import Link from "next/link";
 export default function Dostavka({ article }) {
   const text = data[article] || "";
   return (
-    <div className="bg-white shadow text-xs lg:text-base rounded-md p-6">
+    <div className="bg-white shadow text-sm lg:text-base rounded-md lg:p-6">
       <section className="py-4">
-        <div className="container mx-auto px-6">
+        <div className="container mx-auto lg:px-6">
           <div className="flex items-center gap-3 mb-8">
             <Truck className="h-8 w-8 text-accent" />
-            <h2 className="text-3xl lg:text-4xl font-bold">Способы доставки</h2>
+            <h2 className="text-xl lg:text-4xl font-bold">Способы доставки</h2>
           </div>
           <Card>
-            <CardContent className="p-8 space-y-6">
-              <div className="text-gray-900 text-2xl text-justify indent-30">
+            <CardContent className="lg:p-8 space-y-6">
+              <div className="text-gray-900 leading-relaxed text-muted-foreground text-sm lg:text-2xl text-justify lg:indent-30">
                 {text}
               </div>
-              <p className="text-justify text-xl leading-relaxed text-muted-foreground mb-6">
+              <p className="text-justify text-sm lg:text-xl leading-relaxed text-muted-foreground mb-6">
                 Мы предлагаем следующие варианты доставки:
               </p>
 
               <div className="space-y-4">
-                <div className="font-bold text-2xl">БЕСПЛАТНАЯ ДОСТАВКА</div>
+                <div className="font-bold text-xl lg:text-2xl">БЕСПЛАТНАЯ ДОСТАВКА</div>
                 <p className="text-muted-foreground ml-4">
                   Осуществляется в московском регионе при заказе:
                 </p>
@@ -43,14 +43,14 @@ export default function Dostavka({ article }) {
                   <li>от 100 000 рублей — в пределах ЦКАД.</li>
                 </ul>
 
-                <div className="font-bold text-2xl">ПЛАТНАЯ ДОСТАВКА</div>
+                <div className="font-bold text-xl lg:text-2xl">ПЛАТНАЯ ДОСТАВКА</div>
                 <p className="text-muted-foreground">
                   Доставка при заказе на сумму менее 50 000 рублей
                   осуществляется на платной основе и рассчитывается
                   индивидуально
                 </p>
 
-                <div className="font-bold text-2xl">Другие виды доставки</div>
+                <div className="font-bold text-xl lg:text-2xl">ДРУГИЕ ВИДЫ ДОСТАВКИ</div>
                 <ul className="list-disc pl-8 text-muted-foreground space-y-2">
                   <li>
                     Курьерская доставка: рассчитывается индивидуально у
@@ -68,7 +68,7 @@ export default function Dostavka({ article }) {
                 </p>
               </div>
 
-              <div className="font-bold text-2xl flex items-center gap-2">
+              <div className="font-bold text-xl lg:text-2xl flex items-center gap-2">
                 <Clock className="h-7 w-7" /> ВРЕМЯ ДОСТАВКИ
               </div>
               <p className="text-muted-foreground">

@@ -25,8 +25,8 @@ module.exports = {
       base: "18px", // Измените значение, например, на '18px' или ['18px', { lineHeight: '1.5' }]
     },
     fontFamily: {
-      sans: ["Graphik", "sans-serif"],
-      serif: ["Merriweather", "serif"],
+      sans: ["Roboto", "sans-serif"],
+      serif: ["Roboto", "serif"],
     },
     extend: {
       spacing: {

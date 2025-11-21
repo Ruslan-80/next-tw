@@ -465,9 +465,9 @@ export default function ProductFaq() {
 
   return (
     <section className="container mx-auto p-6 bg-white">
-      <h2 className="text-3xl font-bold mb-8">Частые вопросы</h2>
+      <h2 className="text-xl lg:text-3xl font-bold mb-8">Частые вопросы</h2>
 
-      <div className="space-y-4">
+      <div className="space-y-4 text-sm lg:text-2xl">
         {isLoading
           ? Array(4)
               .fill()
@@ -476,10 +476,10 @@ export default function ProductFaq() {
               <div key={i} className="border rounded-2xl shadow-sm bg-gray-50">
                 <button
                   onClick={() => toggle(i)}
-                  className="w-full text-left px-6 py-4 flex justify-between items-center font-semibold text-lg"
+                  className="w-full text-left px-4 lg:px-6 py-4 flex justify-between items-center font-semibold"
                 >
                   {faq.question}
-                  <span className="text-2xl">
+                  <span>
                     {openIndex === i ? "−" : "+"}
                   </span>
                 </button>
@@ -489,7 +489,7 @@ export default function ProductFaq() {
                     openIndex === i ? "max-h-96" : "max-h-0"
                   }`}
                 >
-                  <div className="px-6 pb-6 text-gray-700">{faq.answer}</div>
+                  <div className="px-4 lg:px-6 pb-6 text-gray-700">{faq.answer}</div>
                 </div>
               </div>
             ))}

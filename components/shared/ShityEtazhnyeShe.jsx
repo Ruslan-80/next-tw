@@ -41,10 +41,10 @@ export function ShityEtazhnyeTop() {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-8 animate-fade-in-up">
             <div className="space-y-4">
-              <h2 className="text-4xl lg:text-5xl font-bold text-balance leading-tight">
+              <h2 className="text-2xl lg:text-5xl font-bold text-balance leading-tight">
                 Щиты этажные типа <span className="text-accent">ЩЭ</span>
               </h2>
-              <p className="text-justify text-2xl text-muted-foreground leading-relaxed">
+              <p className="text-xl text-justify lg:text-2xl text-muted-foreground leading-relaxed">
                 Этажный распределительный щиток (ЩЭ, ЩЭР) - современное
                 многофункциональное электротехническое устройство,
                 устанавливаемое на этажных лестничных клетках,межэтажных
@@ -192,7 +192,7 @@ export function ShityEtazhnyeBottom() {
     },
   ];
   return (
-    <div className="container mx-auto p-6 space-y-10 text-2xl mt-12">
+    <div className="container mx-auto space-y-10 text-justify text-xl lg:text-2xl mt-12">
       <Card>
         <CardContent className="px-6">
           <h3 className="text-3xl font-semibold text-orange-600">

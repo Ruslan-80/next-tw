@@ -4,7 +4,7 @@ import axios from "axios";
 
 export async function POST(request) {
   try {
-    const { email, contact, message, name } = await request.json();
+    const { email, contact, message, name, productName } = await request.json();
 
     // Проверка на бота: если поле name заполнено, отклоняем запрос
     if (name) {
@@ -42,7 +42,7 @@ export async function POST(request) {
     // await transporter.sendMail(mailOptions);
 
     // Отправка сообщения в Telegram
-    const telegramMessage = `Новое сообщение:\nКонтакт: ${contact}\nEmail: ${email}\nСообщение: ${message}\nВремя: ${new Date().toLocaleString()}`;
+    const telegramMessage = `Новое сообщение:\nКонтакт: ${contact}\nEmail: ${email}\nСообщение: ${message}\nТовар: ${productName}\nВремя: ${new Date().toLocaleString()}`;
     await axios.post(
       `https://api.telegram.org/bot${process.env.TELEGRAM_BOT_TOKEN}/sendMessage`,
       {

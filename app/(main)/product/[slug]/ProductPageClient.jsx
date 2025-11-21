@@ -37,9 +37,10 @@ export default function ProductPageClient({
   const [currentUrl, setCurrentUrl] = useState("");
   const { setCart } = useCartStore();
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [modalContent, setModalContent] = useState("");
+  const [modalContent, setModalContent] = useState({});
   const { handleFormSubmit, error } = useFormSubmit();
   const characteristicsRef = useRef(null);
+
 
   const handleButtonClick = (content) => {
     setModalContent(content);
@@ -487,7 +488,11 @@ export default function ProductPageClient({
 
               {/* Share and Production Time */}
               <div className="border-t border-gray-200 pt-6">
-                <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 text-xl">
+                <div className="flex flex-col md:flex-col justify-between gap-4 text-xl">
+                  <div className="text-red-700">
+                    <span className="font-semibold">Заказ от 10 штук</span>{" "}
+                    
+                  </div>
                   <div className="text-gray-700">
                     <span className="font-semibold">Срок изготовления:</span>{" "}
                     производство от 7 до 14 дней
@@ -598,9 +603,9 @@ export default function ProductPageClient({
             {/* Этап 1 */}
             <div className="flex flex-col items-center text-center p-4">
               <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mb-3">
-                <span className="text-2xl font-bold text-blue-600">1</span>
+                <span className="text-xl lg:text-2xl font-bold text-blue-600">1</span>
               </div>
-              <h3 className="font-bold text-gray-600 text-lg mb-2">Заявка</h3>
+              <h3 className="font-bold text-gray-600 mb-2">Заявка</h3>
               <p className="text-gray-600">
                 Оставьте заявку на сайте или по телефону
               </p>
@@ -616,7 +621,7 @@ export default function ProductPageClient({
               <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mb-3">
                 <span className="text-2xl font-bold text-blue-600">2</span>
               </div>
-              <h3 className="font-bold text-gray-600 text-lg mb-2">
+              <h3 className="font-bold text-gray-600 mb-2">
                 Консультация
               </h3>
               <p className="text-gray-600">
@@ -634,7 +639,7 @@ export default function ProductPageClient({
               <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mb-3">
                 <span className="text-2xl font-bold text-blue-600">3</span>
               </div>
-              <h3 className="font-bold text-gray-600 text-lg mb-2">
+              <h3 className="font-bold text-gray-600 mb-2">
                 Производство
               </h3>
               <p className="text-gray-600">

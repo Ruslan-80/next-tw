@@ -29,7 +29,7 @@ export function uermTop() {
   };
 
   return (
-    <div className="container mx-auto p-6 bg-white text-2xl">
+    <div className="container mx-auto p-6 bg-white text-xl lg:text-2xl">
       <section>
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-8 animate-fade-in-up">
@@ -37,11 +37,11 @@ export function uermTop() {
               <Badge variant="secondary" className="text-sm font-medium">
                 Модульное решение
               </Badge>
-              <h2 className="text-4xl lg:text-5xl font-bold text-balance leading-tight">
+              <h2 className="text-2xl lg:text-5xl font-bold text-balance leading-tight">
                 Устройство этажное распределительное модульное{" "}
                 <span className="text-accent">УЭРМ</span>
               </h2>
-              <p className="text-2xl text-muted-foreground text-balance leading-relaxed">
+              <p className="text-muted-foreground text-balance leading-relaxed">
                 Современное модульное устройство для приема, распределения и
                 учета электроэнергии в многоквартирных домах с защитой от
                 перегрузок и токов утечки.
@@ -65,31 +65,54 @@ export function uermTop() {
             <div className="grid grid-cols-3 gap-6 pt-4">
               <div className="text-center">
                 <div className="text-2xl font-bold text-accent">6-12</div>
-                <div className="text-xl text-muted-foreground">квартир</div>
+                <div className="text-sm lg:text-xl text-muted-foreground">квартир</div>
               </div>
               <div className="text-center">
                 <div className="text-2xl font-bold text-accent">25</div>
-                <div className="text-xl text-muted-foreground">лет службы</div>
+                <div className="text-sm lg:text-xl text-muted-foreground">лет службы</div>
               </div>
               <div className="text-center">
                 <div className="text-2xl font-bold text-accent">IP31</div>
-                <div className="text-xl text-muted-foreground">защита</div>
+                <div className="text-sm lg:text-xl text-muted-foreground">защита</div>
               </div>
             </div>
           </div>
 
-          <div className="relative animate-slide-in-right">
-            <div className="absolute inset-0 bg-gradient-to-br from-accent/20 to-primary/20 rounded-3xl blur-3xl"></div>
-            <div className="relative w-[500px] h-[500px] bg-card rounded-3xl p-8 shadow-2xl flex justify-center mx-auto">
-              <Image
-                src="/images/landing/uerm1.png"
-                alt="УЭРМ - Устройство этажное распределительное модульное"
-                fill
-                className="object-contain hover:scale-105 transition-transform duration-500 p-4"
-                sizes="(max-width: 768px) 100vw, 500px"
-              />
-            </div>
-          </div>
+<div className="relative animate-slide-in-right">
+  {/* Светящееся размытие позади */}
+  <div className="absolute inset-0 bg-gradient-to-br from-accent/20 to-primary/20 rounded-3xl blur-3xl"></div>
+
+  {/* Адаптивный контейнер */}
+  <div
+    className="
+      relative 
+      w-full 
+      max-w-[350px] 
+      md:max-w-[450px] 
+      lg:max-w-[500px] 
+      aspect-square
+      bg-card 
+      rounded-3xl 
+      p-4 
+      md:p-6 
+      lg:p-8 
+      shadow-2xl 
+      flex 
+      justify-center 
+      mx-auto
+    "
+  >
+    <Image
+      src="/images/landing/uerm1.png"
+      alt="УЭРМ - Устройство этажное распределительное модульное"
+      fill
+      className="object-contain hover:scale-105 transition-transform duration-500 p-2 md:p-4"
+      sizes="(max-width: 768px) 100vw,
+             (max-width: 1024px) 450px,
+             500px"
+    />
+  </div>
+</div>
         </div>
       </section>
       <Modal
@@ -114,19 +137,19 @@ export function uermBottom() {
   };
   return (
     <>
-      <div className="container mx-auto p-6 space-y-10 text-2xl mt-12">
+      <div className="container mx-auto p-6 space-y-10 text-xl lg:text-2xl lg:mt-12">
         {/* Purpose Section */}
-        <section className="py-4 mt-12">
-          <div className="container mx-auto px-6">
+        <section className="py-4 lg:mt-12">
+          <div className="container mx-auto lg:px-6">
             <div className="w-full mx-auto">
-              <div className="text-center mb-12">
-                <h2 className="text-3xl lg:text-4xl font-bold mb-4 text-balance">
+              <div className="text-center lg:mb-12">
+                <h2 className="text-2xl lg:text-4xl font-bold mb-4 text-balance">
                   Назначение
                 </h2>
               </div>
 
               <Card className="mb-8">
-                <CardContent className="px-8">
+                <CardContent className="px-4 lg:px-8">
                   <p className="text-justify leading-relaxed text-muted-foreground mb-6">
                     Устройство этажное распределительное модульное типа УЭРМ
                     предназначено для приема, распределения и учета
@@ -191,23 +214,23 @@ export function uermBottom() {
 
         {/* Construction Section */}
         <section className="py-4 bg-secondary/30">
-          <div className="container mx-auto px-6">
-            <div className="max-w-8xl mx-auto">
+          <div className="container mx-auto lg:px-6 text-xl lg:text-2xl">
+            <div className="lg:max-w-8xl mx-auto">
               <div className="flex items-center gap-3 mb-8">
                 <Shield className="h-8 w-8 text-accent" />
-                <h2 className="text-3xl lg:text-4xl font-bold">Конструкция</h2>
+                <h2 className="text-2xl lg:text-4xl font-bold">Конструкция</h2>
               </div>
 
               <Card>
-                <CardContent className="p-8">
-                  <p className="text-justify text-2xl leading-relaxed text-muted-foreground indent-20">
+                <CardContent className="lg:p-8 lg:indent-20">
+                  <p className="text-justify leading-relaxed text-muted-foreground ">
                     УЭРМ представляет собой шкаф или сборную модульную
                     конструкцию из металлических коробов (КЭТ, КСС) и ящиков
                     ЯУР, выполненных из листового металла с полиэфирным
                     порошковым покрытием (RAL 9003/7035, шагрень) для
                     долговечности и эстетики.
                   </p>
-                  <p className="text-justify text-2xl leading-relaxed text-muted-foreground indent-20">
+                  <p className="text-justify leading-relaxed text-muted-foreground">
                     Устройство имеет навесное исполнение, что исключает
                     необходимость штрабления стен. Конструкция включает короба
                     электротехнических (КЭТ) и слаботочных (КСС) сетей, а также
@@ -225,10 +248,10 @@ export function uermBottom() {
 
         {/* Modules Section */}
         <section className="py-4">
-          <div className="container mx-auto px-6">
-            <div className="flex items-center gap-3 mb-12">
+          <div className="container mx-auto lg:px-6">
+            <div className="flex items-center gap-3 mb-4 lg:mb-12">
               <Home className="h-8 w-8 text-accent" />
-              <h2 className="text-3xl lg:text-4xl font-bold">Модули системы</h2>
+              <h2 className="text-2xl lg:text-4xl font-bold">Модули системы</h2>
             </div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -279,14 +302,14 @@ export function uermBottom() {
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-justify text-muted-foreground text-xl leading-relaxed">
+                    <p className="text-justify text-muted-foreground leading-relaxed">
                       {module.description}
                     </p>
                   </CardContent>
                 </Card>
               ))}
             </div>
-            <p className="text-2xl leading-relaxed text-muted-foreground my-6">
+            <p className="text-justify leading-relaxed text-muted-foreground my-6">
               Каждый модуль имеет запираемую дверь (универсальный или
               индивидуальный замок), обеспечивая безопасность и удобство
               обслуживания.
@@ -296,19 +319,19 @@ export function uermBottom() {
 
         {/* Technical Specs & Advantages */}
         <section className="py-4 bg-secondary/30">
-          <div className="container mx-auto px-6">
-            <div className="grid  gap-12">
+          <div className="container mx-auto lg:px-6">
+            <div className="grid gap-12">
               {/* Technical Specifications */}
               <div>
                 <div className="flex items-center gap-3 mb-8">
                   <Zap className="h-8 w-8 text-accent" />
-                  <h2 className="text-3xl font-bold">
+                  <h2 className="text-2xl lg:text-3xl font-bold">
                     Технические характеристики
                   </h2>
                 </div>
 
                 <Card>
-                  <CardContent className="p-6">
+                  <CardContent className="lg:p-6">
                     <div className="space-y-4">
                       {[
                         "Номинальное напряжение: 230/400 В (AC), 50 Гц.",
@@ -330,7 +353,7 @@ export function uermBottom() {
                       ].map((spec, index) => (
                         <div key={index} className="flex items-start gap-3">
                           <CheckCircle className="h-7 w-7 text-green-600 mt-1 flex-shrink-0" />
-                          <span className="text-2xl text-muted-foreground leading-relaxed">
+                          <span className="text-muted-foreground leading-relaxed">
                             {spec}
                           </span>
                         </div>
@@ -344,11 +367,11 @@ export function uermBottom() {
               <div>
                 <div className="flex items-center gap-3 mb-8">
                   <Server className="h-8 w-8 text-accent" />
-                  <h2 className="text-3xl font-bold">Преимущества УЭРМ</h2>
+                  <h2 className="text-2xl lg:text-3xl font-bold">Преимущества УЭРМ</h2>
                 </div>
 
                 <Card>
-                  <CardContent className="p-6">
+                  <CardContent className="lg:p-6">
                     <div className="space-y-4">
                       {[
                         "Модульная конструкция: Сборная система из коробов КЭТ, КСС и ящиков ЯУР, обеспечивающая универсальность для любых проектов.",
@@ -361,7 +384,7 @@ export function uermBottom() {
                       ].map((advantage, index) => (
                         <div key={index} className="flex items-start gap-3">
                           <CheckCircle className="h-7 w-7 text-green-600 mt-1 flex-shrink-0" />
-                          <span className="text-2xl text-muted-foreground leading-relaxed">
+                          <span className="text-muted-foreground leading-relaxed">
                             {advantage}
                           </span>
                         </div>
@@ -376,8 +399,8 @@ export function uermBottom() {
 
         {/* Installation Section */}
         <section className="py-4">
-          <div className="container mx-auto px-6">
-            <div className="max-w-8xl mx-auto">
+          <div className="container mx-auto lg:px-6">
+            <div className="lg:max-w-8xl mx-auto">
               <div className="flex items-center gap-3 mb-8">
                 {/* <Cable className="h-8 w-8 text-accent" /> */}
                 <h2 className="text-3xl lg:text-4xl font-bold">
@@ -387,7 +410,7 @@ export function uermBottom() {
 
               <div className="grid gap-8">
                 <Card>
-                  <CardContent className="p-6">
+                  <CardContent className="px-4 lg:p-6">
                     <div className="space-y-4">
                       {[
                         "В комплект поставки входят: Короба КЭТ, КСС, ящики ЯУР, шины N/PE, DIN-рейки, Z-/П-образные профили, ключи (1 на замок), паспорт, схемы подключения, сертификат соответствия.",
@@ -396,7 +419,7 @@ export function uermBottom() {
                       ].map((spec, index) => (
                         <div key={index} className="flex items-start gap-3">
                           <CheckCircle className="h-7 w-7 text-green-600 mt-1 flex-shrink-0" />
-                          <span className="text-2xl text-muted-foreground leading-relaxed">
+                          <span className="text-muted-foreground leading-relaxed">
                             {spec}
                           </span>
                         </div>
@@ -406,7 +429,7 @@ export function uermBottom() {
                 </Card>
               </div>
             </div>
-            <div className="max-w-8xl mx-auto mt-8">
+            <div className="lg:max-w-8xl mx-auto mt-8">
               <div className="flex items-center gap-3 mb-8">
                 <Cable className="h-8 w-8 text-accent" />
                 <h2 className="text-3xl lg:text-4xl font-bold">
@@ -425,7 +448,7 @@ export function uermBottom() {
                       ].map((spec, index) => (
                         <div key={index} className="flex items-start gap-3">
                           <CheckCircle className="h-7 w-7 text-green-600 mt-1 flex-shrink-0" />
-                          <span className="text-2xl text-muted-foreground leading-relaxed">
+                          <span className="text-muted-foreground leading-relaxed">
                             {spec}
                           </span>
                         </div>
@@ -440,7 +463,7 @@ export function uermBottom() {
 
         {/* Related Products */}
         <section className="py-16 lg:py-24 bg-secondary/30">
-          <div className="container mx-auto px-6">
+          <div className="container mx-auto lg:px-6">
             <div className="flex items-center gap-3 mb-12">
               <Home className="h-8 w-8 text-accent" />
               <h2 className="text-3xl lg:text-4xl font-bold">
@@ -477,12 +500,12 @@ export function uermBottom() {
                 <Link key={index} href={product.href}>
                   <Card className="h-full hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
                     <CardHeader>
-                      <CardTitle className="text-3xl text-accent">
+                      <CardTitle className="text-2xl lg:text-3xl text-accent">
                         {product.title}
                       </CardTitle>
                     </CardHeader>
                     <CardContent>
-                      <p className="text-xl text-muted-foreground leading-relaxed">
+                      <p className="text-muted-foreground leading-relaxed">
                         {product.description}
                       </p>
                     </CardContent>
@@ -494,13 +517,13 @@ export function uermBottom() {
         </section>
 
         {/* CTA Section */}
-        <section className="py-4">
-          <div className="container mx-auto px-6">
-            <div className="max-w-8xl  ">
+        <section className="py-4 text-xl lg:text-2xl">
+          <div className="container mx-auto lg:px-6">
+            <div className="lg:max-w-8xl">
               <h2 className="text-3xl text-center lg:text-4xl font-bold mb-4 text-balance">
                 Заказ и покупка
               </h2>
-              <p className="text-2xl justify-center text-muted-foreground mb-8  leading-relaxed">
+              <p className="justify-center text-muted-foreground mb-8 leading-relaxed">
                 Предлагаем купить этажное распределительное устройство УЭРМ по
                 выгодной цене в интернет-магазине нашей компании. Продукция
                 доступна оптом и в розницу с быстрой доставкой по Москве, М.О. и
@@ -528,7 +551,7 @@ export function uermBottom() {
                     handleButtonClick("Получить коммерческое предложение")
                   }
                   size="lg"
-                  className="bg-accent hover:bg-accent/90 text-accent-foreground text-xl py-8"
+                  className="bg-accent hover:bg-accent/90 text-accent-foreground text-sm lg:text-xl mx-4 py-8"
                 >
                   Получить коммерческое предложение
                   <ArrowRight className="ml-2 h-4 w-4" />
@@ -542,7 +565,7 @@ export function uermBottom() {
                   Связаться с менеджером
                 </Button>
               </div>
-              <p className="text-left text-muted-foreground leading-relaxed">
+              <p className="text-sm text-muted-foreground leading-relaxed">
                 Каталог, фото, схемы и отзывы доступны онлайн. Заказывайте
                 качественное электрощитовое оборудование от производителя с
                 доставкой!

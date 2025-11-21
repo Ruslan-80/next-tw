@@ -5,7 +5,7 @@ import Image from "next/image";
 export function UstrojstvaEtazhnyepodeznyeTop() {
   return (
     <section>
-      <div className="flex bg-blue-300/20 shadow-xl items-center rounded-4xl px-8 py-12 mx-auto border border-blue-200">
+      <div className="flex flex-col lg:flex-row bg-blue-300/20 shadow-xl items-center rounded-4xl py-12 mx-auto border border-blue-200">
         <div className="m-4">
           <Image
             src="/images/categories/SE24L.png"
@@ -15,7 +15,7 @@ export function UstrojstvaEtazhnyepodeznyeTop() {
           />
         </div>
 
-        <div className="text-justify text-2xl pl-8   mb-8">
+        <div className="text-justify text-xl p-6 lg:text-2xl p-8 mb-8">
           <Link
             href="shity-etazhnye-she"
             className="font-bold text-blue-600 hover:text-blue-800 hover:underline"
@@ -83,8 +83,8 @@ export function UstrojstvaEtazhnyepodeznyeTop() {
 
 export function UstrojstvaEtazhnyepodeznyeBottom() {
   return (
-    <div className="container mx-auto p-6 space-y-10 text-2xl mt-12">
-      <h2 className="flex justify-center text-4xl font-bold text-gray-900 mb-10">
+    <div className="container mx-auto p-6 space-y-10 text-xl lg:text-2xl mt-12">
+      <h2 className="flex justify-center text-2xl lg:text-4xl font-bold text-gray-900 mb-10">
         Типы этажных электрощитков по способу монтажа
       </h2>
 

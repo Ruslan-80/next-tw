@@ -66,7 +66,7 @@ export default function WorksGallery() {
 
   return (
     <section className="container mx-auto px-6 py-12">
-      <h2 className="text-3xl font-bold mb-10 text-center text-gray-800">
+      <h2 className="text-xl lg:text-3xl font-bold mb-10 text-center text-gray-800">
         Выполненные работы
       </h2>
 

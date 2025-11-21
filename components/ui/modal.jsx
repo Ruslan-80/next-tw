@@ -5,12 +5,14 @@ export default function Modal({
   onClose,
   initialContent,
   onSubmit,
+  productName,
   submitError,
 }) {
   const [formData, setFormData] = useState({
     contact: "",
     name: "",
     message: "",
+    productName,
   });
 
   const [isSubmitted, setIsSubmitted] = useState(false);

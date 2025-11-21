@@ -32,7 +32,7 @@ export function uervTop() {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-8 animate-fade-in-up">
             <div className="space-y-4">
-              <h2 className="text-4xl lg:text-5xl font-bold text-balance leading-tight">
+              <h2 className="text-2xl lg:text-5xl font-bold text-balance leading-tight">
                 Устройство этажное распределительное встроенное типа{" "}
                 <span className="text-accent">УЭРВ</span>
               </h2>
@@ -42,7 +42,7 @@ export function uervTop() {
               <Button
                 onClick={() => handleButtonClick("Получить консультацию")}
                 size="lg"
-                className="bg-accent hover:bg-accent/90 text-accent-foreground text-xl py-8"
+                className="bg-accent hover:bg-accent/90 text-accent-foreground text-sm lg:text-xl py-8"
               >
                 Получить консультацию
                 <ArrowRight className="ml-2 h-4 w-4" />
@@ -52,15 +52,15 @@ export function uervTop() {
             <div className="grid grid-cols-3 gap-6 pt-4">
               <div className="text-center">
                 <div className="text-2xl font-bold text-accent">6-12</div>
-                <div className="text-xl text-muted-foreground">квартир</div>
+                <div className="text-sm lg:text-xl text-muted-foreground">квартир</div>
               </div>
               <div className="text-center">
                 <div className="text-2xl font-bold text-accent">25</div>
-                <div className="text-xl text-muted-foreground">лет службы</div>
+                <div className="text-sm lg:text-xl text-muted-foreground">лет службы</div>
               </div>
               <div className="text-center">
                 <div className="text-2xl font-bold text-accent">IP31</div>
-                <div className="text-xl text-muted-foreground">защита</div>
+                <div className="text-sm lg:text-xl text-muted-foreground">защита</div>
               </div>
             </div>
           </div>
@@ -80,17 +80,17 @@ export function uervTop() {
         </div>
       </section>
       <section className="py-4 mt-12">
-        <div className="container mx-auto px-6">
+        <div className="container mx-auto lg:px-6">
           <div className="w-full mx-auto">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl lg:text-4xl font-bold mb-4 text-balance">
+            <div className="text-center lg:mb-12">
+              <h2 className="text-xl lg:text-3xl lg:text-4xl font-bold mb-4 text-balance">
                 Назначение
               </h2>
             </div>
 
             <Card className="mb-8">
-              <CardContent className="px-8">
-                <p className="text-justify leading-relaxed text-muted-foreground mb-6 text-2xl">
+              <CardContent className="lg:px-8">
+                <p className="text-justify leading-relaxed text-muted-foreground mb-6 text-sm lg:text-2xl">
                   Устройство этажное распределительное встроенное типа УЭРВ
                   предназначено для приема, распределения и учета электроэнергии
                   в многоквартирных жилых домах. Оно обеспечивает защиту
@@ -110,10 +110,10 @@ export function uervTop() {
                   <div className="flex items-start gap-3">
                     <CheckCircle className="h-5 w-5 text-accent mt-1 flex-shrink-0" />
                     <div>
-                      <div className="font-semibold text-2xl mb-3">
+                      <div className="font-semibold text-xl lg:text-2xl mb-3">
                         Применение
                       </div>
-                      <div className="text-justify text-xl text-muted-foreground">
+                      <div className="text-justify text-sm lg:text-xl text-muted-foreground">
                         Установка в подготовленную нишу на этажах жилых зданий.
                       </div>
                     </div>
@@ -121,10 +121,10 @@ export function uervTop() {
                   <div className="flex items-start gap-3">
                     <CheckCircle className="h-5 w-5 text-accent mt-1 flex-shrink-0" />
                     <div>
-                      <div className="font-semibold text-2xl mb-3">
+                      <div className="font-semibold text-xl lg:text-2xl mb-3">
                         Обслуживание
                       </div>
-                      <div className="text-justify text-xl text-muted-foreground">
+                      <div className="text-justify text-sm lg:text-xl text-muted-foreground">
                         До 6–10 квартир в зависимости от типа счетчиков и
                         конфигурации.
                       </div>
@@ -133,10 +133,10 @@ export function uervTop() {
                   <div className="flex items-start gap-3">
                     <CheckCircle className="h-5 w-5 text-accent mt-1 flex-shrink-0" />
                     <div>
-                      <div className="font-semibold text-2xl mb-3">
+                      <div className="font-semibold text-xl lg:text-2xl mb-3">
                         Универсальность
                       </div>
-                      <div className="text-justify text-xl text-muted-foreground">
+                      <div className="text-justify text-sm lg:text-xl text-muted-foreground">
                         Поддержка однофазных (до 11 кВт) и трехфазных (до 32
                         кВт) систем для эффективного контроля расхода
                         электроэнергии.
@@ -171,19 +171,19 @@ export function uervBottom() {
   };
   return (
     <>
-      <div className="container mx-auto p-6 space-y-10 text-2xl mt-12">
+      <div className="container mx-auto lg:p-6 space-y-10 text-2xl mt-12">
         {/* Construction Section */}
         <section className="py-4 bg-secondary/30">
-          <div className="container mx-auto px-6">
+          <div className="container mx-auto lg:px-6">
             <div className="max-w-8xl mx-auto">
               <div className="flex items-center gap-3 mb-8">
                 <Shield className="h-8 w-8 text-accent" />
-                <h2 className="text-3xl lg:text-4xl font-bold">Конструкция</h2>
+                <h2 className="text-2xl lg:text-4xl font-bold">Конструкция</h2>
               </div>
 
               <Card>
                 <CardContent className="p-8">
-                  <p className="text-justify text-2xl leading-relaxed text-muted-foreground indent-20">
+                  <p className="text-justify text-sm lg:text-2xl leading-relaxed text-muted-foreground lg:indent-20">
                     УЭРВ представляет собой пространственную металлическую
                     конструкцию, встроенную в нишу, открытую со всех сторон,
                     кроме фасада. Корпус выполнен из листового металла с
@@ -202,13 +202,13 @@ export function uervBottom() {
 
         {/* Modules Section */}
         <section className="py-4">
-          <div className="container mx-auto px-6">
+          <div className="container mx-auto lg:px-6">
             <div className="flex items-center gap-3 mb-12">
               <Home className="h-8 w-8 text-accent" />
-              <h2 className="text-3xl lg:text-4xl font-bold">Отсеки</h2>
+              <h2 className="text-2xl lg:text-4xl font-bold">Отсеки</h2>
             </div>
 
-            <div className="grid md:grid-cols-2  gap-6">
+            <div className="grid md:grid-cols-2 gap-6">
               {[
                 {
                   title: "Слаботочный отсек",
@@ -236,19 +236,19 @@ export function uervBottom() {
                   className="hover:shadow-lg transition-shadow duration-300"
                 >
                   <CardHeader>
-                    <CardTitle className="text-2xl text-accent">
+                    <CardTitle className="text-xl lg:text-2xl text-accent">
                       {module.title}
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-justify text-muted-foreground text-xl leading-relaxed">
+                    <p className="text-justify text-muted-foreground text-sm lg:text-xl leading-relaxed">
                       {module.description}
                     </p>
                   </CardContent>
                 </Card>
               ))}
             </div>
-            <p className="text-2xl leading-relaxed text-muted-foreground my-6">
+            <p className="text-sm lg:text-2xl leading-relaxed text-muted-foreground text-justify my-6">
               Каждый отсек имеет дверь на петлях с замком (универсальный или
               индивидуальный по заказу), обеспечивая удобство обслуживания и
               безопасность.
@@ -258,19 +258,19 @@ export function uervBottom() {
 
         {/* Technical Specs & Advantages */}
         <section className="py-4 bg-secondary/30">
-          <div className="container mx-auto px-6">
+          <div className="container mx-auto lg:px-6">
             <div className="grid  gap-12">
               {/* Technical Specifications */}
               <div>
                 <div className="flex items-center gap-3 mb-8">
                   <Zap className="h-8 w-8 text-accent" />
-                  <h2 className="text-3xl font-bold">
+                  <h2 className="text-xl lg:text-3xl font-bold">
                     Технические характеристики
                   </h2>
                 </div>
 
                 <Card>
-                  <CardContent className="p-6">
+                  <CardContent className="lg:p-6">
                     <div className="space-y-4">
                       {[
                         "Номинальное напряжение: 230/400 В (AC), 50 Гц.",
@@ -291,7 +291,7 @@ export function uervBottom() {
                       ].map((spec, index) => (
                         <div key={index} className="flex items-start gap-3">
                           <CheckCircle className="h-4 w-4 text-accent mt-1 flex-shrink-0" />
-                          <span className="text-2xl text-muted-foreground leading-relaxed">
+                          <span className="text-sm lg:text-2xl text-muted-foreground leading-relaxed">
                             {spec}
                           </span>
                         </div>
@@ -305,11 +305,11 @@ export function uervBottom() {
               <div>
                 <div className="flex items-center gap-3 mb-8">
                   <Server className="h-8 w-8 text-accent" />
-                  <h2 className="text-3xl font-bold">Преимущества УЭРВ</h2>
+                  <h2 className="text-xl lg:text-3xl font-bold">Преимущества УЭРВ</h2>
                 </div>
 
                 <Card>
-                  <CardContent className="p-6">
+                  <CardContent className="lg:p-6">
                     <div className="space-y-4">
                       {[
                         "Компактное встроенное исполнение: Идеально для ниш в панельных и монолитных домах, экономия пространства.",
@@ -322,7 +322,7 @@ export function uervBottom() {
                       ].map((advantage, index) => (
                         <div key={index} className="flex items-start gap-3">
                           <CheckCircle className="h-4 w-4 text-accent mt-1 flex-shrink-0" />
-                          <span className="text-2xl text-muted-foreground leading-relaxed">
+                          <span className="text-sm lg:text-2xl text-justify text-muted-foreground leading-relaxed">
                             {advantage}
                           </span>
                         </div>
@@ -337,18 +337,18 @@ export function uervBottom() {
 
         {/* Installation Section */}
         <section className="py-4">
-          <div className="container mx-auto px-6">
+          <div className="container mx-auto lg:px-6">
             <div className="max-w-8xl mx-auto">
               <div className="flex items-center gap-3 mb-8">
                 {/* <Cable className="h-8 w-8 text-accent" /> */}
-                <h2 className="text-3xl lg:text-4xl font-bold">
+                <h2 className="text-xl lg:text-3xl lg:text-4xl font-bold">
                   Комплектность
                 </h2>
               </div>
 
               <div className="grid gap-8">
                 <Card>
-                  <CardContent className="p-6">
+                  <CardContent className="lg:p-6">
                     <div className="space-y-4">
                       {[
                         "В комплект поставки входят: Каркас УЭРВ, двери отсеков, шины N/PE, DIN-рейки, Z-образные профили, ключи (1 на замок), паспорт, схемы подключения, сертификат соответствия.",
@@ -357,7 +357,7 @@ export function uervBottom() {
                       ].map((spec, index) => (
                         <div key={index} className="flex items-start gap-3">
                           <CheckCircle className="h-4 w-4 text-accent mt-1 flex-shrink-0" />
-                          <span className="text-2xl text-muted-foreground leading-relaxed">
+                          <span className="text-sm lg:text-2xl text-muted-foreground leading-relaxed">
                             {spec}
                           </span>
                         </div>
@@ -370,7 +370,7 @@ export function uervBottom() {
             <div className="max-w-8xl mx-auto mt-8">
               <div className="flex items-center gap-3 mb-8">
                 <Cable className="h-8 w-8 text-accent" />
-                <h2 className="text-3xl lg:text-4xl font-bold">
+                <h2 className="text-xl lg:text-3xl lg:text-4xl font-bold">
                   Установка и эксплуатация
                 </h2>
               </div>
@@ -386,7 +386,7 @@ export function uervBottom() {
                       ].map((spec, index) => (
                         <div key={index} className="flex items-start gap-3">
                           <CheckCircle className="h-4 w-4 text-accent mt-1 flex-shrink-0" />
-                          <span className="text-2xl text-muted-foreground leading-relaxed">
+                          <span className="text-sm lg:text-2xl text-muted-foreground leading-relaxed">
                             {spec}
                           </span>
                         </div>
@@ -401,10 +401,10 @@ export function uervBottom() {
 
         {/* Related Products */}
         <section className="py-16 lg:py-24 bg-secondary/30">
-          <div className="container mx-auto px-6">
+          <div className="container mx-auto lg:px-6">
             <div className="flex items-center gap-3 mb-12">
               <Home className="h-8 w-8 text-accent" />
-              <h2 className="text-3xl lg:text-4xl font-bold">
+              <h2 className="text-xl lg:text-3xl lg:text-4xl font-bold">
                 Вам также может быть интересно
               </h2>
             </div>
@@ -437,12 +437,12 @@ export function uervBottom() {
                 <Link key={index} href={product.href}>
                   <Card className="h-full hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
                     <CardHeader>
-                      <CardTitle className="text-3xl text-accent">
+                      <CardTitle className="text-xl lg:text-3xl text-accent">
                         {product.title}
                       </CardTitle>
                     </CardHeader>
                     <CardContent>
-                      <p className="text-xl text-muted-foreground leading-relaxed">
+                      <p className="text-sm lg:text-xl text-muted-foreground leading-relaxed">
                         {product.description}
                       </p>
                     </CardContent>
@@ -457,20 +457,20 @@ export function uervBottom() {
         <section className="py-4">
           <div className="container mx-auto px-6">
             <div className="max-w-8xl  ">
-              <h2 className="text-3xl text-center lg:text-4xl font-bold mb-4 text-balance">
+              <h2 className="text-xl lg:text-3xl text-center font-bold mb-4 text-balance">
                 Заказ и покупка
               </h2>
-              <p className="text-2xl justify-center text-muted-foreground mb-8  leading-relaxed">
+              <p className="text-sm lg:text-2xl justify-center text-muted-foreground mb-8  leading-relaxed">
                 Предлагаем купить этажное распределительное устройство УЭРВ по
                 выгодной цене в интернет-магазине нашей компании. Продукция
                 доступна оптом и в розницу с быстрой доставкой по Москве, М.О. и
                 всей России. Изготовление по индивидуальным проектам заказчика.
               </p>
-              <p className="text-2xl text-left text-muted-foreground mb-8 text-balance leading-relaxed">
+              <p className="text-xl lg:text-2xl text-left text-muted-foreground mb-8 text-balance leading-relaxed">
                 Для заказа укажите:
               </p>
 
-              <ul className="list-disc text-left pl-6 text-muted-foreground leading-relaxed pb-4">
+              <ul className="list-disc text-left text-sm lg:text-2xl lg:pl-6 text-muted-foreground leading-relaxed pb-4">
                 <li>Количество квартир (1–10).</li>
                 <li>
                   Тип счетчиков и аппаратуры (одно-/трехфазные, АСКУЭ, УЗИП).
@@ -485,7 +485,7 @@ export function uervBottom() {
                     handleButtonClick("Получить коммерческое предложение")
                   }
                   size="lg"
-                  className="bg-accent hover:bg-accent/90 text-accent-foreground text-xl py-8"
+                  className="bg-accent hover:bg-accent/90 text-accent-foreground text-sm lg:text-xl py-8"
                 >
                   Получить коммерческое предложение
                   <ArrowRight className="ml-2 h-4 w-4" />
@@ -494,12 +494,12 @@ export function uervBottom() {
                   onClick={() => handleButtonClick("Связаться с менеджером")}
                   variant="outline"
                   size="lg"
-                  className="py-8 text-xl"
+                  className="py-8 text-sm lg:text-xl"
                 >
                   Связаться с менеджером
                 </Button>
               </div>
-              <p className="text-left text-muted-foreground leading-relaxed">
+              <p className="text-sm lg:text-xl text-left text-muted-foreground leading-relaxed">
                 Каталог, фото, схемы и отзывы доступны онлайн. Заказывайте
                 качественное электрощитовое оборудование от производителя с
                 доставкой!
