@@ -20,6 +20,7 @@ import RatingDisplay from "@/components/RatingDisplay";
 import WorksGallery from "@/components/imageDoPosle";
 import VideoGallery from "@/components/VideoGallery";
 import ProductFaq from "../../faq/voprosiky";
+import RandomObjects from "@/components/object";
 
 export default function ProductPageClient({
   product,
@@ -783,6 +784,7 @@ export default function ProductPageClient({
       <ProductFaq />
       <WorksGallery />
       <VideoGallery />
+      <RandomObjects />
       {/* Feedback Modal */}
       <Modal
         isOpen={isModalOpen}

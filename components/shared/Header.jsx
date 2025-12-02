@@ -29,16 +29,6 @@ export default function Header() {
   const { count, total } = useCartStore();
   const [isLoading, setIsLoading] = useState(true);
 
-  // useEffect(() => {
-  //   const timer = setTimeout(() => {
-  //     setIsLoading(false);
-  //   }, 1000); // Симуляция загрузки в течение 1 секунды
-  //   return () => clearTimeout(timer);
-  // }, []);
-
-  // const { totalItems, totalAmount, fetchCart } = useCartStore();
-
-  // Debounce для поиска
   useEffect(() => {
     const delayDebounceFn = setTimeout(async () => {
       if (query.length >= 2) {
@@ -284,52 +274,6 @@ export default function Header() {
             </Link>
           </div>
         </div>
-
-        {/* Категории */}
-        {/* <nav className="mt-4 hidden lg:block">
-          <ul className="flex justify-center space-x-6 text-gray-800 font-medium">
-            <li>
-              <Link
-                href="/catalog/shity-etazhnye-she"
-                className="hover:text-red-600 transition-colors py-2 border-b-2 border-transparent hover:border-red-600"
-              >
-                Щиты и устройства этажные
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/catalog/nakladki-shitov-etazhnyh-she"
-                className="hover:text-red-600 transition-colors py-2 border-b-2 border-transparent hover:border-red-600"
-              >
-                Накладки щитов этажных ЩЭ
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/catalog/ustroystva-etazhnye"
-                className="hover:text-red-600 transition-colors py-2 border-b-2 border-transparent hover:border-red-600"
-              >
-                Устройства модульные
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/catalog/vvodno-raspredelitelnye-ustrojstva-vru"
-                className="hover:text-red-600 transition-colors py-2 border-b-2 border-transparent hover:border-red-600"
-              >
-                Корпуса ВРУ
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/promotions"
-                className="text-red-600 font-bold py-2 border-b-2 border-red-600"
-              >
-                Акции
-              </Link>
-            </li>
-          </ul>
-        </nav> */}
       </div>
     </header>
   );

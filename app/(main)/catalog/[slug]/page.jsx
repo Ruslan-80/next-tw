@@ -12,6 +12,7 @@ import JsonLd from "@/components/JsonLdComponent";
 import getCategoryJsonLd from "@/lib/categoryJsonLd";
 import categoryComponents from "@/components/categoryBlocksMap";
 import PopularNabor from "@/components/PopularNabor";
+import RandomObjects from "@/components/object";
 
 export async function generateMetadata({ params, searchParams }) {
   const { slug } = await params;
@@ -281,6 +282,8 @@ export default async function CategoryPage({ params, searchParams }) {
 
         {BottomComponent && <BottomComponent />}
         <PopularNabor excludeSlug={slug} />
+
+        <RandomObjects />
 
         <PopularProducts categorySlug={baseSlug} />
       </div>

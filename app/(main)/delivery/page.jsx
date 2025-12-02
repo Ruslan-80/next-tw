@@ -10,6 +10,12 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 
+export const metadata = {
+  title: "Доставка и оплата — Электрощитовое оборудование",
+  description:
+    "Информация о доставке и оплате продукции",
+};
+
 const DeliveryComponent = () => {
   return (
     <div className="container mx-auto p-6 space-y-10 text-sm lg:text-2xl mt-4">
