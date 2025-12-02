@@ -15,7 +15,7 @@ export function UstrojstvaEtazhnyepodeznyeTop() {
           />
         </div>
 
-        <div className="text-justify text-xl p-6 lg:text-2xl p-8 mb-8">
+        <div className="text-justify text-xl lg:text-2xl p-8 mb-8">
           <Link
             href="shity-etazhnye-she"
             className="font-bold text-blue-600 hover:text-blue-800 hover:underline"

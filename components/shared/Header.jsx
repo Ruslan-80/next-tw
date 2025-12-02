@@ -113,6 +113,12 @@ export default function Header() {
               Статьи
             </Link>
             <Link
+              href="/objects"
+              className="hover:text-red-300 transition-colors"
+            >
+              Объекты
+            </Link>
+            <Link
               href="/contacts"
               className="hover:text-red-300 transition-colors"
             >

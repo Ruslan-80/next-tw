@@ -52,15 +52,21 @@ export function uervTop() {
             <div className="grid grid-cols-3 gap-6 pt-4">
               <div className="text-center">
                 <div className="text-2xl font-bold text-accent">6-12</div>
-                <div className="text-sm lg:text-xl text-muted-foreground">квартир</div>
+                <div className="text-sm lg:text-xl text-muted-foreground">
+                  квартир
+                </div>
               </div>
               <div className="text-center">
                 <div className="text-2xl font-bold text-accent">25</div>
-                <div className="text-sm lg:text-xl text-muted-foreground">лет службы</div>
+                <div className="text-sm lg:text-xl text-muted-foreground">
+                  лет службы
+                </div>
               </div>
               <div className="text-center">
                 <div className="text-2xl font-bold text-accent">IP31</div>
-                <div className="text-sm lg:text-xl text-muted-foreground">защита</div>
+                <div className="text-sm lg:text-xl text-muted-foreground">
+                  защита
+                </div>
               </div>
             </div>
           </div>
@@ -83,7 +89,7 @@ export function uervTop() {
         <div className="container mx-auto lg:px-6">
           <div className="w-full mx-auto">
             <div className="text-center lg:mb-12">
-              <h2 className="text-xl lg:text-3xl lg:text-4xl font-bold mb-4 text-balance">
+              <h2 className="text-xl lg:text-4xl font-bold mb-4 text-balance">
                 Назначение
               </h2>
             </div>
@@ -305,7 +311,9 @@ export function uervBottom() {
               <div>
                 <div className="flex items-center gap-3 mb-8">
                   <Server className="h-8 w-8 text-accent" />
-                  <h2 className="text-xl lg:text-3xl font-bold">Преимущества УЭРВ</h2>
+                  <h2 className="text-xl lg:text-3xl font-bold">
+                    Преимущества УЭРВ
+                  </h2>
                 </div>
 
                 <Card>
@@ -341,9 +349,7 @@ export function uervBottom() {
             <div className="max-w-8xl mx-auto">
               <div className="flex items-center gap-3 mb-8">
                 {/* <Cable className="h-8 w-8 text-accent" /> */}
-                <h2 className="text-xl lg:text-3xl lg:text-4xl font-bold">
-                  Комплектность
-                </h2>
+                <h2 className="text-xl lg:text-4xl font-bold">Комплектность</h2>
               </div>
 
               <div className="grid gap-8">
@@ -370,7 +376,7 @@ export function uervBottom() {
             <div className="max-w-8xl mx-auto mt-8">
               <div className="flex items-center gap-3 mb-8">
                 <Cable className="h-8 w-8 text-accent" />
-                <h2 className="text-xl lg:text-3xl lg:text-4xl font-bold">
+                <h2 className="text-xl lg:text-4xl font-bold">
                   Установка и эксплуатация
                 </h2>
               </div>
@@ -404,7 +410,7 @@ export function uervBottom() {
           <div className="container mx-auto lg:px-6">
             <div className="flex items-center gap-3 mb-12">
               <Home className="h-8 w-8 text-accent" />
-              <h2 className="text-xl lg:text-3xl lg:text-4xl font-bold">
+              <h2 className="text-xl lg:text-4xl font-bold">
                 Вам также может быть интересно
               </h2>
             </div>

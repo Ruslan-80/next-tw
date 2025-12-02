@@ -9,6 +9,12 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 
+export const metadata = {
+  title: "Гарантии и возврат | ЭЛЕКТРОЩИТ-ПРО",
+  description:
+    "Информация о гарантии и возврате в интернет-магазине ЭЛЕКТРОЩИТ-ПРО",
+};
+
 const GuaranteesComponent = () => {
   return (
     <div className="container mx-auto p-6 space-y-10 text-2xl mt-4">

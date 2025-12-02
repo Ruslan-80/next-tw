@@ -179,6 +179,14 @@ export default function Footer() {
               </li>
               <li>
                 <Link
+                  href="/objects"
+                  className="text-gray-400 hover:text-red-500 transition-colors"
+                >
+                  Наши объекты
+                </Link>
+              </li>
+              <li>
+                <Link
                   href="/contacts"
                   className="text-gray-400 hover:text-red-500 transition-colors"
                 >
