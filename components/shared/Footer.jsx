@@ -19,7 +19,7 @@ export default function Footer() {
       itemScope
       itemType="http://schema.org/Store"
     >
-      <meta itemProp="name" content="ElectroShit-PRO" />
+      <meta itemProp="name" content="ЭЛЕКТРОЩИТ-ПРО" />
       <meta itemProp="priceRange" content="От 1000 до 50000 рублей" />
 
       <meta
@@ -69,7 +69,7 @@ export default function Footer() {
                 <Mail size={16} className="text-gray-400" />
                 <a
                   itemProp="email"
-                  href="mailto:snab@kplstroy.ru"
+                  href="mailto:info@electroshit-pro.ru"
                   className="hover:text-red-500 transition-colors"
                 >
                   info@electroshit-pro.ru

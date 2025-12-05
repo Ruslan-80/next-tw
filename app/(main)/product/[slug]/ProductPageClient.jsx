@@ -21,6 +21,7 @@ import WorksGallery from "@/components/imageDoPosle";
 import VideoGallery from "@/components/VideoGallery";
 import ProductFaq from "../../faq/voprosiky";
 import RandomObjects from "@/components/object";
+import Link from "next/link";
 
 export default function ProductPageClient({
   product,
@@ -223,16 +224,17 @@ export default function ProductPageClient({
             {/* Product Details */}
             <div className="lg:w-1/2 p-6 bg-gray-50 dark:bg-gray-900 dark:text-white">
               <meta itemProp="sku" content={product.article || "N/A"} />
-              <meta
+              <Link
                 itemProp="url"
                 content={`https://electroshit-pro.ru/product/${product.slug}`}
+                href={`/product/${product.slug}`}
               />
               <div
                 itemProp="brand"
                 itemScope
                 itemType="https://schema.org/Brand"
               >
-                <meta itemProp="name" content="Электрощит PRO" />
+                {/* <meta itemProp="name" content="Электрощит PRO" /> */}
               </div>
               {/* <meta itemProp="brand" content="Электрощит PRO" /> */}
               {/* <div className="hidden" itemProp="description">
@@ -289,6 +291,15 @@ export default function ProductPageClient({
                 </div>
 
                 {/* Rating */}
+                <div
+                  itemProp="aggregateRating"
+                  itemScope
+                  itemType="https://schema.org/AggregateRating"
+                  style={{ display: "none" }}
+                >
+                  <span itemProp="ratingValue">{parseFloat(ratingValue)}</span>
+                  <span itemProp="reviewCount">{parseInt(ratingCount)}</span>
+                </div>
                 <RatingDisplay
                   ratingValue={parseFloat(ratingValue)}
                   ratingCount={parseInt(ratingCount)}
@@ -555,58 +566,18 @@ export default function ProductPageClient({
               </div>
             </div>
           </div>
-          <div className="my-8  rounded-2xl shadow-xl p-2">
+          <div className="my-2 lg:my-8 rounded-2xl shadow-xl p-2">
+            <div
+              className="text-gray-900 text-sm lg:text-xl text-justify lg:indent-30 px-2 lg:px-8"
+              itemProp="description"
+            >
+              {product.description}
+            </div>
+
             <Advantages />
           </div>
         </div>
 
-        {/* Company Advantages */}
-        {/* <div className="mt-8 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl shadow-xl p-6"> */}
-        {/* <Advantages /> */}
-        {/* <h2 className="text-2xl font-bold mb-6 text-center">
-            Почему выбирают нас
-          </h2> */}
-        {/* <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div className="bg-white p-6 rounded-xl shadow-sm">
-              <h3 className="font-bold text-lg mb-3">Опыт более 15 лет</h3>
-              <p className="text-gray-600">
-                Работаем на рынке электротехники с 2008 года
-              </p>
-            </div>
-            <div className="bg-white p-6 rounded-xl shadow-sm">
-              <h3 className="font-bold text-lg mb-3">
-                Собственное производство
-              </h3>
-              <p className="text-gray-600">
-                Изготавливаем продукцию на современных линиях
-              </p>
-            </div>
-            <div className="bg-white p-6 rounded-xl shadow-sm">
-              <h3 className="font-bold text-lg mb-3">Гарантия 3 года</h3>
-              <p className="text-gray-600">
-                Даем расширенную гарантию на всю продукцию
-              </p>
-            </div>
-            <div className="bg-white p-6 rounded-xl shadow-sm">
-              <h3 className="font-bold text-lg mb-3">6000+ клиентов</h3>
-              <p className="text-gray-600">
-                Обслужили более 6000 довольных клиентов
-              </p>
-            </div>
-            <div className="bg-white p-6 rounded-xl shadow-sm">
-              <h3 className="font-bold text-lg mb-3">Экологичные материалы</h3>
-              <p className="text-gray-600">
-                Используем только безопасные материалы
-              </p>
-            </div>
-            <div className="bg-white p-6 rounded-xl shadow-sm">
-              <h3 className="font-bold text-lg mb-3">Поддержка 24/7</h3>
-              <p className="text-gray-600">
-                Круглосуточная техническая поддержка
-              </p>
-            </div>
-          </div> */}
-        {/* </div> */}
         {/* Process Section */}
         <div className="mt-8 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl shadow-xl p-6  ">
           <div className="flex flex-col md:grid md:grid-cols-7 md:items-center md:gap-x-4">
@@ -675,16 +646,7 @@ export default function ProductPageClient({
       </div>
 
       {/* Tabs */}
-      <div className="mt-8" itemScope itemType="https://schema.org/Product">
-        <div
-          itemProp="aggregateRating"
-          itemScope
-          itemType="https://schema.org/AggregateRating"
-          style={{ display: "none" }} // Скрываем, так как виден виджет Яндекса
-        >
-          <span itemProp="ratingValue">{averageRating}</span>
-          <span itemProp="reviewCount">{totalReviews}</span>
-        </div>
+      <div className="mt-8">
         <div
           className="flex flex-wrap gap-5 mb-3 text-xs lg:text-2xl md:flex-nowrap"
           ref={characteristicsRef}

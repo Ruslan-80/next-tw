@@ -11,16 +11,14 @@ export default function DescriptionsTab({ description }) {
 
   return (
     <div className="bg-white shadow text-xs lg:text-base rounded-md p-6">
-      {/* <h2 className="text-xl font-semibold mb-4">Характеристики</h2> */}
       <div className="divide-y">
         <div className="py-3 grid">
           <span
             className="text-gray-900 text-sm lg:text-2xl text-justify indent-30"
-            itemProp="description"
+            // itemProp="description"
           >
             {description}
           </span>
-          {/* <span className="font-semibold">{attr.attributeValueName}</span> */}
         </div>
       </div>
     </div>
