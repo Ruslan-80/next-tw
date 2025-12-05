@@ -5,7 +5,8 @@ import JsonLd from "@/components/JsonLdComponent";
 
 export const metadata = {
   title: "Вопросы и ответы | ЭЛЕКТРОЩИТ-ПРО",
-  description: "Вопросы и ответы",
+  description:
+    "Вопросы и ответы на часто задаваемые вопросы о нашей продукции и услугах.",
 };
 
 export default function FAQ() {

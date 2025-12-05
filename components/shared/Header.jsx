@@ -92,8 +92,8 @@ export default function Header() {
     <header className=" top-0 z-50 bg-white shadow-md dark:bg-gray-800 dark:text-white">
       {/* Верхняя панель контактов */}
       <div className=" md:flex bg-gray-800 text-white py-2">
-        <div className="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center">
-          <nav className="flex space-x-4 text-sm mb-2 md:mb-0">
+        <div className="container mx-auto px-4 flex flex-col lg:flex-row justify-between items-center">
+          <nav className="flex space-x-4 text-xs md:text-sm mb-2 lg:mb-0">
             <Link
               href="/delivery"
               className="hover:text-red-300 transition-colors"
@@ -126,7 +126,7 @@ export default function Header() {
             </Link>
           </nav>
 
-          <div className="flex items-center space-x-4 text-sm">
+          <div className="flex items-center space-x-4 text-xs  md:text-sm">
             <Link
               href="mailto:info@electroshit-pro.ru"
               className="flex items-center gap-1 hover:text-red-300 transition-colors"
@@ -152,7 +152,7 @@ export default function Header() {
           <div className="flex items-center justify-between w-full md:w-auto md:order-none order-1">
             <CatalogButton />
             {/* Логотип */}
-            <Link href="/" className="mx-4">
+            <Link href="/" className="mx-1 md:mx-4">
               <Image src={Logo} alt="Electroshit-pro" priority />
             </Link>
             {/* Корзина */}
@@ -162,11 +162,11 @@ export default function Header() {
             >
               <div className="relative">
                 <ShoppingCart size={24} />
-                <span className="absolute -top-1 -right-7 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                <span className="absolute -top-1 -right-7 bg-red-500 text-white text-[8px] md:text-xs rounded-full w-3 md:w-5 h-3 md:h-5 flex items-center justify-center">
                   {count}
                 </span>
               </div>
-              <span className="flex justify-center text-sm font-semibold ml-1">
+              <span className="flex justify-center text-[8px] md:text-sm font-semibold ml-1">
                 {total.toLocaleString("ru-RU")} ₽
               </span>
             </Link>
@@ -193,10 +193,11 @@ export default function Header() {
                 aria-label="search"
                 aria-labelledby="search"
                 title="search"
+                name="search"
                 type="submit"
                 className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-red-500"
               >
-                <Search size={20} name="search" />
+                <Search size={20} />
               </button>
             </form>
 

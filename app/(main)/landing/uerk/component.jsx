@@ -70,10 +70,10 @@ export default function ComponentUERK() {
               <Badge variant="secondary" className="text-sm font-medium">
                 Модульное решение
               </Badge>
-              <h2 className="text-4xl lg:text-5xl font-bold text-balance leading-tight">
+              <h1 className="text-4xl lg:text-5xl font-bold text-balance leading-tight">
                 Устройство этажное распределительное с кабельным отсеком{" "}
                 <span className="text-accent">УЭРК</span>
-              </h2>
+              </h1>
               <p className="text-2xl text-muted-foreground text-balance leading-relaxed">
                 Современное модульное устройство для приема, распределения и
                 учета электроэнергии в многоквартирных домах с защитой от

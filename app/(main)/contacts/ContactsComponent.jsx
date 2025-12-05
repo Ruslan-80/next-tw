@@ -38,6 +38,31 @@ const ContactsComponent = () => {
     }
   };
 
+  // Данные компании
+  const details = [
+    { name: "Название компании", value: 'ООО "Капитал Строй"' },
+    { name: "ИНН", value: "7725361494" },
+    { name: "КПП", value: "772501001" },
+    { name: "ОГРН", value: "1177746248008" },
+    {
+      name: "Юридический адрес",
+      value: "115191, г. Москва, ул. Б. Тульская, дом № 2",
+    },
+    {
+      name: "Фактический адрес",
+      value: "127282, Москва, Чермянская улица, 1, стр. 1",
+    },
+    {
+      name: "Наименование банка",
+      value: 'МОСКОВСКИЙ ФИЛИАЛ АО КБ "МОДУЛЬБАНК"',
+    },
+    { name: "Расчетный счет", value: "40702810870010018082" },
+    { name: "БИК банка", value: "044525092" },
+    { name: "Корреспонденский счет", value: "30101810645250000092" },
+    { name: "Email", value: "info@electroshit-pro.ru" },
+    { name: "Телефон", value: "+7 (499) 390-14-67" },
+  ];
+
   return (
     <div className="container mx-auto p-6 space-y-10 text-2xl mt-4">
       {/* Заголовок */}
@@ -157,6 +182,90 @@ const ContactsComponent = () => {
             </div>
           </CardContent>
         </Card>
+      </section>
+      {/* <section className="bg-gray-50 dark:bg-gray-900 py-10 px-6 rounded-xl shadow-md">
+        <h2 className="text-2xl font-semibold mb-6">Реквизиты компании</h2>
+        <div className="flex items-center text-lg">
+          <span className="font-semibold">Название компании</span>
+
+          <span className="flex-1 mx-3 border-b border-dotted border-gray-400"></span>
+
+          <span>ООО «Ромашка»</span>
+        </div>
+      </section> */}
+      <section className="container mx-auto  lg:px-4 py-8 md:py-12">
+        <h2 className="text-2xl text-center font-bold mb-6 text-gray-800">
+          Реквизиты компании
+        </h2>
+
+        <div className="bg-secondary/30 shadow-lg rounded-xl p-2 lg:p-8">
+          <dl className="space-y-4">
+            {details.map((item, index) => (
+              <div
+                key={index}
+                // Используем flexbox для размещения элементов в строку
+                className="flex flex-col lg:flex-row items-baseline text-xl font-medium text-gray-700"
+              >
+                {/* Левый элемент (Название) */}
+                <dt className="text-sm lg:text-xl shrink-0 pr-2">
+                  {item.name}
+                </dt>
+
+                {/* Пространство, заполненное точками */}
+                <span
+                  // flex-grow позволяет элементу заполнить все доступное пространство
+                  // relative и z-10 нужны для позиционирования псевдоэлементов,
+                  // но в данном случае проще использовать border-b
+                  className="flex-grow border-b border-dotted border-gray-400 mx-1 mb-1"
+                >
+                  {/* Вместо span с border-b, который может быть неровным, 
+                    для точек лучше использовать стилизованный div или псевдоэлементы.
+                    Однако, для простоты и совместимости с Tailwind, 
+                    border-dotted является самым быстрым способом.
+                    
+                    Если нужен более точный эффект точек, можно использовать:
+                    className="flex-grow overflow-hidden whitespace-nowrap"
+                    style={{ letterSpacing: '4px' }}
+                */}
+                </span>
+
+                {/* Правый элемент (Значение) */}
+                <dd className="text-sm lg:text-xl shrink-0 lg:pl-2 text-left lg:text-right font-semibold text-gray-900">
+                  {item.value}
+                </dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+        <div className="text-center mt-8">
+          <Link
+            // Ссылка на файл в папке public
+            href="/Реквизиты.pdf"
+            // Атрибут download заставляет браузер скачать файл, а не открыть его
+            download
+            // Стиль Tailwind: синяя кнопка с тенью
+            className="inline-flex items-center justify-center px-8 py-3 
+                     border border-transparent text-base font-medium rounded-md 
+                     text-white bg-blue-600 shadow-lg 
+                     hover:bg-blue-700 transition duration-300 ease-in-out"
+          >
+            <svg
+              className="w-5 h-5 mr-2"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
+              ></path>
+            </svg>
+            Скачать реквизиты в формате PDF
+          </Link>
+        </div>
       </section>
 
       {/* Форма обратной связи */}

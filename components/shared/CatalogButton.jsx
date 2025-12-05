@@ -27,7 +27,7 @@ export default function CatalogButton() {
       <DropdownMenu open={open} onOpenChange={setOpen}>
         <DropdownMenuTrigger asChild>
           <button
-            className="inline-flex items-center justify-center px-4 py-2 mr-2 bg-primary text-white text-xl rounded-md"
+            className="inline-flex items-center justify-center px-4 py-2 mr-2 bg-primary text-white text-sm lg:text-xl rounded-md"
             aria-label="Open catalog menu"
           >
             <Menu
@@ -40,7 +40,7 @@ export default function CatalogButton() {
         </DropdownMenuTrigger>
 
         <DropdownMenuContent
-          className="w-56 bg-white text-xl border-none min-w-[var(--radix-dropdown-menu-trigger-width)]"
+          className="w-56 bg-white text-sm lg:text-xl border-none min-w-[var(--radix-dropdown-menu-trigger-width)]"
           align="start"
           sideOffset={5}
         >
@@ -48,7 +48,7 @@ export default function CatalogButton() {
             category.child?.length > 0 ? ( // Fixed typo
               <DropdownMenuSub key={category.id}>
                 <DropdownMenuSubTrigger
-                  className="flex text-xl items-center my-2 justify-between  hover:bg-blue-100 transition-colors"
+                  className="flex text-sm lg:text-xl items-center my-2 justify-between  hover:bg-blue-100 transition-colors"
                   onClick={() => handleNavigate(category.slug)}
                   aria-label={`Open ${category.name} submenu`}
                 >
@@ -61,7 +61,7 @@ export default function CatalogButton() {
                     <DropdownMenuItem
                       key={subcategory.id}
                       onClick={() => handleNavigate(subcategory.slug)}
-                      className="flex text-xl items-center my-2  hover:bg-blue-100 transition-colors"
+                      className="flex text-sm lg:text-xl items-center my-2  hover:bg-blue-100 transition-colors"
                     >
                       {subcategory.name}
                     </DropdownMenuItem>
@@ -72,7 +72,7 @@ export default function CatalogButton() {
               <DropdownMenuItem
                 key={category.id}
                 onClick={() => handleNavigate(category.slug)}
-                className="flex text-xl items-center my-2  hover:bg-blue-100 transition-colors"
+                className="flex text-sm lg:text-xl items-center my-2  hover:bg-blue-100 transition-colors"
               >
                 {category.name}
               </DropdownMenuItem>

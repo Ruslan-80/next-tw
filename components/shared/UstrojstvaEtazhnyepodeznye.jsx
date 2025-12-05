@@ -72,9 +72,10 @@ export function UstrojstvaEtazhnyepodeznyeTop() {
             УЭРН
           </Link>
           ) являются ключевыми элементами электрической инфраструктуры
-          многоквартирных домов. Эти устройства обеспечивают безопасный прием,
-          распределение и учет электроэнергии напряжением 220/380В, защищая
-          электрические линии от перегрузок и коротких замыканий.
+          многоквартирных домов. Эти металлические изделия обеспечивают
+          безопасный прием, распределение и учет электроэнергии напряжением
+          220/380В, защищая электрические линии от перегрузок и коротких
+          замыканий.
         </div>
       </div>
     </section>
@@ -98,14 +99,14 @@ export function UstrojstvaEtazhnyepodeznyeBottom() {
             Встраиваемые щиты
           </Link>
           <p className="text-gray-600 my-4">
-            Встраиваемые этажные щиты монтируются в специально подготовленную
+            Этажные щиты такого вида монтируются в специально подготовленную
             нишу в стене, обеспечивая максимально эстетичный внешний вид.
           </p>
-          <p className="text-gray-600 mb-4">Основные характеристики:</p>
+          <p className="text-gray-600 mb-4">Отличительные характеристики:</p>
           <ul className="list-disc list-inside space-y-1 text-gray-700">
-            <li>Только фасадная панель выступает из плоскости стены</li>
-            <li>Глубина встраиваемой части: 135-160 мм</li>
-            <li>Степень защиты: IP31</li>
+            <li>Только фасадная панель выступающая из плоскости</li>
+            <li>Глубина внедряемой части: 135-160 мм</li>
+            <li>Класс IP31</li>
             <li>Высота установки: от 400 до 2000 мм от пола</li>
           </ul>
         </CardContent>
@@ -121,14 +122,14 @@ export function UstrojstvaEtazhnyepodeznyeBottom() {
             Навесные щиты
           </Link>
           <p className="my-4 text-gray-600">
-            Навесные этажные щиты имеют полный коробчатый корпус и монтируются
+            Такие этажные щиты имеют полный коробчатый корпус и монтируются
             непосредственно на поверхность стены.
           </p>
           <p className="text-gray-600 mb-4">Особенности:</p>
           <ul className="list-disc list-inside space-y-1 text-gray-700">
             <li>Весь корпус располагается снаружи</li>
             <li>Простота установки и обслуживания</li>
-            <li>Не требуют создания ниши в стене</li>
+            <li>Не требуют создания ниши</li>
             <li>Угол открытия дверей до 105°</li>
           </ul>
         </CardContent>
@@ -144,8 +145,8 @@ export function UstrojstvaEtazhnyepodeznyeBottom() {
             Накладные щиты
           </Link>
           <p className="text-gray-600 my-4">
-            Накладные щиты этажные представляют собой лицевые панели без заднего
-            каркаса.
+            Щиты этажные такого исполнения представляют собой лицевые панели без
+            заднего каркаса.
           </p>
           <p className="text-gray-600 mb-4">Применение:</p>
           <ul className="list-disc list-inside space-y-1 text-gray-700">
@@ -166,9 +167,7 @@ export function UstrojstvaEtazhnyepodeznyeBottom() {
           <h2 className="text-3xl font-semibold text-orange-600">
             Конструктивные особенности слаботочных отсеков
           </h2>
-          <p className="mb-2 text-gray-600">
-            Расположение слаботочного отсека.
-          </p>
+          <p className="mb-2 text-gray-600">В зависимости от модификации.</p>
           <p className="text-gray-600">
             Слаботочный отсек может располагаться:
           </p>
@@ -178,7 +177,7 @@ export function UstrojstvaEtazhnyepodeznyeBottom() {
                 href="shity-etazhnye-she-so-slabotochnym-otsekom"
                 className="text-orange-500 hover:underline"
               >
-                Справа от основного отсека
+                Справа от основного отделения
               </Link>
             </li>
             <li>
@@ -187,7 +186,7 @@ export function UstrojstvaEtazhnyepodeznyeBottom() {
                 href="shity-etazhnye-she?slabotochnyj-otsek=Слева"
                 className="text-orange-500 hover:underline"
               >
-                Слева от основного отсека
+                Слева от основного
               </Link>
             </li>
             <li>
@@ -201,7 +200,7 @@ export function UstrojstvaEtazhnyepodeznyeBottom() {
             </li>
           </ul>
           <p className="text-gray-600">
-            Размеры отсеков слаботочного оборудования: 30х30х15 см каждый.
+            Размеры отделений слаботочного оборудования: 30х30х15 см каждый.
           </p>
         </CardContent>
       </Card>
@@ -212,14 +211,14 @@ export function UstrojstvaEtazhnyepodeznyeBottom() {
           <h2 className="text-2xl font-semibold text-orange-600">
             Назначение слаботочного отсека
           </h2>
-          <p className="text-gray-600">В отсеке размещаются:</p>
+          <p className="text-gray-600">В нем размещаются:</p>
           <ul className="list-disc list-inside space-y-1 text-gray-700">
-            <li>Телефонные линии и оборудование</li>
+            <li>Телефонные линии и приборы</li>
             <li>Радиотрансляционные сети</li>
             <li>Телевизионная аппаратура</li>
             <li>Интернет-кабели</li>
             <li>Системы охранной сигнализации</li>
-            <li>Домофонное оборудование</li>
+            <li>Домофонные агрегаты</li>
             <li>
               Оборудование АСКУЭ (автоматизированная система контроля и учета
               электропотребления)
@@ -242,13 +241,13 @@ export function UstrojstvaEtazhnyepodeznyeBottom() {
               Щиты с ревизионным окошком
             </Link>
             <p className="text-gray-600">
-              Ревизионные окошки обеспечивают возможность снятия показаний
-              счетчиков без открытия основной дверцы щита.
+              С ними обеспечивается возможность снятия показаний счетчиков без
+              открытия соответствующей дверцы щита.
             </p>
-            <p className="text-gray-600">Они могут быть:</p>
+            <p className="text-gray-600">Они бывают:</p>
             <ul className="list-disc list-inside space-y-1 text-gray-700">
-              <li>Застекленными для защиты от пыли и влаги</li>
-              <li>Различных размеров в зависимости от типа счетчика</li>
+              <li>Застекленными для предотвращения попадания пыли и влаги</li>
+              <li>Различных размеров для удобства снятия показаний</li>
               <li>Расположены напротив счетчиков</li>
               <li>Расположены напротив каждого прибора учета</li>
             </ul>
@@ -261,13 +260,11 @@ export function UstrojstvaEtazhnyepodeznyeBottom() {
               Щиты без ревизионного окошка
             </Link>
             <p className="text-gray-600">
-              Щиты без окошек имеют глухие металлические дверцы, что
+              Щиты такого плана имеют глухие металлические дверцы, что
               обеспечивает:
             </p>
             <ul className="list-disc list-inside space-y-1 text-gray-700">
-              <li>Повышенную степень защиты IP31</li>
-              <li>Более высокую безопасность оборудования</li>
-              <li>Необходимость открытия дверцы для снятия показаний</li>
+              <li>Более высокую безопасность автоматики и электропроводки</li>
             </ul>
           </div>
         </CardContent>
@@ -310,8 +307,8 @@ export function UstrojstvaEtazhnyepodeznyeBottom() {
             </li>
           </ul>
           <p className="text-gray-600">
-            Каждая дверца может быть оснащена индивидуальным замком для
-            разграничения доступа.
+            Каждая из них оснащена индивидуальным замком для разграничения
+            доступа.
           </p>
         </CardContent>
       </Card>
@@ -331,7 +328,7 @@ export function UstrojstvaEtazhnyepodeznyeBottom() {
                 href="shity-etazhnye-she-na-1-kvartiry"
                 className="text-orange-500 hover:underline"
               >
-                Щит этажный на 1 квартиру
+                Щит на 1
               </Link>
             </li>
             <li key={1}>
@@ -339,7 +336,7 @@ export function UstrojstvaEtazhnyepodeznyeBottom() {
                 href="shity-etazhnye-she-na-2-kvartiry"
                 className="text-orange-500 hover:underline"
               >
-                Щит этажный на 2 квартиры
+                Щит на 2
               </Link>
             </li>
             <li key={2}>
@@ -347,7 +344,7 @@ export function UstrojstvaEtazhnyepodeznyeBottom() {
                 href="shity-etazhnye-she-na-3-kvartiry"
                 className="text-orange-500 hover:underline"
               >
-                Щит этажный на 3 квартиры
+                Щит на 3
               </Link>
             </li>
             <li key={3}>
@@ -355,7 +352,7 @@ export function UstrojstvaEtazhnyepodeznyeBottom() {
                 href="shity-etazhnye-she-na-4-kvartiry"
                 className="text-orange-500 hover:underline"
               >
-                Щит этажный на 4 квартиры
+                Щит на 4
               </Link>
             </li>
             <li key={4}>
@@ -363,7 +360,7 @@ export function UstrojstvaEtazhnyepodeznyeBottom() {
                 href="shity-etazhnye-she-na-5-kvartir"
                 className="text-orange-500 hover:underline"
               >
-                Щит этажный на 5 квартир
+                Щит на 5
               </Link>
             </li>
             <li key={5}>
@@ -371,7 +368,7 @@ export function UstrojstvaEtazhnyepodeznyeBottom() {
                 href="shity-etazhnye-she-na-6-kvartir"
                 className="text-orange-500 hover:underline"
               >
-                Щит этажный на 6 квартир
+                Щит на 6
               </Link>
             </li>
             <li key={6}>
@@ -379,7 +376,7 @@ export function UstrojstvaEtazhnyepodeznyeBottom() {
                 href="shity-etazhnye-she-na-7-kvartir"
                 className="text-orange-500 hover:underline"
               >
-                Щит этажный на 7 квартир
+                Щит на 7
               </Link>
             </li>
             <li key={7}>
@@ -387,7 +384,7 @@ export function UstrojstvaEtazhnyepodeznyeBottom() {
                 href="shity-etazhnye-she-na-8-kvartir"
                 className="text-orange-500 hover:underline"
               >
-                Щит этажный на 8 квартир
+                Щит на 8
               </Link>
             </li>
             <li key={8}>
@@ -395,7 +392,7 @@ export function UstrojstvaEtazhnyepodeznyeBottom() {
                 href="shity-etazhnye-she-na-9-kvartir"
                 className="text-orange-500 hover:underline"
               >
-                Щит этажный на 9 квартир
+                Щит на 9
               </Link>
             </li>
             <li key={9}>
@@ -403,7 +400,7 @@ export function UstrojstvaEtazhnyepodeznyeBottom() {
                 href="shity-etazhnye-she-na-10-kvartir"
                 className="text-orange-500 hover:underline"
               >
-                Щит этажный на 10 квартир
+                Щит на 10
               </Link>
             </li>
             <li key={10}>
@@ -411,7 +408,7 @@ export function UstrojstvaEtazhnyepodeznyeBottom() {
                 href="shity-etazhnye-she?kolichestvo-kvartir-schetchikov=11"
                 className="text-orange-500 hover:underline"
               >
-                Щит этажный на 11 квартир
+                Щит на 11
               </Link>
             </li>
             <li key={11}>
@@ -419,7 +416,7 @@ export function UstrojstvaEtazhnyepodeznyeBottom() {
                 href="shity-etazhnye-she-na-12-kvartir"
                 className="text-orange-500 hover:underline"
               >
-                Щит этажный на 12 квартир
+                Щит на 12
               </Link>
             </li>
           </ul>
@@ -445,7 +442,7 @@ export function UstrojstvaEtazhnyepodeznyeBottom() {
       <Card>
         <CardContent className="p-6 space-y-6">
           <h2 className="text-2xl font-semibold text-orange-600">
-            Модульные устройства этажные распределительные
+            Модульные устройства этажные в подъезды
           </h2>
           <div>
             <Link
@@ -455,8 +452,8 @@ export function UstrojstvaEtazhnyepodeznyeBottom() {
               УЭРМ (Устройства этажные распределительные модульные)
             </Link>
             <p className="my-2 text-gray-600">
-              УЭРМ - современные модульные системы, состоящие из нескольких
-              блоков:
+              УЭРМ - современные электротехнические системы, состоящие из
+              нескольких блоков:
             </p>
             <ul className="list-disc list-inside space-y-1 text-gray-700">
               <li>Короб электротехнический (КЭТ) для силовых кабелей</li>
@@ -473,13 +470,13 @@ export function UstrojstvaEtazhnyepodeznyeBottom() {
               УЭРБ (Устройства этажные распределительные блочные)
             </Link>
             <p className="my-2 text-gray-600">
-              УЭРБ - блочные навесные устройства, представляющие собой
+              УЭРБ - блочные навесные конструкции, представляющие собой
               улучшенную версию УЭРМ:
             </p>
             <ul className="list-disc list-inside space-y-1 text-gray-700">
-              <li>Монтируются навесным способом без штробления стены</li>
+              <li>Монтируются упрощенным способом без штробления стены</li>
               <li>Обслуживают до 9 квартир</li>
-              <li>Степень защиты IP31</li>
+              <li>Класс IP31</li>
               <li>Разделены металлическими перегородками между отсеками</li>
             </ul>
           </div>
@@ -491,12 +488,12 @@ export function UstrojstvaEtazhnyepodeznyeBottom() {
               УЭРВ (Устройства этажные распределительные встроенные)
             </Link>
             <p className="my-2 text-gray-600">
-              УЭРВ - встроенные устройства современной модификации:
+              УЭРВ - встроенные электрощиты современной модификации:
             </p>
             <ul className="list-disc list-inside space-y-1 text-gray-700">
               <li>Монтируются в специальную нишу в стене</li>
               <li>Обслуживают до 6 квартир</li>
-              <li>Степень защиты IP31</li>
+              <li>Степень IP31</li>
               <li>Разделены металлическими перегородками между отсеками</li>
             </ul>
           </div>
@@ -508,7 +505,7 @@ export function UstrojstvaEtazhnyepodeznyeBottom() {
               УЭРК (Устройства этажные распределительные с кабельным отсеком)
             </Link>
             <p className="my-2 text-gray-600">
-              УЭРК - устройства с отдельным кабельным отсеком:
+              УЭРК - изготавливаются с отдельным кабельным отсеком:
             </p>
             <ul className="list-disc list-inside space-y-1 text-gray-700">
               <li>Обслуживают до 6 квартир</li>
@@ -524,7 +521,7 @@ export function UstrojstvaEtazhnyepodeznyeBottom() {
             >
               УЭРН (Устройства этажные распределительные навесные)
             </Link>
-            <p className="my-2 text-gray-600">УЭРН - навесные устройства:</p>
+            <p className="my-2 text-gray-600"></p>
             <ul className="list-disc list-inside space-y-1 text-gray-700">
               <li>Устанавливаются на стену лестничной площадки</li>
               <li>Рассчитаны на обслуживание до 6 квартир</li>
@@ -544,7 +541,7 @@ export function UstrojstvaEtazhnyepodeznyeBottom() {
             Технические характеристики
           </h2>
           <div>
-            <h3 className="font-semibold text-gray-800">Основные параметры</h3>
+            <h3 className="font-semibold text-gray-800">Параметры</h3>
             <ul className="list-disc list-inside space-y-1 text-gray-700">
               <li>Номинальное напряжение: 220-380В</li>
               <li>Частота тока: 50 Гц</li>

@@ -168,22 +168,22 @@ export default function Blog() {
 
         {/* Hero Section */}
         <section className=" bg-gray-100 ">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
+          <div className="container mx-auto px-4 lg:px-8 py-6 lg:py-24">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
               {/* Left Content */}
               <div className="flex flex-col justify-center">
                 <div className="mb-6">
-                  <span className="text-gray-600 text-xl">
+                  <span className="text-gray-600 text-sm lg:text-xl">
                     {metadata.date} — Алексей Шитов
                   </span>
                 </div>
 
-                <h1 className="text-4xl sm:text-4xl lg:text-6xl font-bold leading-tight mb-8 text-balance">
+                <h1 className="text-3xl lg:text-6xl font-bold leading-tight mb-8 text-balance">
                   Щит этажный ЩЭ: расключение, монтаж и выбор - полное
                   руководство 2025 года
                 </h1>
 
-                <p className="text-2xl text-gray-700 leading-relaxed mb-8 text-justify">
+                <p className="text-xl lg:text-2xl text-gray-700 leading-relaxed mb-8 text-justify">
                   <Link
                     href="/catalog/shity-etazhnye-she"
                     className="text-blue-600 font-semibold hover:text-blue-700 transition-colors"
@@ -205,7 +205,7 @@ export default function Blog() {
                   <Knopka props="Получить консультацию" />
                   <Link
                     href={"/catalog/shity-etazhnye-she"}
-                    className="px-8 py-3 border-2 border-blue-600 text-blue-600 hover:bg-blue-50 font-semibold rounded-lg transition-colors text-xl"
+                    className="px-4 lg:px-8 py-3 border-2 border-blue-600 text-blue-600 hover:bg-blue-50 font-semibold rounded-lg transition-colors text-xl"
                   >
                     Смотреть каталог
                   </Link>
@@ -228,12 +228,12 @@ export default function Blog() {
         </section>
 
         {/* Main Content */}
-        <section className="bg-white py-20 lg:py-32">
+        <section className="bg-white py-6 lg:py-12">
           <div>
             <div className="max-w-6xl mx-auto space-y-16  px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
               {/* Section 1 */}
               <section>
-                <h2 className="text-4xl sm:text-5xl font-bold mb-8 text-blue-600">
+                <h2 className="text-3xl lg:text-5xl font-bold mb-8 text-blue-600">
                   Что такое щит этажный ЩЭ
                 </h2>
                 <p className="text-2xl text-gray-700 leading-relaxed mb-8 text-justify">
@@ -250,7 +250,7 @@ export default function Blog() {
                   размещения слаботочных сетей.
                 </p>
 
-                <h3 className="text-3xl font-semibold mb-6 text-gray-900">
+                <h3 className="text-2xl lg:text-3xl font-semibold mb-6 text-gray-900">
                   Основные функции этажного щита
                 </h3>
                 <ul className="space-y-4 pl-4">
@@ -276,7 +276,7 @@ export default function Blog() {
 
               {/* Section 2 */}
               <section className="pt-8 border-t border-gray-200">
-                <h2 className="text-4xl sm:text-5xl font-bold mb-8 text-blue-600">
+                <h2 className="text-3xl lg:text-4xl font-bold mb-8 text-blue-600">
                   Конструкция и устройство ЩЭ
                 </h2>
 
@@ -417,7 +417,7 @@ export default function Blog() {
                       <ul className="space-y-3">
                         {section.items.map((item, i) => (
                           <li
-                            className="text-xl text-gray-700 flex gap-3"
+                            className="text-sm lg:text-xl text-gray-700 flex gap-3"
                             key={i}
                           >
                             <span className="text-blue-600 flex-shrink-0">
@@ -434,7 +434,7 @@ export default function Blog() {
               </section>
               {/* Технические характеристики ЩЭ */}
               <section className="mb-10">
-                <h2 className="text-4xl sm:text-5xl font-bold mb-8 text-blue-600 dark:text-blue-400">
+                <h2 className="text-3xl lg:text-4xl font-bold mb-8 text-blue-600 dark:text-blue-400">
                   Технические характеристики ЩЭ
                 </h2>
                 <div className="space-y-8">
@@ -470,7 +470,7 @@ export default function Blog() {
                   ].map((section, idx) => (
                     <div
                       key={idx}
-                      className="bg-gray-50 border border-blue-200 rounded-lg p-8 hover:border-blue-300 transition-colors"
+                      className="bg-gray-50 border border-blue-200 rounded-lg p-4 lg:p-8 hover:border-blue-300 transition-colors"
                     >
                       <h4 className="text-2xl font-semibold mb-6 text-blue-700">
                         {section.title}
@@ -494,14 +494,14 @@ export default function Blog() {
               </section>
               {/* Расключение этажного щита: пошаговая инструкция */}
               <section className="mb-10">
-                <h2 className="text-4xl sm:text-5xl font-bold mb-8 text-blue-600">
+                <h2 className="text-3xl lg:text-4xl font-bold mb-8 text-blue-600">
                   Расключение этажного щита: пошаговая инструкция
                 </h2>
 
-                <h3 className="text-3xl font-semibold mb-6 text-gray-900">
+                <h3 className="text-2xl lg:text-3xl font-semibold mb-6 text-gray-900">
                   Подготовительные работы
                 </h3>
-                <p className="text-gray-700 dark:text-gray-300 mb-8 text-2xl leading-relaxed text-justify">
+                <p className="text-gray-700 dark:text-gray-300 mb-8 text-xl lg:text-2xl leading-relaxed text-justify">
                   Перед началом расключения необходимо полностью обесточить щит
                   и убедиться в отсутствии напряжения. Составляется подробная
                   схема подключения с указанием всех потребителей и их
@@ -513,7 +513,7 @@ export default function Blog() {
                     <h4 className="text-2xl font-medium text-gray-900 dark:text-white mb-8">
                       Необходимый инструмент
                     </h4>
-                    <ul className="text-2xl list-disc list-inside space-y-1 pl-4 text-gray-700 dark:text-gray-300 mb-8">
+                    <ul className="text-xl lg:text-2xl list-disc list-inside space-y-1 pl-4 text-gray-700 dark:text-gray-300 mb-8">
                       <li>Крестовые и шлицевые отвертки различных размеров</li>
                       <li>Кусачки, стрипперы для зачистки проводов</li>
                       <li>Пресс-клещи для опрессовки наконечников НШВИ</li>
@@ -526,7 +526,7 @@ export default function Blog() {
                     <h4 className="text-2xl font-medium text-gray-900 dark:text-white mb-8">
                       Материалы для монтажа
                     </h4>
-                    <ul className="text-2xl list-disc list-inside space-y-1 pl-4 text-gray-700 dark:text-gray-300 mb-8">
+                    <ul className="text-xl lg:text-2xl list-disc list-inside space-y-1 pl-4 text-gray-700 dark:text-gray-300 mb-8">
                       <li>
                         Автоматические выключатели соответствующих номиналов
                       </li>
@@ -548,15 +548,15 @@ export default function Blog() {
                   </div>
                 </div>
 
-                <h3 className="text-3xl font-semibold text-gray-800 dark:text-gray-200 mb-8 mt-8">
+                <h3 className="text-2xl lg:text-3xl font-semibold text-gray-800 dark:text-gray-200 mb-8 mt-8">
                   Основные этапы расключения
                 </h3>
-                <ol className="text-2xl leading-relaxed list-inside space-y-4 pl-4 text-gray-700 dark:text-gray-300 mt-8 mb-8">
+                <ol className="text-2xl leading-relaxed list-inside space-y-4 lg:pl-4 text-gray-700 dark:text-gray-300 mt-8 mb-8">
                   <li>
                     <span className="font-medium text-gray-900 dark:text-white mt-8 mb-8">
                       Этап 1: Разделение PEN проводника
                     </span>
-                    <p className="mb-8 mt-4 text-justify">
+                    <p className="text-xl lg:text-2xl mb-8 mt-4 text-justify">
                       Критически важный этап — правильное разделение
                       совмещенного PEN проводника на рабочий нуль N и защитное
                       заземление PE. Сечение нулевого проводника стояка должно
@@ -571,7 +571,7 @@ export default function Blog() {
                     <span className="font-medium text-gray-900 dark:text-white">
                       Этап 2: Установка модульного оборудования
                     </span>
-                    <p className="mb-8 mt-4 text-justify">
+                    <p className="text-xl lg:text-2xl mb-8 mt-4 text-justify">
                       На DIN-рейки устанавливаются вводные автоматические
                       выключатели для каждой квартиры, обычно двухполюсные на
                       50А. Монтируются групповые автоматы и УЗО согласно
@@ -585,7 +585,7 @@ export default function Blog() {
                     <span className="font-medium text-gray-900 dark:text-white">
                       Этап 3: Выполнение внутренних соединений
                     </span>
-                    <p className="mb-8 mt-4 text-justify">
+                    <p className="text-xl lg:text-2xl mb-8 mt-4 text-justify">
                       Фазные соединения между автоматами выполняются с помощью
                       соединительных гребенок (шинопроводов). Это обеспечивает
                       надежный контакт и аккуратный внешний вид сборки. Все PE
@@ -599,7 +599,7 @@ export default function Blog() {
                     <span className="font-medium text-gray-900 dark:text-white">
                       Этап 4: Подключение отходящих линий
                     </span>
-                    <div className="mb-8 mt-4 text-justify">
+                    <div className="text-xl lg:text-2xl mb-8 mt-4 text-justify">
                       Кабели от каждой квартиры подключаются к соответствующим
                       автоматам с обязательной маркировкой всех проводников:
                       <ul className="list-disc list-inside space-y-1 pl-6 mt-4 mb-8">
@@ -616,16 +616,16 @@ export default function Blog() {
               </section>
               {/* Схемы подключения этажных щитов */}
               <section className="mb-10">
-                <h2 className="text-4xl sm:text-5xl font-bold mb-8 text-blue-600 dark:text-blue-400">
+                <h2 className="lg:text-4xl text-3xl font-bold mb-8 text-blue-600 dark:text-blue-400">
                   Схемы подключения этажных щитов
                 </h2>
 
                 <div className="space-y-8">
-                  <div className="bg-gray-50 border border-blue-200 rounded-lg p-8 hover:border-blue-300 transition-colors">
+                  <div className="bg-gray-50 border border-blue-200 rounded-lg p-4 lg:p-8 hover:border-blue-300 transition-colors">
                     <h3 className="text-2xl font-semibold mb-6 text-blue-700">
                       Однофазная схема подключения
                     </h3>
-                    <p className="text-gray-700 dark:text-gray-300 text-2xl leading-relaxed mb-8">
+                    <p className="text-gray-700 dark:text-gray-300 text-xl lg:text-2xl leading-relaxed mb-8">
                       В однофазной схеме от стояка приходит один фазный провод,
                       нулевой рабочий и защитный проводники. После вводного
                       двухполюсного автомата устанавливается счетчик
@@ -642,17 +642,17 @@ export default function Blog() {
                     </p>
                   </div>
 
-                  <div className="bg-gray-50 border border-blue-200 rounded-lg p-8 hover:border-blue-300 transition-colors">
+                  <div className="bg-gray-50 border border-blue-200 rounded-lg p-4 lg:p-8 hover:border-blue-300 transition-colors">
                     <h3 className="text-2xl font-semibold mb-6 text-blue-700">
                       Трехфазная схема подключения
                     </h3>
-                    <p className="text-gray-700 dark:text-gray-300 mb-3 text-2xl leading-relaxed">
+                    <p className="text-gray-700 dark:text-gray-300 mb-3 text-xl lg:text-2xl leading-relaxed">
                       При трехфазном питании от стояка приходят три фазы,
                       нулевой рабочий и защитный проводники. Устанавливается
                       трехполюсный вводный автомат и трехфазный счетчик
                       электроэнергии.
                     </p>
-                    <p className="text-gray-700 dark:text-gray-300 mb-3 text-2xl leading-relaxed">
+                    <p className="text-gray-700 dark:text-gray-300 mb-3 text-xl lg:text-2xl leading-relaxed">
                       Нагрузки равномерно распределяются по трем фазам — каждая
                       квартира получает одну фазу напряжением 220В. Мощные
                       потребители типа электроплит могут подключаться трехфазно.
@@ -663,7 +663,7 @@ export default function Blog() {
 
               {/* Section 3 */}
               <section className="pt-8 border-t border-gray-200">
-                <h2 className="text-4xl sm:text-5xl font-bold mb-8 text-blue-600">
+                <h2 className="text-3xl lg:text-4xl font-bold mb-8 text-blue-600">
                   Типичные ошибки при монтаже ЩЭ
                 </h2>
 
@@ -784,13 +784,13 @@ export default function Blog() {
               </section>
               {/* Стоимость и выбор поставщика */}
               <section className="mb-10">
-                <h2 className="text-4xl sm:text-5xl font-bold mb-8 text-blue-600">
+                <h2 className="text-3xl lg:text-4xl font-bold mb-8 text-blue-600">
                   Стоимость и выбор поставщика
                 </h2>
                 <h3 className="text-3xl font-semibold text-gray-800 dark:text-gray-200 mb-8">
                   Ценовые категории
                 </h3>
-                <p className="text-gray-700 dark:text-gray-300 mb-4 text-2xl leading-relaxed">
+                <p className="text-gray-700 dark:text-gray-300 mb-4 text-xl lg:text-2xl leading-relaxed">
                   В нашем магазине вы сможете приобрести как полноценные щиты
                   этажные, так и накладки на щиты щэ:
                 </p>
@@ -831,11 +831,11 @@ export default function Blog() {
               {/* Conclusion */}
 
               <section className="pt-12 border-t border-gray-200 text-justify">
-                <h2 className="text-4xl sm:text-5xl font-bold mb-8 text-blue-600">
+                <h2 className="text-2xl lg:text-4xl font-bold mb-8 text-blue-600">
                   Заключение
                 </h2>
-                <div className="bg-gradient-to-r from-blue-50 to-gray-50 border border-blue-200 rounded-lg p-8">
-                  <p className="text-2xl text-gray-700 leading-relaxed mb-8">
+                <div className="bg-gradient-to-r from-blue-50 to-gray-50 border border-blue-200 rounded-lg p-4 lg:p-8">
+                  <p className="text-xl lg:text-2xl text-gray-700 leading-relaxed mb-8">
                     Этажный щит ЩЭ является критически важным элементом системы
                     электроснабжения, требующим профессионального подхода к
                     проектированию, монтажу и эксплуатации. Правильное
@@ -843,7 +843,7 @@ export default function Blog() {
                     обеспечивает безопасную и надежную работу электроустановки
                     на протяжении всего срока службы.
                   </p>
-                  <p className="text-2xl font-semibold text-blue-700 leading-relaxed">
+                  <p className="text-xl lg:text-2xl font-semibold text-blue-700 leading-relaxed">
                     Экономия на качестве оборудования и квалификации монтажников
                     недопустима, так как может привести к серьезным аварийным
                     ситуациям. Инвестиции в качественный этажный щит и
@@ -852,13 +852,13 @@ export default function Blog() {
                   </p>
                 </div>
               </section>
-              <section className="pt-12 border-t border-gray-200 text-justify">
-                <h2 className="text-4xl sm:text-5xl font-bold mb-8 text-blue-600">
+              <section className="lg:pt-12 border-t border-gray-200 text-justify">
+                <h2 className="lg:text-4xl text-2xl font-bold mb-8 text-blue-600">
                   Список литературы:
                 </h2>
 
-                <div className="bg-gradient-to-r from-blue-50 to-gray-50 border border-blue-200 rounded-lg p-8">
-                  <ul className="list-decimal space-y-2 pl-12 text-gray-700 dark:text-gray-300 text-xl leading-relaxed ">
+                <div className="bg-gradient-to-r from-blue-50 to-gray-50 border border-blue-200 rounded-lg lg:p-8">
+                  <ul className="list-decimal space-y-2 py-4 px-8 lg:pl-12 text-gray-700 dark:text-gray-300 text-xl leading-relaxed ">
                     <li>
                       Головщиков В. О., Алтухов И. В., Епифанов А. Д. Монтаж
                       электрооборудования и средств автоматизации: учеб.
@@ -882,8 +882,8 @@ export default function Blog() {
         </section>
 
         {/* CTA Section */}
-        <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32 text-center bg-gradient-to-b from-white to-gray-50">
-          <h2 className="text-4xl sm:text-5xl font-bold mb-8 text-gray-900">
+        <section className="container mx-auto px-4 lg:px-8 py-20 lg:py-32 text-center bg-gradient-to-b from-white to-gray-50">
+          <h2 className="lg:text-4xl text-3xl font-bold mb-8 text-gray-900">
             Нужна консультация?
           </h2>
           <p className="text-2xl text-gray-700 mb-8 max-w-2xl mx-auto">

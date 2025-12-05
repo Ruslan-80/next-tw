@@ -23,7 +23,7 @@ export default function ReviewsTab() {
           title="Yandex Reviews Widget" // Рекомендуется добавить для доступности
         ></iframe>
       </div>
-      <h2 className="text-xl font-bold mb-4 flex items-center">
+      <div className="text-xl font-bold mb-4 flex items-center">
         Отзывы
         <div className="flex ml-2">
           {[1, 2, 3, 4, 5].map((star) => (
@@ -44,7 +44,7 @@ export default function ReviewsTab() {
             </svg>
           ))}
         </div>
-      </h2>
+      </div>
 
       <div className="bg-blue-50 p-4 rounded-md mb-6">
         <p className="text-center text-gray-600">

@@ -15,7 +15,7 @@ import {
 export default function Footer() {
   return (
     <footer
-      className="bg-gray-900 text-white pt-12 pb-6"
+      className="bg-gray-900 text-white pt-12 pb-6 text-sm lg:text-xl"
       itemScope
       itemType="http://schema.org/Store"
     >
@@ -36,10 +36,10 @@ export default function Footer() {
                 width={200}
                 height={80}
                 alt="Электрощит-ПРО"
-                className="h-12 w-auto mb-4"
+                className="h-12 w-auto mb-4 bg-white px-4 rounded-lg"
               />
             </Link>
-            <p className="text-gray-400 mb-4 text-sm">
+            <p className="text-gray-400 mb-4 text-xs md:text-sm">
               Комплексные поставки электротехнических щитов и оборудования для
               жилых и коммерческих объектов.
             </p>
@@ -92,7 +92,7 @@ export default function Footer() {
 
           {/* Каталог */}
           <div>
-            <h3 className="text-lg font-semibold mb-4 border-b border-gray-700 pb-2">
+            <h3 className="text-xl font-semibold mb-4 border-b border-gray-700 pb-2">
               Каталог
             </h3>
             <ul className="space-y-2">
@@ -163,7 +163,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  href="/bonus"
+                  href="/promotions"
                   className="text-gray-400 hover:text-red-500 transition-colors"
                 >
                   Бонусная программа
@@ -198,7 +198,7 @@ export default function Footer() {
 
           {/* Соцсети и подписка */}
           <div>
-            <h3 className="text-lg font-semibold mb-4 border-b border-gray-700 pb-2">
+            <h3 className="text-xl font-semibold mb-4 border-b border-gray-700 pb-2">
               Подписка
             </h3>
             <p className="text-gray-400 mb-4">Подпишитесь на новости и акции</p>
@@ -242,7 +242,7 @@ export default function Footer() {
                   <Twitter size={20} />
                 </a>
                 <a
-                  href="#"
+                  href="https://www.youtube.com/@electroshit-pro/shorts"
                   className="bg-gray-800 p-2 rounded-full hover:bg-red-600 transition-colors"
                 >
                   <Youtube size={20} />
@@ -263,10 +263,11 @@ export default function Footer() {
               офертой. Стоимость товаров и их наличие не гарантируются.
             </div>
             <div className="text-gray-500 text-sm mb-4 md:mb-0">
-              Отправляя свой запрос на адреса электронной почты sale@el-com.ru и
-              info@electroshit-pro.ru (в случае заказа на сайте), Вы даете свое
-              согласие на обработку персональных данных, файлов cookie и
-              рассылку информационных, рекламных и новостных сообщений, согласно{" "}
+              Отправляя свой запрос на адреса электронной почты
+              sale@electroshit-pro.ru и info@electroshit-pro.ru (в случае заказа
+              на сайте), Вы даете свое согласие на обработку персональных
+              данных, файлов cookie и рассылку информационных, рекламных и
+              новостных сообщений, согласно{" "}
               <Link
                 href="/privacy"
                 className="text-gray-500 hover:text-white transition-colors text-sm"
@@ -275,7 +276,7 @@ export default function Footer() {
               </Link>{" "}
             </div>
           </div>
-          <div className="flex space-x-6">
+          <div className="flex flex-col md:flex-row space-x-6">
             <Link
               href="/privacy"
               className="text-gray-500 hover:text-white transition-colors text-sm"

@@ -42,7 +42,6 @@ export default function ProductPageClient({
   const { handleFormSubmit, error } = useFormSubmit();
   const characteristicsRef = useRef(null);
 
-
   const handleButtonClick = (content) => {
     setModalContent(content);
     setIsModalOpen(true);
@@ -143,9 +142,9 @@ export default function ProductPageClient({
 
   return (
     <main
-      className="container mx-auto py-8 dark:bg-gray-900 dark:text-white"
       itemScope
       itemType="https://schema.org/Product"
+      className="container mx-auto py-8 dark:bg-gray-900 dark:text-white"
     >
       <h1
         className="lg:text-3xl 
@@ -224,15 +223,22 @@ export default function ProductPageClient({
             {/* Product Details */}
             <div className="lg:w-1/2 p-6 bg-gray-50 dark:bg-gray-900 dark:text-white">
               <meta itemProp="sku" content={product.article || "N/A"} />
-              <meta itemProp="brand" content="Электрощит PRO" />
+              <meta
+                itemProp="url"
+                content={`https://electroshit-pro.ru/product/${product.slug}`}
+              />
+              <div
+                itemProp="brand"
+                itemScope
+                itemType="https://schema.org/Brand"
+              >
+                <meta itemProp="name" content="Электрощит PRO" />
+              </div>
+              {/* <meta itemProp="brand" content="Электрощит PRO" /> */}
               {/* <div className="hidden" itemProp="description">
                 {product.description}
               </div> */}
               <div className="mb-8">
-                {/* <h1 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-4">
-                  {product.name}
-                </h1> */}
-
                 {/* Price and Actions */}
                 <div className="flex flex-wrap items-center gap-4 mb-6">
                   <div
@@ -255,6 +261,10 @@ export default function ProductPageClient({
                           ? "http://schema.org/InStock"
                           : "http://schema.org/PreOrder"
                       }
+                    />
+                    <link
+                      itemProp="itemCondition"
+                      href="https://schema.org/NewCondition"
                     />
                     {product.basePrice
                       ? `${product.basePrice.toLocaleString("ru-RU")} руб.`
@@ -492,7 +502,6 @@ export default function ProductPageClient({
                 <div className="flex flex-col md:flex-col justify-between gap-4 text-xl">
                   <div className="text-red-700">
                     <span className="font-semibold">Заказ от 10 штук</span>{" "}
-                    
                   </div>
                   <div className="text-gray-700">
                     <span className="font-semibold">Срок изготовления:</span>{" "}
@@ -604,7 +613,9 @@ export default function ProductPageClient({
             {/* Этап 1 */}
             <div className="flex flex-col items-center text-center p-4">
               <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mb-3">
-                <span className="text-xl lg:text-2xl font-bold text-blue-600">1</span>
+                <span className="text-xl lg:text-2xl font-bold text-blue-600">
+                  1
+                </span>
               </div>
               <h3 className="font-bold text-gray-600 mb-2">Заявка</h3>
               <p className="text-gray-600">
@@ -622,9 +633,7 @@ export default function ProductPageClient({
               <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mb-3">
                 <span className="text-2xl font-bold text-blue-600">2</span>
               </div>
-              <h3 className="font-bold text-gray-600 mb-2">
-                Консультация
-              </h3>
+              <h3 className="font-bold text-gray-600 mb-2">Консультация</h3>
               <p className="text-gray-600">
                 Наш специалист уточнит детали заказа
               </p>
@@ -640,9 +649,7 @@ export default function ProductPageClient({
               <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mb-3">
                 <span className="text-2xl font-bold text-blue-600">3</span>
               </div>
-              <h3 className="font-bold text-gray-600 mb-2">
-                Производство
-              </h3>
+              <h3 className="font-bold text-gray-600 mb-2">Производство</h3>
               <p className="text-gray-600">
                 Изготовление продукции по вашему заказу
               </p>
@@ -748,7 +755,7 @@ export default function ProductPageClient({
             className={`tab-content ${
               activeTab !== "description" ? "seo-hidden" : ""
             }`}
-            itemProp="description"
+            // itemProp="description"
           >
             <DescriptionsTab description={product.description || []} />
           </div>

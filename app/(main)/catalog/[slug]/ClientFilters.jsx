@@ -152,7 +152,7 @@ export default function ClientFilters({
           className="flex items-center gap-2 w-full justify-between"
           variant="outline"
         >
-          <div className="flex items-center">
+          <span className="flex items-center">
             <Filter size={18} className="mr-2" />
             Фильтры
             {selectedFiltersCount > 0 && (
@@ -160,7 +160,7 @@ export default function ClientFilters({
                 {selectedFiltersCount}
               </span>
             )}
-          </div>
+          </span>
           {isMobileMenuOpen ? (
             <ChevronUp size={18} />
           ) : (
@@ -224,14 +224,14 @@ export default function ClientFilters({
                   className="border-b border-gray-200 last:border-0 "
                 >
                   <AccordionTrigger className="py-3 hover:no-underline">
-                    <div className="flex items-center">
+                    <span className="flex items-center">
                       <span className="mr-2">
                         {getIconForCategory(attributeSlug)}
                       </span>
                       <span className="font-medium text-gray-800 dark:bg-gray-800 dark:text-white">
                         {name}
                       </span>
-                    </div>
+                    </span>
                   </AccordionTrigger>
                   <AccordionContent className="pt-2 pb-4">
                     <div className="grid grid-cols-2 gap-2">
