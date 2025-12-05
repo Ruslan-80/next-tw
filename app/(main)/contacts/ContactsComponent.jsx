@@ -240,7 +240,7 @@ const ContactsComponent = () => {
         <div className="text-center mt-8">
           <Link
             // Ссылка на файл в папке public
-            href="/Реквизиты.pdf"
+            href="/docs/kapital_stroy.pdf"
             // Атрибут download заставляет браузер скачать файл, а не открыть его
             download
             // Стиль Tailwind: синяя кнопка с тенью
