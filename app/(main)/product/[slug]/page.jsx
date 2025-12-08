@@ -1,8 +1,10 @@
+import { cache } from "react";
 import { prisma } from "../../../../lib/prisma";
 import ProductPageClient from "./ProductPageClient";
 import Breadcrumbs from "../../../../components/Breadcrumbs";
 import JsonLd from "@/components/JsonLdComponent";
 import getProductJsonLd from "@/lib/productJsonLd";
+import metaDescriptions from "@/app/data/metaDescriptions.json";
 
 // Функция для получения данных о продукте
 async function getProductData(slug) {
@@ -29,28 +31,50 @@ async function getProductData(slug) {
     },
   });
 }
+// Функция для получения контекста страницы продукта
+
+const getProductPageContext = cache(async (slug) => {
+  const product = await getProductData(slug);
+
+  if (!product) return null;
+
+  const pool = metaDescriptions.metaDescriptions.product;
+  // Теперь этот random сработает только 1 раз за запрос
+  const randomDescription = pool[Math.floor(Math.random() * pool.length)];
+
+  const ratingValue = (Math.random() * (5 - 4) + 4).toFixed(1);
+  const ratingCount = Math.floor(Math.random() * (100 - 10 + 1)) + 10;
+
+  return {
+    product,
+    randomDescription,
+    ratingValue,
+    ratingCount,
+  };
+});
 
 // Функция для генерации метаданных
 export async function generateMetadata({ params }) {
   const resolvedParams = await params;
   const { slug } = resolvedParams;
+  // const { slug } = await params;
 
   const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL;
 
-  // Получаем данные о продукте
-  const product = await getProductData(slug);
+  const ctx = await getProductPageContext(slug);
 
-  if (!product) {
+  if (!ctx) {
     return {
       title: "Товар не найден | ЭЛЕКТРОЩИТ-ПРО",
       description: "Запрашиваемый товар не существует.",
     };
   }
 
+  const { product, randomDescription } = ctx;
+
   const title = product.titleSeo || `${product.name} | ЭЛЕКТРОЩИТ-ПРО`;
   const description =
-    product.descriptionSeo ||
-    `Купить ${product.name} в категории ${product.category.name} по выгодной цене. Быстрая доставка и высокое качество.`;
+    product.descriptionSeo || `Купить ${product.name} ${randomDescription}`;
   const canonicalUrl = `${BASE_URL}/product/${slug}`;
   const imageUrl =
     `${BASE_URL}${product.mediaFiles[0]?.url}` || "/default-og-image.jpg"; // Используем первое изображение или заглушку
@@ -91,15 +115,14 @@ export async function generateMetadata({ params }) {
 export default async function Page({ params }) {
   const resolvedParams = await params;
   const { slug } = resolvedParams;
+  // const { slug } = await params;
 
-  // Получаем данные о продукте
-  const product = await getProductData(slug);
+  const ctx = await getProductPageContext(slug);
+  if (!ctx) return <p className="text-center py-8">Товар не найден</p>;
 
-  if (!product) {
-    return <p className="text-center py-8">Товар не найден</p>;
-  }
+  const { product, randomDescription, ratingValue, ratingCount } = ctx;
 
-  // Формируем цепочку хлебных крошек
+  // Далее всё как было
   const breadcrumbs = [];
   let currentCategory = product.category;
   while (currentCategory) {
@@ -109,19 +132,12 @@ export default async function Page({ params }) {
     });
     currentCategory = currentCategory.parent;
   }
-  breadcrumbs.push({
-    name: product.name,
-    slug: product.slug,
-  });
-
-  // Генерация случайных рейтингов
-  const ratingValue = (Math.random() * (5 - 4) + 4).toFixed(1); // от 4.0 до 5.0
-  const ratingCount = Math.floor(Math.random() * (100 - 10 + 1)) + 10; // от 10 до 100
 
   const productJsonLd = getProductJsonLd(
     product,
     slug,
-    currentCategory,
+    randomDescription,
+    product.category,
     ratingValue,
     ratingCount
   );
@@ -131,6 +147,7 @@ export default async function Page({ params }) {
       <JsonLd data={productJsonLd} script_name="product-jsonld" />
       <div className="container mx-auto px-4 dark:bg-gray-900 dark:text-white">
         <Breadcrumbs items={breadcrumbs} />
+
         <ProductPageClient
           product={product}
           ratingValue={ratingValue}
