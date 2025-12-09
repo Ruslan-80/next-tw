@@ -173,10 +173,8 @@ const ContactsComponent = () => {
               {/* Iframe карты */}
               <iframe
                 src="https://yandex.ru/map-widget/v1/?ll=37.634865%2C55.884479&mode=search&oid=43074692917&ol=biz&sctx=ZAAAAAgBEAAaKAoSCZ5eKcsQz0JAEdOgaB7A4EtAEhIJs3xdhv%2B0%2FT8RJezbSUR45D8iBgABAgMEBSgKOABAAUgBagJydZ0BzczMPaABAKgBAL0BJs0cq8IBBrXOzrugAYICG9GN0LvQtdC60YLRgNC%2B0YnQuNGCINCf0YDQvooCAJICBTk4NTg4mgIMZGVza3RvcC1tYXBz&sll=37.634865%2C55.884479&sspn=0.010458%2C0.004615&text=%D1%8D%D0%BB%D0%B5%D0%BA%D1%82%D1%80%D0%BE%D1%89%D0%B8%D1%82%20%D0%9F%D1%80%D0%BE&z=17.11"
-                width="100%"
-                height="600"
                 allowFullScreen={true}
-                style={{ position: "relative" }}
+                style={{ width: "100%", height: "600px", position: "relative" }}
                 title="Яндекс Карта с местоположением"
               ></iframe>
             </div>
@@ -203,33 +201,17 @@ const ContactsComponent = () => {
             {details.map((item, index) => (
               <div
                 key={index}
-                // Используем flexbox для размещения элементов в строку
                 className="flex flex-col lg:flex-row items-baseline text-xl font-medium text-gray-700"
               >
-                {/* Левый элемент (Название) */}
+                {/* Название */}
                 <dt className="text-sm lg:text-xl shrink-0 pr-2">
                   {item.name}
                 </dt>
 
-                {/* Пространство, заполненное точками */}
-                <span
-                  // flex-grow позволяет элементу заполнить все доступное пространство
-                  // relative и z-10 нужны для позиционирования псевдоэлементов,
-                  // но в данном случае проще использовать border-b
-                  className="flex-grow border-b border-dotted border-gray-400 mx-1 mb-1"
-                >
-                  {/* Вместо span с border-b, который может быть неровным, 
-                    для точек лучше использовать стилизованный div или псевдоэлементы.
-                    Однако, для простоты и совместимости с Tailwind, 
-                    border-dotted является самым быстрым способом.
-                    
-                    Если нужен более точный эффект точек, можно использовать:
-                    className="flex-grow overflow-hidden whitespace-nowrap"
-                    style={{ letterSpacing: '4px' }}
-                */}
-                </span>
+                {/* Точки или линия */}
+                <dd className="flex-grow border-b border-dotted border-gray-400 mx-1 mb-1" />
 
-                {/* Правый элемент (Значение) */}
+                {/* Значение */}
                 <dd className="text-sm lg:text-xl shrink-0 lg:pl-2 text-left lg:text-right font-semibold text-gray-900">
                   {item.value}
                 </dd>

@@ -1,4 +1,6 @@
+import GoogleTag from "@/components/GoogleTag";
 import { Roboto, Roboto_Mono } from "next/font/google";
+import Script from "next/script";
 
 const roboto = Roboto({
   subsets: ["latin", "cyrillic"],
@@ -19,6 +21,10 @@ export default function RootLayout({ children }) {
       lang="ru"
       className={`${roboto.variable} ${robotoMono.variable} antialiased`}
     >
+      <head>
+        <GoogleTag />
+      </head>
+
       <body className="bg-white dark:bg-gray-900 dark:text-white">
         {children}
       </body>

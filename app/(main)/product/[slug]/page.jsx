@@ -72,9 +72,9 @@ export async function generateMetadata({ params }) {
 
   const { product, randomDescription } = ctx;
 
-  const title = product.titleSeo || `${product.name} | ЭЛЕКТРОЩИТ-ПРО`;
-  const description =
-    product.descriptionSeo || `Купить ${product.name} ${randomDescription}`;
+  const title = `${product.name} ${randomDescription}`;
+  // const title = product.titleSeo || `${product.name} | ЭЛЕКТРОЩИТ-ПРО`;
+  const description = product.descriptionSeo || `Купить ${product.description}`;
   const canonicalUrl = `${BASE_URL}/product/${slug}`;
   const imageUrl =
     `${BASE_URL}${product.mediaFiles[0]?.url}` || "/default-og-image.jpg"; // Используем первое изображение или заглушку

@@ -67,8 +67,8 @@ export default function ProductPageClient({
     "ip",
   ];
 
-  const averageRating = product.yandexRating || 4.5;
-  const totalReviews = product.yandexReviewCount || 15;
+  // const averageRating = product.yandexRating || 4.5;
+  // const totalReviews = product.yandexReviewCount || 15;
 
   const images =
     product.mediaFiles && Array.isArray(product.mediaFiles)
@@ -142,7 +142,7 @@ export default function ProductPageClient({
   };
 
   return (
-    <main
+    <div
       itemScope
       itemType="https://schema.org/Product"
       className="container mx-auto py-8 dark:bg-gray-900 dark:text-white"
@@ -799,6 +799,6 @@ export default function ProductPageClient({
           </div>
         </div>
       )}
-    </main>
+    </div>
   );
 }
