@@ -1,4 +1,5 @@
 "use client";
+import { useIsMobile } from "@/hooks/use-mobile";
 import { Swiper, SwiperSlide } from "swiper/react";
 import {
   EffectFade,
@@ -27,6 +28,20 @@ function Slider() {
     progressContent.current.textContent = `${Math.ceil(time / 1000)}s`;
   };
 
+  const isMobile = useIsMobile();
+
+  if (isMobile === undefined) return null;
+
+  if (isMobile) {
+    return (
+      <>
+        <h3 className="mt-6 mb-2 text-center font-semibold text-2xl">
+          Добро пожаловать в ЭЛЕКТРОЩИТ-ПРО
+        </h3>
+      </>
+    );
+  }
+
   return (
     <Swiper
       className="mt-5 rounded-3xl"
@@ -41,9 +56,6 @@ function Slider() {
       loop={true}
       pagination={{ clickable: true }}
       onAutoplayTimeLeft={onAutoplayTimeLeft}
-      // scrollbar={{ draggable: true }}
-      // onSwiper={swiper => console.log(swiper)}
-      // onSlideChange={() => console.log("slide change")}
       effect="fade"
     >
       <SwiperSlide>
@@ -53,13 +65,6 @@ function Slider() {
           style={{ width: "100%" }}
         />
       </SwiperSlide>
-      {/* <SwiperSlide>
-        <img
-          src="/images/slider/image2.jpg"
-          alt="slider 2"
-          style={{ width: "100%" }}
-        />
-      </SwiperSlide> */}
       <SwiperSlide>
         <img
           src="/images/slider/test.png"
@@ -104,13 +109,6 @@ function Slider() {
           style={{ width: "100%" }}
         />
       </SwiperSlide>
-      {/* <SwiperSlide>
-        <img
-          src="/images/slider/image6.jpg"
-          alt="slider 6"
-          style={{ width: "100%" }}
-        />
-      </SwiperSlide> */}
       <div className="autoplay-progress" slot="container-end">
         <svg viewBox="0 0 48 48" ref={progressCircle}>
           <circle cx="24" cy="24" r="20"></circle>

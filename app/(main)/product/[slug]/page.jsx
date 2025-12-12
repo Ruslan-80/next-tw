@@ -41,6 +41,7 @@ const getProductPageContext = cache(async (slug) => {
   const pool = metaDescriptions.metaDescriptions.product;
   // Теперь этот random сработает только 1 раз за запрос
   const randomDescription = pool[Math.floor(Math.random() * pool.length)];
+  const randomDescriptionSeo = pool[Math.floor(Math.random() * pool.length)];
 
   const ratingValue = (Math.random() * (5 - 4) + 4).toFixed(1);
   const ratingCount = Math.floor(Math.random() * (100 - 10 + 1)) + 10;
@@ -48,6 +49,7 @@ const getProductPageContext = cache(async (slug) => {
   return {
     product,
     randomDescription,
+    randomDescriptionSeo,
     ratingValue,
     ratingCount,
   };
@@ -70,11 +72,12 @@ export async function generateMetadata({ params }) {
     };
   }
 
-  const { product, randomDescription } = ctx;
+  const { product, randomDescription, randomDescriptionSeo } = ctx;
 
   const title = `${product.name} ${randomDescription}`;
   // const title = product.titleSeo || `${product.name} | ЭЛЕКТРОЩИТ-ПРО`;
-  const description = product.descriptionSeo || `Купить ${product.description}`;
+  const description =
+    product.descriptionSeo || `Купить ${product.name} ${randomDescriptionSeo}`;
   const canonicalUrl = `${BASE_URL}/product/${slug}`;
   const imageUrl =
     `${BASE_URL}${product.mediaFiles[0]?.url}` || "/default-og-image.jpg"; // Используем первое изображение или заглушку

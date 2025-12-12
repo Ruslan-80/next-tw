@@ -33,8 +33,8 @@ export default function Footer() {
             <Link href="/">
               <Image
                 src={Logo}
-                width={200}
-                height={80}
+                // width={200}
+                // height={80}
                 alt="Электрощит-ПРО"
                 className="h-12 w-auto mb-4 bg-white px-4 rounded-lg"
               />
