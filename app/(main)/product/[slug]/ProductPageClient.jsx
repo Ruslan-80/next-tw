@@ -229,13 +229,7 @@ export default function ProductPageClient({
                 content={`https://electroshit-pro.ru/product/${product.slug}`}
                 href={`/product/${product.slug}`}
               />
-              <div
-                itemProp="brand"
-                itemScope
-                itemType="https://schema.org/Brand"
-              >
-                {/* <meta itemProp="name" content="Электрощит PRO" /> */}
-              </div>
+
               {/* <meta itemProp="brand" content="Электрощит PRO" /> */}
               {/* <div className="hidden" itemProp="description">
                 {product.description}
@@ -304,6 +298,15 @@ export default function ProductPageClient({
                   ratingValue={parseFloat(ratingValue)}
                   ratingCount={parseInt(ratingCount)}
                 />
+                <div>
+                  <span
+                    itemProp="brand"
+                    itemScope
+                    itemType="https://schema.org/Brand"
+                  >
+                    <meta itemProp="name" content="Electroshit-PRO" />
+                  </span>
+                </div>
 
                 {/* Info Cards */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8 ">

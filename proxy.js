@@ -1,52 +1,65 @@
-import { NextResponse } from "next/server"; // <-- Важно!
+import { NextResponse } from "next/server";
 
-export default async function proxy(request) {
+export function proxy(request) {
+  const { pathname } = request.nextUrl;
+
+  // ⛔️ 1. ВСЕГДА пропускаем служебные пути Next.js
+  if (
+    pathname.startsWith("/_next") ||
+    pathname.startsWith("/__nextjs_font") ||
+    pathname.startsWith("/favicon.ico")
+  ) {
+    return NextResponse.next();
+  }
+
+  // ⛔️ 2. Ограничиваем область действия
+  const shouldHandle =
+    pathname.startsWith("/api/cart") ||
+    pathname === "/cart" ||
+    pathname.startsWith("/catalog/");
+
+  if (!shouldHandle) {
+    return NextResponse.next();
+  }
+
+  // ---------- cartToken ----------
   const cookieHeader = request.headers.get("cookie") || "";
   const cookies = Object.fromEntries(
-    cookieHeader.split("; ").map((c) => {
-      const parts = c.trim().split("="); // Учитываем пробелы в начале/конце
-      return [parts[0], parts[1]];
-    })
+    cookieHeader
+      .split(";")
+      .map((c) => c.trim())
+      .filter(Boolean)
+      .map((c) => {
+        const [k, ...v] = c.split("=");
+        return [k, v.join("=")];
+      })
   );
 
   let token = cookies.cartToken;
 
-  const responseHeaders = new Headers();
+  const response = NextResponse.next();
 
   if (!token) {
-    // В Next.js 16/Edge Runtime лучше использовать криптографически безопасный генератор,
-    // но если crypto.randomUUID() работает, то это нормально.
-    // Если нет, рассмотрите вариант с 'nanoid' или similar.
     token = crypto.randomUUID();
 
-    const cookieString = [
-      `cartToken=${token}`,
-      "HttpOnly",
-      process.env.NODE_ENV === "production" ? "Secure" : "",
-      "Path=/",
-      "Max-Age=31536000",
-      "SameSite=Lax", // Рекомендуется для безопасности
-    ]
-      .filter(Boolean)
-      .join("; ");
-
-    // Добавляем заголовок Set-Cookie
-    responseHeaders.append("Set-Cookie", cookieString);
+    response.headers.append(
+      "Set-Cookie",
+      [
+        `cartToken=${token}`,
+        "HttpOnly",
+        process.env.NODE_ENV === "production" ? "Secure" : "",
+        "Path=/",
+        "Max-Age=31536000",
+        "SameSite=Lax",
+      ]
+        .filter(Boolean)
+        .join("; ")
+    );
   }
 
-  // 👉 1. Получаем *внутренний* ответ от Next.js-страницы/API
-  // Этот метод передает управление Next.js, который генерирует ответ
-  const finalResponse = NextResponse.next();
-
-  // 👉 2. Добавляем Set-Cookie (если нужно) к ответу Next.js
-  for (const [k, v] of responseHeaders.entries()) {
-    finalResponse.headers.append(k, v);
-  }
-
-  return finalResponse;
+  return response;
 }
 
 export const config = {
-  // Ваш матчер выглядит нормально для перехвата нужных путей
   matcher: ["/api/cart/:path*", "/cart", "/catalog/:path*"],
 };

@@ -89,9 +89,9 @@ export function ShityEtazhnyeTop() {
               <Image
                 src="/images/categories/SE24L.png"
                 alt="Щиты этажные типа ЩЭ"
-                width={500}
-                height={500}
-                className="object-contain hover:scale-105 transition-transform duration-500"
+                width={450}
+                height={450}
+                className="w-full h-auto object-contain hover:scale-105 transition-transform duration-500"
               />
             </div>
           </div>
