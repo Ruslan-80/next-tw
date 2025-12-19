@@ -1,0 +1,36 @@
+name: Build & Push (Next.js)
+
+on:
+  push:
+    branches: ["main"]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: "npm"
+
+      - name: Install deps
+        run: npm ci
+
+      - name: Generate Prisma Client
+        run: npx prisma generate
+
+      - name: Build Next.js
+        run: npm run build
+
+      - name: Build Docker image
+        run: |
+          docker build -t ghcr.io/YOUR_GITHUB/YOUR_APP:latest .
+
+      - name: Login to GHCR
+        run: echo "${{ secrets.GHCR_TOKEN }}" | docker login ghcr.io -u YOUR_GITHUB --password-stdin
+
+      - name: Push image
+        run: docker push ghcr.io/YOUR_GITHUB/YOUR_APP:latest
