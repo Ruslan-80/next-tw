@@ -27,10 +27,10 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build -t ghcr.io/YOUR_GITHUB/YOUR_APP:latest .
+          docker build -t ghcr.io/ruslan-80/next-tw:latest .
 
       - name: Login to GHCR
-        run: echo "${{ secrets.GHCR_TOKEN }}" | docker login ghcr.io -u YOUR_GITHUB --password-stdin
+        run: echo "${{ secrets.GHCR_TOKEN }}" | docker login ghcr.io -u ruslan-80 --password-stdin
 
       - name: Push image
-        run: docker push ghcr.io/YOUR_GITHUB/YOUR_APP:latest
+        run: docker push ghcr.io/ruslan-80/next-tw:latest
