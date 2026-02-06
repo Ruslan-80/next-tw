@@ -120,7 +120,7 @@ const DeliveryComponent = () => {
         <div className="container mx-auto lg:px-6">
           <div className="flex items-center gap-3 mb-8">
             <CreditCard className="h-8 w-8 text-accent" />
-            <h2 className="text-xl lg:text-4xl font-bold">3. Способы оплаты</h2>
+            <h2 className="text-xl lg:text-4xl font-bold">3. Способы оплаты:</h2>
           </div>
           <Card>
             <CardContent className="lg:p-8 space-y-4">
