@@ -44,5 +44,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Trigger Coolify Deployment
-        run: |
-          curl --request GET '${{ secrets.COOLIFY_WEBHOOK }}'
+        run: curl --request GET '${{ secrets.COOLIFY_WEBHOOK }}'
