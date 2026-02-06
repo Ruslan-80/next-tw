@@ -1,6 +1,11 @@
+export const dynamic = "force-dynamic";
 import { prisma } from "../lib/prisma.js";
 import fs from "fs/promises";
 import path from "path";
+import { fileURLToPath } from 'url';
+
+
+
 
 async function generateCategoriesJson() {
   const excludedCatalogNames = [
@@ -74,6 +79,8 @@ async function generateCategoriesJson() {
   }
 }
 
-generateCategoriesJson();
+if (process.argv[1] === fileURLToPath(import.meta.url)) {
+  generateCategoriesJson();
+}
 
 // "postbuild": "node scripts/generate-categories.js && node scripts/generate-products.js && next-sitemap --config next-sitemap.config.js"

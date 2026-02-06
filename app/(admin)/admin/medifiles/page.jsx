@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import { prisma } from "../../../../prisma/client.js";
 import Link from "next/link";
 import { Button } from "../../../../components/ui/button.jsx";
@@ -55,18 +56,23 @@ async function saveFile(file, filePath) {
 
 // Главная страница админки товаров
 export default async function ProductsPageAdmin() {
-  const products = await prisma.product.findMany({
-    orderBy: { article: "asc" },
-    include: {
-      mediaFiles: {
-        select: {
-          id: true,
-          url: true,
-          type: true,
+  let products = [];
+  try {
+    products = await prisma.product.findMany({
+      orderBy: { article: "asc" },
+      include: {
+        mediaFiles: {
+          select: {
+            id: true,
+            url: true,
+            type: true,
+          },
         },
       },
-    },
-  });
+    });
+  } catch (error) {
+    console.error("Error fetching products:", error);
+  }
 
   return (
     <div className="p-6 max-w-7xl mx-auto">

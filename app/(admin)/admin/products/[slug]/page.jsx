@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import { prisma } from "@/prisma/client";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
@@ -13,17 +14,22 @@ export default async function EditProductPage({ params }) {
   const { slug } = params;
 
   // Загружаем продукт вместе с медиафайлами
-  const product = await prisma.product.findUnique({
-    where: { slug },
-    include: {
-      mediaFiles: {
-        select: {
-          url: true, // Берем URL изображения для Open Graph
+  let product = null;
+  try {
+    product = await prisma.product.findUnique({
+      where: { slug },
+      include: {
+        mediaFiles: {
+          select: {
+            url: true, // Берем URL изображения для Open Graph
+          },
         },
+        mediaFiles: true,
       },
-      mediaFiles: true,
-    },
-  });
+    });
+  } catch (error) {
+    console.error("Error fetching product:", error);
+  }
 
   // console.log(product);
 
@@ -57,7 +63,12 @@ export default async function EditProductPage({ params }) {
     redirect("/admin/products");
   }
 
-  const categories = await prisma.category.findMany();
+  let categories = [];
+  try {
+    categories = await prisma.category.findMany({});
+  } catch (error) {
+    console.error("Error fetching categories:", error);
+  }
 
   return (
     <div className="p-4 mx-auto max-w-7xl">

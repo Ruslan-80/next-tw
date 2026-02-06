@@ -1,9 +1,10 @@
+export const dynamic = "force-dynamic"
 import fs from "fs";
 import path from "path";
 
 const postsDir = path.join(process.cwd(), "app/(main)/blogs/posts");
 
-export async function generateStaticParams() {
+export async function generateParams() {
   const files = fs.readdirSync(postsDir);
   return files
     .filter((file) => file.endsWith(".jsx"))

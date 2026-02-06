@@ -1,6 +1,12 @@
 import { prisma } from "../lib/prisma.js";
 import fs from "fs/promises";
 import path from "path";
+import { fileURLToPath } from 'url';
+if (process.argv[1] === fileURLToPath(import.meta.url)) {
+  generateProductsJson();
+}
+
+
 
 async function generateProductsJson() {
   try {

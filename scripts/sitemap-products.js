@@ -1,4 +1,5 @@
 // Функция для получения slug продуктов из вашего внутреннего API
+export const dynamic = "force-dynamic";
 export async function getProductSlugs() {
   try {
     const response = await fetch(`/api/admin/sitemap`);

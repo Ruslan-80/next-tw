@@ -1,10 +1,13 @@
 import { prisma } from "@/lib/prisma";
 import fs from "fs/promises";
 import path from "path";
+import { NextResponse } from "next/server";
 
-async function generateProductsJson() {
+// Явно указываем Node.js runtime (на всякий случай)
+export const runtime = "nodejs";
+
+export async function GET() {
   try {
-    // Получение данных из Prisma
     const products = await prisma.product.findMany({
       where: { visibility: true },
       select: {
@@ -14,19 +17,29 @@ async function generateProductsJson() {
       },
     });
 
-    // Путь к файлу products.json в папке public
-    const filePath = path.join(process.cwd(), "public", "products.json");
+    const filePath = path.join(
+      process.cwd(),
+      "public",
+      "products.json"
+    );
 
-    // Запись данных в файл
-    await fs.writeFile(filePath, JSON.stringify(products, null, 2), "utf8");
+    await fs.writeFile(
+      filePath,
+      JSON.stringify(products, null, 2),
+      "utf8"
+    );
 
-    console.log("Successfully generated public/products.json");
+    return NextResponse.json({
+      success: true,
+      count: products.length,
+      message: "products.json generated",
+    });
   } catch (error) {
     console.error("Error generating products.json:", error);
-    process.exit(1);
-  } finally {
-    await prisma.$disconnect();
+
+    return NextResponse.json(
+      { success: false, error: "Failed to generate products.json" },
+      { status: 500 }
+    );
   }
 }
-
-generateProductsJson();

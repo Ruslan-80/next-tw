@@ -8,8 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "seed": "prisma db seed",
-    "build": "next build",
-    "postbuild": "node scripts/generate-categories.js && node scripts/generate-products.js && next-sitemap --config next-sitemap.config.js"
+    "build": "next build"
   },
   "prisma": {
     "seed": "node prisma/seed.js"

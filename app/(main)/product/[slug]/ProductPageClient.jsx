@@ -255,7 +255,7 @@ export default function ProductPageClient({
                       href={
                         product.stock > 0
                           ? "http://schema.org/InStock"
-                          : "http://schema.org/PreOrder"
+                          : "http://schema.org/MadeToOrder"
                       }
                     />
                     <link

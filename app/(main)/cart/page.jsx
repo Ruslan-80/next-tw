@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import { cookies } from "next/headers";
 import { prisma } from "../../../lib/prisma";
 import CartClient from "./CartClient";
@@ -13,6 +14,7 @@ export default async function CartPage() {
   const token = cookieStore.get("cartToken")?.value || "default-cart-token";
 
   // Получаем корзину из БД вместе с вариациями и продуктами
+
   const cartData = await prisma.cart.findUnique({
     where: { token },
     include: {

@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import { prisma } from "@/lib/prisma";
 import { parseSlug } from "@/utils/slugParser";
 import Breadcrumbs from "@/components/Breadcrumbs";

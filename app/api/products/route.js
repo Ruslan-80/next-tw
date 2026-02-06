@@ -1,4 +1,5 @@
 // /app/api/products/route.js
+
 import { prisma } from "@/lib/prisma";
 
 export async function GET() {

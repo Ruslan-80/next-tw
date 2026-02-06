@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+export const fetchCache = "force-no-store";
 import GoogleTag from "@/components/GoogleTag";
 import { Roboto, Roboto_Mono } from "next/font/google";
 import Script from "next/script";

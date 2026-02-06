@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import { prisma } from "@/prisma/client";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
@@ -31,7 +32,12 @@ export default async function CreateProductPage() {
     redirect("/products");
   }
 
-  const categories = await prisma.category.findMany();
+  let categories = [];
+  try {
+    categories = await prisma.category.findMany({});
+  } catch (error) {
+    console.error("Error fetching categories:", error);
+  }
 
   return (
     <div className="p-4 mx-auto max-w-2xl">

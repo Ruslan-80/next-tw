@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import Link from "next/link";
 import { prisma } from "@/prisma/client";
 import { UniversalTable } from "@/components/shared/Tables";
@@ -5,7 +6,14 @@ import { Button } from "@/components/ui/button";
 import SyncVariationsButton from "@/components/SyncVariationsButton";
 
 export default async function ProductsPageAdmin() {
-  const products = await prisma.product.findMany({ orderBy: { id: "asc" } });
+  let products = [];
+  try {
+    products = await prisma.product.findMany({
+      orderBy: { id: "asc" },
+    });
+  } catch (error) {
+    console.error("Error fetching products:", error);
+  }
 
   return (
     <div className="p-4 mx-auto w-full">

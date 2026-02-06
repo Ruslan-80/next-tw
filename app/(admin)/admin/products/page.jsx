@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import { prisma } from "@/prisma/client";
 import Link from "next/link";
 import { UniversalTable } from "@/components/shared/Tables";
@@ -17,10 +18,15 @@ async function deleteProduct(formData) {
 }
 // Главная страница админки товаров
 export default async function ProductsPageAdmin() {
-  const products = await prisma.product.findMany({
-    orderBy: { slug: "asc" },
-    include: { category: true },
-  });
+  let products = [];
+  try {
+    products = await prisma.product.findMany({
+      orderBy: { slug: "asc" },
+      include: { category: true },
+    });
+  } catch (error) {
+    console.error("Error fetching products:", error);
+  }
 
   return (
     <div className="p-4  w-full ">
