@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "next dev -H 0.0.0.0 -p 3000",
     "start": "node .next/standalone/server.js",
+    "start-dev": "next start",
     "lint": "next lint",
     "seed": "prisma db seed",
     "build": "next build",

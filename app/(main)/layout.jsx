@@ -4,7 +4,7 @@ import Footer from "@/components/shared/Footer";
 import { CompareProvider } from "@/context/CompareContext";
 import { FavoritesProvider } from "@/context/FavoritesContext";
 import MetricsInitializer from "@/components/MetricsInitializer";
-import CookieBanner from "@/components/CookieBanner";
+// import CookieBanner from "@/components/CookieBanner";
 
 import "../../styles/globals.css";
 
@@ -27,7 +27,7 @@ export default function MainLayout({ children }) {
         </FavoritesProvider>
       </CompareProvider>
       <MetricsInitializer />
-      <CookieBanner />
+      {/* <CookieBanner /> */}
     </>
   );
 }
