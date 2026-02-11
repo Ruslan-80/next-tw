@@ -2,32 +2,27 @@ FROM node:20-alpine AS base
 
 # --- Слой зависимостей ---
 FROM base AS deps
-# Prisma требует openssl и libc6-compat в Alpine
 RUN apk add --no-cache libc6-compat openssl
 WORKDIR /app
 COPY package.json package-lock.json* ./
 COPY prisma ./prisma/ 
+# Устанавливаем ВСЕ зависимости для сборки
 RUN npm ci
 
 # --- Слой сборки ---
 FROM base AS builder
-# Добавляем openssl и сюда
 RUN apk add --no-cache openssl
 WORKDIR /app
+# Копируем зависимости и исходники
 COPY --from=deps /app/node_modules ./node_modules
-COPY --from=deps /app/prisma ./prisma
 COPY . .
-
 ENV NEXT_TELEMETRY_DISABLED=1
 ENV NEXT_PHASE=phase-production-build
-
-# Генерируем клиент и собираем билд
 RUN npx prisma generate
 RUN npm run build
 
 # --- Финальный слой (Runner) ---
 FROM base AS runner
-# Prisma CLI в runtime требует openssl
 RUN apk add --no-cache openssl
 WORKDIR /app
 
@@ -36,17 +31,18 @@ ENV NEXT_TELEMETRY_DISABLED=1
 ENV PORT=3000
 ENV HOSTNAME="0.0.0.0"
 
-# Копируем standalone сборку
+# В Standalone режиме Next.js создает сервер в .next/standalone
 COPY --from=builder /app/public ./public
 COPY --from=builder /app/.next/standalone ./
 COPY --from=builder /app/.next/static ./.next/static
-
-# ВАЖНО: Копируем папку prisma (с файлом schema.prisma и папкой migrations)
-# Без этого migrate deploy не найдет миграции
 COPY --from=builder /app/prisma ./prisma
+
+# ХИТРОСТЬ: Чтобы работал `npx prisma`, нам нужен сам исполняемый файл prisma в финальном образе.
+# Мы копируем только его, а не все node_modules (это сэкономит ~200МБ)
+COPY --from=builder /app/node_modules/.bin/prisma /usr/local/bin/prisma
+COPY --from=builder /app/node_modules/@prisma/engines /app/node_modules/@prisma/engines
 
 EXPOSE 3000
 
-# Изменяем CMD: сначала миграции, потом запуск сервера
-# Используем npx prisma, так как prisma есть в dependencies в package.json
-CMD npx prisma migrate deploy && node server.js
+# Запуск. Теперь prisma доступна как команда.
+CMD prisma migrate deploy && node server.js
