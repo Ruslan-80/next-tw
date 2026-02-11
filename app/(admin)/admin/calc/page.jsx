@@ -25,7 +25,7 @@ export default function ProfitCalculator() {
     // === ПРЯМОЙ РАСЧЕТ ===
     const vP = values.sellPrice - values.buyPrice;
     const vPExVat = vP * (100 / 122);
-    const netProfit = vPExVat * 0.8;
+    const netProfit = vPExVat * 0.75;
     const directX =
       ((netProfit - values.delivery * 1.07) / 2) / 1.07;
 
@@ -33,7 +33,7 @@ export default function ProfitCalculator() {
     const reverseSell =
       (((values.maxTax * 1.07 * 2) +
         values.delivery * 1.07) /
-        0.8) *
+        0.75) *
         1.22 +
       values.buyPrice;
 

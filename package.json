@@ -11,7 +11,8 @@
     "seed": "prisma db seed",
     "build": "next build",
     "postbuild": "cpy public .next/standalone --recursive && cpy .next/static .next/standalone/.next --recursive",
-    "dbsync": "powershell -ExecutionPolicy Bypass -File scripts/sync-local.ps1"
+    "dbsync": "powershell -ExecutionPolicy Bypass -File scripts/sync-local.ps1",
+    "postinstall": "prisma generate"
   },
   "engines": {
     "node": ">=20.9.0"
@@ -20,6 +21,7 @@
     "@heroicons/react": "^2.2.0",
     "@hookform/resolvers": "^5.1.1",
     "@prisma/client": "^6.17.0",
+    "prisma": "^6.17.0",
     "@radix-ui/react-accordion": "^1.2.4",
     "@radix-ui/react-avatar": "^1.1.4",
     "@radix-ui/react-checkbox": "^1.1.5",
@@ -72,7 +74,6 @@
     "eslint": "^9",
     "eslint-config-next": "15.3.0",
     "next-sitemap": "^4.2.3",
-    "prisma": "^6.17.0",
     "tailwindcss": "^4"
   }
 }
