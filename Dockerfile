@@ -2,7 +2,6 @@ FROM node:20-alpine AS base
 
 # --- Слой зависимостей ---
 FROM base AS deps
-# Добавляем curl для Healthcheck и openssl для Prisma
 RUN apk add --no-cache libc6-compat openssl curl
 WORKDIR /app
 COPY package.json package-lock.json* ./
@@ -24,7 +23,7 @@ RUN npm run build
 
 # --- Финальный слой (Runner) ---
 FROM base AS runner
-# Добавляем curl (нужен Coolify для Healthcheck) и openssl
+# Устанавливаем curl для Coolify и openssl для Prisma
 RUN apk add --no-cache openssl curl
 WORKDIR /app
 
@@ -33,19 +32,18 @@ ENV NEXT_TELEMETRY_DISABLED=1
 ENV PORT=3000
 ENV HOSTNAME="0.0.0.0"
 
-# Копируем всё необходимое для Next.js Standalone
+# 1. Устанавливаем prisma глобально в финальном слое
+# Это гарантирует наличие бинарников и движков (engines) в системе
+RUN npm install -g prisma@6.17.0
+
+# 2. Копируем результаты сборки Next.js
 COPY --from=builder /app/public ./public
 COPY --from=builder /app/.next/standalone ./
 COPY --from=builder /app/.next/static ./.next/static
 COPY --from=builder /app/prisma ./prisma
 
-# ВАЖНО: Чтобы `npx prisma migrate` работал в standalone, 
-# нам нужны движки и сам CLI. Копируем их целиком.
-COPY --from=builder /app/node_modules/.prisma ./node_modules/.prisma
-COPY --from=builder /app/node_modules/@prisma ./node_modules/@prisma
-COPY --from=builder /app/node_modules/prisma ./node_modules/prisma
-
 EXPOSE 3000
 
-# Используем прямой путь к бинарнику prisma для надежности
-CMD ./node_modules/.bin/prisma migrate deploy && node server.js
+# 3. Теперь команда 'prisma' доступна во всей системе.
+# Используем путь к схеме явно.
+CMD prisma migrate deploy --schema ./prisma/schema.prisma && node server.js
