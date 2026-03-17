@@ -52,13 +52,14 @@ export default function Blog() {
               2025
             </h1>
           </header> */}
-          <section className="bg-gray-50 rounded-xl shadow p-6 md:p-10 flex flex-col md:flex-row gap-8 max-w-5xl mx-auto my-12">
+          <section className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
             {/* Левая часть: текст и соцсети */}
-            <div className="flex-1 flex flex-col justify-between">
+            <div className="lg:col-span-7">
               {/* Дата и автор */}
               <div>
                 <div className="text-gray-400 text-sm">
-                  24 ноября 2024 &nbsp; &mdash; &nbsp; Шамиль Дашаыпылов
+                  24&nbsp;ноября&nbsp;2024 &nbsp; &mdash; &nbsp; Шамиль
+                  Дашыпылов
                 </div>
                 <h1 className="text-4xl font-bold mt-4 mb-6 leading-tight">
                   TCL представила первый в мире 4K-монитор с технологией IJP
@@ -78,13 +79,15 @@ export default function Blog() {
               </div>
             </div>
             {/* Правая часть: изображение */}
-            <div className="flex-1 flex items-center">
-              <Image
-                src="/images/categories/se24l.png"
-                alt="TCL 4K IJP OLED Monitor"
-                fill
-                sizes="(max-width: 768px) 100vw, 33vw"
-                className="object-contain rounded-2xl transition-transform duration-300 hover:scale-105 p-2"
+            <div className="lg:col-span-5 relative group">
+              <div className="absolute -inset-4 bg-blue-50/50 rounded-[2rem] -z-10 group-hover:bg-blue-100/50 transition-colors duration-500" />
+              <video
+                src="/video/Box.mp4"
+                autoPlay
+                muted
+                loop
+                playsInline
+                className="w-full h-auto object-contain rounded-2xl shadow-2xl shadow-blue-900/10"
               />
             </div>
           </section>
@@ -523,7 +526,8 @@ export default function Blog() {
                 <span className="font-medium">
                   Отсутствие опрессовки многожильных проводников
                 </span>{" "}
-                наконечниками приводит к распушиванию жил и ухудшению контакта.{" "}
+                наконечниками приводит к распушиванию жил и ухудшению
+                контакта.{" "}
               </li>
             </ul>
 
@@ -623,7 +627,8 @@ export default function Blog() {
               <li>Бренд и качество используемых компонентов </li>
               <li>Сложность электрической схемы подключения</li>
               <li>
-                Дополнительные опции — антивандальность, нестандартные размеры{" "}
+                Дополнительные опции — антивандальность, нестандартные
+                размеры{" "}
               </li>
               <li>
                 Региональные особенности ценообразования на монтажные работы

@@ -47,4 +47,5 @@ EXPOSE 3000
 # 3. Теперь команда 'prisma' доступна во всей системе.
 # Используем путь к схеме явно.
 # CMD prisma migrate deploy --schema ./prisma/schema.prisma && node server.js
-CMD prisma db push --accept-data-loss && node server.js
+# CMD prisma db push --accept-data-loss && node server.js
+CMD prisma migrate deploy && node server.js

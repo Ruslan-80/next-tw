@@ -20,7 +20,7 @@ export default function Catalog() {
                 key={category.id}
               >
                 <div className="catalog__item">
-                  <h3>{category.fullName}</h3>
+                  <h3 className="tracking-tighter">{category.fullName}</h3>
                   <Image
                     src={category.image_url}
                     width={215}

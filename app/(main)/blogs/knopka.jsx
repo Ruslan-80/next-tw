@@ -19,7 +19,8 @@ export default function Knopka({ props }) {
       <button
         onClick={() => handleButtonClick(props)}
         size="lg"
-        className="px-2 lg:px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-colors text-xl"
+        // className="px-4 py-2 lg:px-8 lg:py-4 bg-primary hover:bg-blue-700 text-white font-semibold rounded-lg transition-colors text-xl"
+        className="inline-flex items-center justify-center rounded-full px-8 py-4 text-sm font-medium uppercase tracking-[0.15em] bg-slate-900 text-white hover:bg-slate-700 transition-all duration-300 ease-in-out hover:shadow-lg hover:shadow-slate-900/20 active:scale-95"
       >
         {props}
       </button>

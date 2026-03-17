@@ -30,7 +30,7 @@ export default function ProductList({ products = [], totalProducts = 0 }) {
 
   if (!Array.isArray(products) || products.length === 0) {
     return (
-      <div className="flex justify-center items-center py-12 text-lg">
+      <div className="flex justify-center lg:sticky lg:top-6 items-center py-12 text-lg">
         <div className="mx-auto w-full max-w-lg  rounded-md border border-blue-300 p-4">
           <div className="flex animate-pulse space-x-4">
             <div className="size-30 rounded-full bg-gray-200"></div>
@@ -59,17 +59,17 @@ export default function ProductList({ products = [], totalProducts = 0 }) {
   }
 
   return (
-    <div className="mb-8">
+    <div className="mb-8 lg:sticky lg:top-6 self-start">
       <div className=" flex justify-between items-center mb-6">
         <div className=" text-xl text-gray-700 ">
           Найдено {totalProducts} товар
           {totalProducts % 10 === 1 && totalProducts % 100 !== 11
             ? ""
             : totalProducts % 10 >= 2 &&
-              totalProducts % 10 <= 4 &&
-              (totalProducts % 100 < 10 || totalProducts % 100 >= 20)
-            ? "а"
-            : "ов"}
+                totalProducts % 10 <= 4 &&
+                (totalProducts % 100 < 10 || totalProducts % 100 >= 20)
+              ? "а"
+              : "ов"}
         </div>
         <div className="flex space-x-2">
           <button

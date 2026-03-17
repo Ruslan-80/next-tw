@@ -6,7 +6,7 @@ import Script from "next/script";
 
 const roboto = Roboto({
   subsets: ["latin", "cyrillic"],
-  weight: ["300", "400", "500", "700"],
+  weight: ["100", "300", "400", "500", "700"],
   variable: "--font-roboto",
   display: "swap",
 });
@@ -27,7 +27,7 @@ export default function RootLayout({ children }) {
         <GoogleTag />
       </head>
 
-      <body className="bg-white dark:bg-gray-900 dark:text-white">
+      <body className="bg-background dark:background dark:textForeground">
         {children}
       </body>
     </html>

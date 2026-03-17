@@ -16,7 +16,7 @@ import { useState, useEffect, useRef } from "react";
 import { Skeleton } from "../ui/skeleton";
 import { useRouter } from "next/navigation";
 import { Button } from "../ui/button";
-import CatalogButton from "./CatalogButton";
+import CatalogButton from "./CatalogButton1";
 import { useCartStore } from "../../lib/store/testCartStore";
 
 export default function Header() {
@@ -88,200 +88,186 @@ export default function Header() {
     }
   };
 
+  const navLinks = [
+    { name: "Доставки и оплата", href: "/delivery" },
+    { name: "Гарантии и возврат", href: "/guarantees" },
+    { name: "Статьи", href: "/blogs" },
+    { name: "Объекты", href: "/objects" },
+    { name: "Контакты", href: "/contacts" },
+  ];
   return (
-    <header className=" top-0 z-50 bg-white shadow-md dark:bg-gray-800 dark:text-white">
-      {/* Верхняя панель контактов */}
-      <div className=" md:flex bg-gray-800 text-white py-2">
-        <div className="container mx-auto px-4 flex flex-col lg:flex-row justify-between items-center">
-          <nav className="flex space-x-4 text-xs md:text-sm mb-2 lg:mb-0">
-            <Link
-              href="/delivery"
-              className="hover:text-red-300 transition-colors"
-            >
-              Доставки и оплата
-            </Link>
-            <Link
-              href="/guarantees"
-              className="hover:text-red-300 transition-colors"
-            >
-              Гарантии и возврат
-            </Link>
-            <Link
-              href="/blogs"
-              className="hover:text-red-300 transition-colors"
-            >
-              Статьи
-            </Link>
-            <Link
-              href="/objects"
-              className="hover:text-red-300 transition-colors"
-            >
-              Объекты
-            </Link>
-            <Link
-              href="/contacts"
-              className="hover:text-red-300 transition-colors"
-            >
-              Контакты
-            </Link>
-          </nav>
+    <>
+      <header className="sticky top-0 z-50 bg-white border-b border-slate-100">
+        {/* Верхняя панель — тонкая и легкая */}
+        <div className="bg-slate-50 py-2 border-b border-slate-100">
+          <div className="container mx-auto px-6 flex justify-center lg:justify-between h-full items-center text-xs text-slate-500 font-light uppercase tracking-wider">
+            <nav className="hidden lg:flex gap-6 text-sm text-slate-700">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="text-[12px] font-medium uppercase tracking-[0.12em] text-slate-500 hover:text-slate-900 transition-colors duration-200"
+                >
+                  {link.name}
+                </Link>
+              ))}
+            </nav>
 
-          <div className="flex items-center space-x-4 text-xs  md:text-sm">
-            <Link
-              href="mailto:info@electroshit-pro.ru"
-              className="flex items-center gap-1 hover:text-red-300 transition-colors"
-            >
-              <Mail size={14} /> info@electroshit-pro.ru
-            </Link>
-            <Link
-              href="tel:+74993901467"
-              className="flex items-center gap-1 hover:text-red-300 transition-colors"
-            >
-              <Headset size={14} /> +7 (499) 390-14-67
-            </Link>
-            <span className="hidden sm:flex items-center gap-1">
-              <MapPin size={14} /> Москва
-            </span>
+            <div className="flex items-center gap-6">
+              <Link
+                href="mailto:info@electroshit-pro.ru"
+                className="text-xs md:text-sm flex items-center gap-2 text-sm hover:text-blue-600 lowercase transition-colors"
+                alt="email"
+              >
+                <Mail size={12} /> info@electroshit-pro.ru
+              </Link>
+              <Link
+                href="tel:+74993901467"
+                className="text-xs md:text-sm flex items-center gap-2 hover:text-blue-600 transition-colors font-medium text-slate-700"
+                alt="telephone"
+              >
+                <Headset size={12} /> +7 (499) 390-14-67
+              </Link>
+            </div>
           </div>
         </div>
-      </div>
 
-      {/* Основная навигация */}
-      <div className="container mx-auto px-4 py-3">
-        <div className="flex flex-col md:flex-row items-center justify-between w-full">
-          <div className="flex items-center justify-between w-full md:w-auto md:order-none order-1">
-            <CatalogButton />
-            {/* Логотип */}
-            <Link href="/" className="mx-1 md:mx-4">
-              <Image src={Logo} alt="Electroshit-pro" />
-            </Link>
-            {/* Корзина */}
-            <Link
-              href="/cart"
-              className="md:hidden flex flex-col items-center p-2 rounded-2xl w-24 hover:bg-gray-100 transition-colors gap-2"
-            >
-              <div className="relative">
-                <ShoppingCart size={24} />
-                <span className="absolute -top-1 -right-7 bg-red-500 text-white text-[8px] md:text-xs rounded-full w-3 md:w-5 h-3 md:h-5 flex items-center justify-center">
-                  {count}
-                </span>
-              </div>
-              <span className="flex justify-center text-[8px] md:text-sm font-semibold ml-1">
-                {total.toLocaleString("ru-RU")} ₽
-              </span>
-            </Link>
-          </div>
-          {/* Поиск */}
-          <div className="w-full md:w-1/2 md:order-none order-2 mt-4 md:mt-0 relative">
-            <form
-              onSubmit={handleSubmit}
-              className="relative"
-              id="search-form"
-              name="search-form"
-            >
-              <input
-                id="search-input"
-                ref={inputRef}
-                name="query"
-                placeholder="Поиск товаров..."
-                value={query}
-                onChange={(e) => setQuery(e.target.value)}
-                className="w-full border border-gray-300 rounded-lg px-4 py-3 pr-10 focus:outline-none focus:ring-2 focus:ring-red-500"
-              />
-              <button
-                id="search"
-                aria-label="search"
-                aria-labelledby="search"
-                title="search"
-                name="search"
-                type="submit"
-                className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-red-500"
-              >
-                <Search size={20} />
-              </button>
-            </form>
+        {/* Основная панель — больше воздуха */}
+        <div className="container mx-auto px-6 py-5">
+          <div className="flex items-center justify-center lg:justify-between h-full gap-8">
+            {/* Левая часть: Каталог + Лого */}
+            <div className="flex items-center gap-6">
+              <CatalogButton />
+              <Link href="/" className="flex-shrink-1" alt="logo">
+                <Image
+                  src={Logo}
+                  alt="Electroshit-pro"
+                  width={140}
+                  height={40}
+                />
+              </Link>
+            </div>
 
-            {/* Выпадающие результаты поиска */}
-            {isOpen && (
-              <div
-                ref={dropdownRef}
-                className="absolute top-full left-0 w-full mt-1 bg-white border border-gray-200 rounded-lg shadow-xl z-50 max-h-96 overflow-y-auto"
-              >
-                {results.length > 0 ? (
-                  <ul>
-                    {results.map((product) => (
-                      <li
-                        key={product.id}
-                        className="p-3 hover:bg-gray-50 transition-colors border-b border-gray-100 last:border-b-0"
+            {/* Поиск — строгий стиль */}
+            <div className="flex-1 max-w-xl relative ml-5">
+              <form onSubmit={handleSubmit} className="relative group">
+                <input
+                  ref={inputRef}
+                  name="query"
+                  type="text"
+                  placeholder="Поиск по артикулу или названию..."
+                  value={query}
+                  onChange={(e) => setQuery(e.target.value)}
+                  className="w-full bg-slate-50 border border-slate-200 rounded-full px-6 py-3 pr-12 
+                 text-sm font-light text-slate-900 placeholder:text-slate-400
+                 focus:outline-none focus:ring-2 focus:ring-slate-900/5 focus:bg-white 
+                 focus:border-slate-400 transition-all duration-300"
+                />
+                <button
+                  type="submit"
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 
+                 hover:text-slate-900 transition-colors p-1"
+                >
+                  <Search size={18} strokeWidth={1.5} />
+                </button>
+              </form>
+
+              {/* Выпадающий список результатов */}
+              {isOpen && (
+                <div
+                  ref={dropdownRef}
+                  className="absolute top-full left-0 w-full mt-3 bg-white border border-slate-100 
+                 rounded-3xl shadow-2xl shadow-slate-900/10 z-50 overflow-hidden 
+                 animate-in fade-in slide-in-from-top-2 duration-300"
+                >
+                  <div className="max-h-[400px] overflow-y-auto custom-scrollbar">
+                    {results.length > 0 ? (
+                      <ul className="divide-y divide-slate-50">
+                        {results.map((product) => (
+                          <li key={product.id}>
+                            <Link
+                              href={`/product/${product.slug}`}
+                              onClick={() => {
+                                setQuery("");
+                                setIsOpen(false);
+                              }}
+                              className="flex items-center gap-4 p-4 hover:bg-slate-50 transition-colors group"
+                            >
+                              {product.image ? (
+                                <div className="relative w-12 h-12 flex-shrink-0 bg-white border border-slate-100 rounded-xl overflow-hidden">
+                                  <Image
+                                    src={product.image}
+                                    alt={product.name}
+                                    fill
+                                    className="object-contain p-1 group-hover:scale-110 transition-transform duration-500"
+                                  />
+                                </div>
+                              ) : (
+                                <div className="w-12 h-12 bg-slate-50 rounded-xl flex items-center justify-center text-slate-300">
+                                  <Search size={20} />
+                                </div>
+                              )}
+
+                              <div className="min-w-0">
+                                <p className="text-sm font-medium text-slate-900 truncate tracking-tight">
+                                  {product.name}
+                                </p>
+                                <p className="text-xs font-light text-blue-600 mt-0.5">
+                                  {product.basePrice.toLocaleString("ru-RU")} ₽
+                                </p>
+                              </div>
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    ) : (
+                      <div className="p-8 text-center">
+                        <p className="text-sm font-light text-slate-400 italic">
+                          {query.length < 2
+                            ? "Введите минимум 2 символа..."
+                            : "Товары не найдены"}
+                        </p>
+                      </div>
+                    )}
+                  </div>
+
+                  {results.length > 0 && (
+                    <div className="p-3 bg-slate-50 border-t border-slate-100 text-center">
+                      <button
+                        onClick={handleSubmit}
+                        className="text-[10px] uppercase tracking-widest font-semibold text-slate-400 hover:text-slate-900 transition-colors"
                       >
-                        <Link
-                          href={`/product/${product.slug}`}
-                          className="flex items-center gap-3"
-                          onClick={() => {
-                            setQuery("");
-                            setIsOpen(false);
-                          }}
-                        >
-                          {product.image ? (
-                            <div className="flex-shrink-0 w-12 h-12 bg-gray-200 rounded-md overflow-hidden">
-                              <Image
-                                src={product.image}
-                                alt={product.name}
-                                width={48}
-                                height={48}
-                                className="object-cover"
-                              />
-                            </div>
-                          ) : (
-                            <div className="flex-shrink-0 w-12 h-12 bg-gray-200 rounded-md flex items-center justify-center">
-                              <Image
-                                src="/images/product/no_image.png"
-                                alt="No image"
-                                width={24}
-                                height={24}
-                              />
-                            </div>
-                          )}
-                          <div className="min-w-0">
-                            <p className="text-gray-900 font-medium truncate">
-                              {product.name}
-                            </p>
-                            <p className="text-red-600 font-semibold">
-                              {product.basePrice.toLocaleString("ru-RU")} ₽
-                            </p>
-                          </div>
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                ) : query.length >= 2 ? (
-                  <p className="p-4 text-gray-500 text-center">
-                    Товары не найдены
-                  </p>
-                ) : null}
-              </div>
-            )}
-          </div>
+                        Смотреть все результаты
+                      </button>
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
 
-          {/* Иконки действий */}
-          <div className="hidden md:flex space-x-4">
+            {/* Корзина — премиальный минимализм */}
             <Link
               href="/cart"
-              className="flex flex-col items-center p-2 rounded-2xl w-24  hover:bg-gray-100 transition-colors gap-2"
+              className="flex items-center gap-3 hover:opacity-70 transition-opacity"
             >
-              <div className="relative">
-                <ShoppingCart size={24} />
-                <span className="absolute -top-1 -right-7 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+              <div className="relative p-2 bg-slate-50 rounded-full">
+                <ShoppingCart size={20} className="text-slate-900" />
+                <span className="absolute -top-1 -right-1 bg-blue-600 text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">
                   {count}
                 </span>
               </div>
-              <span className="flex justify-center text-sm font-semibold ml-1">
-                {total.toLocaleString("ru-RU")} ₽
-              </span>
+              <div className="hidden lg:block text-sm">
+                <p className="text-slate-400 text-[10px] uppercase tracking-widest">
+                  Корзина
+                </p>
+                <p className="font-semibold text-slate-900">
+                  {total.toLocaleString("ru-RU")} ₽
+                </p>
+              </div>
             </Link>
           </div>
         </div>
-      </div>
-    </header>
+      </header>
+    </>
   );
 }

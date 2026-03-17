@@ -30,15 +30,24 @@ export default function Modal({
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     if (formData.name) {
       setFormError("Ошибка: Форма не отправлена.");
       return;
     }
+
     if (!validateContact(formData.contact)) {
       setFormError("Введите корректный телефон или email.");
       return;
     }
-    const result = await onSubmit(formData);
+
+    const dataToSend = {
+      ...formData,
+      message: `${initialContent}\n\n${formData.message}`,
+    };
+
+    const result = await onSubmit(dataToSend);
+
     if (result.success) {
       setIsSubmitted(true);
     } else {
@@ -48,7 +57,7 @@ export default function Modal({
 
   const handleClose = () => {
     setIsSubmitted(false);
-    setFormData({ contact: "", name: "", message: "" });
+    setFormData({ contact: "", name: "", message: "", productName: "" });
     setFormError("");
     onClose();
   };
@@ -112,6 +121,13 @@ export default function Modal({
                 type="text"
                 name="name"
                 value={formData.name}
+                onChange={handleChange}
+                style={{ display: "none" }}
+              />
+              <input
+                type="text"
+                name="productName"
+                value={formData.productName}
                 onChange={handleChange}
                 style={{ display: "none" }}
               />

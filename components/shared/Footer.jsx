@@ -123,7 +123,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/catalog/vvodno-raspredelitelnye-ustrojstva-vru"
-                  className="text-gray-400 hover:text-red-500 transition-colors"
+                  className="text-gray-400 hover:text-accenthover transition-colors"
                 >
                   Корпуса ВРУ
                 </Link>
@@ -131,7 +131,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/promotions"
-                  className="text-red-500 hover:text-red-400 transition-colors font-medium"
+                  className="text-accent hover:text-accentHover transition-colors font-medium"
                 >
                   Акции
                 </Link>
@@ -212,7 +212,7 @@ export default function Footer() {
               <button
                 id="footer_submit"
                 type="submit"
-                className="bg-red-600 hover:bg-red-700 text-white rounded-r-lg px-4 py-2 transition-colors"
+                className="bg-accent hover:bg-accentHover text-white rounded-r-lg px-4 py-2 transition-colors"
               >
                 OK
               </button>
@@ -223,24 +223,24 @@ export default function Footer() {
                 Социальные сети
               </h3>
               <div className="flex space-x-4">
-                <a
+                {/* <a
                   href="#"
                   className="bg-gray-800 p-2 rounded-full hover:bg-red-600 transition-colors"
                 >
                   <Facebook size={20} />
-                </a>
-                <a
+                </a> */}
+                {/* <a
                   href="#"
                   className="bg-gray-800 p-2 rounded-full hover:bg-red-600 transition-colors"
                 >
                   <Instagram size={20} />
-                </a>
-                <a
+                </a> */}
+                {/* <a
                   href="#"
                   className="bg-gray-800 p-2 rounded-full hover:bg-red-600 transition-colors"
                 >
                   <Twitter size={20} />
-                </a>
+                </a> */}
                 <a
                   href="https://www.youtube.com/@electroshit-pro/shorts"
                   className="bg-gray-800 p-2 rounded-full hover:bg-red-600 transition-colors"
@@ -255,7 +255,7 @@ export default function Footer() {
         {/* Нижняя панель */}
         <div className="pt-6 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center">
           <div className="text-gray-500 text-sm mb-4 md:mb-0">
-            © 2025 ElectroShit-PRO. Все права защищены.
+            © 2026 ElectroShit-PRO. Все права защищены.
           </div>
           <div className="flex flex-col text-justify px-4">
             <div className="text-gray-500 text-sm mb-4 md:mb-0">

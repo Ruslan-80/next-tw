@@ -84,7 +84,7 @@ export default function Header() {
       <div className="w-full bg-white xl:border-b border-gray-400">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-center lg:justify-between h-full py-3">
-            <nav className="hidden lg:flex space-x-4 text-black text-sm ">
+            <nav className="hidden lg:flex space-x-4 text-slate-900 text-sm ">
               <Link
                 href="/delivery"
                 className="hover:text-red-500"
@@ -107,7 +107,7 @@ export default function Header() {
                 Контакты
               </Link>
             </nav>
-            <div className="flex items-center space-x-4 text-black text-sm">
+            <div className="flex items-center space-x-4 text-slate-900 text-sm">
               <Link
                 href="mailto:snab@kplstroy.ru"
                 className="flex items-center gap-2 hover:text-red-500"
@@ -140,7 +140,7 @@ export default function Header() {
             <div className="flex w-full items-center justify-center relative">
               <form
                 onSubmit={handleSubmit}
-                className="flex justify-between w-full text-black ml-5 lg:w-[600px] relative"
+                className="flex justify-between w-full text-slate-900 ml-5 lg:w-[600px] relative"
               >
                 <input
                   ref={inputRef}
@@ -236,7 +236,7 @@ export default function Header() {
           </div>
           <div className="mt-5 h-12">
             <nav>
-              <ul className="hidden lg:flex items-center justify-between py-2 space-x-4 text-black text-sm 2xl:text-xl uppercase font-bold">
+              <ul className="hidden lg:flex items-center justify-between py-2 space-x-4 text-slate-900 text-sm 2xl:text-xl uppercase font-bold">
                 <li>
                   <Link
                     href="/catalog/schity-etazhnye-i-ustroystva-podezdnye"

@@ -5,7 +5,7 @@ import JsonLd from "@/components/JsonLdComponent";
 
 export const metadata = {
   title: "Схема подключения этажного щита ЩЭ 2025",
-  date: "07 октября 2025",
+  date: "18 января 2026",
   description:
     "Расключение этажного щита серии ЩЭ. Руководство с пошаговой инструкцией, основные этапы монтажа, схема подключения и типичные ошибки при монтаже...",
   image: "/images/categories/SE24L.png",
@@ -26,12 +26,12 @@ export default function Blog() {
       "@id": "https://electroshit-pro.ru/blogs/shit-etazhnyi-she",
     },
     headline:
-      "Щит этажный ЩЭ: расключение, монтаж и выбор — полное руководство 2025",
+      "Щит этажный ЩЭ: расключение, монтаж и выбор — полное руководство 2026",
     description:
       "Щит этажный (ЩЭ) является критически важным элементом электроснабжения многоквартирных домов...",
     image: ["https://electroshit-pro.ru/images/categories/SE24L.png"],
-    datePublished: "2025-11-07",
-    dateModified: "2025-11-07",
+    datePublished: "2026-01-18",
+    dateModified: "2026-01-18",
     author: {
       "@type": "Person",
       name: "Алексей Шитов",
@@ -140,8 +140,8 @@ export default function Blog() {
       <JsonLd data={HowTo} script_name="howto-jsonld" />
       <div className="min-h-screen bg-white text-gray-900">
         {/* Header/Navigation */}
-        <header className="sticky top-0 z-50 border-b border-gray-200 bg-gray-100/95 backdrop-blur supports-[backdrop-filter]:bg-gray-100/60">
-          <nav className="container mx-auto px-4 sm:px-6 lg:px-8 py-4">
+        <section className="sticky top-0 z-50 border-b border-gray-200 bg-gray-100/95 backdrop-blur supports-[backdrop-filter]:bg-gray-100/60">
+          <nav className="container mx-auto px-4 sm:px-6 lg:px-8 py-2">
             <ol className="hidden md:flex flex-wrap items-center gap-2 text-sm text-gray-600">
               <li>
                 <Link
@@ -164,23 +164,27 @@ export default function Blog() {
               <li className="text-blue-600">{metadata.title}</li>
             </ol>
           </nav>
-        </header>
+        </section>
 
         {/* Hero Section */}
         <section className=" bg-gray-100 ">
           <div className="container mx-auto px-4 lg:px-8 py-6 lg:py-24">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
               {/* Left Content */}
-              <div className="flex flex-col justify-center">
+              <div className="order-2 lg:order-1 flex flex-col justify-center">
                 <div className="mb-6">
                   <span className="text-gray-600 text-sm lg:text-xl">
                     {metadata.date} — Алексей Шитов
                   </span>
                 </div>
 
-                <h1 className="text-3xl lg:text-6xl font-bold leading-tight mb-8 text-balance">
+                <h1 className="text-2xl md:text-3xl font-light tracking-tighter leading-tight text-slate-900 mb-8">
                   Щит этажный ЩЭ: расключение, монтаж и выбор - полное
-                  руководство 2025 года
+                  руководство 2026 года
+                </h1>
+                <h1 className="text-3xl lg:text-5xl font-bold leading-tight mb-8 text-balance">
+                  Щит этажный ЩЭ: расключение, монтаж и выбор - полное
+                  руководство 2026 года
                 </h1>
 
                 <p className="text-xl lg:text-2xl text-gray-700 leading-relaxed mb-8 text-justify">
@@ -192,10 +196,12 @@ export default function Blog() {
                   </Link>{" "}
                   является критически важным элементом электроснабжения
                   многоквартирных домов, обеспечивающим безопасное распределение
-                  электроэнергии между квартирами. Правильное расключение,
-                  качественный монтаж и грамотный выбор компонентов напрямую
-                  влияют на надежность и безопасность всей электрической системы
-                  здания.
+                  электроэнергии между квартирами.
+                </p>
+                <p className="text-xl lg:text-2xl text-gray-700 leading-relaxed mb-16 text-justify">
+                  Правильное расключение, качественный монтаж и грамотный выбор
+                  компонентов напрямую влияют на надежность и безопасность всей
+                  электрической системы здания.
                 </p>
 
                 <div className="flex gap-4">
@@ -213,15 +219,23 @@ export default function Blog() {
               </div>
 
               {/* Right Image */}
-              <div className="relative h-96 lg:h-full min-h-[400px]">
+              <div className="order-1 lg:order-2 relative h-96 lg:h-full lg:min-h-[400px]">
                 <div className="absolute inset-0 bg-gradient-to-br from-blue-200/30 via-transparent to-gray-100 rounded-2xl" />
-                <Image
+                <video
+                  src="/video/Box.mp4"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  className="w-full h-auto object-contain rounded-2xl hover:scale-105 transition-transform duration-500"
+                />
+                {/* <Image
                   src="/images/categories/SE24L.png"
                   alt="image"
                   fill
                   sizes="(max-width: 768px) 100vw, 33vw"
                   className="object-contain rounded-2xl transition-transform duration-300 hover:scale-105 p-2"
-                />
+                /> */}
               </div>
             </div>
           </div>
@@ -230,16 +244,16 @@ export default function Blog() {
         {/* Main Content */}
         <section className="bg-white py-6 lg:py-12">
           <div>
-            <div className="max-w-6xl mx-auto space-y-16  px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
+            <div className="max-w-5xl mx-auto space-y-16 px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
               {/* Section 1 */}
               <section>
-                <h2 className="text-3xl lg:text-5xl font-bold mb-8 text-blue-600">
+                <h2 className="text-3xl lg:text-5xl font-bold mb-8 text-primary">
                   Что такое щит этажный ЩЭ
                 </h2>
                 <p className="text-2xl text-gray-700 leading-relaxed mb-8 text-justify">
                   <Link
                     href="/catalog/shity-etazhnye-she"
-                    className="text-blue-600 font-semibold hover:text-blue-700"
+                    className="text-accent font-semibold hover:text-accenthover"
                   >
                     Щит этажный (ЩЭ)
                   </Link>{" "}
@@ -291,6 +305,10 @@ export default function Blog() {
                 <h3 className="text-3xl font-semibold mb-8 text-gray-900">
                   Основные отсеки этажного щита
                 </h3>
+                <p className="text-base text-slate-600 leading-relaxed max-w-prose">
+                  Мы верим, что детали — это не просто детали. Это и есть сам
+                  дизайн. Именно поэтому мы уделяем внимание каждому пикселю.
+                </p>
 
                 <div className="space-y-8">
                   {[
@@ -531,17 +549,20 @@ export default function Blog() {
                         Автоматические выключатели соответствующих номиналов
                       </li>
                       <li>
-                        УЗО и дифференциальные автоматы для защиты от утечек{" "}
+                        УЗО и дифференциальные автоматы для защиты от
+                        утечек{" "}
                       </li>
                       <li>
                         Соединительные гребенки (шинопроводы) для фазных
                         соединений
                       </li>
                       <li>
-                        Провода ПуГВ для внутренних соединений сечением 6 мм²{" "}
+                        Провода ПуГВ для внутренних соединений сечением 6
+                        мм²{" "}
                       </li>
                       <li>
-                        Наконечники НШВИ для опрессовки многожильных проводов{" "}
+                        Наконечники НШВИ для опрессовки многожильных
+                        проводов{" "}
                       </li>
                       <li>Кабельные стяжки и маркировочные элементы </li>
                     </ul>

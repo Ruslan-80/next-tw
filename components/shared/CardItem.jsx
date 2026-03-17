@@ -106,8 +106,8 @@ export default function CardItem({ product, view }) {
       <li
         className={
           view === "grid"
-            ? "border border-gray-200 rounded-xl shadow-md hover:shadow-xl hover:border-blue-500/30 transition-all duration-300 bg-white overflow-hidden transform hover:-translate-y-1  dark:bg-gray-800 dark:text-white"
-            : "border border-gray-200 rounded-xl shadow-md hover:shadow-xl hover:border-blue-500/30 transition-all duration-300 bg-white flex flex-col md:flex-row  dark:bg-gray-800 dark:text-white"
+            ? "border border-gray-200 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 bg-[#f4f5f7] overflow-hidden transform hover:-translate-y-1  dark:bg-gray-800 dark:text-white"
+            : "border border-gray-200 rounded-xl shadow-md hover:shadow-xl hover:border-primary/30 transition-all duration-300 bg-white flex flex-col md:flex-row  dark:bg-gray-800 dark:text-white"
         }
         itemScope
         itemType="https://schema.org/Product"
@@ -138,7 +138,7 @@ export default function CardItem({ product, view }) {
                     alt={product.name}
                     fill
                     itemProp="image"
-                    className="object-contain rounded-lg transition-transform duration-300 hover:scale-105 p-4  dark:bg-gray-800 dark:text-white"
+                    className="object-contain rounded-lg bg-white transition-transform duration-300 hover:scale-105 p-4  dark:bg-gray-800 dark:text-white"
                     sizes={
                       (view || "grid") === "grid"
                         ? "(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
@@ -166,7 +166,7 @@ export default function CardItem({ product, view }) {
                   }
                 >
                   <span itemProp="name">{product.name}</span>
-                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-500/30 transition-all duration-300 group-hover:w-full  dark:bg-gray-800 dark:text-white" />
+                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary/30 transition-all duration-300 group-hover:w-full  dark:bg-gray-800 dark:text-white" />
                 </h4>
                 <p className="text-sm text-gray-500 mb-2">
                   Артикул:{" "}
@@ -329,7 +329,7 @@ export default function CardItem({ product, view }) {
           </Button> */}
           <Button
             onClick={() => handleButtonClick("Расчитать индивидуальный размер")}
-            className="w-full bg-blue-500 mb-2 px-4 hover:bg-blue-600 text-white font-medium rounded-lg py-2 transition-all duration-300  dark:bg-gray-500 dark:text-white"
+            className="w-full bg-primary mb-2 px-4 hover:bg-primary/80 text-white font-medium rounded-lg py-2 transition-all duration-300  dark:bg-gray-500 dark:text-white"
           >
             Расчитать индивидуальный размер
           </Button>

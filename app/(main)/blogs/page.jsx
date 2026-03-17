@@ -27,22 +27,18 @@ export default async function BlogsList() {
         image: module.metadata?.image || "/images/blog-placeholder.jpg", // можно добавить в metadata
         href: `/blogs/${slug}`,
       };
-    })
+    }),
   );
 
   // Сортировка по дате (если есть)
   posts.sort((a, b) => new Date(b.date) - new Date(a.date));
 
   return (
-    <main
-      id="main-content"
-      role="main"
-      className="container mx-auto min-h-screen bg-white px-4"
-    >
+    <main id="main-content" role="main">
       {/* Breadcrumbs */}
-      <section className="py-4">
+      <section className="sticky top-0 z-50 border-b border-gray-200 bg-gray-100/95 backdrop-blur supports-[backdrop-filter]:bg-gray-100/60">
         <nav
-          className="text-sm text-gray-600"
+          className="container mx-auto px-6 py-2 text-sm text-gray-600"
           itemScope
           itemType="http://schema.org/BreadcrumbList"
         >
@@ -72,94 +68,96 @@ export default async function BlogsList() {
         </nav>
       </section>
 
-      {/* Header */}
-      <section className="py-6">
-        <div className="space-y-3">
-          <h1 className="text-2xl font-semibold">Статьи</h1>
+      <div className="container mx-auto px-6 py-4">
+        {/* Header */}
+        <section className="py-6">
+          <div className="space-y-3">
+            <h1 className="text-2xl font-semibold">Статьи</h1>
 
-          <div className="flex gap-3 pt-2">
-            {/* Здесь можно добавить категории или фильтры */}
+            <div className="flex gap-3 pt-2">
+              {/* Здесь можно добавить категории или фильтры */}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Posts grid */}
-      <section aria-label="blog posts">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {posts.map((post) => (
-            <article
-              key={post.slug}
-              className="bg-white shadow-sm border rounded-2xl overflow-hidden flex flex-col"
-              itemScope
-              itemType="http://schema.org/BlogPosting"
-            >
-              <Link href={post.href} className="block relative w-full">
-                <div
-                  className="relative w-full"
-                  style={{ paddingBottom: "62.5%" }}
-                >
-                  <Image
-                    src={post.image}
-                    alt={post.title}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 33vw"
-                    className="object-contain rounded-2xl transition-transform duration-300 hover:scale-105 p-2"
-                  />
-                </div>
-              </Link>
-
-              <div className="p-4 flex-1 flex flex-col">
-                {post.date && (
-                  <time
-                    className="text-xs text-gray-500 mb-2"
-                    itemProp="datePublished"
+        {/* Posts grid */}
+        <section aria-label="blog posts">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {posts.map((post) => (
+              <article
+                key={post.slug}
+                className="bg-white shadow-sm border rounded-2xl overflow-hidden flex flex-col"
+                itemScope
+                itemType="http://schema.org/BlogPosting"
+              >
+                <Link href={post.href} className="block relative w-full">
+                  <div
+                    className="relative w-full"
+                    style={{ paddingBottom: "62.5%" }}
                   >
-                    {post.date}
-                  </time>
-                )}
+                    <Image
+                      src={post.image}
+                      alt={post.title}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                      className="object-contain rounded-2xl transition-transform duration-300 hover:scale-105 p-2"
+                    />
+                  </div>
+                </Link>
 
-                <h3 className="text-lg font-medium mb-2" itemProp="headline">
-                  <Link href={post.href} className="hover:underline">
-                    {post.title}
-                  </Link>
-                </h3>
-
-                <p
-                  className="text-sm text-gray-600 mb-4 flex-1"
-                  itemProp="description"
-                >
-                  {post.excerpt}
-                </p>
-
-                <div className="mt-2">
-                  <Link
-                    href={post.href}
-                    className="inline-flex items-center text-sm font-medium text-accent hover:underline"
-                  >
-                    Читать далее
-                    <svg
-                      className="ml-2"
-                      width="6"
-                      height="10"
-                      viewBox="0 0 6 10"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
+                <div className="p-4 flex-1 flex flex-col">
+                  {post.date && (
+                    <time
+                      className="text-xs text-gray-500 mb-2"
+                      itemProp="datePublished"
                     >
-                      <path
-                        d="M1 1L5 5L1 9"
-                        stroke="currentColor"
-                        strokeWidth="1.2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                  </Link>
+                      {post.date}
+                    </time>
+                  )}
+
+                  <h3 className="text-lg font-medium mb-2" itemProp="headline">
+                    <Link href={post.href} className="hover:underline">
+                      {post.title}
+                    </Link>
+                  </h3>
+
+                  <p
+                    className="text-sm text-gray-600 mb-4 flex-1"
+                    itemProp="description"
+                  >
+                    {post.excerpt}
+                  </p>
+
+                  <div className="mt-2">
+                    <Link
+                      href={post.href}
+                      className="inline-flex items-center text-sm font-medium text-accent hover:underline"
+                    >
+                      Читать далее
+                      <svg
+                        className="ml-2"
+                        width="6"
+                        height="10"
+                        viewBox="0 0 6 10"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M1 1L5 5L1 9"
+                          stroke="currentColor"
+                          strokeWidth="1.2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                    </Link>
+                  </div>
                 </div>
-              </div>
-            </article>
-          ))}
-        </div>
-      </section>
+              </article>
+            ))}
+          </div>
+        </section>
+      </div>
     </main>
   );
 }

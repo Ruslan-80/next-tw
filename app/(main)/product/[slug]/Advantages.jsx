@@ -68,10 +68,10 @@ export default function Advantages() {
                   d={advantage.path}
                 />
               </svg>
-              <span className="text-black mt-2">{advantage.title}</span>
+              <span className="text-slate-900 mt-2">{advantage.title}</span>
             </div>
             {/* Back side */}
-            <div className="flip-card-back bg-blue-700/20 rounded-2xl text-[16px] absolute w-full h-full flex items-center justify-center text-black rotate-y-180 backface-hidden">
+            <div className="flip-card-back bg-blue-700/20 rounded-2xl text-[16px] absolute w-full h-full flex items-center justify-center text-slate-900 rotate-y-180 backface-hidden">
               <p className="p-4 text-center">{advantage.description}</p>
             </div>
           </div>

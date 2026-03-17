@@ -1,6 +1,7 @@
 export const dynamic = "force-dynamic";
-import { prisma } from "../../../../lib/prisma";
-import ClientFilters from "./ClientFilters";
+import { prisma } from "@/lib/prisma";
+import ClientFilters from "./ClientFilters2";
+import smartSort from "@/utils/smartSort";
 
 export default async function Filters({
   attributeIds,
@@ -76,13 +77,13 @@ export default async function Filters({
       productId: true,
     },
   });
-  //   console.log('Filters.jsx - valueCounts:', valueCounts);
+  // console.log("Filters.jsx - valueCounts:", valueCounts);
 
   const valueCountsMap = new Map();
   valueCounts.forEach((item) => {
     valueCountsMap.set(
       `${item.attributeId}-${item.attributeValueName}`,
-      item._count.productId
+      item._count.productId,
     );
   });
   // console.log("valueCounts:", valueCountsMap);
@@ -109,11 +110,14 @@ export default async function Filters({
   const validAttributes = attributes
     .filter((attr) => attr.values.length > 0)
     .reduce((acc, attr) => {
+      const values = attr.values.map((v) => v.name);
+
       acc[attr.slug] = {
         name: attr.name,
-        values: attr.values.map((v) => v.name),
+        values: values.sort(smartSort),
         counts: attr.values.reduce((c, v) => ({ ...c, [v.name]: v.count }), {}),
       };
+
       return acc;
     }, {});
 

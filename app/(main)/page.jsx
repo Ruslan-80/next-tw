@@ -17,7 +17,7 @@ export default function Home() {
   return (
     <>
       <JsonLd data={organizationJsonLd} script_name="organization-jsonld" />
-      <main className=" container mx-auto bg-white">
+      <main className=" container mx-auto bg-background">
         <h1 className="hidden">
           Производство электрощитового оборудования и металлокорпусов
         </h1>

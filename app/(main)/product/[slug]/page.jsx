@@ -146,15 +146,14 @@ export default async function Page({ params }) {
     randomDescription,
     product.category,
     ratingValue,
-    ratingCount
+    ratingCount,
   );
 
   return (
     <>
       <JsonLd data={productJsonLd} script_name="product-jsonld" />
+      <Breadcrumbs items={breadcrumbs} productName={product.name} />
       <div className="container mx-auto px-4 dark:bg-gray-900 dark:text-white">
-        <Breadcrumbs items={breadcrumbs} />
-
         <ProductPageClient
           product={product}
           ratingValue={ratingValue}

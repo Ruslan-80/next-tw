@@ -15,7 +15,7 @@ export default function Subcategories({ subcategories }) {
         {subcategories.map((subcategory) => (
           <li
             key={subcategory.id}
-            className="border rounded-lg shadow-sm hover:shadow-lg transition-shadow duration-300 bg-white"
+            className="border rounded-lg shadow-sm hover:shadow-lg transition-shadow duration-300 bg-card"
           >
             <Link
               href={`/catalog/${subcategory.slug}`}

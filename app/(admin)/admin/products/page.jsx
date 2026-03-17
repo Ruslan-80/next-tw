@@ -14,14 +14,14 @@ async function deleteProduct(formData) {
   await prisma.product.delete({
     where: { id },
   });
-  redirect("/products");
+  redirect("/admin/products");
 }
 // Главная страница админки товаров
 export default async function ProductsPageAdmin() {
   let products = [];
   try {
     products = await prisma.product.findMany({
-      orderBy: { slug: "asc" },
+      orderBy: { id: "asc" },
       include: { category: true },
     });
   } catch (error) {
@@ -29,21 +29,22 @@ export default async function ProductsPageAdmin() {
   }
 
   return (
-    <div className="p-4  w-full ">
+    <div className="p-4  w-full">
       <h1 className="text-2xl font-bold mb-4">Товары</h1>
       <div className="flex items-center gap-4 mb-6">
         <Link
-          href="/products/create"
+          href="/admin/products/create"
           className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
         >
           Создать новый товар
         </Link>
       </div>
+      <div>
 
       <UniversalTable
         data={products}
         caption="Список товаров"
-        excludeKeys={["createdAt", "updatedAt", "descriptionSeo", "titleSeo"]}
+        excludeKeys={["createdAt", "updatedAt", "description", "descriptionSeo", "titleSeo", "category"]}
         customHeaders={{
           id: "ID",
           name: "Название",
@@ -68,6 +69,7 @@ export default async function ProductsPageAdmin() {
           </div>
         )}
       />
+    </div>
     </div>
   );
 }

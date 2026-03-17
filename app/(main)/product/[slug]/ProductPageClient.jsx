@@ -47,7 +47,6 @@ export default function ProductPageClient({
     setModalContent(content);
     setIsModalOpen(true);
   };
-
   useEffect(() => {
     if (typeof window !== "undefined") {
       setCurrentUrl(window.location.href);
@@ -66,6 +65,8 @@ export default function ProductPageClient({
     "напряжение",
     "ip",
   ];
+
+  // console.log(product.attributes.map((attr) => attr.attributeName));
 
   // const averageRating = product.yandexRating || 4.5;
   // const totalReviews = product.yandexReviewCount || 15;
@@ -131,13 +132,13 @@ export default function ProductPageClient({
 
   const handlePrevImage = () => {
     setSelectedImageIndex((prev) =>
-      prev === 0 ? images.length - 1 : prev - 1
+      prev === 0 ? images.length - 1 : prev - 1,
     );
   };
 
   const handleNextImage = () => {
     setSelectedImageIndex((prev) =>
-      prev === images.length - 1 ? 0 : prev + 1
+      prev === images.length - 1 ? 0 : prev + 1,
     );
   };
 
@@ -155,21 +156,22 @@ export default function ProductPageClient({
         {product.name || "Продукт"}
       </h1>
 
-      <div className="bg-white rounded-2xl shadow-xl overflow-hidden dark:bg-gray-900 dark:text-white">
+      {/* <div className="bg-white rounded-2xl shadow-xl overflow-hidden dark:bg-gray-900 dark:text-white"> */}
+      <div className="bg-white rounded-2xl shadow-xl dark:bg-gray-900 dark:text-white">
         {/* Modern Product Layout */}
         <div>
           <div className="flex flex-col lg:flex-row">
             {/* Image Gallery */}
-            <div className="lg:w-1/2 p-6">
+            <div className="lg:w-1/2 p-6 lg:sticky lg:top-6 self-start">
               <div className="flex flex-col-reverse lg:flex-col-reverse gap-4">
                 {/* Thumbnails */}
-                <div className="flex  gap-2 overflow-x-auto py-2 lg:py-0">
+                <div className="flex gap-2 overflow-x-auto py-2 lg:py-0">
                   {images.map((img, index) => (
                     <div
                       key={index}
                       className={`relative w-16 h-16 lg:w-20 lg:h-20 cursor-pointer rounded-lg overflow-hidden border-2 transition-all duration-300 ${
                         index === selectedImageIndex
-                          ? "border-blue-500 shadow-md"
+                          ? "border-gray-200 shadow-md"
                           : "border-gray-200 hover:border-gray-400"
                       }`}
                       onClick={() => setSelectedImageIndex(index)}
@@ -238,7 +240,7 @@ export default function ProductPageClient({
                 {/* Price and Actions */}
                 <div className="flex flex-wrap items-center gap-4 mb-6">
                   <div
-                    className="text-3xl font-bold text-blue-600"
+                    className="text-3xl font-bold text-primary"
                     itemProp="offers"
                     itemScope
                     itemType="https://schema.org/Offer"
@@ -269,15 +271,19 @@ export default function ProductPageClient({
 
                   <div className="flex gap-3">
                     <button
-                      onClick={() => handleButtonClick("Купить в 1 клик")}
-                      className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg"
+                      onClick={() =>
+                        handleButtonClick(
+                          `Купить в 1 клик` + " " + product.name,
+                        )
+                      }
+                      className="btn-primary text-white px-6 py-3 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg"
                     >
                       Купить в 1 клик
                     </button>
                     <button
                       onClick={handleAddToCart}
                       disabled={adding}
-                      className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg disabled:opacity-70"
+                      className="btn-accent text-white px-6 py-3 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg disabled:opacity-70"
                     >
                       {adding ? "Добавление..." : "В корзину"}
                     </button>
@@ -331,7 +337,11 @@ export default function ProductPageClient({
                         Обратный звонок
                       </h3>
                       <button
-                        onClick={() => setIsModalOpen(true)}
+                        onClick={() =>
+                          handleButtonClick(
+                            `Заказ обратного звонка по товару ${product.name}`,
+                          )
+                        }
                         className="text-blue-600 hover:text-blue-800 font-medium mt-1"
                       >
                         Перезвонить мне
@@ -414,19 +424,23 @@ export default function ProductPageClient({
                 <div className="flex flex-col gap-3">
                   <button
                     onClick={() =>
-                      handleButtonClick("Заказать бесплатный расчет")
+                      handleButtonClick(
+                        `Заказать бесплатный расчет` + " " + product.name,
+                      )
                     }
-                    className="w-full py-3 px-6 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg border border-blue-200 transition-colors duration-300"
+                    className="w-full py-3 px-6 btn-primary text-white font-medium rounded-lg border border-blue-200 transition-colors duration-300"
                   >
                     Заказать бесплатный расчет
                   </button>
                   <button
                     onClick={() =>
                       handleButtonClick(
-                        "Заказать бесплатный замер с выездом специалиста"
+                        `Заказать бесплатный замер с выездом специалиста` +
+                          " " +
+                          product.name,
                       )
                     }
-                    className="w-full py-3 px-6 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg border border-blue-200  transition-colors duration-300 "
+                    className="w-full py-3 px-6 btn-primary text-white font-medium rounded-lg border border-blue-200  transition-colors duration-300 "
                   >
                     Заказать бесплатный замер с выездом специалиста
                   </button>
@@ -481,8 +495,8 @@ export default function ProductPageClient({
               {product.attributes
                 .filter((attr) =>
                   allowed.some((word) =>
-                    attr.attributeName.toLowerCase().includes(word)
-                  )
+                    attr.attributeName.toLowerCase().includes(word),
+                  ),
                 )
                 .map((attr) => (
                   <div
@@ -515,14 +529,26 @@ export default function ProductPageClient({
               <div className="border-t border-gray-200 pt-6">
                 <div className="flex flex-col md:flex-col justify-between gap-4 text-xl">
                   <div className="text-red-700">
-                    <span className="font-semibold">Заказ от 10 штук</span>{" "}
+                    <span className="font-semibold">
+                      Заказ от{" "}
+                      {product.attributes?.find(
+                        (attr) => attr.attributeName === "Кратность",
+                      )?.attributeValueName ?? 10}{" "}
+                      шт.
+                    </span>
                   </div>
                   <div className="text-gray-700">
-                    <span className="font-semibold">Срок изготовления:</span>{" "}
-                    производство от 7 до 14 дней
+                    {/* <span className="font-semibold">Срок изготовления:</span> 7
+                    до 14 дней */}
+                    <span className="font-semibold">
+                      Срок изготовления:{" "}
+                      {product.attributes?.find(
+                        (attr) => attr.attributeName === "Срок изготовления",
+                      )?.attributeValueName ?? "10-14 дней"}
+                    </span>
                   </div>
 
-                  <div className="flex items-center gap-3">
+                  {/* <div className="flex items-center gap-3">
                     <span className="text-gray-700 font-semibold">
                       Поделиться:
                     </span>
@@ -564,7 +590,7 @@ export default function ProductPageClient({
                         </svg>
                       </a>
                     </div>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div>
@@ -649,7 +675,7 @@ export default function ProductPageClient({
       </div>
 
       {/* Tabs */}
-      <div className="mt-8">
+      <div className="my-8">
         <div
           className="flex flex-wrap gap-5 mb-3 text-xs lg:text-2xl md:flex-nowrap"
           ref={characteristicsRef}
@@ -658,7 +684,7 @@ export default function ProductPageClient({
             className={`w-full py-3 px-6 font-medium bg-gray-300 border rounded-2xl transition-all duration-300 ${
               activeTab === "characteristics"
                 ? "bg-white"
-                : "text-gray-500 hover:text-black"
+                : "text-gray-500 hover:text-slate-900"
             }`}
             onClick={() => setActiveTab("characteristics")}
           >
@@ -668,7 +694,7 @@ export default function ProductPageClient({
             className={`w-full py-3 px-6 font-medium bg-gray-300 border rounded-2xl transition-all duration-300 ${
               activeTab === "description"
                 ? "bg-white"
-                : "text-gray-500 hover:text-black"
+                : "text-gray-500 hover:text-slate-900"
             }`}
             onClick={() => setActiveTab("description")}
           >
@@ -678,7 +704,7 @@ export default function ProductPageClient({
             className={`w-full py-3 px-6 font-medium bg-gray-300 border rounded-2xl transition-all duration-300 ${
               activeTab === "documentation"
                 ? "bg-white"
-                : "text-gray-500 hover:text-black"
+                : "text-gray-500 hover:text-slate-900"
             }`}
             onClick={() => setActiveTab("documentation")}
           >
@@ -688,7 +714,7 @@ export default function ProductPageClient({
             className={`w-full py-3 px-6 font-medium bg-gray-300 border rounded-2xl transition-all duration-300 ${
               activeTab === "dostavka"
                 ? "bg-white"
-                : "text-gray-500 hover:text-black"
+                : "text-gray-500 hover:text-slate-900"
             }`}
             onClick={() => setActiveTab("dostavka")}
           >
@@ -698,7 +724,7 @@ export default function ProductPageClient({
             className={`w-full py-3 px-6 font-medium bg-gray-300 border rounded-2xl transition-all duration-300 ${
               activeTab === "reviews"
                 ? "bg-white"
-                : "text-gray-500 hover:text-black"
+                : "text-gray-500 hover:text-slate-900"
             }`}
             onClick={() => setActiveTab("reviews")}
           >
@@ -722,7 +748,10 @@ export default function ProductPageClient({
             }`}
             // itemProp="description"
           >
-            <DescriptionsTab description={product.description || []} />
+            <DescriptionsTab
+              description={product.description || []}
+              slug={product.slug || []}
+            />
           </div>
 
           {/* Документация */}
@@ -793,7 +822,11 @@ export default function ProductPageClient({
               </button>
 
               <button
-                onClick={() => setIsModalOpen(true)}
+                onClick={() =>
+                  handleButtonClick(
+                    `Заказ бесплатного расчета по товару ${product.name}`,
+                  )
+                }
                 className="inline-flex items-center justify-center border-0 bg-blue-500  text-white px-8 py-3 cursor-pointer rounded-3xl hover:bg-blue-600 transition-all duration-300"
               >
                 Заказать бесплатный расчет

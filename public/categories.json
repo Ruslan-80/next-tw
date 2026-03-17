@@ -1,122 +1,154 @@
-[
-  {
-    "id": 1,
-    "slug": "glavnye-raspredelitelnye-shity-grsh",
-    "updatedAt": "2025-10-09T12:32:22.806Z"
-  },
-  {
-    "id": 2,
-    "slug": "shkafy-upravleniya-s-chastotnym-preobrazovatelyami-shup",
-    "updatedAt": "2025-10-09T12:41:59.520Z"
-  },
-  {
-    "id": 3,
-    "slug": "vvodno-raspredelitelnye-ustrojstva-vru",
-    "updatedAt": "2025-11-10T10:36:27.957Z"
-  },
-  {
-    "id": 4,
-    "slug": "shkafy-avtomatizacii",
-    "updatedAt": "2025-10-09T12:42:25.755Z"
-  },
-  {
-    "id": 5,
-    "slug": "shity-silovye",
-    "updatedAt": "2025-10-09T12:42:44.593Z"
-  },
-  {
-    "id": 6,
-    "slug": "shkafy-avtomaticheskogo-rezerva-avr",
-    "updatedAt": "2025-10-09T12:42:59.731Z"
-  },
-  {
-    "id": 7,
-    "slug": "punkty-raspredelitelnye-pr",
-    "updatedAt": "2025-10-09T12:43:11.562Z"
-  },
-  {
-    "id": 8,
-    "slug": "paneli-upravleniya",
-    "updatedAt": "2025-10-09T12:43:19.796Z"
-  },
-  {
-    "id": 9,
-    "slug": "ustrojstva-kompensacii-reaktivnoj-moshnosti-ukrm",
-    "updatedAt": "2025-10-09T12:43:27.969Z"
-  },
-  {
-    "id": 10,
-    "slug": "shity-etazhnye-she",
-    "updatedAt": "2025-10-09T12:44:08.239Z"
-  },
-  {
-    "id": 12,
-    "slug": "ustroystva-etazhnye",
-    "updatedAt": "2025-10-09T12:44:24.224Z"
-  },
-  {
-    "id": 13,
-    "slug": "uerm",
-    "updatedAt": "2025-12-04T13:16:05.773Z"
-  },
-  {
-    "id": 14,
-    "slug": "uerv",
-    "updatedAt": "2025-10-09T12:44:42.523Z"
-  },
-  {
-    "id": 15,
-    "slug": "uerb",
-    "updatedAt": "2025-10-09T12:44:50.418Z"
-  },
-  {
-    "id": 16,
-    "slug": "uerk",
-    "updatedAt": "2025-10-09T12:44:59.002Z"
-  },
-  {
-    "id": 17,
-    "slug": "uern",
-    "updatedAt": "2025-10-09T12:45:07.101Z"
-  },
-  {
-    "id": 18,
-    "slug": "schity-etazhnye-i-ustroystva-podezdnye",
-    "updatedAt": "2025-10-09T12:45:41.012Z"
-  },
-  {
-    "id": 19,
-    "slug": "nakladki-shitov-etazhnyh-she",
-    "updatedAt": "2025-11-10T10:31:10.770Z"
-  },
-  {
-    "id": 21,
-    "slug": "kozhuh-she-dlya-etazhnogo-shita",
-    "updatedAt": "2025-12-09T15:02:00.779Z"
-  },
-  {
-    "id": 22,
-    "slug": "vru-1",
-    "updatedAt": "2025-11-10T10:39:12.909Z"
-  },
-  {
-    "id": 23,
-    "slug": "vru-3",
-    "updatedAt": "2025-11-10T10:39:46.462Z"
-  },
-  {
-    "id": 24,
-    "slug": "vru-8504",
-    "updatedAt": "2025-11-10T10:39:46.462Z"
-  },
-  {
-    "id": 25,
-    "slug": "vru-8505",
-    "updatedAt": "2025-11-10T10:39:46.462Z"
-  },
-  {
-    "id": 26,
-    "slug": "vru-4",
-    "updatedAt": "2025-11-10T10:39:46.462Z"
-  }
-]
+{
+  "categories": [
+    {
+      "id": 1,
+      "slug": "glavnye-raspredelitelnye-shity-grsh",
+      "updatedAt": "2025-10-09T12:32:22.806Z"
+    },
+    {
+      "id": 2,
+      "slug": "shkafy-upravleniya-s-chastotnym-preobrazovatelyami-shup",
+      "updatedAt": "2025-10-09T12:41:59.520Z"
+    },
+    {
+      "id": 3,
+      "slug": "vvodno-raspredelitelnye-ustrojstva-vru",
+      "updatedAt": "2025-11-10T10:36:27.957Z"
+    },
+    {
+      "id": 4,
+      "slug": "shkafy-avtomatizacii",
+      "updatedAt": "2025-10-09T12:42:25.755Z"
+    },
+    {
+      "id": 5,
+      "slug": "shity-silovye",
+      "updatedAt": "2025-10-09T12:42:44.593Z"
+    },
+    {
+      "id": 6,
+      "slug": "shkafy-avtomaticheskogo-rezerva-avr",
+      "updatedAt": "2025-10-09T12:42:59.731Z"
+    },
+    {
+      "id": 7,
+      "slug": "punkty-raspredelitelnye-pr",
+      "updatedAt": "2025-10-09T12:43:11.562Z"
+    },
+    {
+      "id": 8,
+      "slug": "paneli-upravleniya",
+      "updatedAt": "2025-10-09T12:43:19.796Z"
+    },
+    {
+      "id": 9,
+      "slug": "ustrojstva-kompensacii-reaktivnoj-moshnosti-ukrm",
+      "updatedAt": "2025-10-09T12:43:27.969Z"
+    },
+    {
+      "id": 10,
+      "slug": "shity-etazhnye-she",
+      "updatedAt": "2025-10-09T12:44:08.239Z"
+    },
+    {
+      "id": 18,
+      "slug": "schity-etazhnye-i-ustroystva-podezdnye",
+      "updatedAt": "2025-10-09T12:45:41.012Z"
+    },
+    {
+      "id": 19,
+      "slug": "nakladki-shitov-etazhnyh-she",
+      "updatedAt": "2025-11-10T10:31:10.770Z"
+    },
+    {
+      "id": 21,
+      "slug": "kozhuh-she-dlya-etazhnogo-shita",
+      "updatedAt": "2025-12-09T15:02:00.779Z"
+    },
+    {
+      "id": 22,
+      "slug": "vru-1",
+      "updatedAt": "2026-03-02T15:21:03.873Z"
+    },
+    {
+      "id": 23,
+      "slug": "vru-3",
+      "updatedAt": "2025-11-10T10:39:46.462Z"
+    },
+    {
+      "id": 24,
+      "slug": "vru-8504",
+      "updatedAt": "2025-11-10T10:39:46.462Z"
+    },
+    {
+      "id": 25,
+      "slug": "vru-8505",
+      "updatedAt": "2025-11-10T10:39:46.462Z"
+    },
+    {
+      "id": 26,
+      "slug": "vru-4",
+      "updatedAt": "2025-11-10T10:39:46.462Z"
+    },
+    {
+      "id": 27,
+      "slug": "vru-21",
+      "updatedAt": "2026-02-16T10:42:28.559Z"
+    }
+  ],
+  "filters": [
+    "shity-etazhnye-she-na-1-kvartiry",
+    "shity-etazhnye-she-na-2-kvartiry",
+    "shity-etazhnye-she-na-3-kvartiry",
+    "shity-etazhnye-she-na-4-kvartiry",
+    "shity-etazhnye-she-na-5-kvartir",
+    "shity-etazhnye-she-na-6-kvartir",
+    "shity-etazhnye-she-na-7-kvartir",
+    "shity-etazhnye-she-na-8-kvartir",
+    "shity-etazhnye-she-na-9-kvartir",
+    "shity-etazhnye-she-na-10-kvartir",
+    "shity-etazhnye-she-na-12-kvartir",
+    "shity-etazhnye-she-vstraivaemye",
+    "shity-etazhnye-she-bez-okon",
+    "shity-etazhnye-she-bez-slabotochnogo-otseka",
+    "shity-etazhnye-she-so-slabotochnym-otsekom",
+    "shity-etazhnye-she-nakladnye"
+  ],
+  "sitemapPaths": [
+    "/catalog/glavnye-raspredelitelnye-shity-grsh",
+    "/catalog/shkafy-upravleniya-s-chastotnym-preobrazovatelyami-shup",
+    "/catalog/vvodno-raspredelitelnye-ustrojstva-vru",
+    "/catalog/shkafy-avtomatizacii",
+    "/catalog/shity-silovye",
+    "/catalog/shkafy-avtomaticheskogo-rezerva-avr",
+    "/catalog/punkty-raspredelitelnye-pr",
+    "/catalog/paneli-upravleniya",
+    "/catalog/ustrojstva-kompensacii-reaktivnoj-moshnosti-ukrm",
+    "/catalog/shity-etazhnye-she",
+    "/catalog/schity-etazhnye-i-ustroystva-podezdnye",
+    "/catalog/nakladki-shitov-etazhnyh-she",
+    "/catalog/kozhuh-she-dlya-etazhnogo-shita",
+    "/catalog/vru-1",
+    "/catalog/vru-3",
+    "/catalog/vru-8504",
+    "/catalog/vru-8505",
+    "/catalog/vru-4",
+    "/catalog/vru-21",
+    "/catalog/shity-etazhnye-she-na-1-kvartiry",
+    "/catalog/shity-etazhnye-she-na-2-kvartiry",
+    "/catalog/shity-etazhnye-she-na-3-kvartiry",
+    "/catalog/shity-etazhnye-she-na-4-kvartiry",
+    "/catalog/shity-etazhnye-she-na-5-kvartir",
+    "/catalog/shity-etazhnye-she-na-6-kvartir",
+    "/catalog/shity-etazhnye-she-na-7-kvartir",
+    "/catalog/shity-etazhnye-she-na-8-kvartir",
+    "/catalog/shity-etazhnye-she-na-9-kvartir",
+    "/catalog/shity-etazhnye-she-na-10-kvartir",
+    "/catalog/shity-etazhnye-she-na-12-kvartir",
+    "/catalog/shity-etazhnye-she-vstraivaemye",
+    "/catalog/shity-etazhnye-she-bez-okon",
+    "/catalog/shity-etazhnye-she-bez-slabotochnogo-otseka",
+    "/catalog/shity-etazhnye-she-so-slabotochnym-otsekom",
+    "/catalog/shity-etazhnye-she-nakladnye"
+  ]
+}

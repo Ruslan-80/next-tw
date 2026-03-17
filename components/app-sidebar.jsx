@@ -31,7 +31,7 @@ const data = {
     user: {
         name: "admin",
         email: "m@example.com",
-        avatar: "@/public/next.svg",
+        avatar: "file.svg",
     },
     teams: [
         {

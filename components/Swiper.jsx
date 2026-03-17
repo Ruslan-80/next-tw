@@ -35,9 +35,9 @@ function Slider() {
   if (isMobile) {
     return (
       <>
-        <h3 className="mt-6 mb-2 text-center font-semibold text-2xl">
+        {/* <h3 className="mt-6 mb-2 text-center font-semibold text-2xl">
           Добро пожаловать в ЭЛЕКТРОЩИТ-ПРО
-        </h3>
+        </h3> */}
       </>
     );
   }

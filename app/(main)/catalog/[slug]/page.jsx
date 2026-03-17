@@ -195,8 +195,8 @@ export default async function CategoryPage({ params, searchParams }) {
     selectedAttribute === "kolichestvo-kvartir-schetchikov"
       ? ` на ${selectedValue} квартиры`
       : selectedValue
-      ? ` (${selectedValue})`
-      : "";
+        ? ` (${selectedValue})`
+        : "";
   const finalH1 = h1Text || `${category.fullName}${displaySuffix}`;
 
   const breadcrumbs = [];
@@ -239,19 +239,18 @@ export default async function CategoryPage({ params, searchParams }) {
     products,
     baseSlug,
     page,
-    canonicalUrl
+    canonicalUrl,
   );
 
   return (
     <>
       <JsonLd data={categoryJsonLd} script_name="category-jsonld" />
 
+      <Breadcrumbs items={breadcrumbs} />
       <div className="container mx-auto px-4">
-        <Breadcrumbs items={breadcrumbs} />
-        <h1 className="flex items-center justify-center text-base sm:text-2xl font-bold mb-6 mt-4">
+        <h1 className="flex items-center justify-center text-2xl md:text-3xl font-light tracking-tighter leading-tight text-slate-900 my-16">
           {finalH1}
         </h1>
-
         {TopComponent ? (
           <TopComponent />
         ) : fullDescription ? (
@@ -263,7 +262,7 @@ export default async function CategoryPage({ params, searchParams }) {
           <Subcategories subcategories={category.children} />
         )}
         <div className="grid grid-cols-1 md:grid-cols-[1fr_3fr] gap-4">
-          <div className="hidden md:block p-4">
+          <div className="p-0 md:p-4 lg:top-6 self-start ">
             <Filters
               totalProducts={totalProducts}
               attributeIds={category.filters}

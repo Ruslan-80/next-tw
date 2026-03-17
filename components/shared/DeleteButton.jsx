@@ -21,7 +21,7 @@ export function DeleteButton({ productId }) {
       });
 
       if (response.ok) {
-        router.push("/products");
+        router.push("/admin/products");
         router.refresh();
       } else {
         alert("Ошибка при удалении товара");
