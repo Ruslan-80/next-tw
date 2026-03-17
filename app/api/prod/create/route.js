@@ -233,28 +233,28 @@ export async function POST(request) {
         }
 
         // 5. Обработка медиафайлов
-        // if (item.mediaFiles && item.mediaFiles.length > 0) {
-        //   for (const media of item.mediaFiles) {
-        //     const existingMediaFile = await prisma.mediaFile.findFirst({
-        //       where: {
-        //         productId: product.id,
-        //         type: media.type,
-        //         url: media.url,
-        //       },
-        //     });
+        if (item.mediaFiles && item.mediaFiles.length > 0) {
+          for (const media of item.mediaFiles) {
+            const existingMediaFile = await prisma.mediaFile.findFirst({
+              where: {
+                productId: product.id,
+                type: media.type,
+                url: media.url,
+              },
+            });
 
-        //     if (!existingMediaFile) {
-        //       await prisma.mediaFile.create({
-        //         data: {
-        //           productId: product.id,
-        //           type: media.type,
-        //           url: media.url,
-        //         },
-        //       });
-        //       loadedMediaFiles++;
-        //     }
-        //   }
-        // }
+            if (!existingMediaFile) {
+              await prisma.mediaFile.create({
+                data: {
+                  productId: product.id,
+                  type: media.type,
+                  url: media.url,
+                },
+              });
+              loadedMediaFiles++;
+            }
+          }
+        }
 
         successfulProducts.push(item.article);
       } catch (error) {
