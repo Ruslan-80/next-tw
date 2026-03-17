@@ -48,4 +48,5 @@ EXPOSE 3000
 # Используем путь к схеме явно.
 # CMD prisma migrate deploy --schema ./prisma/schema.prisma && node server.js
 # CMD prisma db push --accept-data-loss && node server.js
-CMD prisma migrate deploy && node server.js
+# CMD prisma migrate deploy && node server.js
+CMD npx prisma db push --skip-generate && node server.js
