@@ -95,6 +95,7 @@ export default function Header() {
     { name: "Объекты", href: "/objects" },
     { name: "Контакты", href: "/contacts" },
   ];
+
   return (
     <>
       <header className="sticky top-0 z-50 bg-white border-b border-slate-100">

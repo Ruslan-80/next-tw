@@ -133,18 +133,24 @@ export default function CardItem({ product, view }) {
                 }
               >
                 {product.image ? (
-                  <Image
-                    src={product.image}
-                    alt={product.name}
-                    fill
-                    itemProp="image"
-                    className="object-contain rounded-lg bg-white transition-transform duration-300 hover:scale-105 p-4  dark:bg-gray-800 dark:text-white"
-                    sizes={
-                      (view || "grid") === "grid"
-                        ? "(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                        : "(max-width: 768px) 100vw, 192px"
-                    }
-                  />
+                  <>
+                    <link
+                      itemProp="image"
+                      href={`https://electroshit-pro.ru${product.image}`}
+                    />
+
+                    <Image
+                      src={product.image}
+                      alt={product.name}
+                      fill
+                      className="object-contain rounded-lg bg-white transition-transform duration-300 hover:scale-105 p-4 dark:bg-gray-800 dark:text-white"
+                      sizes={
+                        (view || "grid") === "grid"
+                          ? "(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                          : "(max-width: 768px) 100vw, 192px"
+                      }
+                    />
+                  </>
                 ) : (
                   <Skeleton className="w-full h-full rounded-lg" />
                 )}
@@ -227,8 +233,8 @@ export default function CardItem({ product, view }) {
                     itemProp="availability"
                     href={
                       product.stock > 0
-                        ? "http://schema.org/InStock"
-                        : "http://schema.org/PreOrder"
+                        ? "https://schema.org/InStock"
+                        : "https://schema.org/PreOrder"
                     }
                   />
                 </div>
@@ -340,8 +346,8 @@ export default function CardItem({ product, view }) {
               adding
                 ? "bg-orange-400 opacity-50"
                 : product.basePrice > 0
-                ? "bg-orange-400/80 hover:bg-orange-400"
-                : "bg-gray-400 cursor-not-allowed"
+                  ? "bg-orange-400/80 hover:bg-orange-400"
+                  : "bg-gray-400 cursor-not-allowed"
             }`}
           >
             {adding ? "Добавление..." : "В корзину"}
@@ -377,19 +383,19 @@ CardItem.propTypes = {
         stock: PropTypes.number.isRequired,
         variationValue: PropTypes.string.isRequired,
         isDefault: PropTypes.bool.isRequired,
-      })
+      }),
     ).isRequired,
     tags: PropTypes.arrayOf(
       PropTypes.shape({
         name: PropTypes.string.isRequired,
         slug: PropTypes.string.isRequired,
-      })
+      }),
     ),
     attributes: PropTypes.arrayOf(
       PropTypes.shape({
         attributeName: PropTypes.string.isRequired,
         attributeValueName: PropTypes.string.isRequired,
-      })
+      }),
     ),
   }).isRequired,
   view: PropTypes.oneOf(["grid", "list"]).isRequired,

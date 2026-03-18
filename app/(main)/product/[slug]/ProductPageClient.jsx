@@ -188,35 +188,42 @@ export default function ProductPageClient({
                 </div>
 
                 {/* Main Image */}
-                <div className="relative flex-1 aspect-square  rounded-xl overflow-hidden">
+                <div className="relative flex-1 aspect-square rounded-xl overflow-hidden">
                   {images[selectedImageIndex] ? (
-                    <Image
-                      itemProp="image"
-                      src={images[selectedImageIndex] || mainImage}
-                      alt={product.name || "Продукт"}
-                      height={700}
-                      width={700}
-                      className="object-contain w-full h-full p-4 transition-all duration-500 hover:scale-105 cursor-zoom-in"
-                      onClick={() => handleImageZoom(selectedImageIndex)}
-                    />
+                    <>
+                      <link
+                        itemProp="image"
+                        href={`https://electroshit-pro.ru${images[selectedImageIndex] || mainImage}`}
+                      />
+
+                      <Image
+                        src={images[selectedImageIndex] || mainImage}
+                        alt={product.name || "Продукт"}
+                        height={700}
+                        width={700}
+                        className="object-contain w-full h-full p-4 transition-all duration-500 hover:scale-105 cursor-zoom-in"
+                        onClick={() => handleImageZoom(selectedImageIndex)}
+                        priority
+                      />
+                    </>
                   ) : (
                     <Skeleton className="w-full h-full rounded-lg" />
                   )}
 
                   {/* Product Badges */}
-                  <div className="absolute top-4 left-4 flex flex-col gap-2">
-                    <div className="bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-md">
+                  <div className="absolute top-2 left-0 lg:top-4 lg:left-4 flex flex-col gap-2">
+                    <div className="bg-green-500 text-white text-[8px] lg:text-xs font-bold px-3 py-1 rounded-full shadow-md">
                       НОВИНКА
                     </div>
-                    <div className="bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-md">
+                    <div className="bg-red-500 text-white text-[8px] lg:text-xs font-bold px-3 py-1 rounded-full shadow-md">
                       ТОП ПРОДАЖ
                     </div>
-                    <div className="bg-orange-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-md">
+                    <div className="bg-orange-500 text-white text-[8px] lg:text-xs font-bold px-3 py-1 rounded-full shadow-md">
                       АКЦИЯ
                     </div>
                   </div>
 
-                  <div className="absolute top-4 right-4 bg-gray-800 text-white text-xs font-medium px-3 py-1 rounded-full">
+                  <div className="absolute top-2 right-0 lg:top-4 lg:right-4 bg-gray-800 text-white text-[8px] lg:text-xs font-medium px-3 py-1 rounded-full">
                     Артикул: {product.article || "N/A"}
                   </div>
                 </div>
@@ -224,7 +231,7 @@ export default function ProductPageClient({
             </div>
 
             {/* Product Details */}
-            <div className="lg:w-1/2 p-6 bg-gray-50 dark:bg-gray-900 dark:text-white">
+            <div className="lg:w-1/2 py-6 bg-gray-50 dark:bg-gray-900 dark:text-white">
               <meta itemProp="sku" content={product.article || "N/A"} />
               <Link
                 itemProp="url"
@@ -238,7 +245,7 @@ export default function ProductPageClient({
               </div> */}
               <div className="mb-8">
                 {/* Price and Actions */}
-                <div className="flex flex-wrap items-center gap-4 mb-6">
+                <div className="flex flex-col lg:flex-row items-center gap-4 mb-6">
                   <div
                     className="text-3xl font-bold text-primary"
                     itemProp="offers"
@@ -256,8 +263,8 @@ export default function ProductPageClient({
                       itemProp="availability"
                       href={
                         product.stock > 0
-                          ? "http://schema.org/InStock"
-                          : "http://schema.org/MadeToOrder"
+                          ? "https://schema.org/InStock"
+                          : "https://schema.org/OutOfStock"
                       }
                     />
                     <link
@@ -276,14 +283,14 @@ export default function ProductPageClient({
                           `Купить в 1 клик` + " " + product.name,
                         )
                       }
-                      className="btn-primary text-white px-6 py-3 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg"
+                      className="btn-primary w-full text-white px-6 py-3 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg"
                     >
                       Купить в 1 клик
                     </button>
                     <button
                       onClick={handleAddToCart}
                       disabled={adding}
-                      className="btn-accent text-white px-6 py-3 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg disabled:opacity-70"
+                      className="btn-accent w-full text-black px-6 py-3 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg "
                     >
                       {adding ? "Добавление..." : "В корзину"}
                     </button>

@@ -1,0 +1,119 @@
+{
+  "categories": [
+    {
+      "id": 69,
+      "name": "Щиты этажные ЩЭ",
+      "slug": "shity-etazhnye-she",
+      "parent": null,
+      "child": [
+        {
+          "id": 80,
+          "name": "Кожух щэ для этажного щита",
+          "slug": "kozhuh-she-dlya-etazhnogo-shita",
+          "parentId": 69,
+          "child": []
+        }
+      ]
+    },
+    {
+      "id": 68,
+      "name": "Накладки щитов этажных ЩЭ",
+      "slug": "nakladki-shitov-etazhnyh-she",
+      "parent": null,
+      "child": []
+    },
+    {
+      "id": 67,
+      "name": "Устройства этажные",
+      "slug": "../landing/ustroystva-etazhnye",
+      "parentId": null,
+      "child": [
+        {
+          "id": 70,
+          "name": "УЭРМ",
+          "slug": "uerm",
+          "parentId": 67,
+          "child": []
+        },
+        {
+          "id": 71,
+          "name": "УЭРВ",
+          "slug": "uerv",
+          "parentId": 67,
+          "child": []
+        },
+        {
+          "id": 72,
+          "name": "УЭРБ",
+          "slug": "uerb",
+          "parentId": 67,
+          "child": []
+        },
+        {
+          "id": 73,
+          "name": "УЭРК",
+          "slug": "uerk",
+          "parentId": 67,
+          "child": []
+        },
+        {
+          "id": 74,
+          "name": "УЭРН",
+          "slug": "uern",
+          "parentId": 67,
+          "child": []
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "ВРУ",
+      "slug": "vvodno-raspredelitelnye-ustrojstva-vru",
+      "parent": null,
+      "child": [
+        {
+          "id": 22,
+          "name": "ВРУ 1",
+          "slug": "vru-1",
+          "parentId": 3,
+          "child": []
+        },
+        {
+          "id": 23,
+          "name": "ВРУ 3",
+          "slug": "vru-3",
+          "parentId": 3,
+          "child": []
+        },
+        {
+          "id": 24,
+          "name": "ВРУ 8504",
+          "slug": "vru-8504",
+          "parentId": 3,
+          "child": []
+        },
+        {
+          "id": 25,
+          "name": "ВРУ 8505",
+          "slug": "vru-8505",
+          "parentId": 3,
+          "child": []
+        },
+        {
+          "id": 26,
+          "name": "ВРУ 4",
+          "slug": "vru-4",
+          "parentId": 3,
+          "child": []
+        },
+        {
+          "id": 27,
+          "name": "ВРУ 21",
+          "slug": "vru-21",
+          "parentId": 3,
+          "child": []
+        }
+      ]
+    }
+  ]
+}

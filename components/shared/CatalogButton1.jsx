@@ -9,7 +9,7 @@ import {
   DropdownMenuSubTrigger,
   DropdownMenuSubContent,
 } from "../../components/ui/dropdown-menu";
-import dataCategory from "../../app/data/proizvodstvo.json";
+import dataCategory from "../../app/data/catalogDropdown.json";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -19,9 +19,9 @@ export default function CatalogButton() {
   const [open, setOpen] = useState(false);
 
   const handleNavigate = (slug) => {
+    setOpen(false);
     router.push(`/catalog/${slug}`);
   };
-
   return (
     <>
       <DropdownMenu open={open} onOpenChange={setOpen}>
@@ -40,7 +40,7 @@ export default function CatalogButton() {
         </DropdownMenuTrigger>
 
         <DropdownMenuContent
-          className="w-56 bg-white text-sm lg:text-xl border-none min-w-[var(--radix-dropdown-menu-trigger-width)]"
+          className="w-full bg-white text-sm lg:text-xl border-none min-w-[var(--radix-dropdown-menu-trigger-width)]"
           align="start"
           sideOffset={5}
         >

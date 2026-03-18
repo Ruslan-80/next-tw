@@ -34,7 +34,7 @@ export default function Footer() {
     <footer
       className="bg-foreground text-textW pt-20 pb-10 border-t border-foreground"
       itemScope
-      itemType="http://schema.org/Store"
+      itemType="https://schema.org/Store"
     >
       <meta itemProp="name" content="ЭЛЕКТРОЩИТ-ПРО" />
       <meta itemProp="priceRange" content="От 1000 до 50000 рублей" />

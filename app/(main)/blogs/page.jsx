@@ -40,13 +40,13 @@ export default async function BlogsList() {
         <nav
           className="container mx-auto px-6 py-2 text-sm text-gray-600"
           itemScope
-          itemType="http://schema.org/BreadcrumbList"
+          itemType="https://schema.org/BreadcrumbList"
         >
           <ol className="flex gap-2 items-center">
             <li
               itemProp="itemListElement"
               itemScope
-              itemType="http://schema.org/ListItem"
+              itemType="https://schema.org/ListItem"
             >
               <Link href="/" itemProp="item" className="hover:underline">
                 <span itemProp="name">Главная</span>
@@ -57,7 +57,7 @@ export default async function BlogsList() {
             <li
               itemProp="itemListElement"
               itemScope
-              itemType="http://schema.org/ListItem"
+              itemType="https://schema.org/ListItem"
             >
               <span itemProp="name" className="text-gray-800">
                 Статьи
@@ -88,7 +88,7 @@ export default async function BlogsList() {
                 key={post.slug}
                 className="bg-white shadow-sm border rounded-2xl overflow-hidden flex flex-col"
                 itemScope
-                itemType="http://schema.org/BlogPosting"
+                itemType="https://schema.org/BlogPosting"
               >
                 <Link href={post.href} className="block relative w-full">
                   <div
@@ -140,7 +140,7 @@ export default async function BlogsList() {
                         height="10"
                         viewBox="0 0 6 10"
                         fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
+                        xmlns="https://www.w3.org/2000/svg"
                       >
                         <path
                           d="M1 1L5 5L1 9"
