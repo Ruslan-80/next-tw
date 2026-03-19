@@ -31,12 +31,12 @@ export default function Breadcrumbs({ items }) {
         "@type": "ListItem",
         position: index + 1,
         name: item.name,
-        item: `${process.env.NEXT_PUBLIC_SITE_URL || "https://example.com"}${
+        item: `${process.env.NEXT_PUBLIC_SITE_URL || "https://electroshit-pro.ru"}${
           item.href
         }`,
       })),
     }),
-    [breadcrumbItems]
+    [breadcrumbItems],
   );
 
   // Вставляем/обновляем JSON-LD в <head> при каждом изменении items

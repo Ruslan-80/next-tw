@@ -25,7 +25,7 @@
     {
       "id": 67,
       "name": "Устройства этажные",
-      "slug": "../landing/ustroystva-etazhnye",
+      "slug": "ustroystva-etazhnye",
       "parentId": null,
       "child": [
         {

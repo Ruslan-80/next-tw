@@ -41,7 +41,7 @@ export default function Breadcrumbs({ items, productName }) {
   const breadcrumbJsonLd = useMemo(() => {
     const siteUrl =
       process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ||
-      "https://example.com";
+      "https://electroshit-pro.ru";
 
     return {
       "@context": "https://schema.org",

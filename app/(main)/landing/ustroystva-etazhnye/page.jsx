@@ -11,7 +11,7 @@ export const metadata = {
 export default function ustrojstvaEtazhnye() {
   return (
     <>
-      <div className="container mx-auto p-6 bg-gray-50 text-2xl">
+      <div className="container mx-auto px-2 lg:px-6 bg-gray-50 text-2xl">
         <nav className="py-4">
           <ol className="hidden md:flex flex-wrap items-center space-x-2 text-sm text-gray-600">
             <li>

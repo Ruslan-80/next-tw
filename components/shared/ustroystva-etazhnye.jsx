@@ -15,8 +15,8 @@ import ComparisonTable from "@/app/(main)/landing/ustroystva-etazhnye/table";
 export function UstroystvaEtazhnyeTop() {
   return (
     <>
-      <section className="mb-4">
-        <div className="flex bg-blue-300/20 shadow-xl items-center rounded-4xl px-8 py-12 mx-auto border border-blue-200">
+      <section className="mb-4 mx-2 lg:mx-0">
+        <div className="flex flex-col lg:flex-row bg-blue-300/20 shadow-xl items-center rounded-4xl px-2 lg:px-8 py-4 lg:py-12 mx-auto border border-blue-200">
           <div className="p-4">
             <Image
               src="/images/categories/SE24L.png"
@@ -27,7 +27,7 @@ export function UstroystvaEtazhnyeTop() {
             />
           </div>
 
-          <div className="text-justify text-2xl pl-8   mb-8">
+          <div className="text-justify text-lg lg:text-2xl px-2 lg:px-8 mb-8">
             <p className="text-gray-600">
               Устройства типа{" "}
               <Link
@@ -89,7 +89,7 @@ export function UstroystvaEtazhnyeTop() {
 export function UstroystvaEtazhnyeBottom() {
   return (
     <>
-      <div className="container mx-auto p-6 space-y-10 text-2xl mt-12">
+      <div className="container mx-auto py-6 space-y-10 text-lg lg:text-2xl mt-12">
         {/* Construction Section */}
         <section className="py-4 bg-secondary/30">
           <div className="container mx-auto px-6">
@@ -100,8 +100,8 @@ export function UstroystvaEtazhnyeBottom() {
               </div>
 
               <Card>
-                <CardContent className="p-8">
-                  <p className="text-justify text-2xl leading-relaxed text-muted-foreground indent-20">
+                <CardContent className="px-4 lg:px-8">
+                  <p className="text-justify text-lg lg:text-2xl leading-relaxed text-muted-foreground lg:indent-20">
                     Металлические корпуса (цельносварные/сборные) с полиэфирным
                     покрытием (RAL 9003/7035, шагрень). Модульная/блочная
                     компоновка с отсеками для силовых и слаботочных линий.
@@ -223,13 +223,13 @@ export function UstroystvaEtazhnyeBottom() {
               <div>
                 <div className="flex items-center gap-3 mb-8">
                   <Zap className="h-8 w-8 text-accent" />
-                  <h2 className="text-3xl font-bold">
+                  <h2 className="text-2xl lg:text-3xl font-bold">
                     Технические характеристики
                   </h2>
                 </div>
 
                 <Card>
-                  <CardContent className="p-6">
+                  <CardContent className="px-4 lg:px-6">
                     <div className="space-y-4">
                       {[
                         "Номинальное напряжение: 230/400 В (AC), 50 Гц.",
@@ -244,8 +244,8 @@ export function UstroystvaEtazhnyeBottom() {
                         "Срок службы: До 25 лет, гарантия 3 года.",
                       ].map((spec, index) => (
                         <div key={index} className="flex items-start gap-3">
-                          <CheckCircle className="h-7 w-7 text-green-600 mt-1 flex-shrink-0" />
-                          <span className="text-2xl text-muted-foreground leading-relaxed">
+                          <CheckCircle className="h-5 w-5 lg:h-7 lg:w-7 text-green-600 mt-1 flex-shrink-0" />
+                          <span className="text-lg lg:text-2xl text-muted-foreground leading-relaxed">
                             {spec}
                           </span>
                         </div>
@@ -259,11 +259,13 @@ export function UstroystvaEtazhnyeBottom() {
               <div>
                 <div className="flex items-center gap-3 mb-8">
                   <Server className="h-8 w-8 text-accent" />
-                  <h2 className="text-3xl font-bold">Преимущества</h2>
+                  <h2 className="text-2xl lg:text-3xl font-bold">
+                    Преимущества
+                  </h2>
                 </div>
 
                 <Card>
-                  <CardContent className="p-6">
+                  <CardContent className="px-4 lg:px-6">
                     <div className="space-y-4">
                       {[
                         "Современная альтернатива устаревшим щитам.",
@@ -273,8 +275,8 @@ export function UstroystvaEtazhnyeBottom() {
                         "Безопасность: защита от перегрузок, КЗ, утечек.",
                       ].map((advantage, index) => (
                         <div key={index} className="flex items-start gap-3">
-                          <CheckCircle className="h-7 w-7 text-green-600 mt-1 flex-shrink-0" />
-                          <span className="text-2xl text-muted-foreground leading-relaxed">
+                          <CheckCircle className="h-5 w-5 lg:h-7 lg:w-7 text-green-600 mt-1 flex-shrink-0" />
+                          <span className="text-lg lg:text-2xl text-muted-foreground leading-relaxed">
                             {advantage}
                           </span>
                         </div>

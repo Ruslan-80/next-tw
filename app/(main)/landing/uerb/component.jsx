@@ -107,14 +107,19 @@ export default function ComponentUERB() {
           </div>
 
           <div className="relative animate-slide-in-right">
+            {/* Светящееся размытие позади */}
             <div className="absolute inset-0 bg-gradient-to-br from-accent/20 to-primary/20 rounded-3xl blur-3xl"></div>
-            <div className="relative w-[500px] h-[500px] bg-card rounded-3xl p-8 shadow-2xl flex justify-center mx-auto">
+
+            {/* Адаптивный контейнер */}
+            <div className="relative w-full max-w-[350px] md:max-w-[450px] lg:max-w-[500px] aspect-square bg-card rounded-3xl p-4 md:p-6 lg:p-8 shadow-2xl flex justify-center mx-auto">
               <Image
                 src="/images/landing/uerb.png"
                 alt="УЭРК"
                 fill
-                className="object-contain hover:scale-105 transition-transform duration-500 p-4"
-                sizes="(max-width: 768px) 100vw, 500px"
+                className="object-contain hover:scale-105 transition-transform duration-500 p-2 md:p-4"
+                sizes="(max-width: 768px) 100vw,
+                       (max-width: 1024px) 450px,
+                       500px"
               />
             </div>
           </div>
@@ -504,7 +509,7 @@ export default function ComponentUERB() {
                   handleButtonClick("Получить коммерческое предложение")
                 }
                 size="lg"
-                className="bg-accent hover:bg-accent/90 text-accent-foreground text-xl py-8"
+                className="bg-accent hover:bg-accent/90 text-accent-foreground text-sm lg:text-xl mx-4 py-8"
               >
                 Получить коммерческое предложение
                 <ArrowRight className="ml-2 h-4 w-4" />

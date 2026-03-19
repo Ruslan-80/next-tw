@@ -65,54 +65,42 @@ export function uermTop() {
             <div className="grid grid-cols-3 gap-6 pt-4">
               <div className="text-center">
                 <div className="text-2xl font-bold text-accent">6-12</div>
-                <div className="text-sm lg:text-xl text-muted-foreground">квартир</div>
+                <div className="text-sm lg:text-xl text-muted-foreground">
+                  квартир
+                </div>
               </div>
               <div className="text-center">
                 <div className="text-2xl font-bold text-accent">25</div>
-                <div className="text-sm lg:text-xl text-muted-foreground">лет службы</div>
+                <div className="text-sm lg:text-xl text-muted-foreground">
+                  лет службы
+                </div>
               </div>
               <div className="text-center">
                 <div className="text-2xl font-bold text-accent">IP31</div>
-                <div className="text-sm lg:text-xl text-muted-foreground">защита</div>
+                <div className="text-sm lg:text-xl text-muted-foreground">
+                  защита
+                </div>
               </div>
             </div>
           </div>
 
-<div className="relative animate-slide-in-right">
-  {/* Светящееся размытие позади */}
-  <div className="absolute inset-0 bg-gradient-to-br from-accent/20 to-primary/20 rounded-3xl blur-3xl"></div>
+          <div className="relative animate-slide-in-right">
+            {/* Светящееся размытие позади */}
+            <div className="absolute inset-0 bg-gradient-to-br from-accent/20 to-primary/20 rounded-3xl blur-3xl"></div>
 
-  {/* Адаптивный контейнер */}
-  <div
-    className="
-      relative 
-      w-full 
-      max-w-[350px] 
-      md:max-w-[450px] 
-      lg:max-w-[500px] 
-      aspect-square
-      bg-card 
-      rounded-3xl 
-      p-4 
-      md:p-6 
-      lg:p-8 
-      shadow-2xl 
-      flex 
-      justify-center 
-      mx-auto
-    "
-  >
-    <Image
-      src="/images/landing/uerm1.png"
-      alt="УЭРМ - Устройство этажное распределительное модульное"
-      fill
-      className="object-contain hover:scale-105 transition-transform duration-500 p-2 md:p-4"
-      sizes="(max-width: 768px) 100vw,
+            {/* Адаптивный контейнер */}
+            <div className="relative w-full max-w-[350px] md:max-w-[450px] lg:max-w-[500px] aspect-square bg-card rounded-3xl p-4 md:p-6 lg:p-8 shadow-2xl flex justify-center mx-auto">
+              <Image
+                src="/images/landing/uerm1.png"
+                alt="УЭРМ - Устройство этажное распределительное модульное"
+                fill
+                className="object-contain hover:scale-105 transition-transform duration-500 p-2 md:p-4"
+                sizes="(max-width: 768px) 100vw,
              (max-width: 1024px) 450px,
              500px"
-    />
-  </div>
-</div>
+              />
+            </div>
+          </div>
         </div>
       </section>
       <Modal
@@ -137,7 +125,7 @@ export function uermBottom() {
   };
   return (
     <>
-      <div className="container mx-auto p-6 space-y-10 text-xl lg:text-2xl lg:mt-12">
+      <div className="container mx-auto p-2 lg:p-6 space-y-10 text-sm lg:text-xl lg:mt-12">
         {/* Purpose Section */}
         <section className="py-4 lg:mt-12">
           <div className="container mx-auto lg:px-6">
@@ -169,36 +157,36 @@ export function uermBottom() {
 
                   <div className="grid md:grid-cols-3 gap-6 pb-4">
                     <div className="flex items-start gap-3">
-                      <CheckCircle className="h-7 w-7 text-accent mt-1 flex-shrink-0" />
+                      <CheckCircle className="h-5 w-5 lg:h-7 lg:w-7 text-accent mt-1 flex-shrink-0" />
                       <div>
-                        <div className="font-semibold text-2xl mb-3">
+                        <div className="font-semibold text-lg lg:text-xl mb-3">
                           Применение
                         </div>
-                        <div className="text-justify text-xl text-muted-foreground">
+                        <div className="text-justify text-sm lg:text-xl text-muted-foreground">
                           Установка на этажах жилых зданий, коммунально-бытовых
                           и общественных объектов.
                         </div>
                       </div>
                     </div>
                     <div className="flex items-start gap-3">
-                      <CheckCircle className="h-7 w-7 text-accent mt-1 flex-shrink-0" />
+                      <CheckCircle className="h-5 w-5 lg:h-7 lg:w-7 text-accent mt-1 flex-shrink-0" />
                       <div>
-                        <div className="font-semibold text-2xl mb-3">
+                        <div className="font-semibold text-lg lg:text-xl mb-3">
                           Обслуживание
                         </div>
-                        <div className="text-justify text-xl text-muted-foreground">
+                        <div className="text-justify text-sm lg:text-xl text-muted-foreground">
                           До 6–12 квартир в зависимости от типа счетчиков и
                           конфигурации.
                         </div>
                       </div>
                     </div>
                     <div className="flex items-start gap-3">
-                      <CheckCircle className="h-7 w-7 text-accent mt-1 flex-shrink-0" />
+                      <CheckCircle className="h-5 w-5 lg:h-7 lg:w-7 text-accent mt-1 flex-shrink-0" />
                       <div>
-                        <div className="font-semibold text-2xl mb-3">
+                        <div className="font-semibold text-lg lg:text-xl mb-3">
                           Универсальность
                         </div>
-                        <div className="text-justify text-xl text-muted-foreground">
+                        <div className="text-justify text-sm lg:text-xl text-muted-foreground">
                           Поддержка однофазных (до 11 кВт) и трехфазных (до 32
                           кВт) систем для эффективного контроля расхода
                           электроэнергии.
@@ -222,7 +210,7 @@ export function uermBottom() {
               </div>
 
               <Card>
-                <CardContent className="lg:p-8 lg:indent-20">
+                <CardContent className="text-sm lg:text-xl px-4 lg:px-8 lg:indent-20">
                   <p className="text-justify leading-relaxed text-muted-foreground ">
                     УЭРМ представляет собой шкаф или сборную модульную
                     конструкцию из металлических коробов (КЭТ, КСС) и ящиков
@@ -367,7 +355,9 @@ export function uermBottom() {
               <div>
                 <div className="flex items-center gap-3 mb-8">
                   <Server className="h-8 w-8 text-accent" />
-                  <h2 className="text-2xl lg:text-3xl font-bold">Преимущества УЭРМ</h2>
+                  <h2 className="text-2xl lg:text-3xl font-bold">
+                    Преимущества УЭРМ
+                  </h2>
                 </div>
 
                 <Card>
@@ -517,10 +507,10 @@ export function uermBottom() {
         </section>
 
         {/* CTA Section */}
-        <section className="py-4 text-xl lg:text-2xl">
+        <section className="py-4 text-lg lg:text-2xl">
           <div className="container mx-auto lg:px-6">
             <div className="lg:max-w-8xl">
-              <h2 className="text-3xl text-center lg:text-4xl font-bold mb-4 text-balance">
+              <h2 className="text-2xl text-center lg:text-4xl font-bold mb-4 text-balance">
                 Заказ и покупка
               </h2>
               <p className="justify-center text-muted-foreground mb-8 leading-relaxed">

@@ -1,6 +1,6 @@
 export const dynamic = "force-dynamic";
 import { prisma } from "@/lib/prisma";
-import ClientFilters from "./ClientFilters2";
+import ClientFilters from "./ClientFilters";
 import smartSort from "@/utils/smartSort";
 
 export default async function Filters({

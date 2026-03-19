@@ -253,8 +253,8 @@ const ComparisonTable = () => {
   });
 
   return (
-    <div className="container mx-auto p-6">
-      <h2 className="text-3xl font-bold text-center mb-6">
+    <div className="container mx-auto px-4 lg:px-6">
+      <h2 className="text-2xl lg:text-3xl font-bold text-center mb-6">
         Сравнительная таблица устройств этажных распределительных: УЭРВ, УЭРБ,
         УЭРН, УЭРК, УЭРМ
       </h2>
@@ -307,10 +307,10 @@ const ComparisonTable = () => {
         </Table>
       </div>
       <section className="py-16 lg:py-24 bg-secondary/30">
-        <div className="container mx-auto px-6">
+        <div className="container mx-auto px-4 lg:px-6">
           <div className="flex items-center gap-3 mb-12">
             <Home className="h-8 w-8 text-accent" />
-            <h2 className="text-3xl lg:text-4xl font-bold">Примечания</h2>
+            <h2 className="text-2xl lg:text-3xl font-bold">Примечания</h2>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -349,12 +349,12 @@ const ComparisonTable = () => {
               <Link key={index} href={product.href}>
                 <Card className="h-full hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
                   <CardHeader>
-                    <CardTitle className="text-3xl text-accent">
+                    <CardTitle className="text-2xl lg:text-3xl text-accent">
                       {product.title}
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-xl text-muted-foreground leading-relaxed">
+                    <p className="text-lg lg:text-xl text-muted-foreground leading-relaxed">
                       {product.description}
                     </p>
                   </CardContent>
@@ -365,12 +365,12 @@ const ComparisonTable = () => {
         </div>
       </section>
       <section className="py-4">
-        <div className="container mx-auto px-6">
-          <div className="max-w-8xl  ">
-            <h2 className="text-3xl text-center lg:text-4xl font-bold mb-4 text-balance">
+        <div className="container mx-auto px-2 lg:px-6">
+          <div className="w-full ">
+            <h2 className="text-2xl text-center lg:text-3xl font-bold mb-4 text-balance">
               Заказ и покупка
             </h2>
-            <p className="text-2xl justify-center text-muted-foreground mb-8  leading-relaxed">
+            <p className="text-lg lg:text-xl justify-center text-muted-foreground mb-8 leading-relaxed">
               Предлагаем купить этажные распределительные устройства УЭРВ, УЭРБ,
               УЭРН, УЭРК, УЭРМ по выгодной цене в интернет-магазине нашей
               компании. Продукция доступна оптом и в розницу с быстрой доставкой
@@ -385,11 +385,11 @@ const ComparisonTable = () => {
               </a>
               . Каталог, фото, схемы и отзывы доступны онлайн.
             </p>
-            <p className="text-2xl text-left text-muted-foreground mb-8 text-balance leading-relaxed">
+            <p className="text-lg lg:text-xl text-left text-muted-foreground mb-8 text-balance leading-relaxed">
               Для заказа укажите:
             </p>
 
-            <ul className="list-disc text-left pl-6 text-muted-foreground leading-relaxed pb-4">
+            <ul className="text-lg lg:text-xl list-disc text-left pl-6 text-muted-foreground leading-relaxed pb-4">
               <li>Количество квартир (1–12).</li>
               <li>
                 Тип счетчиков и аппаратуры (одно-/трехфазные, АСКУЭ, УЗИП).
@@ -398,27 +398,27 @@ const ComparisonTable = () => {
               <li>Дополнительные аксессуары (замки, кронштейны).</li>
             </ul>
 
-            <div className="flex flex-wrap justify-center gap-4 my-4">
+            <div className="flex flex-col lg:flex-row justify-center gap-4 my-4 px-4">
               <Button
                 onClick={() =>
                   handleButtonClick("Получить коммерческое предложение")
                 }
                 size="lg"
-                className="bg-accent hover:bg-accent/90 text-accent-foreground text-xl py-8"
+                className="bg-accent hover:bg-accent/90 text-accent-foreground w-full lg:w-auto h-auto whitespace-normal py-6 text-xl"
               >
                 Получить коммерческое предложение
-                <ArrowRight className="ml-2 h-4 w-4" />
+                <ArrowRight className="ml-2 h-4 w-4 shrink-0" />
               </Button>
               <Button
                 onClick={() => handleButtonClick("Связаться с менеджером")}
                 variant="outline"
                 size="lg"
-                className="py-8 text-xl"
+                className="w-full lg:w-auto h-auto whitespace-normal py-6 text-xl"
               >
                 Связаться с менеджером
               </Button>
             </div>
-            <p className="text-left text-muted-foreground leading-relaxed">
+            <p className="text-lg lg:text-xl text-left text-muted-foreground leading-relaxed mt-8">
               Каталог, фото, схемы и отзывы доступны онлайн. Заказывайте
               качественное электрощитовое оборудование от производителя с
               доставкой!

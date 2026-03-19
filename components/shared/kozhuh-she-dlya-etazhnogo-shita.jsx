@@ -34,7 +34,7 @@ export function KozhukhTop() {
         <div className="grid lg:grid-cols-2 gap-12 items-center mb-12">
           <div className="space-y-8 animate-fade-in-up">
             <div className="space-y-4">
-              <p className="text-justify text-2xl text-muted-foreground text-balance leading-relaxed">
+              <p className="text-justify text-xl text-muted-foreground text-balance leading-relaxed">
                 Кожух ЩЭ для навесного исполнения представляет собой
                 металлическую конструкцию, предназначенную для преобразования
                 встраиваемого этажного распределительного щита в навесное
@@ -111,24 +111,24 @@ export function KozhukhBottom() {
   };
   return (
     <>
-      <div className="container mx-auto p-6 space-y-10 text-2xl mt-12">
+      <div className="container mx-auto px-2 space-y-10 text-xl mt-6">
         {/* Application Section */}
         <section className="py-4 mt-12">
-          <div className="container mx-auto px-6">
+          <div className="container mx-auto ">
             <div className="w-full mx-auto">
               <div className="text-center mb-12">
-                <h2 className="text-3xl lg:text-4xl font-bold mb-4 text-balance">
+                <h2 className="text-2xl lg:text-3xl font-bold mb-4 text-balance">
                   Основные области применения
                 </h2>
               </div>
 
               <Card className="mb-8">
-                <CardContent className="px-8 space-y-6">
+                <CardContent className="px-4 space-y-6">
                   <div>
                     <h3 className="text-2xl font-semibold mb-3">
                       Жилые здания и сооружения
                     </h3>
-                    <p className="text-justify text-xl text-muted-foreground leading-relaxed">
+                    <p className="text-justify text-lg text-muted-foreground leading-relaxed">
                       Кожухи ЩЭ используются для сборки этажных
                       распределительных щитов в многоквартирных жилых домах,
                       общежитиях и коммунальных зданиях. Эти щиты обеспечивают
@@ -141,7 +141,7 @@ export function KozhukhBottom() {
                     <h3 className="text-2xl font-semibold mb-3">
                       Общественные здания
                     </h3>
-                    <p className="text-justify text-xl text-muted-foreground leading-relaxed">
+                    <p className="text-justify text-lg text-muted-foreground leading-relaxed">
                       Применяются в офисных зданиях, административных комплексах
                       и других общественных сооружениях для организации
                       надежного электроснабжения.
@@ -152,7 +152,7 @@ export function KozhukhBottom() {
                     <h3 className="text-2xl font-semibold mb-3">
                       Защитные функции
                     </h3>
-                    <p className="text-justify text-xl text-muted-foreground leading-relaxed">
+                    <p className="text-justify text-lg text-muted-foreground leading-relaxed">
                       Кожух обеспечивает защиту отходящих линий при перегрузках
                       и коротких замыканиях, а также защиту от случайного
                       прикосновения к токоведущим частям щита этажного при его
@@ -167,22 +167,22 @@ export function KozhukhBottom() {
 
         {/* Construction Features */}
         <section className="py-4 bg-secondary/30">
-          <div className="container mx-auto px-6">
+          <div className="container mx-auto">
             <div className="max-w-8xl mx-auto">
               <div className="flex items-center gap-3 mb-8">
                 <Shield className="h-8 w-8 text-accent" />
-                <h2 className="text-3xl lg:text-4xl font-bold">
+                <h2 className="text-2xl lg:text-3xl font-bold">
                   Конструктивные особенности применения
                 </h2>
               </div>
 
               <Card>
-                <CardContent className="p-8 space-y-6">
+                <CardContent className="px-4 space-y-6">
                   <div>
                     <h3 className="text-2xl font-semibold mb-3">
                       Многоотсечная система
                     </h3>
-                    <p className="text-justify text-xl text-muted-foreground leading-relaxed">
+                    <p className="text-justify text-lg text-muted-foreground leading-relaxed">
                       Этажный щит в кожухе состоит из трех основных отсеков:
                       <br />
                       <strong>Вводно-учетный отсек</strong> — размещаются
@@ -203,7 +203,7 @@ export function KozhukhBottom() {
                     <h3 className="text-2xl font-semibold mb-3">
                       Модульность и масштабируемость
                     </h3>
-                    <p className="text-justify text-xl text-muted-foreground leading-relaxed">
+                    <p className="text-justify text-lg text-muted-foreground leading-relaxed">
                       Конструкция позволяет установить до 9 модулей защитной
                       аппаратуры на каждую квартиру, что обеспечивает гибкость в
                       планировании электроснабжения.
@@ -217,21 +217,21 @@ export function KozhukhBottom() {
 
         {/* Technical Specs */}
         <section className="py-4">
-          <div className="container mx-auto px-6">
+          <div className="container mx-auto">
             <div className="flex items-center gap-3 mb-8">
               <Zap className="h-8 w-8 text-accent" />
-              <h2 className="text-3xl lg:text-4xl font-bold">
+              <h2 className="text-2xl lg:text-3xl font-bold">
                 Основные технические параметры
               </h2>
             </div>
 
             <Card>
-              <CardContent className="p-8 space-y-6">
+              <CardContent className="px-4 space-y-6">
                 <div>
-                  <h3 className="text-2xl font-semibold mb-3">
+                  <h3 className="text-xl font-semibold mb-3">
                     Габаритные размеры
                   </h3>
-                  <ul className="list-disc pl-6 text-xl text-muted-foreground space-y-2">
+                  <ul className="list-disc pl-6 text-lg text-muted-foreground space-y-2">
                     <li>
                       <strong>Высота:</strong> 995 мм (для модели ЩЭ)
                     </li>
@@ -293,7 +293,7 @@ export function KozhukhBottom() {
 
         {/* Exploitation */}
         <section className="py-4 bg-secondary/30">
-          <div className="container mx-auto px-6">
+          <div className="container mx-auto">
             <div className="flex items-center gap-3 mb-8">
               <Server className="h-8 w-8 text-accent" />
               <h2 className="text-3xl lg:text-4xl font-bold">
@@ -307,7 +307,7 @@ export function KozhukhBottom() {
                   <h3 className="text-2xl font-semibold mb-3">
                     Срок службы и гарантия
                   </h3>
-                  <p className="text-xl text-muted-foreground leading-relaxed">
+                  <p className="text-lg text-muted-foreground leading-relaxed">
                     <strong>Срок службы:</strong> 25 лет при соблюдении условий
                     эксплуатации <br />
                     <strong>Гарантийный срок:</strong> 3 года от производителя
@@ -315,10 +315,10 @@ export function KozhukhBottom() {
                 </div>
 
                 <div>
-                  <h3 className="text-2xl font-semibold mb-3">
+                  <h3 className="text-xl font-semibold mb-3">
                     Условия эксплуатации
                   </h3>
-                  <ul className="list-disc pl-6 text-xl text-muted-foreground space-y-2">
+                  <ul className="list-disc pl-6 text-lg text-muted-foreground space-y-2">
                     <li>
                       <strong>Рабочая температура:</strong> от +1°C до +35°C
                     </li>
@@ -343,7 +343,7 @@ export function KozhukhBottom() {
 
         {/* Installation */}
         <section className="py-4">
-          <div className="container mx-auto px-6">
+          <div className="container mx-auto">
             <div className="flex items-center gap-3 mb-8">
               <Cable className="h-8 w-8 text-accent" />
               <h2 className="text-3xl lg:text-4xl font-bold">
@@ -352,12 +352,12 @@ export function KozhukhBottom() {
             </div>
 
             <Card>
-              <CardContent className="p-8 space-y-6">
+              <CardContent className="px-4 space-y-6">
                 <div>
-                  <h3 className="text-2xl font-semibold mb-3">
+                  <h3 className="text-xl font-semibold mb-3">
                     Способ установки
                   </h3>
-                  <ul className="list-disc pl-6 text-xl text-muted-foreground space-y-2">
+                  <ul className="list-disc pl-6 text-lg text-muted-foreground space-y-2">
                     <li>
                       <strong>Тип монтажа:</strong> Накладной (поверхностный)
                     </li>
@@ -373,8 +373,8 @@ export function KozhukhBottom() {
                 </div>
 
                 <div>
-                  <h3 className="text-2xl font-semibold mb-3">Комплектация</h3>
-                  <ul className="list-disc pl-6 text-xl text-muted-foreground space-y-2">
+                  <h3 className="text-xl font-semibold mb-3">Комплектация</h3>
+                  <ul className="list-disc pl-6 text-lg text-muted-foreground space-y-2">
                     <li>Кожух с монтажной рейкой</li>
                     <li>Комплект метизов для крепления</li>
                     <li>Паспорт изделия</li>
@@ -384,10 +384,10 @@ export function KozhukhBottom() {
                 </div>
 
                 <div>
-                  <h3 className="text-2xl font-semibold mb-3">
+                  <h3 className="text-xl font-semibold mb-3">
                     Дополнительные технические особенности
                   </h3>
-                  <p className="text-xl text-muted-foreground leading-relaxed">
+                  <p className="text-lg text-muted-foreground leading-relaxed">
                     Возможность регулировки глубины расположения элементов по
                     корпусу. <br />
                     Перфорированные отверстия для ввода кабелей. <br />
@@ -398,7 +398,7 @@ export function KozhukhBottom() {
               </CardContent>
             </Card>
 
-            <p className="text-2xl text-muted-foreground leading-relaxed mt-6">
+            <p className="text-lg text-muted-foreground leading-relaxed px-4 mt-6">
               Кожух ЩЭ для навесного исполнения обеспечивает высокую
               технологичность сборки, простоту монтажа и долговечность
               эксплуатации, соответствуя всем современным требованиям
@@ -409,22 +409,22 @@ export function KozhukhBottom() {
 
         {/* CTA Section */}
         <section className="py-4">
-          <div className="container mx-auto px-6">
+          <div className="container mx-auto">
             <div className="max-w-8xl  ">
               <h2 className="text-3xl text-center lg:text-4xl font-bold mb-4 text-balance">
                 Заказ и покупка
               </h2>
-              <p className="text-2xl justify-center text-muted-foreground mb-8  leading-relaxed">
+              <p className="text-lg justify-center text-muted-foreground mb-8 px-4  leading-relaxed">
                 Предлагаем купить этажное распределительное устройство УЭРМ по
                 выгодной цене в интернет-магазине нашей компании. Продукция
                 доступна оптом и в розницу с быстрой доставкой по Москве, М.О. и
                 всей России. Изготовление по индивидуальным проектам заказчика.
               </p>
-              <p className="text-2xl text-left text-muted-foreground mb-8 text-balance leading-relaxed">
+              <p className="text-lg text-left text-muted-foreground mb-8 text-balance leading-relaxed">
                 Для заказа укажите:
               </p>
 
-              <ul className="list-disc text-left pl-6 text-muted-foreground leading-relaxed pb-4">
+              <ul className="list-disc text-left pl-6 text-lg text-muted-foreground leading-relaxed pb-4">
                 <li>Количество квартир (1–12).</li>
                 <li>
                   Тип счетчиков и аппаратуры (одно-/трехфазные, АСКУЭ, УЗИП).
@@ -442,7 +442,7 @@ export function KozhukhBottom() {
                     handleButtonClick("Получить коммерческое предложение")
                   }
                   size="lg"
-                  className="bg-accent hover:bg-accent/90 text-accent-foreground text-xl py-8"
+                  className="bg-accent hover:bg-accent/90 text-accent-foreground text-sm lg:text-xl mx-4 py-8"
                 >
                   Получить коммерческое предложение
                   <ArrowRight className="ml-2 h-4 w-4" />
@@ -456,7 +456,7 @@ export function KozhukhBottom() {
                   Связаться с менеджером
                 </Button>
               </div>
-              <p className="text-left text-muted-foreground leading-relaxed">
+              <p className="text-left px-4 text-lg text-muted-foreground leading-relaxed">
                 Каталог, фото, схемы и отзывы доступны онлайн. Заказывайте
                 качественное электрощитовое оборудование от производителя с
                 доставкой!
