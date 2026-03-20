@@ -29,7 +29,7 @@ export function uermTop() {
   };
 
   return (
-    <div className="container mx-auto p-6 bg-white text-xl lg:text-2xl">
+    <div className="container mx-auto py-6 bg-white text-xl lg:text-2xl">
       <section>
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-8 animate-fade-in-up">
@@ -95,9 +95,7 @@ export function uermTop() {
                 alt="УЭРМ - Устройство этажное распределительное модульное"
                 fill
                 className="object-contain hover:scale-105 transition-transform duration-500 p-2 md:p-4"
-                sizes="(max-width: 768px) 100vw,
-             (max-width: 1024px) 450px,
-             500px"
+                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 450px, 500px"
               />
             </div>
           </div>
@@ -340,7 +338,7 @@ export function uermBottom() {
                         "Срок службы: До 25 лет, гарантия 3 года.",
                       ].map((spec, index) => (
                         <div key={index} className="flex items-start gap-3">
-                          <CheckCircle className="h-7 w-7 text-green-600 mt-1 flex-shrink-0" />
+                          <CheckCircle className="h-5 w-5 text-green-600 mt-1 flex-shrink-0" />
                           <span className="text-muted-foreground leading-relaxed">
                             {spec}
                           </span>
@@ -373,7 +371,7 @@ export function uermBottom() {
                         "Удобство обслуживания: Ревизионные окошки, DIN-рейки, запираемые двери с замками.",
                       ].map((advantage, index) => (
                         <div key={index} className="flex items-start gap-3">
-                          <CheckCircle className="h-7 w-7 text-green-600 mt-1 flex-shrink-0" />
+                          <CheckCircle className="h-5 w-5 text-green-600 mt-1 flex-shrink-0" />
                           <span className="text-muted-foreground leading-relaxed">
                             {advantage}
                           </span>
@@ -408,7 +406,7 @@ export function uermBottom() {
                         "По запросу: Дополнительные ключи, документация, аксессуары (хомуты, компенсаторы).",
                       ].map((spec, index) => (
                         <div key={index} className="flex items-start gap-3">
-                          <CheckCircle className="h-7 w-7 text-green-600 mt-1 flex-shrink-0" />
+                          <CheckCircle className="h-5 w-5 text-green-600 mt-1 flex-shrink-0" />
                           <span className="text-muted-foreground leading-relaxed">
                             {spec}
                           </span>
@@ -437,7 +435,7 @@ export function uermBottom() {
                         "Режим работы: Продолжительный, одностороннее обслуживание на лестничных площадках.",
                       ].map((spec, index) => (
                         <div key={index} className="flex items-start gap-3">
-                          <CheckCircle className="h-7 w-7 text-green-600 mt-1 flex-shrink-0" />
+                          <CheckCircle className="h-5 w-5 text-green-600 mt-1 flex-shrink-0" />
                           <span className="text-muted-foreground leading-relaxed">
                             {spec}
                           </span>
@@ -452,7 +450,7 @@ export function uermBottom() {
         </section>
 
         {/* Related Products */}
-        <section className="py-16 lg:py-24 bg-secondary/30">
+        <section className="py-4 lg:py-8 bg-secondary/30">
           <div className="container mx-auto lg:px-6">
             <div className="flex items-center gap-3 mb-12">
               <Home className="h-8 w-8 text-accent" />

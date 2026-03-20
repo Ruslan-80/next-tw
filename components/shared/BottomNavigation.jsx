@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { useFilterStore } from "@/lib/store/mobileFilterButton"; // Путь к вашему стору
 import {
@@ -11,24 +11,30 @@ import {
   Command,
   SlidersHorizontal,
   ShoppingCart,
+  ArrowLeft,
 } from "lucide-react";
 
 const navItems = [
   { name: "Главная", icon: Home, slug: "/" },
   { name: "Поиск", icon: Search, slug: "/" },
   // "Фильтры" теперь обрабатываются отдельно ниже
-  { name: "Профиль", icon: User, slug: "/" },
+  { name: "Назад", icon: ArrowLeft, slug: "/" },
 ];
 
 export default function BottomNavigation() {
+  const router = useRouter();
   const pathname = usePathname();
   const [isMinimized, setIsMinimized] = useState(true);
 
   // Достаем данные из Zustand
   const { setIsOpen, selectedFiltersCount } = useFilterStore();
-
   const isCatalogPage = pathname.includes("/catalog"); // Или ваша проверка страницы товаров
   const toggleMenu = () => setIsMinimized(!isMinimized);
+
+  // Функция для возврата назад
+  const handleBack = () => {
+    router.back();
+  };
 
   return (
     <div className="fixed bottom-0 left-0 right-0 z-50 md:hidden px-4 pb-6 pt-2 pointer-events-none">
@@ -86,12 +92,13 @@ export default function BottomNavigation() {
                   )}
                 </button>
 
-                {/* ПРОФИЛЬ */}
-                <Link href="/profile" className="flex flex-col items-center">
-                  <User
-                    className={`h-7 w-7 ${pathname === "/profile" ? "text-[#6C5CE7]" : "text-neutral-500"}`}
-                  />
-                </Link>
+                {/* КНОПКА НАЗАД (Вместо профиля) */}
+                <button
+                  onClick={handleBack}
+                  className="flex flex-col items-center group active:scale-90 transition-transform"
+                >
+                  <ArrowLeft className="h-7 w-7 text-neutral-500 group-hover:text-white transition-colors" />
+                </button>
               </div>
             </motion.div>
           )}

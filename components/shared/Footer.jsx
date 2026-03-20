@@ -20,7 +20,8 @@ export default function Footer() {
       itemType="https://schema.org/Store"
     >
       <meta itemProp="name" content="ЭЛЕКТРОЩИТ-ПРО" />
-      <meta itemProp="priceRange" content="От 1000 до 50000 рублей" />
+      <meta itemProp="telephone" content="+74993901467" />
+      <meta itemProp="priceRange" content="1000-50000 RUB" />
 
       <meta
         itemProp="image"
@@ -82,10 +83,20 @@ export default function Footer() {
                 </span>
               </div>
               <div className="flex items-start gap-2 mt-3">
-                <MapPin size={16} className="text-gray-400 mt-1" />
-                <span itemProp="address" className="text-gray-400">
-                  г. Москва, улица Чермянская, дом 1, строение 1
-                </span>
+                <div
+                  itemProp="address"
+                  itemScope
+                  itemType="https://schema.org/PostalAddress"
+                  className="flex items-start gap-2 mt-3"
+                >
+                  <MapPin size={16} className="text-gray-400 mt-1" />
+                  <span className="text-gray-400">
+                    <span itemProp="addressLocality">г. Москва</span>,
+                    <span itemProp="streetAddress">
+                      улица Чермянская, дом 1, строение 1
+                    </span>
+                  </span>
+                </div>
               </div>
             </div>
           </div>

@@ -39,7 +39,7 @@ export default function Blog() {
     },
     publisher: {
       "@type": "Organization",
-      name: "ElectroShit Pro",
+      name: "ЭЛЕКТРОЩИТ-ПРО",
       logo: {
         "@type": "ImageObject",
         url: "https://electroshit-pro.ru/mainLogo.svg",

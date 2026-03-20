@@ -5,6 +5,6 @@ export const metadata = {
   description: "Устройства этажные УЭРК по индивидуальному запросу",
 };
 
-export default function UERN() {
+export default function UERK() {
   return <ComponentUERK />;
 }

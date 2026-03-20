@@ -33,7 +33,7 @@ export default function ComponentUERM() {
   const pageTitle = "Устройство Этажное Распределительное с модулями (УЭРМ)";
 
   return (
-    <div className="container mx-auto p-6 bg-white text-2xl">
+    <div className="container mx-auto px-4 bg-white text-lg">
       <nav className="py-4">
         <ol className="hidden md:flex flex-wrap items-center space-x-2 text-sm text-gray-600">
           <li>
