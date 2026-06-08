@@ -22,6 +22,7 @@ import VideoGallery from "@/components/VideoGallery";
 import ProductFaq from "../../faq/voprosiky";
 import RandomObjects from "@/components/object";
 import Link from "next/link";
+import ProductDescription from "./markdowncomp";
 
 export default function ProductPageClient({
   product,
@@ -243,7 +244,7 @@ export default function ProductPageClient({
               {/* <div className="hidden" itemProp="description">
                 {product.description}
               </div> */}
-              <div className="mb-8">
+              <div className="mb-8 px-4">
                 {/* Price and Actions */}
                 <div className="flex flex-col lg:flex-row items-center gap-4 mb-6">
                   <div
@@ -508,7 +509,7 @@ export default function ProductPageClient({
                 .map((attr) => (
                   <div
                     key={`${product.id}-${attr.attributeName}-${attr.attributeValueName}`}
-                    className="flex justify-between mb-2"
+                    className="flex justify-between mb-2 px-4"
                   >
                     <span className="font-medium dark:bg-gray-800 dark:text-white">
                       {attr.attributeName}:
@@ -526,14 +527,14 @@ export default function ProductPageClient({
                       behavior: "smooth",
                     });
                   }}
-                  className="text-xl text-blue-500 hover:text-gray-700"
+                  className="text-xl text-blue-500 hover:text-gray-700 pb-4 px-4"
                 >
                   Все характеристики ({product.attributes.length})
                 </button>
               )}
 
               {/* Share and Production Time */}
-              <div className="border-t border-gray-200 pt-6">
+              <div className="border-t border-gray-200 pt-6 px-4">
                 <div className="flex flex-col md:flex-col justify-between gap-4 text-xl">
                   <div className="text-red-700">
                     <span className="font-semibold">
@@ -604,10 +605,10 @@ export default function ProductPageClient({
           </div>
           <div className="my-2 lg:my-8 rounded-2xl shadow-xl p-2">
             <div
-              className="text-gray-900 text-sm lg:text-xl text-justify lg:indent-30 px-2 lg:px-8"
+              className="text-gray-900 text-sm lg:text-xl text-justify px-2 lg:px-8"
               itemProp="description"
             >
-              {product.description}
+              <ProductDescription description={product.description} />
             </div>
 
             <Advantages />

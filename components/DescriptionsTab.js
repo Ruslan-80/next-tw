@@ -1,5 +1,7 @@
 "use client";
 
+import ProductDescription from "@/app/(main)/product/[slug]/markdowncomp";
+
 // Импортируем ваш файл данных
 import vruData from "@/app/data/vru1.json";
 
@@ -27,11 +29,8 @@ export default function DescriptionsTab({ description, slug }) {
     <div className="bg-white shadow text-xs lg:text-base rounded-md p-6">
       <div className="divide-y">
         <div className="py-3 grid">
-          <span
-            className="text-gray-900 text-sm lg:text-xl text-justify whitespace-pre-line"
-            style={{ textIndent: "30px" }} // Tailwind не всегда поддерживает indent-30 из коробки
-          >
-            {displayDescription}
+          <span className="text-gray-900 text-sm lg:text-xl text-justify">
+            <ProductDescription description={description} />
           </span>
         </div>
       </div>

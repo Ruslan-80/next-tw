@@ -27,14 +27,6 @@ const nextConfig = {
         destination: "/landing/razrabotka",
       },
       {
-        source: "/catalog/vru-3",
-        destination: "/landing/razrabotka",
-      },
-      {
-        source: "/catalog/vru-21",
-        destination: "/landing/razrabotka",
-      },
-      {
         source: "/catalog/vru-8504",
         destination: "/landing/razrabotka",
       },
@@ -45,34 +37,42 @@ const nextConfig = {
       {
         source: "/catalog/vru-4",
         destination: "/landing/razrabotka",
-      }
+      },
     ];
   },
 };
 
 export default nextConfig;
 
-      // {
-      //   source: "/catalog/vru-1",
-      //   destination: "/landing/razrabotka",
-      // },
-      // {
-      //   source: "/catalog/vru-3",
-      //   destination: "/landing/razrabotka",
-      // },
-      // {
-      //   source: "/catalog/vru-8504",
-      //   destination: "/landing/razrabotka",
-      // },
-      // {
-      //   source: "/catalog/vru-8505",
-      //   destination: "/landing/razrabotka",
-      // },
-      // {
-      //   source: "/catalog/vru-4",
-      //   destination: "/landing/razrabotka",
-      // },
-      // {
-      //   source: "/catalog/vvodno-raspredelitelnye-ustrojstva-vru",
-      //   destination: "/landing/razrabotka",
-      // },
+// {
+//   source: "/catalog/vru-1",
+//   destination: "/landing/razrabotka",
+// },
+// {
+//   source: "/catalog/vru-21",
+//   destination: "/landing/razrabotka",
+// },
+// {
+//   source: "/catalog/vru-3",
+//   destination: "/landing/razrabotka",
+// },
+// {
+//   source: "/catalog/vru-8504",
+//   destination: "/landing/razrabotka",
+// },
+// {
+//   source: "/catalog/vru-8505",
+//   destination: "/landing/razrabotka",
+// },
+//       {
+//   source: "/catalog/vru-3",
+//   destination: "/landing/razrabotka",
+// },
+// {
+//   source: "/catalog/vru-4",
+//   destination: "/landing/razrabotka",
+// },
+// {
+//   source: "/catalog/vvodno-raspredelitelnye-ustrojstva-vru",
+//   destination: "/landing/razrabotka",
+// },

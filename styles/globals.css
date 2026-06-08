@@ -1,6 +1,7 @@
 /* === Tailwind v4 Core === */
 @import "tailwindcss";
 @import "tw-animate-css";
+@plugin "@tailwindcss/typography";
 
 /* === Custom Dark Variant === */
 @custom-variant dark (&:is(.dark *));
@@ -215,3 +216,7 @@
 .container {
   max-width: 4xl;
 }
+
+/* .prose {
+  background-color: red !important;
+} */

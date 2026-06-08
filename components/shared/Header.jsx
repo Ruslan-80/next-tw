@@ -140,12 +140,14 @@ export default function Header() {
             <div className="flex items-center gap-6">
               <CatalogButton />
               <Link href="/" className="flex-shrink-1" alt="logo">
-                <Image
-                  src={Logo}
-                  alt="Electroshit-pro"
-                  width={140}
-                  height={40}
-                />
+                <div className="relative w-[140px] h-[40px] flex-shrink-0">
+                  <Image
+                    src={Logo}
+                    alt="Electroshit-pro"
+                    fill
+                    className="object-contain"
+                  />
+                </div>
               </Link>
             </div>
 

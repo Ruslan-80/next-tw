@@ -54,6 +54,11 @@ export async function POST(request) {
           strict: true,
         });
 
+        const MAX_DESC_LEN = 191; // уточните ваше ограничение
+        if (item.descriptionSeo?.length > MAX_DESC_LEN) {
+          item.descriptionSeo = item.descriptionSeo.slice(0, MAX_DESC_LEN);
+        }
+
         const product = await prisma.product.upsert({
           where: { article: item.article },
           update: {
