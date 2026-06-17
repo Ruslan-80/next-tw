@@ -59,7 +59,7 @@ export default function ComponentUERM() {
           </li>
           <li className="flex items-center space-x-2">
             <span className="text-gray-400">/</span>
-            <span className="font-medium text-gray-900 truncate">УЭРМ</span>
+            <span className="font-medium text-accent truncate">УЭРМ</span>
           </li>
         </ol>
       </nav>

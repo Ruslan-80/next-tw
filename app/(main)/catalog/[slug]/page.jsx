@@ -232,7 +232,9 @@ export default async function CategoryPage({ params, searchParams }) {
   };
 
   const canonicalUrl =
-    page > 1 ? `/catalog/${slug}?page=${page}` : `/catalog/${slug}`;
+    page > 1
+      ? `${process.env.NEXT_PUBLIC_SITE_URL}/catalog/${slug}?page=${page}`
+      : `${process.env.NEXT_PUBLIC_SITE_URL}/catalog/${slug}`;
 
   const categoryJsonLd = getCategoryJsonLd(
     category,
@@ -247,31 +249,38 @@ export default async function CategoryPage({ params, searchParams }) {
       <JsonLd data={categoryJsonLd} script_name="category-jsonld" />
 
       <Breadcrumbs items={breadcrumbs} />
-      <div className="container mx-auto px-4">
-        <h1 className="flex items-center justify-center text-2xl md:text-3xl font-light tracking-tighter leading-tight text-slate-900 my-16">
+      <div className="bg-gradient-metal animate-metal">
+        <h1 className="flex items-center justify-center text-2xl md:text-3xl font-light tracking-tighter leading-tight text-text py-16">
           {finalH1}
+          {page > 1 && <span className="ml-2">— страница {page}</span>}
         </h1>
-        {TopComponent ? (
-          <TopComponent />
-        ) : fullDescription ? (
-          <div className="text-justify bg-blue-300/20 shadow-xl text-2xl rounded-4xl px-8 py-12 mx-auto border border-blue-200 mb-12">
-            {fullDescription || category.fullDescription}
-          </div>
-        ) : null}
+        {page === 1 && (
+          <>
+            {TopComponent ? (
+              <TopComponent />
+            ) : fullDescription ? (
+              <div className="container mx-auto text-justify bg-blue-300/20 shadow-xl text-2xl rounded-4xl px-8 py-12 border border-blue-200 mb-12">
+                {fullDescription || category.fullDescription}
+              </div>
+            ) : null}
+          </>
+        )}
         {category.children.length > 0 && (
           <Subcategories subcategories={category.children} />
         )}
-        <div className="grid grid-cols-1 md:grid-cols-[1fr_3fr] gap-4">
-          <div className="p-0 md:p-4 lg:top-6 self-start ">
-            <Filters
-              totalProducts={totalProducts}
-              attributeIds={category.filters}
-              searchParams={resolvedSearchParams}
-              baseUrl={`/catalog/${baseSlug}`}
-              categorySlug={baseSlug}
-            />
+        <div className="bg-gradient-metal animate-metal py-8">
+          <div className="grid grid-cols-1 md:grid-cols-[1fr_3fr] gap-4 container mx-auto">
+            <div className="p-0 md:p-4 lg:top-6 self-start ">
+              <Filters
+                totalProducts={totalProducts}
+                attributeIds={category.filters}
+                searchParams={resolvedSearchParams}
+                baseUrl={`/catalog/${baseSlug}`}
+                categorySlug={baseSlug}
+              />
+            </div>
+            <ProductList products={products} totalProducts={totalProducts} />
           </div>
-          <ProductList products={products} totalProducts={totalProducts} />
         </div>
 
         <Pagination
@@ -280,10 +289,10 @@ export default async function CategoryPage({ params, searchParams }) {
           getPageUrl={getPageUrl}
         />
 
-        {BottomComponent && <BottomComponent />}
+        {page === 1 && BottomComponent && <BottomComponent />}
         <PopularNabor excludeSlug={slug} />
 
-        <RandomObjects />
+        {page === 1 && <RandomObjects />}
 
         <PopularProducts categorySlug={baseSlug} />
       </div>

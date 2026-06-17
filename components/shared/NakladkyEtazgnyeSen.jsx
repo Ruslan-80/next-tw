@@ -37,15 +37,15 @@ export function NakladkyEtazhnyeTop() {
   return (
     <>
       <JsonLd data={FaqJsonLd} script_name="FAQ-jsonld" />
-      <section className="mb-12">
+      <section className="mb-12 px-2">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-8 animate-fade-in-up">
             <div className="space-y-4">
-              <h2 className="text-4xl lg:text-5xl font-bold text-balance leading-tight">
+              <h2 className="text-3xl lg:text-5xl font-bold text-balance leading-tight">
                 Накладки щитов этажных для многоквартирных домов – качество и
                 надежность
               </h2>
-              <p className="text-justify text-2xl text-muted-foreground leading-relaxed">
+              <p className="text-justify text-xl lg:text-2xl text-muted-foreground leading-relaxed">
                 Накладка щита этажного – идеальное решение для косметического
                 ремонта электрических щитов в многоквартирных домах. Лицевая
                 панель щита этажного (ЩЭ) позволяет обновить внешний вид
@@ -177,16 +177,16 @@ export function NakladkyEtazhnyeBottom() {
     },
   ];
   return (
-    <div className="container mx-auto p-6 space-y-10 text-2xl mt-12">
+    <div className="container mx-auto lg:px-6 space-y-10 text-2xl mt-12">
       <section className="py-4 mt-12">
-        <div className="container mx-auto px-6">
-          <div className="w-full mx-auto">
+        <div className="container mx-auto">
+          <div className="w-full">
             <div className="text-center mb-12">
-              <h3 className="text-3xl lg:text-4xl font-bold mb-4 text-balance">
+              <h3 className="text-2xl lg:text-4xl font-bold mb-4 text-balance">
                 Преимущества накладок щитов этажных
               </h3>
             </div>
-            <div className="grid md:grid-cols-2  gap-6">
+            <div className="grid md:grid-cols-2 gap-6">
               {[
                 {
                   title: "Простота установки",
@@ -238,19 +238,19 @@ export function NakladkyEtazhnyeBottom() {
       <VideoGallery />
       {/* Technical Specs & Advantages */}
       <section className="py-4 bg-secondary/30">
-        <div className="container mx-auto px-6">
-          <div className="grid  gap-12">
+        <div className="container mx-auto lg:px-6 px-2">
+          <div className="grid gap-12">
             {/* Technical Specifications */}
             <div>
               <div className="flex items-center gap-3 mb-8">
                 <Zap className="h-8 w-8 text-accent" />
-                <h2 className="text-3xl font-bold">
+                <h2 className="text-2xl lg:text-3xl font-bold">
                   Технические характеристики
                 </h2>
               </div>
 
               <Card>
-                <CardContent className="p-6">
+                <CardContent className="lg:px-6 px-2">
                   <div className="space-y-4">
                     {[
                       "Материалы: Сталь (толщина 0,8–2,0 мм).",
@@ -260,8 +260,8 @@ export function NakladkyEtazhnyeBottom() {
                       "Дополнительно: Смотровые окна, дин-рейки, перегородки для слаботочных отсеков.",
                     ].map((spec, index) => (
                       <div key={index} className="flex items-start gap-3">
-                        <CheckCircle className="h-4 w-4 text-accent mt-1 flex-shrink-0" />
-                        <span className="text-2xl text-muted-foreground leading-relaxed">
+                        <CheckCircle className="h-5 w-5 text-accent mt-1 flex-shrink-0" />
+                        <span className="text-xl lg:text-2xl text-muted-foreground leading-relaxed">
                           {spec}
                         </span>
                       </div>
@@ -275,17 +275,17 @@ export function NakladkyEtazhnyeBottom() {
       </section>
 
       <section className="py-4 mt-12">
-        <div className="container mx-auto px-6">
+        <div className="container mx-auto lg:px-6">
           <div className="w-full mx-auto">
             <div className="text-center mb-12">
-              <h3 className="text-3xl lg:text-4xl font-bold mb-4 text-balance">
+              <h3 className="text-2xl lg:text-4xl font-bold mb-4 text-balance">
                 Применение и особенности установки
               </h3>
             </div>
 
             <Card className="mb-8">
-              <CardContent className="px-8">
-                <p className="text-justify leading-relaxed text-muted-foreground mb-6 text-2xl">
+              <CardContent className="lg:px-8 px-4">
+                <p className="text-justify leading-relaxed text-muted-foreground mb-6 text-xl lg:text-2xl">
                   Накладки щитов этажных применяются при капитальном ремонте или
                   реновации электрощитовых в жилых домах, школах и коттеджных
                   поселках. Лицевая панель щита этажного позволяет обновить
@@ -297,20 +297,20 @@ export function NakladkyEtazhnyeBottom() {
                 <div className="grid gap-6 pb-4">
                   <div className="flex items-start gap-3">
                     <CheckCircle className="h-5 w-5 text-accent mt-1 flex-shrink-0" />
-                    <div className="text-justify text-2xl text-muted-foreground">
+                    <div className="text-justify text-xl lg:text-2xl text-muted-foreground">
                       Крепление на существующую раму щита или в нишу через
                       проушины.
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
                     <CheckCircle className="h-5 w-5 text-accent mt-1 flex-shrink-0" />
-                    <div className="text-justify text-2xl text-muted-foreground">
+                    <div className="text-justify text-xl lg:text-2xl text-muted-foreground">
                       Минимальный демонтаж старых элементов.
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
                     <CheckCircle className="h-5 w-5 text-accent mt-1 flex-shrink-0" />
-                    <div className="text-justify text-2xl text-muted-foreground">
+                    <div className="text-justify text-xl lg:text-2xl text-muted-foreground">
                       Возможность добавления дин-реек для дополнительного
                       электрооборудования.
                     </div>
@@ -322,13 +322,13 @@ export function NakladkyEtazhnyeBottom() {
         </div>
       </section>
 
-      <section className="container mx-auto px-6 py-12">
-        <h2 className="text-3xl font-bold mb-8 text-gray-800 text-center">
+      <section className="container mx-auto lg:px-6 px-2 py-12">
+        <h2 className="text-2xl lg:text-3xl font-bold mb-8 text-gray-800 text-center">
           Сравнение замены щита и установки лицевой панели
         </h2>
 
         <div className="overflow-x-auto">
-          <table className="w-full max-w-8xl mx-auto border border-gray-200 text-left text-gray-700 text-xl rounded-lg overflow-hidden shadow-md">
+          <table className="w-full max-w-8xl mx-auto border border-gray-200 text-left text-gray-700 text-sm lg:text-xl rounded-lg overflow-hidden shadow-md">
             <thead className="bg-gray-100">
               <tr>
                 <th className="px-6 py-4 border-b font-semibold">Параметр</th>
@@ -387,33 +387,33 @@ export function NakladkyEtazhnyeBottom() {
       </section>
 
       <section className="py-4 mt-12">
-        <div className="container mx-auto px-6">
+        <div className="container mx-auto px-2 lg:px-6">
           <div className="w-full mx-auto">
             <div className="text-center mb-12">
-              <h3 className="text-3xl lg:text-4xl font-bold mb-4 text-balance">
+              <h3 className="text-2xl lg:text-3xl font-bold mb-4 text-balance">
                 Процесс заказа накладок
               </h3>
             </div>
 
             <Card className="mb-8">
-              <CardContent className="px-8">
+              <CardContent className="px-4 lg:px-6">
                 <ol>
-                  <li className="text-justify leading-relaxed text-muted-foreground mb-6 text-2xl">
+                  <li className="text-justify leading-relaxed text-muted-foreground mb-6 text-xl lg:text-2xl">
                     1. Укажите параметры: размер ниши, толщина металла, цвет
                     RAL, тип замка, количество панелей.
                   </li>
-                  <li className="text-justify leading-relaxed text-muted-foreground mb-6 text-2xl">
+                  <li className="text-justify leading-relaxed text-muted-foreground mb-6 text-xl lg:text-2xl">
                     2. Закажите выезд замерщика или предоставьте чертежи для
                     точного изготовления.
                   </li>
-                  <li className="text-justify leading-relaxed text-muted-foreground mb-6 text-2xl">
+                  <li className="text-justify leading-relaxed text-muted-foreground mb-6 text-xl lg:text-2xl">
                     3. Получите готовую накладку щита этажного в срок от 1 до 4
                     недель с доставкой по России.
                   </li>
                 </ol>
                 <div className="flex items-start gap-3">
                   <CheckCircle className="h-5 w-5 text-accent mt-1 flex-shrink-0" />
-                  <p className="text-justify leading-relaxed text-muted-foreground mb-6 text-2xl">
+                  <p className="text-justify leading-relaxed text-muted-foreground mb-6 text-xl lg:text-2xl">
                     Для расчета стоимости заполните форму на сайте, указав
                     габариты, материал и желаемый цвет. Наши
                     инженеры-проектировщики обеспечат точное соответствие вашим
@@ -434,19 +434,19 @@ export function NakladkyEtazhnyeBottom() {
       </section>
 
       <section className="py-4 bg-secondary/30">
-        <div className="container mx-auto px-6">
+        <div className="container mx-auto lg:px-6">
           <div className="grid  gap-12">
             {/* Technical Specifications */}
             <div>
               <div className="flex items-center gap-3 mb-8">
-                <Zap className="h-8 w-8 text-accent" />
-                <h2 className="text-3xl font-bold">
+                <Zap className="h-16 w-16 text-accent" />
+                <h2 className="text-2xl lg:text-3xl font-bold">
                   Почему выбирают наши накладки щитов этажных?
                 </h2>
               </div>
 
               <Card>
-                <CardContent className="p-6">
+                <CardContent className="px-4 lg:px-6">
                   <div className="space-y-4">
                     {[
                       "Высокое качество: Используем прочные российские материалы (сталь) и порошковое покрытие для долговечности.",
@@ -456,8 +456,8 @@ export function NakladkyEtazhnyeBottom() {
                       "Оперативность: Быстрое производство и доставка в любой город России.",
                     ].map((spec, index) => (
                       <div key={index} className="flex items-start gap-3">
-                        <CheckCircle className="h-4 w-4 text-accent mt-1 flex-shrink-0" />
-                        <span className="text-2xl text-muted-foreground leading-relaxed">
+                        <CheckCircle className="h-5 w-5 text-accent mt-1 flex-shrink-0" />
+                        <span className="text-xl lg:text-2xl text-muted-foreground leading-relaxed">
                           {spec}
                         </span>
                       </div>
@@ -471,26 +471,26 @@ export function NakladkyEtazhnyeBottom() {
       </section>
 
       <section className="py-4 mt-12">
-        <div className="container mx-auto px-6">
+        <div className="container mx-auto px-2 lg:px-6">
           <div className="w-full mx-auto">
             <div className="text-center mb-12">
-              <h3 className="text-3xl lg:text-4xl font-bold mb-4 text-balance">
+              <h3 className="text-2xl lg:text-3xl font-bold mb-4 text-balance">
                 Закажите накладки щитов этажных прямо сейчас!
               </h3>
             </div>
 
             <Card className="mb-8">
-              <CardContent className="px-8">
-                <p className="text-justify leading-relaxed text-muted-foreground mb-6 text-2xl">
+              <CardContent className="px-4 lg:px-6">
+                <p className="text-justify leading-relaxed text-muted-foreground mb-6 text-xl lg:text-2xl">
                   Обновите внешний вид распределительного электрощитка с нашими
                   лицевыми панелями!
                 </p>
-                <p className="text-justify leading-relaxed text-muted-foreground mb-6 text-2xl">
+                <p className="text-justify leading-relaxed text-muted-foreground mb-6 text-xl lg:text-2xl">
                   Свяжитесь с нами по телефону, email или через форму на сайте,
                   чтобы оформить заказ, получить консультацию или запросить
                   выезд замерщика.
                 </p>
-                <p className="text-justify leading-relaxed text-muted-foreground mb-6 text-2xl">
+                <p className="text-justify leading-relaxed text-muted-foreground mb-6 text-xl lg:text-2xl">
                   Наши накладки щитов этажных – это сочетание качества,
                   надежности и современного дизайна для вашего дома или
                   подъезда.

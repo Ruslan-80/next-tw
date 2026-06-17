@@ -37,67 +37,71 @@ export function ShityEtazhnyeTop() {
   return (
     <>
       <JsonLd data={FaqJsonLd} script_name="FAQ-jsonld" />
-      <section>
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          <div className="order-2 lg:order-1 space-y-8 animate-fade-in-up">
-            <div className="space-y-4">
-              <h2 className="text-2xl lg:text-5xl font-bold text-balance leading-[100%] mb-16">
-                Щиты этажные типа <span className="text-accent">ЩЭ</span>
-              </h2>
-              <p className="text-xl text-justify lg:text-2xl text-muted-foreground leading-[150%] mb-8">
-                Этажный распределительный щиток (ЩЭ, ЩЭР) - современное
-                многофункциональное электротехническое устройство,
-                устанавливаемое на этажных лестничных клетках, межэтажных
-                пролетах или в коридорах многоквартирных домов и предназначенное
-                для присоединения квартирных учетно-групповых щитков.
-              </p>
-              <p className="text-xl text-justify lg:text-2xl text-muted-foreground leading-[150%] mb-16">
-                Этажные щиты серии ЩЭ представляют собой надежное решение для
-                подъездных электрических систем, обеспечивающее безопасное
-                распределение электроэнергии между квартирами.
-              </p>
+      <section className="bg-gradient-metal animate-metal">
+        <div className="container mx-auto p-6">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="order-2 lg:order-1 space-y-8 animate-fade-in-up">
+              <div className="space-y-4">
+                <h2 className="text-2xl lg:text-5xl font-bold text-balance leading-[100%] mb-16">
+                  Щиты этажные типа <span className="text-accent">ЩЭ</span>
+                </h2>
+                <p className="text-xl text-justify lg:text-2xl text-muted-foreground leading-[150%] mb-8">
+                  Этажный распределительный щиток (ЩЭ, ЩЭР) - современное
+                  многофункциональное электротехническое устройство,
+                  устанавливаемое на этажных лестничных клетках, межэтажных
+                  пролетах или в коридорах многоквартирных домов и
+                  предназначенное для присоединения квартирных учетно-групповых
+                  щитков.
+                </p>
+                <p className="text-xl text-justify lg:text-2xl text-muted-foreground leading-[150%] mb-16">
+                  Этажные щиты серии ЩЭ представляют собой надежное решение для
+                  подъездных электрических систем, обеспечивающее безопасное
+                  распределение электроэнергии между квартирами.
+                </p>
+              </div>
+
+              <div className="flex flex-wrap gap-4">
+                <Button
+                  onClick={() => handleButtonClick("Получить консультацию")}
+                  size="lg"
+                  className="btn-accent text-accent-foreground text-xl py-8"
+                >
+                  Получить консультацию
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+              </div>
+
+              <div className="grid grid-cols-3 gap-6 pt-4">
+                <div className="text-center">
+                  <div className="text-2xl font-bold text-accent">1-12</div>
+                  <div className="text-xl text-muted-foreground">квартир</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-2xl font-bold text-accent">25</div>
+                  <div className="text-xl text-muted-foreground">
+                    лет службы
+                  </div>
+                </div>
+                <div className="text-center">
+                  <div className="text-2xl font-bold text-accent">IP31</div>
+                  <div className="text-xl text-muted-foreground">защита</div>
+                </div>
+              </div>
             </div>
 
-            <div className="flex flex-wrap gap-4">
-              <Button
-                onClick={() => handleButtonClick("Получить консультацию")}
-                size="lg"
-                className="btn-accent text-accent-foreground text-xl py-8"
-              >
-                Получить консультацию
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-            </div>
-
-            <div className="grid grid-cols-3 gap-6 pt-4">
-              <div className="text-center">
-                <div className="text-2xl font-bold text-accent">1-12</div>
-                <div className="text-xl text-muted-foreground">квартир</div>
+            <div className="order-1 lg:order-2 relative animate-slide-in-right">
+              <div className="absolute inset-0 bg-gradient-to-br from-accent/20 to-primary/20 rounded-3xl blur-3xl"></div>
+              <div className="relative bg-card rounded-2xl shadow-2xl flex justify-center mx-auto">
+                <video
+                  src="/video/Box.mp4"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  className="w-full h-auto object-contain rounded-2xl hover:scale-105 transition-transform duration-500"
+                />
               </div>
-              <div className="text-center">
-                <div className="text-2xl font-bold text-accent">25</div>
-                <div className="text-xl text-muted-foreground">лет службы</div>
-              </div>
-              <div className="text-center">
-                <div className="text-2xl font-bold text-accent">IP31</div>
-                <div className="text-xl text-muted-foreground">защита</div>
-              </div>
-            </div>
-          </div>
-
-          <div className="order-1 lg:order-2 relative animate-slide-in-right">
-            <div className="absolute inset-0 bg-gradient-to-br from-accent/20 to-primary/20 rounded-3xl blur-3xl"></div>
-            <div className="relative bg-card rounded-2xl shadow-2xl flex justify-center mx-auto">
-              <video
-                src="/video/Box.mp4"
-                autoPlay
-                muted
-                loop
-                playsInline
-                className="w-full h-auto object-contain rounded-2xl hover:scale-105 transition-transform duration-500"
-              />
-            </div>
-            {/* <div className="relative bg-card rounded-3xl p-8 shadow-2xl flex justify-center mx-auto">
+              {/* <div className="relative bg-card rounded-3xl p-8 shadow-2xl flex justify-center mx-auto">
               <Image
                 src="/images/categories/SE24L.png"
                 alt="Щиты этажные типа ЩЭ"
@@ -106,6 +110,7 @@ export function ShityEtazhnyeTop() {
                 className="w-full h-auto object-contain hover:scale-105 transition-transform duration-500"
               />
             </div> */}
+            </div>
           </div>
         </div>
       </section>
@@ -207,18 +212,18 @@ export function ShityEtazhnyeBottom() {
     <div className="container mx-auto space-y-10 text-justify text-xl lg:text-2xl mt-16">
       <Card>
         <CardContent className="px-6">
-          <h3 className="text-3xl leading-[100%] font-semibold text-orange-600">
+          <h3 className="text-3xl leading-[100%] font-semibold text-text">
             Виды производимых этажных щитов
           </h3>
-          <p className="leading-[150%] text-gray-600 my-4 mb-8">
+          <p className="leading-[150%] text-text my-4 mb-8">
             Предлагаем этажные электрощиты серии ЩЭ, ЩРЭ, ЩЛС, ЩЭУР , ЩЭУРГ ,
             разработанных в соответствии с ГОСТ 32395-2020, для многоквартирных
             жилых домов и индивидуальных зданий.
           </p>
-          <p className="leading-[150%] text-gray-600 mb-8">
+          <p className="leading-[150%] text-text mb-8">
             Наши щиты делятся на следующие типы:
           </p>
-          <ul className="list-disc list-inside space-y-1 text-gray-700">
+          <ul className="list-disc list-inside space-y-1 text-text">
             <li>
               Распределительный щит РЩЭ,ЩЭ, ЩЛС : предназначен для подключения
               квартирных учетно-групповых щитков, обеспечивая распределение
@@ -241,7 +246,7 @@ export function ShityEtazhnyeBottom() {
               экранирования.
             </li>
           </ul>
-          <p className="text-gray-600 my-4">
+          <p className="text-text my-4">
             Каждый тип щита доступен в настенном или встраиваемом исполнении, с
             возможностью установки в нишу, что делает их универсальными для
             жилых объектов.
@@ -250,20 +255,20 @@ export function ShityEtazhnyeBottom() {
       </Card>
       <Card>
         <CardContent className="px-6">
-          <h3 className="text-3xl font-semibold text-orange-600">
+          <h3 className="text-3xl font-semibold text-text">
             Назначение этажных щитов
           </h3>
-          <p className="text-gray-600 my-4">
+          <p className="text-text my-4">
             Этажные щиты представляют собой металлическую раму или этажный шкаф
             и используются как кожух для защиты домового электрооборудования.
             Предназначены для бесперебойного распределения и учета
             электроэнергии, устанавливаются в подъездах и на лестничных
             площадках жилых зданий.
           </p>
-          <p className="text-gray-600 mb-4">
+          <p className="text-text mb-4">
             Согласно ГОСТ 32395-2020, они выполняют следующие функции:
           </p>
-          <ul className="list-disc list-inside space-y-1 text-gray-700">
+          <ul className="list-disc list-inside space-y-1 text-text">
             <li>
               Распределение электроэнергии: подключение квартирных щитков к
               питающей сети (стояку) с напряжением 230 В или 400/230 В.
@@ -288,7 +293,7 @@ export function ShityEtazhnyeBottom() {
               и возможности опломбирования.
             </li>
           </ul>
-          <p className="text-gray-600 my-4">
+          <p className="text-text my-4">
             Этажные щиты подходят для зданий многоэтажного строительства,
             частных домов, коттеджей и загородных домиков, обеспечивая надежное
             электроснабжение.
@@ -297,13 +302,13 @@ export function ShityEtazhnyeBottom() {
       </Card>
       <Card>
         <CardContent className="px-6">
-          <h3 className="text-3xl font-semibold text-orange-600">
+          <h3 className="text-3xl font-semibold text-text">
             Преимущества этажных щитов от нашей компании
           </h3>
-          <p className="text-gray-600 my-4">
+          <p className="text-text my-4">
             Наши этажные щиты выделяются благодаря следующим достоинствам:
           </p>
-          <ul className="list-disc list-inside space-y-1 text-gray-700">
+          <ul className="list-disc list-inside space-y-1 text-text">
             <li>
               Надежность и долговечность: металлический корпус с порошковым
               покрытием устойчив к коррозии, механическим ударам (0,7 Дж) и
@@ -332,7 +337,7 @@ export function ShityEtazhnyeBottom() {
               окошки для снятия показаний счетчиков, компактные размеры.
             </li>
           </ul>
-          <p className="text-gray-600 my-4">
+          <p className="text-text my-4">
             Предлагаем как типовые, так и нестандартные решения, адаптированные
             под конкретные проекты, с учетом требований заказчика.
           </p>
@@ -340,14 +345,14 @@ export function ShityEtazhnyeBottom() {
       </Card>
       <Card>
         <CardContent className="px-6">
-          <h3 className="text-3xl font-semibold text-orange-600">
+          <h3 className="text-3xl font-semibold text-text">
             Производство этажных щитов в соответствии с ГОСТ
           </h3>
-          <p className="text-gray-600 my-4">
+          <p className="text-text my-4">
             Наше производство этажных щитов строго соответствует ГОСТ
             32395-2020, что гарантирует качество и безопасность:
           </p>
-          <ul className="list-disc list-inside space-y-1 text-gray-700">
+          <ul className="list-disc list-inside space-y-1 text-text">
             <li>
               Материалы: корпуса изготавливаются из стали толщиной от 1мм с
               порошковым покрытием, устойчивым к коррозии и механическим
@@ -374,7 +379,7 @@ export function ShityEtazhnyeBottom() {
               международным стандартам.
             </li>
           </ul>
-          <p className="text-gray-600 my-4">
+          <p className="text-text my-4">
             Мы используем современные технологии сборки, комплектующие от
             проверенных производителей и предоставляем подробные схемы
             подключения для каждого щита.
@@ -383,14 +388,14 @@ export function ShityEtazhnyeBottom() {
       </Card>
       <Card>
         <CardContent className="px-6">
-          <h3 className="text-3xl font-semibold text-orange-600">
+          <h3 className="text-3xl font-semibold text-text">
             Как выбрать этажный щит
           </h3>
-          <p className="text-gray-600 my-4">
+          <p className="text-text my-4">
             Выбор этажного щита зависит от потребностей вашего объекта.
             Рекомендации по ГОСТ 32395-2020:
           </p>
-          <ul className="list-disc list-inside space-y-1 text-gray-700">
+          <ul className="list-disc list-inside space-y-1 text-text">
             <li>
               Тип щита: для многоэтажного строительства подойдут
               учетно-распределительные щиты на 1-12 квартир, для частных домов —
@@ -419,7 +424,7 @@ export function ShityEtazhnyeBottom() {
               или УХЛ4.
             </li>
           </ul>
-          <p className="text-gray-600 my-4">
+          <p className="text-text my-4">
             Наши специалисты помогут подобрать оптимальную модель, предоставят
             консультацию и чертежи для вашего проекта. Свяжитесь с нами через
             интернет-магазин или по телефону.
@@ -428,14 +433,14 @@ export function ShityEtazhnyeBottom() {
       </Card>
       <Card>
         <CardContent className="px-6">
-          <h3 className="text-3xl font-semibold text-orange-600">
+          <h3 className="text-3xl font-semibold text-text">
             Преимущества заказа в нашем магазине
           </h3>
-          <p className="text-gray-600 my-4">
+          <p className="text-text my-4">
             Покупка этажных щитов в нашем интернет-магазине — это выгодно и
             удобно:
           </p>
-          <ul className="list-disc list-inside space-y-1 text-gray-700">
+          <ul className="list-disc list-inside space-y-1 text-text">
             <li>
               Широкий каталог: от типовых учетно-распределительных щитов до
               нестандартных решений с индивидуальной комплектацией.
@@ -461,7 +466,7 @@ export function ShityEtazhnyeBottom() {
               заявок, персональный менеджер для каждого клиента.
             </li>
           </ul>
-          <p className="text-gray-600 my-4">
+          <p className="text-text my-4">
             Посетите наш каталог, чтобы ознакомиться с моделями, ценами и
             характеристиками. Закажите этажный щит уже сегодня и получите
             надежное решение для вашего дома!
@@ -469,13 +474,13 @@ export function ShityEtazhnyeBottom() {
         </CardContent>
       </Card>
       <div className="container mx-auto p-4">
-        <h3 className="text-2xl md:text-3xl font-bold text-center text-gray-800 mb-6">
+        <h3 className="text-2xl md:text-3xl font-bold text-center text-text mb-6">
           Классификация этажных щитков по ГОСТ 32395-2020
         </h3>
         <div className="overflow-x-auto">
-          <table className="w-full max-w-5xl mx-auto bg-white shadow-md border-collapse">
+          <table className="w-full max-w-5xl mx-auto bg-surface-container shadow-md border-collapse">
             <thead>
-              <tr className="bg-blue-600 text-white">
+              <tr className="bg-surface-highest text-text">
                 <th className="p-3 text-left text-sm md:text-base font-bold">
                   №
                 </th>
@@ -518,7 +523,7 @@ export function ShityEtazhnyeBottom() {
               {products.map((product) => (
                 <tr
                   key={product.id}
-                  className="border-b hover:bg-blue-50 even:bg-gray-50"
+                  className="border-b hover:bg-card even:bg-primaryForeground"
                 >
                   <td className="p-3 text-sm md:text-base">{product.id}</td>
                   <td className="p-3 text-sm md:text-base">{product.type}</td>

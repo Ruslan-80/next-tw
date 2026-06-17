@@ -80,9 +80,18 @@ const ContactsComponent = () => {
               <Phone className="h-8 w-8 text-accent" />
               <CardTitle className="text-2xl">Телефон</CardTitle>
             </CardHeader>
-            <CardContent>
-              <Link href="tel:+74993901467" className="text-muted-foreground">
+            <CardContent className="flex flex-col gap-2">
+              <Link
+                href="tel:+74993901467"
+                className="text-muted-foreground pl-[2rem]"
+              >
                 +7 (499) 390-14-67
+              </Link>
+              <Link
+                href="tel:+79299759489"
+                className="text-muted-foreground pl-[2rem]"
+              >
+                +7 (929) 975-94-89
               </Link>
             </CardContent>
           </Card>
@@ -191,8 +200,8 @@ const ContactsComponent = () => {
           <span>ООО «Ромашка»</span>
         </div>
       </section> */}
-      <section className="container mx-auto  lg:px-4 py-8 md:py-12">
-        <h2 className="text-2xl text-center font-bold mb-6 text-gray-800">
+      <section className="container mx-auto text-cardForeground lg:px-4 py-8 md:py-12">
+        <h2 className="text-2xl text-center font-bold mb-6">
           Реквизиты компании
         </h2>
 
@@ -201,7 +210,7 @@ const ContactsComponent = () => {
             {details.map((item, index) => (
               <div
                 key={index}
-                className="flex flex-col lg:flex-row items-baseline text-xl font-medium text-gray-700"
+                className="flex flex-col lg:flex-row items-baseline text-xl font-medium"
               >
                 {/* Название */}
                 <dt className="text-sm lg:text-xl shrink-0 pr-2">
@@ -212,7 +221,7 @@ const ContactsComponent = () => {
                 <dd className="flex-grow border-b border-dotted border-gray-400 mx-1 mb-1" />
 
                 {/* Значение */}
-                <dd className="text-sm lg:text-xl shrink-0 lg:pl-2 text-left lg:text-right font-semibold text-gray-900">
+                <dd className="text-sm lg:text-xl shrink-0 lg:pl-2 text-left lg:text-right font-semibold">
                   {item.value}
                 </dd>
               </div>
@@ -226,10 +235,11 @@ const ContactsComponent = () => {
             // Атрибут download заставляет браузер скачать файл, а не открыть его
             download
             // Стиль Tailwind: синяя кнопка с тенью
-            className="inline-flex items-center justify-center px-8 py-3 
-                     border border-transparent text-base font-medium rounded-md 
-                     text-white bg-blue-600 shadow-lg 
-                     hover:bg-blue-700 transition duration-300 ease-in-out"
+            className="btn-gold inline-flex items-center justify-center px-8 py-3"
+            // className="inline-flex items-center justify-center px-8 py-3
+            //          border border-transparent text-base font-medium rounded-md
+            //          bg-accent shadow-lg
+            //          hover:bg-accenthover transition duration-300 ease-in-out"
           >
             <svg
               className="w-5 h-5 mr-2"
@@ -291,9 +301,9 @@ const ContactsComponent = () => {
               <Button
                 onClick={() => handleSubmit("Форма обратной связи")}
                 type="submit"
-                className="w-full"
+                className="w-full btn-gold text-[#1A1A1A]"
               >
-                <Send className="mr-2 h-4 w-4" /> Отправить
+                <Send /> Отправить
               </Button>
             </form>
 

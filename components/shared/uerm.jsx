@@ -29,11 +29,11 @@ export function uermTop() {
   };
 
   return (
-    <div className="container mx-auto py-6 bg-white text-xl lg:text-2xl">
-      <section>
+    <div className="bg-gradient-metal animate-metal">
+      <section className="container mx-auto py-6 text-xl lg:text-2xl">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-8 animate-fade-in-up">
-            <div className="space-y-4">
+            <div className="space-y-4 px-2">
               <Badge variant="secondary" className="text-sm font-medium">
                 Модульное решение
               </Badge>
@@ -48,7 +48,7 @@ export function uermTop() {
               </p>
             </div>
 
-            <div className="flex flex-wrap gap-4">
+            <div className="flex flex-wrap gap-4 px-2">
               <Button
                 onClick={() => handleButtonClick("Получить консультацию")}
                 size="lg"
@@ -89,7 +89,7 @@ export function uermTop() {
             <div className="absolute inset-0 bg-gradient-to-br from-accent/20 to-primary/20 rounded-3xl blur-3xl"></div>
 
             {/* Адаптивный контейнер */}
-            <div className="relative w-full max-w-[350px] md:max-w-[450px] lg:max-w-[500px] aspect-square bg-card rounded-3xl p-4 md:p-6 lg:p-8 shadow-2xl flex justify-center mx-auto">
+            <div className="relative w-full max-w-[350px] md:max-w-[450px] lg:max-w-[500px] aspect-square rounded-3xl p-4 md:p-6 lg:p-8 shadow-2xl flex justify-center mx-auto">
               <Image
                 src="/images/landing/uerm1.png"
                 alt="УЭРМ - Устройство этажное распределительное модульное"
@@ -123,78 +123,75 @@ export function uermBottom() {
   };
   return (
     <>
-      <div className="container mx-auto p-2 lg:p-6 space-y-10 text-sm lg:text-xl lg:mt-12">
+      <div className="bg-gradient-metal animate-metal">
         {/* Purpose Section */}
-        <section className="py-4 lg:mt-12">
-          <div className="container mx-auto lg:px-6">
-            <div className="w-full mx-auto">
-              <div className="text-center lg:mb-12">
-                <h2 className="text-2xl lg:text-4xl font-bold mb-4 text-balance">
-                  Назначение
-                </h2>
-              </div>
+        <section className="container mx-auto py-2 lg:py-16 text-sm lg:text-xl lg:mt-12">
+          <div className="w-full mx-auto">
+            <div className="text-center lg:mb-12">
+              <h2 className="text-2xl lg:text-4xl font-bold mb-4 text-balance">
+                Назначение
+              </h2>
+            </div>
 
-              <Card className="mb-8">
-                <CardContent className="px-4 lg:px-8">
-                  <p className="text-justify leading-relaxed text-muted-foreground mb-6">
-                    Устройство этажное распределительное модульное типа УЭРМ
-                    предназначено для приема, распределения и учета
-                    электроэнергии в многоквартирных жилых домах. Оно
-                    обеспечивает защиту групповых линий квартир от перегрузок,
-                    короткого замыкания, токов утечки и пожаров в сетях с
-                    глухозаземленной нейтралью (230/400 В, 50 Гц, TN-S, TN-C,
-                    TN-C-S), а также служит для размещения слаботочных систем
-                    (телефонной, телевизионной, интернет-сетей, сигнализации,
-                    АСКУЭ). УЭРМ — современная альтернатива устаревшим этажным
-                    щитам типа ЩЭ, ЩЛС, УЭРП, УЭРС, идеально подходящая для
-                    панельных и монолитных домов, где создание ниш экономически
-                    нецелесообразно. Соответствует стандартам ГОСТ Р
-                    51321.1-2007, ГОСТ IEC 60439.3-2012, ТР ТС 004/2011 и ТУ
-                    (например, ТУ 3434-002-52681400-2019 ).
-                  </p>
+            <Card className="mb-8">
+              <CardContent className="px-4 lg:px-8">
+                <p className="text-justify leading-relaxed text-muted-foreground mb-6">
+                  Устройство этажное распределительное модульное типа УЭРМ
+                  предназначено для приема, распределения и учета электроэнергии
+                  в многоквартирных жилых домах. Оно обеспечивает защиту
+                  групповых линий квартир от перегрузок, короткого замыкания,
+                  токов утечки и пожаров в сетях с глухозаземленной нейтралью
+                  (230/400 В, 50 Гц, TN-S, TN-C, TN-C-S), а также служит для
+                  размещения слаботочных систем (телефонной, телевизионной,
+                  интернет-сетей, сигнализации, АСКУЭ). УЭРМ — современная
+                  альтернатива устаревшим этажным щитам типа ЩЭ, ЩЛС, УЭРП,
+                  УЭРС, идеально подходящая для панельных и монолитных домов,
+                  где создание ниш экономически нецелесообразно. Соответствует
+                  стандартам ГОСТ Р 51321.1-2007, ГОСТ IEC 60439.3-2012, ТР ТС
+                  004/2011 и ТУ (например, ТУ 3434-002-52681400-2019 ).
+                </p>
 
-                  <div className="grid md:grid-cols-3 gap-6 pb-4">
-                    <div className="flex items-start gap-3">
-                      <CheckCircle className="h-5 w-5 lg:h-7 lg:w-7 text-accent mt-1 flex-shrink-0" />
-                      <div>
-                        <div className="font-semibold text-lg lg:text-xl mb-3">
-                          Применение
-                        </div>
-                        <div className="text-justify text-sm lg:text-xl text-muted-foreground">
-                          Установка на этажах жилых зданий, коммунально-бытовых
-                          и общественных объектов.
-                        </div>
+                <div className="grid md:grid-cols-3 gap-6 pb-4">
+                  <div className="flex items-start gap-3">
+                    <CheckCircle className="h-5 w-5 lg:h-7 lg:w-7 text-accent mt-1 flex-shrink-0" />
+                    <div>
+                      <div className="font-semibold text-lg lg:text-xl mb-3">
+                        Применение
                       </div>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <CheckCircle className="h-5 w-5 lg:h-7 lg:w-7 text-accent mt-1 flex-shrink-0" />
-                      <div>
-                        <div className="font-semibold text-lg lg:text-xl mb-3">
-                          Обслуживание
-                        </div>
-                        <div className="text-justify text-sm lg:text-xl text-muted-foreground">
-                          До 6–12 квартир в зависимости от типа счетчиков и
-                          конфигурации.
-                        </div>
-                      </div>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <CheckCircle className="h-5 w-5 lg:h-7 lg:w-7 text-accent mt-1 flex-shrink-0" />
-                      <div>
-                        <div className="font-semibold text-lg lg:text-xl mb-3">
-                          Универсальность
-                        </div>
-                        <div className="text-justify text-sm lg:text-xl text-muted-foreground">
-                          Поддержка однофазных (до 11 кВт) и трехфазных (до 32
-                          кВт) систем для эффективного контроля расхода
-                          электроэнергии.
-                        </div>
+                      <div className="text-justify text-sm lg:text-xl text-muted-foreground">
+                        Установка на этажах жилых зданий, коммунально-бытовых и
+                        общественных объектов.
                       </div>
                     </div>
                   </div>
-                </CardContent>
-              </Card>
-            </div>
+                  <div className="flex items-start gap-3">
+                    <CheckCircle className="h-5 w-5 lg:h-7 lg:w-7 text-accent mt-1 flex-shrink-0" />
+                    <div>
+                      <div className="font-semibold text-lg lg:text-xl mb-3">
+                        Обслуживание
+                      </div>
+                      <div className="text-justify text-sm lg:text-xl text-muted-foreground">
+                        До 6–12 квартир в зависимости от типа счетчиков и
+                        конфигурации.
+                      </div>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <CheckCircle className="h-5 w-5 lg:h-7 lg:w-7 text-accent mt-1 flex-shrink-0" />
+                    <div>
+                      <div className="font-semibold text-lg lg:text-xl mb-3">
+                        Универсальность
+                      </div>
+                      <div className="text-justify text-sm lg:text-xl text-muted-foreground">
+                        Поддержка однофазных (до 11 кВт) и трехфазных (до 32
+                        кВт) систем для эффективного контроля расхода
+                        электроэнергии.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
           </div>
         </section>
 
@@ -295,7 +292,7 @@ export function uermBottom() {
                 </Card>
               ))}
             </div>
-            <p className="text-justify leading-relaxed text-muted-foreground my-6">
+            <p className=" leading-relaxed text-muted-foreground px-2 my-6">
               Каждый модуль имеет запираемую дверь (универсальный или
               индивидуальный замок), обеспечивая безопасность и удобство
               обслуживания.

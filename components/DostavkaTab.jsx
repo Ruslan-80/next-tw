@@ -14,7 +14,7 @@ import Link from "next/link";
 export default function Dostavka({ article }) {
   const text = data[article] || "";
   return (
-    <div className="bg-white shadow text-sm lg:text-base rounded-md lg:p-6">
+    <div className="bg-surface-highest shadow text-sm lg:text-base rounded-md lg:p-6">
       <section className="py-4">
         <div className="container mx-auto lg:px-6">
           <div className="flex items-center gap-3 mb-8">
@@ -31,7 +31,9 @@ export default function Dostavka({ article }) {
               </p>
 
               <div className="space-y-4">
-                <div className="font-bold text-xl lg:text-2xl">БЕСПЛАТНАЯ ДОСТАВКА</div>
+                <div className="font-bold text-xl lg:text-2xl">
+                  БЕСПЛАТНАЯ ДОСТАВКА
+                </div>
                 <p className="text-muted-foreground ml-4">
                   Осуществляется в московском регионе при заказе:
                 </p>
@@ -43,14 +45,18 @@ export default function Dostavka({ article }) {
                   <li>от 100 000 рублей — в пределах ЦКАД.</li>
                 </ul>
 
-                <div className="font-bold text-xl lg:text-2xl">ПЛАТНАЯ ДОСТАВКА</div>
+                <div className="font-bold text-xl lg:text-2xl">
+                  ПЛАТНАЯ ДОСТАВКА
+                </div>
                 <p className="text-muted-foreground">
                   Доставка при заказе на сумму менее 50 000 рублей
                   осуществляется на платной основе и рассчитывается
                   индивидуально
                 </p>
 
-                <div className="font-bold text-xl lg:text-2xl">ДРУГИЕ ВИДЫ ДОСТАВКИ</div>
+                <div className="font-bold text-xl lg:text-2xl">
+                  ДРУГИЕ ВИДЫ ДОСТАВКИ
+                </div>
                 <ul className="list-disc pl-8 text-muted-foreground space-y-2">
                   <li>
                     Курьерская доставка: рассчитывается индивидуально у

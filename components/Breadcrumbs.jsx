@@ -82,7 +82,7 @@ export default function Breadcrumbs({ items, productName }) {
   }, [breadcrumbJsonLd]);
 
   return (
-    <section className="hidden md:block sticky top-0 z-50 border-b border-gray-200 bg-gray-100/95 backdrop-blur supports-[backdrop-filter]:bg-gray-100/60">
+    <section className="hidden md:block sticky top-0 z-50 bg-gradient-metal animate-metal text-text backdrop-blur ">
       <nav
         className="container mx-auto px-6 py-2 flex flex-wrap items-center text-sm text-gray-600"
         itemScope

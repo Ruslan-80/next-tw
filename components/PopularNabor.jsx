@@ -70,29 +70,32 @@ export default function PopularNabor({ excludeSlug }) {
 
   if (dataCategory.some((item) => item.slug === excludeSlug)) {
     return (
-      <div className="mb-8 mt-8">
-        <h3 className="text-2xl font-semibold text-gray-600 mb-8">
-          Популярные подборки
-        </h3>
-        <ul className="flex flex-wrap justify-center gap-4">
-          {dataCategory
-            .filter((subcategory) => subcategory.slug !== excludeSlug)
-            .map((subcategory) => (
-              <li
-                key={subcategory.name}
-                className="border rounded-lg shadow-sm hover:shadow-lg transition-shadow duration-300 bg-gray-100"
-              >
-                <Link
-                  href={`/catalog/${subcategory.slug}`}
-                  className="flex items-center gap-2 p-2"
+      <div className="container mx-auto">
+        <div className="mb-8 mt-8">
+          <h3 className="text-3xl font-semibold text-center text-text mb-8">
+            Популярные подборки
+          </h3>
+          <ul className="flex flex-wrap justify-center gap-4">
+            {dataCategory
+              .filter((subcategory) => subcategory.slug !== excludeSlug)
+              .map((subcategory) => (
+                <li
+                  key={subcategory.name}
+                  className="border rounded-lg shadow-sm hover:shadow-lg transition-shadow duration-300"
                 >
-                  <h3 className="text-lg font-medium text-gray-900 hover:text-orange-400 transition-colors">
-                    {subcategory.name}
-                  </h3>
-                </Link>
-              </li>
-            ))}
-        </ul>
+                  <Link
+                    href={`/catalog/${subcategory.slug}`}
+                    className="flex items-center gap-2 px-4 py-6"
+                    alt={subcategory.name}
+                  >
+                    <h3 className="text-lg font-medium text-text hover:text-accent transition-colors">
+                      {subcategory.name}
+                    </h3>
+                  </Link>
+                </li>
+              ))}
+          </ul>
+        </div>
       </div>
     );
   } else {

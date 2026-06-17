@@ -1,0 +1,256 @@
+{
+  "components": [
+    {
+      "id": "ВА 88-40",
+      "type": "breaker",
+      "current_transformers": null,
+      "model": "ВА 88-40",
+      "poles": 3,
+      "purpose": null,
+      "rating_a": "500A"
+    },
+    {
+      "id": "QS-1",
+      "type": "disconnector",
+      "current_transformers": null,
+      "model": "ВА 88-35",
+      "poles": 3,
+      "purpose": null,
+      "rating_a": "250A"
+    },
+    {
+      "id": "ТШП-0,66",
+      "type": "current_transformer",
+      "current_transformers": "250/5A",
+      "model": "ТШП-0,66",
+      "poles": null,
+      "purpose": null,
+      "rating_a": null
+    },
+    {
+      "id": "Меркурий-234ART-03 P",
+      "type": "meter",
+      "current_transformers": "250/5A",
+      "model": "Меркурий-234ART-03 P",
+      "poles": 3,
+      "purpose": null,
+      "rating_a": "5-7,5A"
+    },
+    {
+      "id": "QS-2",
+      "type": "disconnector",
+      "current_transformers": null,
+      "model": "ВА 88-33",
+      "poles": 3,
+      "purpose": null,
+      "rating_a": "160A"
+    },
+    {
+      "id": "ТШП-0,66",
+      "type": "current_transformer",
+      "current_transformers": "160/5A",
+      "model": "ТШП-0,66",
+      "poles": null,
+      "purpose": null,
+      "rating_a": null
+    },
+    {
+      "id": "Меркурий-234ART-03 P",
+      "type": "meter",
+      "current_transformers": "160/5A",
+      "model": "Меркурий-234ART-03 P",
+      "poles": 3,
+      "purpose": null,
+      "rating_a": "5-7,5A"
+    },
+    {
+      "id": "QF-1",
+      "type": "breaker",
+      "current_transformers": null,
+      "model": "ВА47-29",
+      "poles": 1,
+      "purpose": "Торговая зона, склад, котельная / Электрический котел",
+      "rating_a": "50A"
+    },
+    {
+      "id": "QF-2",
+      "type": "breaker",
+      "current_transformers": null,
+      "model": "ВА47-29",
+      "poles": 1,
+      "purpose": "Торговая зона, склад, котельная / Электрический котел",
+      "rating_a": "50A"
+    },
+    {
+      "id": "QF-3",
+      "type": "breaker",
+      "current_transformers": null,
+      "model": "ВА47-29",
+      "poles": 1,
+      "purpose": "Торговая зона, склад, котельная / Насосы отопления",
+      "rating_a": "10A"
+    },
+    {
+      "id": "QF-4",
+      "type": "breaker",
+      "current_transformers": null,
+      "model": "ВА47-29",
+      "poles": 1,
+      "purpose": "Резерв",
+      "rating_a": "20A"
+    },
+    {
+      "id": "QF-5",
+      "type": "breaker",
+      "current_transformers": null,
+      "model": "ВА47-29",
+      "poles": 1,
+      "purpose": "Резерв",
+      "rating_a": "20A"
+    },
+    {
+      "id": "QF-6",
+      "type": "breaker",
+      "current_transformers": null,
+      "model": "ВА47-29",
+      "poles": 1,
+      "purpose": "Резерв",
+      "rating_a": "20A"
+    },
+    {
+      "id": "QF-7",
+      "type": "breaker",
+      "current_transformers": null,
+      "model": "ВА47-29",
+      "poles": 1,
+      "purpose": "Резерв",
+      "rating_a": "10A"
+    },
+    {
+      "id": "QF-8",
+      "type": "breaker",
+      "current_transformers": null,
+      "model": "ВА47-29",
+      "poles": 1,
+      "purpose": "Резерв",
+      "rating_a": "10A"
+    },
+    {
+      "id": "QF-9",
+      "type": "breaker",
+      "current_transformers": null,
+      "model": "ВА47-29",
+      "poles": 1,
+      "purpose": "Резерв",
+      "rating_a": "10A"
+    },
+    {
+      "id": "QF-10",
+      "type": "breaker",
+      "current_transformers": null,
+      "model": "ВА47-29",
+      "poles": 1,
+      "purpose": "Резерв",
+      "rating_a": "10A"
+    },
+    {
+      "id": "QF-11",
+      "type": "breaker",
+      "current_transformers": null,
+      "model": "ВА47-29",
+      "poles": 1,
+      "purpose": "Резерв",
+      "rating_a": "10A"
+    },
+    {
+      "id": "QF-12",
+      "type": "breaker",
+      "current_transformers": null,
+      "model": "ВА47-29",
+      "poles": 1,
+      "purpose": "Резерв",
+      "rating_a": "10A"
+    },
+    {
+      "id": "QF-13",
+      "type": "breaker",
+      "current_transformers": null,
+      "model": "ВА47-29",
+      "poles": 1,
+      "purpose": "Резерв",
+      "rating_a": "10A"
+    },
+    {
+      "id": "QF-14",
+      "type": "breaker",
+      "current_transformers": null,
+      "model": "ВА47-29",
+      "poles": 1,
+      "purpose": "Резерв",
+      "rating_a": "16A"
+    },
+    {
+      "id": "QF-15",
+      "type": "breaker",
+      "current_transformers": null,
+      "model": "ВА47-29",
+      "poles": 1,
+      "purpose": "Резерв",
+      "rating_a": "16A"
+    },
+    {
+      "id": "QF-16",
+      "type": "breaker",
+      "current_transformers": null,
+      "model": "ВА47-29",
+      "poles": 1,
+      "purpose": "Резерв",
+      "rating_a": "16A"
+    },
+    {
+      "id": "QF-17",
+      "type": "breaker",
+      "current_transformers": null,
+      "model": "ВА47-29",
+      "poles": 1,
+      "purpose": "Торговая зона, склад, котельная / Аварийное освещение",
+      "rating_a": "16A"
+    },
+    {
+      "id": "QF-18",
+      "type": "breaker",
+      "current_transformers": null,
+      "model": "ВА47-29",
+      "poles": 1,
+      "purpose": "Эл. щитовая / ЩНО",
+      "rating_a": "25A"
+    },
+    {
+      "id": "QF-19",
+      "type": "breaker",
+      "current_transformers": null,
+      "model": "ВА47-29",
+      "poles": 1,
+      "purpose": "Эл. щитовая / Щит охранно-пожарной сигнализации (см. раздел ПБ)",
+      "rating_a": "10A"
+    },
+    {
+      "id": "QF-20",
+      "type": "breaker",
+      "current_transformers": null,
+      "model": "ВА47-29",
+      "poles": 1,
+      "purpose": "Резерв",
+      "rating_a": "10A"
+    },
+    {
+      "id": "QF-21",
+      "type": "breaker",
+      "current_transformers": null,
+      "model": "ВА47-29",
+      "poles": 1,
+      "purpose": "Резерв",
+      "rating_a": "10A"
+    }
+  ]
+}

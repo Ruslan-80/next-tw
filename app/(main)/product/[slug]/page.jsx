@@ -153,13 +153,11 @@ export default async function Page({ params }) {
     <>
       <JsonLd data={productJsonLd} script_name="product-jsonld" />
       <Breadcrumbs items={breadcrumbs} productName={product.name} />
-      <div className="container mx-auto px-4 dark:bg-gray-900 dark:text-white">
-        <ProductPageClient
-          product={product}
-          ratingValue={ratingValue}
-          ratingCount={ratingCount}
-        />
-      </div>
+      <ProductPageClient
+        product={product}
+        ratingValue={ratingValue}
+        ratingCount={ratingCount}
+      />
     </>
   );
 }

@@ -21,15 +21,14 @@ export default function RootLayout({ children }) {
   return (
     <html
       lang="ru"
-      className={`${roboto.variable} ${robotoMono.variable} antialiased`}
+      className={`${roboto.variable} ${robotoMono.variable} antialiased dark`}
+      // data-theme="dark"
     >
       <head>
         <GoogleTag />
       </head>
 
-      <body className="bg-background dark:background dark:textForeground">
-        {children}
-      </body>
+      <body className="bg-background">{children}</body>
     </html>
   );
 }

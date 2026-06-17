@@ -1,7 +1,5 @@
 import Link from "next/link";
 import ComponentsFAQ from "./components";
-import FAQPageJSONLD from "@/lib/faqshityJsonLd";
-import JsonLd from "@/components/JsonLdComponent";
 
 export const metadata = {
   title: "Вопросы и ответы | ЭЛЕКТРОЩИТ-ПРО",
@@ -15,14 +13,14 @@ export default function FAQ() {
     <>
       {/* <JsonLd data={FaqJsonLd} /> */}
       <nav className="container mx-auto py-4">
-        <ol className="hidden md:flex flex-wrap items-center space-x-2 text-sm text-gray-600">
+        <ol className="hidden md:flex flex-wrap items-center space-x-2 text-sm text-text">
           <li>
             <Link href="/">Главная</Link>
           </li>
 
           <li className="flex items-center space-x-2">
-            <span className="text-gray-400">/</span>
-            <span className="font-medium text-gray-900 truncate">
+            <span className="text-text">/</span>
+            <span className="font-medium text-text truncate">
               Часто задаваемые вопросы (FAQ)
             </span>
           </li>

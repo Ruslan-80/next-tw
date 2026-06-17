@@ -1,7 +1,8 @@
 /* // My scss */
 
 .new__catalog {
-  color: #3d3d3d;
+  /* color: #3d3d3d; */
+  color: var(--foreground);
   margin: 60px 0;
   text-align: center;
 }
@@ -19,12 +20,14 @@
   width: 100%;
   margin: 0 0 20px 0;
   overflow: hidden;
-  background: #f2f2f3;
+  /* background: #f2f2f3; */
+  background: var(--background);
   padding: 20px;
   border-radius: 8px;
   position: relative;
   min-height: 300px;
-  box-shadow: 0 0 0 2px rgba(255, 124, 7, 0.7);
+  /* box-shadow: 0 0 0 2px rgba(255, 124, 7, 0.7); */
+  box-shadow: 0 0 0 1px var(--text);
   opacity: 1;
   /* cursor: pointer; */
   img {
@@ -34,7 +37,8 @@
     z-index: 30;
   }
   &:hover {
-    box-shadow: 0 0 0 2px rgba(76, 70, 155, 0.7);
+    /* box-shadow: 0 0 0 2px rgba(76, 70, 155, 0.7); */
+    box-shadow: 0 0 0 1px var(--accent);
   }
 }
 
@@ -45,38 +49,43 @@
   width: 275px;
   height: 275px;
   position: absolute;
-  background: #fff;
+  background: var(--background);
   border-radius: 50%;
   right: -81px;
   bottom: -44px;
   z-index: 10;
-  transition: 0.3s all;
+  transition: 3s all;
   &::before {
     width: 220px;
     height: 220px;
     content: "";
-    background: #fff;
+    background: var(--background);
     position: absolute;
     border-radius: 50%;
     bottom: 25px;
     right: 25px;
-    transition: 0.9s all;
+    transition: 1.5s all;
   }
   &::after {
     width: 165px;
     height: 165px;
     content: "";
-    background: #ffffff;
+    background: var(--background);
     position: absolute;
     border-radius: 50%;
     bottom: 50px;
     right: 50px;
-    transition: 0.3s all;
+    transition: 0.5s all;
   }
 }
 
 .catalog__wrapper:hover {
-  background: #eae9f1;
+  /* background: #eae9f1; */
+  background: var(--card);
+}
+
+.catalog__wrapper:hover .catalog__circle {
+  background: #ffffff;
 }
 
 .catalog__wrapper:hover .catalog__circle:before {
@@ -88,7 +97,8 @@
 }
 
 .catalog__wrapper:hover h3 {
-  color: #4d479d;
+  /* color: #4d479d; */
+  color: var(--accentHover);
 }
 
 @media only screen and (max-width: 1024px) {

@@ -18,7 +18,7 @@ export default function CartClient({ cartData, items, item }) {
   const totalPrice = items.reduce(
     (sum, item) => sum + item.product.basePrice * item.quantity,
     0,
-    0
+    0,
   );
 
   // Валидация телефона
@@ -52,19 +52,19 @@ export default function CartClient({ cartData, items, item }) {
         return { success: false, error: error.message };
       }
     },
-    { success: true }
+    { success: true },
   );
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold text-gray-900 mb-8">Корзина</h1>
+      <h1 className="text-3xl font-bold text-textForeground mb-8">Корзина</h1>
 
       {items.length === 0 ? (
-        <div className="text-center py-12 bg-white rounded-lg shadow-sm">
+        <div className="text-center py-12 bg-background rounded-lg shadow-sm">
           <p className="text-lg text-gray-500 mb-4">Корзина пуста</p>
           <Link
             href="/catalog"
-            className="inline-block bg-orange-400 text-white py-2 px-6 rounded-md hover:bg-orange-500 transition-colors"
+            className="inline-block bg-orange-400 text-background py-2 px-6 rounded-md hover:bg-orange-500 transition-colors"
           >
             Перейти в каталог
           </Link>
@@ -103,8 +103,8 @@ export default function CartClient({ cartData, items, item }) {
           </div>
 
           {/* Таблица товаров */}
-          <div className="bg-white rounded-lg shadow-sm mb-8">
-            <div className="hidden md:grid md:grid-cols-6 gap-4 p-4 bg-blue-100/50 rounded-t-lg font-medium text-gray-700">
+          <div className="bg-background rounded-lg shadow-sm mb-8">
+            <div className="hidden md:grid md:grid-cols-6 gap-4 p-4 bg-blue-100/50 rounded-t-lg font-medium text-textForeground">
               <div className="col-span-1">Изображение</div>
               <div className="col-span-2">Товар</div>
               <div className="col-span-1">Цена</div>
@@ -119,18 +119,18 @@ export default function CartClient({ cartData, items, item }) {
           {/* Форма заказа */}
           <div className="flex flex-col md:flex-row gap-8">
             {/* Итоговая сумма с акцентом */}
-            <div className="bg-white rounded-lg shadow-sm p-6 flex-1 max-w-md">
+            <div className="bg-background rounded-lg shadow-sm p-6 flex-1 max-w-md">
               <div className="flex justify-between items-center mb-4">
-                <h2 className="text-xl font-bold text-gray-900">Итого</h2>
+                <h2 className="text-xl font-bold text-textForeground">Итого</h2>
                 <p className="text-2xl font-bold text-orange-500">
                   {totalPrice.toLocaleString("ru-RU")} ₽
                 </p>
               </div>
-              <p className="text-sm text-gray-500 mb-6">
+              <p className="text-sm text-textForeground mb-6">
                 Цены указаны с учетом НДС и стоимости доставки
               </p>
-              <div className="bg-gray-50 p-4 rounded-md mb-6">
-                <p className="text-gray-600 text-sm">
+              <div className="bg-background p-4 rounded-md mb-6">
+                <p className="text-textForeground text-sm">
                   После оформления заказа с вами свяжется менеджер для
                   подтверждения
                 </p>
@@ -141,10 +141,10 @@ export default function CartClient({ cartData, items, item }) {
             <form
               action="/api/order/create"
               method="POST"
-              className="bg-white rounded-lg shadow-sm p-6 flex-1 max-w-lg"
+              className="bg-background rounded-lg shadow-sm p-6 flex-1 max-w-lg"
               onSubmit={handleSubmit}
             >
-              <h2 className="text-xl font-bold text-gray-900 mb-6">
+              <h2 className="text-xl font-bold text-textForeground mb-6">
                 Контактные данные
               </h2>
               <input type="hidden" name="cartToken" value={cartData.token} />
@@ -152,7 +152,7 @@ export default function CartClient({ cartData, items, item }) {
                 <div>
                   <label
                     htmlFor="fullName"
-                    className="block text-sm font-medium text-gray-700 mb-2"
+                    className="block text-sm font-medium text-textForeground mb-2"
                   >
                     Ваше имя
                   </label>
@@ -168,7 +168,7 @@ export default function CartClient({ cartData, items, item }) {
                 <div>
                   <label
                     htmlFor="phone"
-                    className="block text-sm font-medium text-gray-700 mb-2"
+                    className="block text-sm font-medium text-textForeground mb-2"
                   >
                     Телефон
                   </label>
@@ -195,7 +195,7 @@ export default function CartClient({ cartData, items, item }) {
                 <div>
                   <label
                     htmlFor="comment"
-                    className="block text-sm font-medium text-gray-700 mb-2"
+                    className="block text-sm font-medium text-textForeground mb-2"
                   >
                     Комментарий к заказу
                   </label>
@@ -209,7 +209,7 @@ export default function CartClient({ cartData, items, item }) {
                 </div>
                 <button
                   type="submit"
-                  className="w-full bg-orange-400 text-white py-3 px-4 rounded-lg hover:bg-orange-500 transition-colors focus:ring-2 focus:ring-orange-400 focus:ring-offset-2 text-lg font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full btn-gold "
                   disabled={phoneError}
                 >
                   Оформить заказ
@@ -226,7 +226,7 @@ export default function CartClient({ cartData, items, item }) {
 // Компонент для отдельного товара в корзине
 function CartItem({ item }) {
   const [optimisticQuantity, setOptimisticQuantity] = useOptimistic(
-    item.quantity
+    item.quantity,
   );
   const { setCart } = useCartStore();
 
@@ -250,7 +250,7 @@ function CartItem({ item }) {
         return { success: false, error: error.message };
       }
     },
-    { success: true }
+    { success: true },
   );
 
   const [deleteState, deleteAction, deletePending] = useActionState(
@@ -265,7 +265,7 @@ function CartItem({ item }) {
         return { success: false, error: error.message };
       }
     },
-    { success: true }
+    { success: true },
   );
 
   return (
@@ -286,15 +286,15 @@ function CartItem({ item }) {
                 />
               </div>
             ) : (
-              <div className="w-full h-full bg-gray-100 rounded-md flex items-center justify-center">
-                <span className="text-gray-400 text-xs">Нет фото</span>
+              <div className="w-full h-full bg-background rounded-md flex items-center justify-center">
+                <span className="text-text text-xs">Нет фото</span>
               </div>
             )}
           </div>
           <div>
             <Link
               href={`/product/${item.product.slug}`}
-              className="font-medium hover:text-orange-400 transition-colors line-clamp-2"
+              className="font-medium text-text hover:text-orange-400 transition-colors line-clamp-2"
             >
               {item.product.name}
             </Link>
@@ -303,13 +303,13 @@ function CartItem({ item }) {
 
         {/* Цена */}
         <div className="text-right">
-          <p className="text-gray-900 font-medium">
+          <p className="text-textForeground font-medium">
             {(item.product.basePrice * optimisticQuantity).toLocaleString(
-              "ru-RU"
+              "ru-RU",
             )}{" "}
             ₽
           </p>
-          <p className="text-sm text-gray-500">
+          <p className="text-sm text-textForeground">
             {item.product.basePrice.toLocaleString("ru-RU")} ₽ / шт.
           </p>
         </div>
@@ -420,7 +420,7 @@ function CartItem({ item }) {
         <div className="col-span-2 flex items-center">
           <Link
             href={`/product/${item.product.slug}`}
-            className="text-gray-900 font-medium hover:text-orange-400 transition-colors line-clamp-2"
+            className="text-text font-medium hover:text-accent transition-colors line-clamp-2"
           >
             {item.product.name}
           </Link>
@@ -428,9 +428,9 @@ function CartItem({ item }) {
 
         {/* Цена */}
         <div className="col-span-1 flex flex-col justify-center items-start">
-          <p className="text-gray-900">
+          <p className="text-textForeground">
             {(item.product.basePrice * optimisticQuantity).toLocaleString(
-              "ru-RU"
+              "ru-RU",
             )}{" "}
             ₽
           </p>

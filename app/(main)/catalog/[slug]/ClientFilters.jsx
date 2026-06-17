@@ -328,7 +328,7 @@ export default function ClientFilters({
                 <AccordionItem
                   value={attr.slug}
                   key={attr.slug}
-                  className="px-3 bg-card"
+                  className="px-3"
                 >
                   <AccordionTrigger className="text-sm py-3 font-semibold hover:no-underline">
                     {attr.name}
@@ -353,11 +353,7 @@ export default function ClientFilters({
             className="space-y-1.5"
           >
             {single.map((attr) => (
-              <AccordionItem
-                value={attr.slug}
-                key={attr.slug}
-                className="px-3 bg-card"
-              >
+              <AccordionItem value={attr.slug} key={attr.slug} className="px-3">
                 <AccordionTrigger className="text-sm py-3 font-semibold hover:no-underline">
                   {attr.name}
                 </AccordionTrigger>
@@ -381,7 +377,7 @@ export default function ClientFilters({
   return (
     <div className="w-full">
       {/* DESKTOP: Показываем только на md и выше */}
-      <aside className="hidden md:block bg-card rounded-3xl p-2 border top-24">
+      <aside className="hidden md:block rounded-3xl p-2 border top-24">
         <div className="flex justify-between items-center my-2 mx-4">
           <h3 className="font-black text-xl">Фильтры</h3>
           <Button
@@ -412,9 +408,9 @@ export default function ClientFilters({
           <Drawer.Portal>
             <Drawer.Overlay className="fixed inset-0 bg-black/40 backdrop-blur-sm z-50" />
             <Drawer.Content className="fixed inset-y-0 left-0 w-[85%] max-w-[340px] bg-background z-50 flex flex-col border-r shadow-2xl outline-none transition-transform">
-              <div className="flex flex-col h-full bg-card">
+              <div className="flex flex-col h-full ">
                 {/* Шапка Drawer */}
-                <div className="p-4 border-b flex justify-between items-center bg-card">
+                <div className="p-4 border-b flex justify-between items-center ">
                   {/* ВАЖНО: Используем Drawer.Title для SEO и доступности */}
                   <Drawer.Title className="text-lg font-bold">
                     Настройка фильтров
@@ -441,7 +437,7 @@ export default function ClientFilters({
                   <FilterContent isMobile={true} />
                 </div>
 
-                <div className="p-4 border-t bg-card">
+                <div className="p-4 border-t ">
                   <Button
                     className="w-full h-12 font-bold text-lg text-white bg-primary"
                     onClick={() => {

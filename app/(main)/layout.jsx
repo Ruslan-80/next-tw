@@ -8,7 +8,7 @@ import MetricsInitializer from "@/components/MetricsInitializer";
 import MobileSearch from "@/components/shared/MobileSearch";
 // import CookieBanner from "@/components/CookieBanner";
 
-import "../../styles/globals.css";
+import "../../styles/globals2.css";
 
 export const metadata = {
   title: "ЭЛЕКТРОЩИТ-ПРО — Главная",
@@ -37,7 +37,7 @@ export default function MainLayout({ children }) {
           </div>
         </FavoritesProvider>
       </CompareProvider>
-      <MetricsInitializer />
+      {/* <MetricsInitializer /> */}
       {/* <CookieBanner /> */}
     </>
   );

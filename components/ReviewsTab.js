@@ -3,7 +3,7 @@ export default function ReviewsTab() {
     <div className="text-center py-6 ">
       <div
         style={{
-          width: "560px", // Значения в строках
+          maxWidth: "560px", // Значения в строках
           height: "890px",
           overflow: "hidden",
           position: "relative",

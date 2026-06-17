@@ -109,8 +109,8 @@ export default function ComponentUERN() {
           </div>
         </nav>
       </section>
-      <div className="container mx-auto py-6 bg-white text-xl lg:text-2xl">
-        <section className="container mx-auto p-4 bg-white text-xl lg:text-2xl">
+      <div className="container mx-auto py-6 bg-background text-xl lg:text-2xl">
+        <section className="container mx-auto p-4 bg-background text-xl lg:text-2xl">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-8 animate-fade-in-up">
               <div className="space-y-4">
@@ -121,7 +121,7 @@ export default function ComponentUERN() {
                   Устройство этажное распределительное навесное{" "}
                   <span className="text-accent">УЭРН</span>
                 </h1>
-                <p className="text-muted-foreground text-balance leading-relaxed">
+                <p className="text-muted text-balance leading-relaxed">
                   Современное модульное устройство для приема, распределения и
                   учета электроэнергии в многоквартирных домах с защитой от
                   перегрузок и токов утечки.
@@ -132,7 +132,7 @@ export default function ComponentUERN() {
                 <Button
                   onClick={() => handleButtonClick("Получить консультацию")}
                   size="lg"
-                  className="bg-accent hover:bg-accent/90 text-accent-foreground text-xl py-8"
+                  className="btn-gold text-primary text-xl py-8"
                 >
                   Получить консультацию
                   <ArrowRight className="ml-2 h-4 w-4" />
@@ -145,28 +145,24 @@ export default function ComponentUERN() {
               <div className="grid grid-cols-3 gap-6 pt-4">
                 <div className="text-center">
                   <div className="text-2xl font-bold text-accent">6-12</div>
-                  <div className="text-sm lg:text-xl text-muted-foreground">
-                    квартир
-                  </div>
+                  <div className="text-sm lg:text-xl text-muted">квартир</div>
                 </div>
                 <div className="text-center">
                   <div className="text-2xl font-bold text-accent">25</div>
-                  <div className="text-sm lg:text-xl text-muted-foreground">
+                  <div className="text-sm lg:text-xl text-muted">
                     лет службы
                   </div>
                 </div>
                 <div className="text-center">
                   <div className="text-2xl font-bold text-accent">IP31</div>
-                  <div className="text-sm lg:text-xl text-muted-foreground">
-                    защита
-                  </div>
+                  <div className="text-sm lg:text-xl text-muted">защита</div>
                 </div>
               </div>
             </div>
 
             <div className="relative animate-slide-in-right">
               <div className="absolute inset-0 bg-gradient-to-br from-accent/20 to-primary/20 rounded-3xl blur-3xl"></div>
-              <div className="relative w-full max-w-[350px] md:max-w-[450px] lg:max-w-[500px] aspect-square bg-card rounded-3xl p-4 md:p-6 lg:p-8 shadow-2xl flex justify-center mx-auto">
+              <div className="relative w-full max-w-[350px] md:max-w-[450px] lg:max-w-[500px] aspect-square  p-4 md:p-6 lg:p-8  flex justify-center mx-auto">
                 <Image
                   src="/images/landing/uerb.png"
                   alt="УЭРК"
@@ -191,7 +187,7 @@ export default function ComponentUERN() {
 
               <Card className="mb-8">
                 <CardContent className="px-4 lg:px-8">
-                  <p className="text-justify leading-relaxed text-muted-foreground mb-6">
+                  <p className="text-justify leading-relaxed text-muted mb-6">
                     Устройство этажное распределительное навесное типа УЭРН
                     предназначено для приема, распределения и учета
                     электроэнергии в многоквартирных жилых домах. Оно
@@ -202,7 +198,7 @@ export default function ComponentUERN() {
                     (телефонной, телевизионной, интернет-сетей, сигнализации,
                     АСКУЭ).
                   </p>
-                  <p className="text-justify leading-relaxed text-muted-foreground mb-6">
+                  <p className="text-justify leading-relaxed text-muted mb-6">
                     УЭРН — современная альтернатива устаревшим этажным щитам
                     типа ЩЭ, ЩЛС, УЭРП, отличающаяся полной оболочкой и
                     простотой установки без ниши. Соответствует стандартам ГОСТ
@@ -217,7 +213,7 @@ export default function ComponentUERN() {
                         <div className="font-semibold text-lg lg:text-xl mb-3">
                           Применение
                         </div>
-                        <div className="text-justify text-sm lg:text-xl text-muted-foreground">
+                        <div className="text-justify text-sm lg:text-xl text-muted">
                           Установка на стену лестничных площадок жилых зданий,
                           коммунально-бытовых и общественных объектов.
                         </div>
@@ -229,7 +225,7 @@ export default function ComponentUERN() {
                         <div className="font-semibold text-lg lg:text-xl mb-3">
                           Обслуживание
                         </div>
-                        <div className="text-justify text-sm lg:text-xl text-muted-foreground">
+                        <div className="text-justify text-sm lg:text-xl text-muted">
                           До 6–12 квартир в зависимости от типа счетчиков и
                           конфигурации.
                         </div>
@@ -241,7 +237,7 @@ export default function ComponentUERN() {
                         <div className="font-semibold text-lg lg:text-xl mb-3">
                           Универсальность
                         </div>
-                        <div className="text-justify text-sm lg:text-xl text-muted-foreground">
+                        <div className="text-justify text-sm lg:text-xl text-muted">
                           Поддержка однофазных (до 11 кВт) и трехфазных (до 32
                           кВт) систем для эффективного контроля расхода
                           электроэнергии.
@@ -265,14 +261,14 @@ export default function ComponentUERN() {
 
               <Card>
                 <CardContent className="text-sm lg:text-xl px-4 lg:px-8 lg:indent-20">
-                  <p className="text-justify leading-relaxed text-muted-foreground">
+                  <p className="text-justify leading-relaxed text-muted">
                     УЭРН представляет собой цельносварную металлическую
                     конструкцию с полной оболочкой, закрытой со всех сторон,
                     кроме отверстий для ввода и вывода кабелей. Корпус выполнен
                     из листового металла с полиэфирным порошковым покрытием (RAL
                     7035, шагрень) для долговечности и эстетики.
                   </p>
-                  <p className="text-justify leading-relaxed text-muted-foreground">
+                  <p className="text-justify leading-relaxed text-muted">
                     Устройство имеет навесное исполнение, что исключает
                     необходимость подготовки ниши и штрабления стен. Внутренний
                     объем разделен на отсеки металлическими перегородками для
@@ -325,7 +321,7 @@ export default function ComponentUERN() {
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-justify text-muted-foreground leading-relaxed">
+                    <p className="text-justify text-muted leading-relaxed">
                       {module.description}
                     </p>
                   </CardContent>
@@ -368,7 +364,7 @@ export default function ComponentUERN() {
                       ].map((spec, index) => (
                         <div key={index} className="flex items-start gap-3">
                           <CheckCircle className="h-5 w-5 text-green-600 mt-1 flex-shrink-0" />
-                          <span className="text-muted-foreground leading-relaxed">
+                          <span className="text-muted leading-relaxed">
                             {spec}
                           </span>
                         </div>
@@ -401,7 +397,7 @@ export default function ComponentUERN() {
                       ].map((advantage, index) => (
                         <div key={index} className="flex items-start gap-3">
                           <CheckCircle className="h-5 w-5 text-green-600 mt-1 flex-shrink-0" />
-                          <span className="text-muted-foreground leading-relaxed">
+                          <span className="text-muted leading-relaxed">
                             {advantage}
                           </span>
                         </div>
@@ -440,7 +436,7 @@ export default function ComponentUERN() {
                       ].map((spec, index) => (
                         <div key={index} className="flex items-start gap-3">
                           <CheckCircle className="h-5 w-5 text-green-600 mt-1 flex-shrink-0" />
-                          <span className="text-muted-foreground leading-relaxed">
+                          <span className="text-muted leading-relaxed">
                             {spec}
                           </span>
                         </div>
@@ -469,7 +465,7 @@ export default function ComponentUERN() {
                       ].map((spec, index) => (
                         <div key={index} className="flex items-start gap-3">
                           <CheckCircle className="h-5 w-5 text-green-600 mt-1 flex-shrink-0" />
-                          <span className="text-muted-foreground leading-relaxed">
+                          <span className="text-muted leading-relaxed">
                             {spec}
                           </span>
                         </div>
@@ -524,7 +520,7 @@ export default function ComponentUERN() {
                       </CardTitle>
                     </CardHeader>
                     <CardContent>
-                      <p className="text-muted-foreground leading-relaxed">
+                      <p className="text-muted leading-relaxed">
                         {product.description}
                       </p>
                     </CardContent>
@@ -541,17 +537,17 @@ export default function ComponentUERN() {
               <h2 className="text-2xl text-center lg:text-4xl font-bold mb-4 text-balance">
                 Заказ и покупка
               </h2>
-              <p className="justify-center text-muted-foreground mb-8 leading-relaxed">
+              <p className="justify-center text-muted mb-8 leading-relaxed">
                 Предлагаем купить этажное распределительное устройство УЭРН по
                 выгодной цене в интернет-магазине нашей компании. Продукция
                 доступна оптом и в розницу с быстрой доставкой по Москве, М.О.и
                 всей России. Изготовление по индивидуальным проектам заказчика.
               </p>
-              <p className="text-2xl text-left text-muted-foreground mb-8 text-balance leading-relaxed">
+              <p className="text-2xl text-left text-muted mb-8 text-balance leading-relaxed">
                 Для заказа укажите:
               </p>
 
-              <ul className="list-disc text-left pl-6 text-muted-foreground leading-relaxed pb-4">
+              <ul className="list-disc text-left pl-6 text-muted leading-relaxed pb-4">
                 <li>Количество квартир (1–12).</li>
                 <li>
                   Тип счетчиков и аппаратуры (одно-/трехфазные, АСКУЭ, УЗИП).
@@ -580,7 +576,7 @@ export default function ComponentUERN() {
                   Связаться с менеджером
                 </Button>
               </div>
-              <p className="text-sm text-left text-muted-foreground leading-relaxed">
+              <p className="text-sm text-left text-muted leading-relaxed">
                 Каталог, фото, схемы и отзывы доступны онлайн. Заказывайте
                 качественное электрощитовое оборудование от производителя с
                 доставкой!

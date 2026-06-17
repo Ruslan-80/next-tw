@@ -7,7 +7,9 @@ export function proxy(request) {
   if (
     pathname.startsWith("/_next") ||
     pathname.startsWith("/__nextjs_font") ||
-    pathname.startsWith("/favicon.ico")
+    pathname.startsWith("/favicon.ico") ||
+    pathname.startsWith("/icon.svg") ||
+    pathname.startsWith("/icon.ico")
   ) {
     return NextResponse.next();
   }
@@ -32,7 +34,7 @@ export function proxy(request) {
       .map((c) => {
         const [k, ...v] = c.split("=");
         return [k, v.join("=")];
-      })
+      }),
   );
 
   let token = cookies.cartToken;
@@ -53,7 +55,7 @@ export function proxy(request) {
         "SameSite=Lax",
       ]
         .filter(Boolean)
-        .join("; ")
+        .join("; "),
     );
   }
 

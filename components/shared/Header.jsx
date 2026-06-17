@@ -8,6 +8,7 @@ import {
   ChartNoAxesColumn,
   User,
   ShoppingCart,
+  ChevronDown,
 } from "lucide-react";
 import Image from "next/image";
 import Logo from "../../public/mainLogo.svg";
@@ -23,6 +24,7 @@ export default function Header() {
   const [query, setQuery] = useState("");
   const [results, setResults] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
+  const [isOpentelephone, setIsOpentelephone] = useState(false);
   const router = useRouter();
   const inputRef = useRef(null);
   const dropdownRef = useRef(null);
@@ -98,9 +100,9 @@ export default function Header() {
 
   return (
     <>
-      <header className="sticky top-0 z-50 bg-white border-b border-slate-100">
+      <header className="sticky top-0 z-50 bg-background border-b border-border">
         {/* Верхняя панель — тонкая и легкая */}
-        <div className="bg-slate-50 py-2 border-b border-slate-100">
+        <div className="bg-background py-2 border-b border-border">
           <div className="container mx-auto px-6 flex justify-center lg:justify-between h-full items-center text-xs text-slate-500 font-light uppercase tracking-wider">
             <nav className="hidden lg:flex gap-6 text-sm text-slate-700">
               {navLinks.map((link) => (
@@ -115,20 +117,46 @@ export default function Header() {
             </nav>
 
             <div className="flex items-center gap-6">
+              {/* Email */}
               <Link
                 href="mailto:info@electroshit-pro.ru"
-                className="text-xs md:text-sm flex items-center gap-2 text-sm hover:text-blue-600 lowercase transition-colors"
-                alt="email"
+                className="text-xs md:text-sm flex items-center gap-2 hover:text-blue-600 lowercase transition-colors"
               >
                 <Mail size={12} /> info@electroshit-pro.ru
               </Link>
-              <Link
-                href="tel:+74993901467"
-                className="text-xs md:text-sm flex items-center gap-2 hover:text-blue-600 transition-colors font-medium text-slate-700"
-                alt="telephone"
-              >
-                <Headset size={12} /> +7 (499) 390-14-67
-              </Link>
+
+              {/* Блок с телефонами */}
+              <div className="relative flex flex-col items-end">
+                <div className="flex items-center gap-1">
+                  <Link
+                    href="tel:+74993901467"
+                    className="text-xs md:text-sm flex items-center gap-2 hover:text-blue-600 transition-colors font-medium text-slate-700"
+                  >
+                    <Headset size={12} /> +7 (499) 390-14-67
+                  </Link>
+
+                  {/* Кнопка раскрытия */}
+                  <button
+                    onClick={() => setIsOpentelephone(!isOpentelephone)}
+                    className={`p-1 hover:bg-slate-100 rounded-full transition-transform ${isOpentelephone ? "rotate-180" : ""}`}
+                  >
+                    <ChevronDown size={14} className="text-slate-500" />
+                  </button>
+                </div>
+
+                {/* Выпадающий список */}
+                {isOpentelephone && (
+                  <div className="absolute top-full right-0 mt-2 bg-white shadow-lg border border-slate-100 rounded-md py-2 z-50 min-w-[180px]">
+                    <Link
+                      href="tel:+79299759489" // Замените на нужный номер
+                      className="block px-4 py-2 text-xs md:text-sm text-slate-700 hover:bg-blue-50 hover:text-blue-600 transition-colors"
+                    >
+                      +7 (929) 975-94-89
+                    </Link>
+                    {/* Можно добавить еще номера здесь */}
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         </div>
@@ -139,12 +167,13 @@ export default function Header() {
             {/* Левая часть: Каталог + Лого */}
             <div className="flex items-center gap-6">
               <CatalogButton />
-              <Link href="/" className="flex-shrink-1" alt="logo">
+              <Link href="/" className="flex-shrink-1">
                 <Image
                   src={Logo}
                   alt="Electroshit-pro"
                   width={140}
                   height={40}
+                  style={{ height: "auto" }} // Добавляем эту строчку
                 />
               </Link>
             </div>
@@ -159,10 +188,10 @@ export default function Header() {
                   placeholder="Поиск по артикулу или названию..."
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
-                  className="w-full bg-slate-50 border border-slate-200 rounded-full px-6 py-3 pr-12 
-                 text-sm font-light text-slate-900 placeholder:text-slate-400
-                 focus:outline-none focus:ring-2 focus:ring-slate-900/5 focus:bg-white 
-                 focus:border-slate-400 transition-all duration-300"
+                  className="w-full bg-card border border-accent rounded-full px-6 py-3 pr-12 
+                 text-sm font-light text-accent placeholder:text-slate-400
+                 focus:outline-none focus:ring-2 focus:ring-accent/5 focus:bg-card 
+                 focus:border-accent transition-all duration-300"
                 />
                 <button
                   type="submit"
@@ -177,13 +206,13 @@ export default function Header() {
               {isOpen && (
                 <div
                   ref={dropdownRef}
-                  className="absolute top-full left-0 w-full mt-3 bg-white border border-slate-100 
+                  className="absolute top-full left-0 w-full mt-3 bg-card border border-accent 
                  rounded-3xl shadow-2xl shadow-slate-900/10 z-50 overflow-hidden 
                  animate-in fade-in slide-in-from-top-2 duration-300"
                 >
                   <div className="max-h-[400px] overflow-y-auto custom-scrollbar">
                     {results.length > 0 ? (
-                      <ul className="divide-y divide-slate-50">
+                      <ul className="divide-y divide-accent">
                         {results.map((product) => (
                           <li key={product.id}>
                             <Link
@@ -192,10 +221,10 @@ export default function Header() {
                                 setQuery("");
                                 setIsOpen(false);
                               }}
-                              className="flex items-center gap-4 p-4 hover:bg-slate-50 transition-colors group"
+                              className="flex items-center gap-4 p-4 hover:bg-accent hover:text-card transition-colors group"
                             >
                               {product.image ? (
-                                <div className="relative w-12 h-12 flex-shrink-0 bg-white border border-slate-100 rounded-xl overflow-hidden">
+                                <div className="relative w-12 h-12 flex-shrink-0 bg-background border border-accent rounded-xl overflow-hidden">
                                   <Image
                                     src={product.image}
                                     alt={product.name}
@@ -210,10 +239,10 @@ export default function Header() {
                               )}
 
                               <div className="min-w-0">
-                                <p className="text-sm font-medium text-slate-900 truncate tracking-tight">
+                                <p className="text-sm font-medium text-accent truncate tracking-tight">
                                   {product.name}
                                 </p>
-                                <p className="text-xs font-light text-blue-600 mt-0.5">
+                                <p className="text-xs font-light text-accent mt-0.5">
                                   {product.basePrice.toLocaleString("ru-RU")} ₽
                                 </p>
                               </div>
@@ -223,7 +252,7 @@ export default function Header() {
                       </ul>
                     ) : (
                       <div className="p-8 text-center">
-                        <p className="text-sm font-light text-slate-400 italic">
+                        <p className="text-sm font-light text-accent italic">
                           {query.length < 2
                             ? "Введите минимум 2 символа..."
                             : "Товары не найдены"}
@@ -233,10 +262,10 @@ export default function Header() {
                   </div>
 
                   {results.length > 0 && (
-                    <div className="p-3 bg-slate-50 border-t border-slate-100 text-center">
+                    <div className="p-3 bg-card border-t border-accent text-center">
                       <button
                         onClick={handleSubmit}
-                        className="text-[10px] uppercase tracking-widest font-semibold text-slate-400 hover:text-slate-900 transition-colors"
+                        className="text-[10px] uppercase tracking-widest font-semibold text-accent hover:text-accent transition-colors"
                       >
                         Смотреть все результаты
                       </button>
@@ -251,17 +280,17 @@ export default function Header() {
               href="/cart"
               className="flex items-center gap-3 hover:opacity-70 transition-opacity"
             >
-              <div className="relative p-2 bg-slate-50 rounded-full">
-                <ShoppingCart size={20} className="text-slate-900" />
+              <div className="relative p-2 bg-card rounded-full">
+                <ShoppingCart size={20} className="text-accent" />
                 <span className="absolute -top-1 -right-1 bg-blue-600 text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">
                   {count}
                 </span>
               </div>
               <div className="hidden lg:block text-sm">
-                <p className="text-slate-400 text-[10px] uppercase tracking-widest">
+                <p className="text-accent text-[10px] uppercase tracking-widest">
                   Корзина
                 </p>
-                <p className="font-semibold text-slate-900">
+                <p className="font-semibold text-accent">
                   {total.toLocaleString("ru-RU")} ₽
                 </p>
               </div>

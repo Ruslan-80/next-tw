@@ -1,0 +1,395 @@
+/* === Tailwind v4 Core === */
+@import "tailwindcss";
+@import "tw-animate-css";
+
+/* === Custom Dark Variant === */
+@custom-variant dark (&:is(.dark *));
+
+@property --gradient-x {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 50%;
+}
+
+@property --gradient-y {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 50%;
+}
+
+/* ======================================================================================
+   THEME TOKENS
+====================================================================================== */
+@theme {
+  /* --- Шрифты --- */
+  /* Типографика премиум-класса */
+  --font-sans: var(--font-roboto);
+  --font-serif: var(--font-roboto);
+  --font-mono: var(--font-roboto-mono);
+  /* --font-display: "Montserrat", ui-serif;
+  --font-sans: "Inter", ui-sans-serif; */
+
+  --font-size-base: 1.125rem; /* 18px — премиальный стандарт для чтения */
+
+  /* Создаем "дорогую" шкалу (Major Third) */
+  --font-size-xs: 0.75rem; /* 12px */
+  --font-size-sm: 0.875rem; /* 14px */
+  --font-size-base: 1.125rem; /* 18px — премиальный стандарт для чтения */
+
+  --font-size-lg: 1.25rem; /* 20px (h3 Mobile) */
+  --font-size-xl: 1.5rem; /* 24px (h3 Desktop / h2 Mobile) */
+  --font-size-2xl: 2.25rem; /* 36px (h2 Desktop / h1 Mobile) */
+  --font-size-3xl: 4rem; /* 64px (h1 Desktop - заголовок-заявление) */
+  --font-size-4xl: 6rem; /* 96px (Для огромных Hero-секций) */
+
+  /* Тонкая настройка отступов для Roboto */
+  --letter-spacing-tighter: -0.04em;
+  --letter-spacing-tight: -0.02em;
+
+  /* --- Спейсинги и радиусы --- */
+  --spacing-8xl: 96rem;
+  --spacing-9xl: 128rem;
+  --radius-4xl: 2rem;
+  --radius-custom: var(--radius);
+
+  /* --- Анимации --- */
+  --animate-slide-in-left: slide-in-from-left 0.3s ease-out;
+  --animate-slide-out-left: slide-out-to-left 0.3s ease-out;
+  --animate-fade-in-up: fadeInUp 0.6s ease-out forwards;
+  --animate-slide-in-right: slideInRight 0.6s ease-out forwards;
+
+  /* --- Спейсинги и радиусы --- */
+  --radius-custom: 0.75rem;
+
+  /* --- Анимации (добавлено мерцание золота) --- */
+  --animate-gold-shimmer: goldShimmer 3s infinite;
+  --animate-fade-in-up: fadeInUp 0.6s ease-out forwards;
+
+  /* --- Цвета (Привязка к референсу) --- */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primaryLight: var(--primaryLight);
+  --color-accent: var(--accent);
+  --color-accentHover: var(--accent-hover);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-ring: var(--ring);
+  --color-surface-container: var(--surface-container);
+  --color-surface-highest: var(--surface-highest);
+  --color-text: var(--text);
+
+  /* Дополнительные брендовые цвета */
+  --color-link: #6cb4f4;
+  --color-blue: #3656b0;
+
+  /* Кастомные градиенты для кнопок и карточек */
+  --background-image-gold-grad: linear-gradient(
+    135deg,
+    #c4a470 0%,
+    #e2c99d 50%,
+    #b08d57 100%
+  );
+  --background-image-dark-card: linear-gradient(
+    145deg,
+    #1c222d 0%,
+    #11151c 100%
+  );
+}
+
+/* ======================================================================================
+   VARIABLE DEFINITIONS (На основе дизайна ElectroShield)
+====================================================================================== */
+:root {
+  /* --- Светлая тема (Light Metallic) --- */
+  --background: #ffffff;
+  --foreground: #1a1a1a;
+  --bg-gradient: #f8fafc;
+  --bg-gradient-from: #ffffff; /* Самая яркая точка (отражение) */
+  --bg-gradient-via: #f8fafc; /* Мягкий переход (Slate 100) */
+  --bg-gradient-to: #e2e8f0; /* Глубина по краям (Slate 300) */
+  /* Металлический стальной синий */
+  --primary: #132a87;
+  --primaryLight: #4a69c4; /* Осветлённая версия синего */
+  --primaryForeground: oklch(0.98 0.005 85);
+  /* Золото (Brand Gold) */
+  --accent: #d4af37;
+  --accent-hover: #b08d57;
+  --card: #f8f9fa;
+  --card-background: rgba(0, 0, 0, 0.05);
+  --card-border: rgba(0, 0, 0, 0.1);
+  --border: rgba(196, 164, 112, 0.2); /* Золотистая полупрозрачная рамка */
+
+  --muted: #666666;
+  --backgroundAlt: oklch(0.93 0.02 270); /* Светло-сероватый блок */
+
+  --cardMy: #f4f5f7;
+  --cardForeground: oklch(0.15 0.02 85);
+
+  --accentForeground: oklch(0.98 0.005 85);
+  --accenthover: oklch(0.66 0.18 50.9); /* Более насыщенный оранжевый */
+  --textPrimary: oklch(0.18 0.03 270); /* Почти чёрный */
+  --textMuted: oklch(0.45 0.03 270); /* Серый для второстепенного текста */
+  --textW: oklch(85.209% 0.02158 271.166);
+  --textWMuted: oklch(98.221% 0.00423 271.371);
+  --success: oklch(0.75 0.16 150); /* Мягкий зелёный */
+  --error: oklch(0.65 0.2 30); /* Красно-оранжевый */
+
+  --text: #1a1a1a;
+
+  --mutedForeground: oklch(0.55 0.02 85);
+
+  --ring: oklch(0.65 0.15 45);
+  --radius: 0.75rem;
+
+  --surface-container: #ffffff;
+  --surface-highest: #e5e7eb;
+
+  --gold-gradient: linear-gradient(45deg, #d4af37, #f2d06b);
+
+  --gradient-x: 50%;
+  --gradient-y: 50%;
+}
+
+.dark {
+  /* --- Темная тема (Dark Industrial Luxury) --- */
+  --background: #1a1d23; /* Глубокий темный из референса */
+  --foreground: #f5f5f5;
+
+  --bg-gradient: #0a0f1a;
+  --bg-gradient-from: #1e2a44;
+  --bg-gradient-via: #0a0f1a;
+  --bg-gradient-to: #05080f;
+  --bg-worm-gradient-from: #e0f2fe;
+  --bg-worm-gradient-via: #f1f5f9;
+  --bg-worm-gradient-to: #f8fafc;
+
+  --primary: #1c222d; /* Цвет карточек в темной теме */
+
+  /* Золото в темной теме чуть ярче */
+  --accent: #d4af37;
+  --accent-hover: #b08d57;
+
+  --card: #161b24;
+  --card-background: rgba(255, 255, 255, 0.05);
+  --card-border: rgba(255, 255, 255, 0.1);
+  --border: rgba(196, 164, 112, 0.3);
+
+  --muted: #94a3b8;
+
+  --text: #b08d57;
+
+  --textForeground: oklch(0.95 0.005 85);
+  --cardForeground: oklch(0.95 0.005 85);
+  --primaryForeground: oklch(0.1 0.02 220);
+
+  --ring: oklch(0.65 0.15 45);
+
+  --surface-container: #1a1d23;
+  --surface-highest: #2a2e37;
+
+  --gradient-x: 50%;
+  --gradient-y: 50%;
+}
+
+/* ======================================================================================
+   BASE LAYER
+====================================================================================== */
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: var(--font-sans);
+    font-size: var(--font-size-base);
+    letter-spacing: -0.01em;
+  }
+
+  /* Эффект заголовков с акцентом */
+  h1,
+  h2,
+  h3 {
+    @apply font-bold tracking-tight text-balance;
+  }
+
+  /* Стиль для выделенного золотого слова в заголовке */
+  .highlight-gold {
+    @apply text-accent bg-clip-text;
+    background-image: var(--background-image-gold-grad);
+  }
+}
+
+/* ======================================================================================
+   UTILITIES & COMPONENTS
+====================================================================================== */
+@layer components {
+  .btn-gold {
+    @apply relative overflow-hidden px-8 py-3 rounded-md font-semibold transition-all duration-300 shadow-lg active:scale-95 text-[#1A1A1A];
+    background: var(--gold-gradient);
+  }
+
+  /* Эффект насыщения при ховере */
+  .btn-gold:hover {
+    @apply shadow-[0_0_25px_rgba(212,175,55,0.4)];
+    filter: saturate(1.2) brightness(1.1);
+  }
+
+  /* Бегущий блик */
+  .btn-gold::after {
+    content: "";
+    @apply absolute inset-0 -left-[150%] w-full h-full;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.4),
+      transparent
+    );
+    transform: skewX(-20deg);
+  }
+
+  .btn-gold:hover::after {
+    animation: shine 1.5s linear infinite;
+  }
+
+  /* Индустриальная карточка */
+  .card-machined {
+    @apply bg-surface-container p-6 rounded-lg transition-all duration-500;
+    /* Ghost Border (едва заметный блеск золота) */
+    border: 1px solid rgba(212, 175, 55, 0.15);
+  }
+
+  .card-machined:hover {
+    border-color: rgba(212, 175, 55, 0.4);
+  }
+
+  /* Поле ввода */
+  .input-industrial {
+    @apply bg-surface-highest text-[#ffffff] px-4 py-2 rounded-md border border-transparent 
+           transition-all outline-none focus:border-primary focus:ring-2 focus:ring-primary/20;
+  }
+
+  /* Эффект матового металла для фона (для темной темы) */
+  .bg-metal-dark {
+    background: radial-gradient(circle at top right, #1c222d, #0b0f15);
+  }
+}
+
+/* ======================================================================================
+   ANIMATIONS
+====================================================================================== */
+@keyframes goldShimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+@keyframes shine {
+  100% {
+    left: 150%; /* Конечная позиция далеко справа */
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes metal-glow {
+  0% {
+    --gradient-x: 20%;
+    --gradient-y: 30%;
+  }
+  25% {
+    --gradient-x: 80%;
+    --gradient-y: 40%;
+  }
+  50% {
+    --gradient-x: 70%;
+    --gradient-y: 80%;
+  }
+  75% {
+    --gradient-x: 30%;
+    --gradient-y: 70%;
+  }
+  100% {
+    --gradient-x: 20%;
+    --gradient-y: 30%;
+  }
+}
+
+.animate-metal {
+  animation: metal-glow 10s ease-in-out infinite;
+}
+
+/* Эффект свечения при наведении на логотипы партнеров */
+.partner-logo {
+  @apply grayscale opacity-60 transition-all duration-300 hover:grayscale-0 hover:opacity-100;
+  filter: drop-shadow(0 0 0px transparent);
+}
+.partner-logo:hover {
+  filter: drop-shadow(0 0 8px rgba(196, 164, 112, 0.4));
+}
+.seo-hidden {
+  position: absolute !important;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+}
+.btn-primary {
+  background-color: var(--primary);
+}
+.btn-primary:hover {
+  background-color: var(--primaryLight);
+}
+.btn-accent {
+  background-color: var(--accent);
+}
+.btn-accent:hover {
+  background-color: var(--accentHover);
+}
+.card-glass {
+  background-color: var(--card-background);
+  border: 1px solid var(--card-border);
+  backdrop-filter: blur(8px);
+  border-radius: 1rem; /* 16px */
+  padding: 1.5rem; /* 24px */
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+.bg-gradient-metal {
+  @apply antialiased;
+  background: radial-gradient(
+    circle at var(--gradient-x) var(--gradient-y),
+    var(--bg-gradient-from),
+    var(--bg-gradient-via),
+    var(--bg-gradient-to)
+  );
+  /* Ограничиваем фон размером блока */
+  background-attachment: scroll;
+}
+.bg-gradient-worm {
+  @apply antialiased;
+  background: radial-gradient(
+    circle at var(--gradient-x) var(--gradient-y),
+    var(--bg-worm-gradient-from),
+    var(--bg-worm-gradient-via),
+    var(--bg-worm-gradient-to)
+  );
+  /* Ограничиваем фон размером блока */
+  background-attachment: scroll;
+}

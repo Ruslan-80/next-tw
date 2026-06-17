@@ -106,8 +106,8 @@ export default function CardItem({ product, view }) {
       <li
         className={
           view === "grid"
-            ? "border border-gray-200 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 bg-[#f4f5f7] overflow-hidden transform hover:-translate-y-1  dark:bg-gray-800 dark:text-white"
-            : "border border-gray-200 rounded-xl shadow-md hover:shadow-xl hover:border-primary/30 transition-all duration-300 bg-white flex flex-col md:flex-row  dark:bg-gray-800 dark:text-white"
+            ? "border border-border text-text rounded-xl shadow-md hover:shadow-xl transition-all duration-300  overflow-hidden transform hover:-translate-y-1"
+            : "border border-border text-text rounded-xl shadow-md hover:shadow-xl hover:border-accent/30 transition-all duration-300  flex flex-col md:flex-row"
         }
         itemScope
         itemType="https://schema.org/Product"
@@ -120,16 +120,16 @@ export default function CardItem({ product, view }) {
           <div
             className={
               view === "grid"
-                ? "flex flex-col h-full  dark:bg-gray-800 dark:text-white"
-                : "flex flex-col items-center md:flex-row h-full  dark:bg-gray-800 dark:text-white"
+                ? "flex flex-col h-full text-text"
+                : "flex flex-col items-center md:flex-row h-full text-text"
             }
           >
             {product.image && (
               <div
                 className={
                   view === "grid"
-                    ? "relative w-full aspect-square max-h-48 p-2  dark:bg-gray-800 dark:text-white"
-                    : "relative w-full max-h-80 md:w-48 md:h-48 aspect-square p-2  dark:bg-gray-800 dark:text-white"
+                    ? "relative w-full aspect-square max-h-48 p-2 text-text"
+                    : "relative w-full max-h-80 md:w-48 md:h-48 aspect-square p-2 text-text"
                 }
               >
                 {product.image ? (
@@ -143,7 +143,7 @@ export default function CardItem({ product, view }) {
                       src={product.image}
                       alt={product.name}
                       fill
-                      className="object-contain rounded-lg bg-white transition-transform duration-300 hover:scale-105 p-4 dark:bg-gray-800 dark:text-white"
+                      className="object-contain rounded-lg transition-transform duration-300 hover:scale-105 p-4 text-text"
                       sizes={
                         (view || "grid") === "grid"
                           ? "(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
@@ -167,25 +167,25 @@ export default function CardItem({ product, view }) {
                 <h4
                   className={
                     view === "grid"
-                      ? "h-[140px] text-xl font-semibold text-gray-900 mb-2 group relative  dark:bg-gray-800 dark:text-white"
-                      : "text-2xl font-semibold text-gray-900 mb-2 group relative  dark:bg-gray-800 dark:text-white"
+                      ? "max-h-[140px] text-xl font-semibold text-text mb-2 group relative text-text"
+                      : "text-2xl font-semibold text-text mb-2 group relative text-text"
                   }
                 >
                   <span itemProp="name">{product.name}</span>
-                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary/30 transition-all duration-300 group-hover:w-full  dark:bg-gray-800 dark:text-white" />
+                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-accent/30 transition-all duration-300 group-hover:w-full text-text" />
                 </h4>
-                <p className="text-sm text-gray-500 mb-2">
+                <p className="text-sm text-text mb-2">
                   Артикул:{" "}
                   <span itemProp="sku">{product.article || "N/A"}</span> <br />
-                  ID: <span itemProp="productID">{product.id || "N/A"}</span>
+                  {/* ID: <span itemProp="productID">{product.id || "N/A"}</span> */}
                 </p>
 
                 {product.description && (
                   <p
                     className={
                       view === "grid"
-                        ? "text-sm text-gray-600 mb-3 line-clamp-2  dark:bg-gray-800 dark:text-white"
-                        : "text-sm text-gray-600 mb-3  dark:bg-gray-800 dark:text-white"
+                        ? "text-sm text-text mb-3 line-clamp-2 text-text"
+                        : "text-sm text-text mb-3 line-clamp-4 text-text"
                     }
                     itemProp="description"
                   >
@@ -216,7 +216,7 @@ export default function CardItem({ product, view }) {
                   itemType="https://schema.org/Offer"
                   className="mb-3"
                 >
-                  <p className="text-lg font-bold text-gray-900 mb-3 dark:bg-gray-800 dark:text-white">
+                  <p className="text-lg font-bold text-text mb-3 text-text">
                     {product.basePrice == 0
                       ? "По запросу"
                       : `${product.basePrice.toLocaleString("ru-RU")} ₽`}
@@ -241,12 +241,12 @@ export default function CardItem({ product, view }) {
                 {/* Статус наличия */}
                 <p
                   className={`text-sm mb-3 ${
-                    product.stock > 0 ? "text-green-600" : "text-red-600"
+                    product.stock > 0 ? "text-green-600" : "text-gray-600"
                   }`}
                 >
                   {product.stock > 0
                     ? "В наличии"
-                    : "Срок изготовления 7-14 дней"}
+                    : "Срок изготовления 7 - 14 дней"}
                 </p>
 
                 {product.tags?.length > 0 && (
@@ -254,7 +254,7 @@ export default function CardItem({ product, view }) {
                     {product.tags.slice(0, 3).map((tag) => (
                       <span
                         key={tag.slug}
-                        className="text-xs font-medium text-white bg-orange-400 px-2 py-1 rounded-full"
+                        className="text-xs font-medium text-text px-2 py-1 rounded-full"
                       >
                         {tag.name}
                       </span>
@@ -264,8 +264,8 @@ export default function CardItem({ product, view }) {
                 <div
                   className={
                     view === "grid"
-                      ? "flex flex-wrap gap-2 text-sm text-gray-700"
-                      : "grid grid-cols-2 gap-2 text-sm text-gray-700 md:pr-4"
+                      ? "flex flex-wrap gap-2 text-sm text-text"
+                      : "grid grid-cols-2 gap-2 text-sm text-text md:pr-4"
                   }
                 >
                   {product.attributes?.length > 0 && (
@@ -291,10 +291,10 @@ export default function CardItem({ product, view }) {
                               itemProp="value"
                               content={attr.attributeValueName}
                             />
-                            <span className="font-medium dark:bg-gray-800 dark:text-white">
+                            <span className="font-medium text-text">
                               {attr.attributeName}:
                             </span>
-                            <span className="ml-1 dark:bg-gray-800 dark:text-white">
+                            <span className="ml-1 text-text">
                               {attr.attributeValueName}
                             </span>
                           </div>
@@ -323,8 +323,8 @@ export default function CardItem({ product, view }) {
         <div
           className={
             view === "grid"
-              ? "p-4"
-              : "p-4 flex-shrink-0 flex flex-col justify-center "
+              ? "p-4 text-foreground"
+              : "p-4 flex-shrink-0 flex flex-col justify-center text-foreground"
           }
         >
           {/* <Button
@@ -335,18 +335,18 @@ export default function CardItem({ product, view }) {
           </Button> */}
           <Button
             onClick={() => handleButtonClick("Расчитать индивидуальный размер")}
-            className="w-full bg-primary mb-2 px-4 hover:bg-primary/80 text-white font-medium rounded-lg py-2 transition-all duration-300  dark:bg-gray-500 dark:text-white"
+            className="w-full bg-primaryLight mb-2 px-4 text-accent font-medium rounded-lg py-2 transition-all duration-300"
           >
             Расчитать индивидуальный размер
           </Button>
           <Button
             onClick={handleAddToCart}
             disabled={adding || product.basePrice === 0}
-            className={`w-full py-2 px-4 rounded-lg text-white font-medium transition-all duration-300 mb-2 ${
+            className={`w-full py-2 px-4 rounded-lg font-medium transition-all duration-300 mb-2 ${
               adding
                 ? "bg-orange-400 opacity-50"
                 : product.basePrice > 0
-                  ? "bg-orange-400/80 hover:bg-orange-400"
+                  ? "btn-gold w-full mb-2"
                   : "bg-gray-400 cursor-not-allowed"
             }`}
           >

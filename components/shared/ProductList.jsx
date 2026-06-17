@@ -59,9 +59,9 @@ export default function ProductList({ products = [], totalProducts = 0 }) {
   }
 
   return (
-    <div className="mb-8 lg:sticky lg:top-6 self-start">
+    <div className="mb-8 lg:sticky lg:top-6 self-start px-2">
       <div className=" flex justify-between items-center mb-6">
-        <div className=" text-xl text-gray-700 ">
+        <div className=" text-xl text-text ">
           Найдено {totalProducts} товар
           {totalProducts % 10 === 1 && totalProducts % 100 !== 11
             ? ""
@@ -74,10 +74,10 @@ export default function ProductList({ products = [], totalProducts = 0 }) {
         <div className="flex space-x-2">
           <button
             onClick={() => setView("grid")}
-            className={`p-2.5 border border-gray-200 rounded-lg transition-all duration-200 dark:bg-gray-800 dark:text-white ${
+            className={`p-2.5 border border-border text-text cursor-pointer rounded-lg transition-all duration-200  ${
               view === "grid"
-                ? "bg-orange-400 text-white"
-                : "bg-gray-50 text-gray-600 hover:bg-gray-100"
+                ? "bg-accent text-text"
+                : "bg-background text-text hover:bg-accent"
             }`}
             aria-label="Блочный вид"
           >
@@ -85,10 +85,10 @@ export default function ProductList({ products = [], totalProducts = 0 }) {
           </button>
           <button
             onClick={() => setView("list")}
-            className={`p-2.5 border border-gray-200 rounded-lg transition-all duration-200 dark:bg-gray-800 dark:text-white ${
+            className={`p-2.5 border border-accent text-text cursor-pointer rounded-lg transition-all duration-200  ${
               view === "list"
-                ? "bg-orange-400 text-white"
-                : "bg-gray-50 text-gray-600 hover:bg-gray-100"
+                ? "bg-accent text-text"
+                : "bg-background text-text hover:bg-accent"
             }`}
             aria-label="Список"
           >

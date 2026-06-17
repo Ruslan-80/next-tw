@@ -41,7 +41,7 @@ export default function CatalogUI({ categories, text }) {
   return (
     <section className="new__catalog">
       <div className="container">
-        <h2 className="text-3xl font-bold text-gray-900 mb-10">{text}</h2>
+        <h2 className="text-3xl font-bold text-text mb-10">{text}</h2>
         <div className="catalog__inner">
           {categories &&
             categories.map((category, index) => (
@@ -69,7 +69,7 @@ export default function CatalogUI({ categories, text }) {
                     category.child.map((subcategory, subIndex) => (
                       <div key={subIndex}>
                         <Link href={`/catalog/${subcategory.slug}`}>
-                          <span className="text-[#f47b20] text-xl cursor-pointer hover:text-[#4d479d] transition duration-300 ease-in-out">
+                          <span className="text-text text-xl cursor-pointer hover:text-accent transition duration-300 ease-in-out">
                             {subcategory.name}
                           </span>
                         </Link>

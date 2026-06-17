@@ -68,20 +68,20 @@ export default function PopularProducts({ categorySlug }) {
 
   if (isLoading)
     return (
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-16">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-16">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
           {[...Array(8)].map((_, i) => (
             <div
               key={i}
-              className="bg-white rounded-xl shadow-md overflow-hidden"
+              className="bg-background rounded-xl shadow-md overflow-hidden"
             >
-              <div className="bg-gray-200 aspect-square animate-pulse" />
+              <div className="bg-background aspect-square animate-pulse" />
               <div className="p-5">
-                <div className="h-6 bg-gray-200 rounded mb-3 animate-pulse" />
-                <div className="h-4 bg-gray-200 rounded mb-4 animate-pulse" />
+                <div className="h-6 bg-background rounded mb-3 animate-pulse" />
+                <div className="h-4 bg-background rounded mb-4 animate-pulse" />
                 <div className="flex justify-between">
-                  <div className="h-6 w-16 bg-gray-200 rounded animate-pulse" />
-                  <div className="h-10 w-24 bg-gray-200 rounded-lg animate-pulse" />
+                  <div className="h-6 w-16 bg-background rounded animate-pulse" />
+                  <div className="h-10 w-24 bg-background rounded-lg animate-pulse" />
                 </div>
               </div>
             </div>
@@ -104,14 +104,16 @@ export default function PopularProducts({ categorySlug }) {
     );
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-16 mb-16">
-      <h2 className="text-3xl font-bold mb-8 text-center">Популярные товары</h2>
+    <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-16">
+      <h2 className="text-3xl font-bold mb-8 text-text text-center">
+        Популярные товары
+      </h2>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
         {products.map((product) => (
           <div
             key={product.id}
-            className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300"
+            className="rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300"
           >
             <Link href={`/product/${product.slug}`}>
               <div className="relative w-full aspect-square">
@@ -120,22 +122,20 @@ export default function PopularProducts({ categorySlug }) {
                     src={product.mediaFiles[0].url}
                     alt={product.name}
                     fill
-                    className="object-cover"
+                    className="object-cover rounded-xl"
                     sizes={"(max-width: 768px) 100vw, 192px"}
                   />
                 ) : (
-                  <div className="w-full h-full bg-gray-100 flex items-center justify-center">
-                    <span className="text-gray-400">
-                      Изображение отсутствует
-                    </span>
+                  <div className="w-full h-full flex items-center justify-center">
+                    <span className="text-text">Изображение отсутствует</span>
                   </div>
                 )}
               </div>
             </Link>
 
-            <div className="p-5">
+            <div className="py-8 px-4">
               <Link href={`/product/${product.slug}`}>
-                <h3 className="flex  text-lg h-30 font-bold mb-2 hover:text-blue-600 transition-colors items-center">
+                <h3 className="flex text-lg h-30 font-bold mb-2 text-text hover:text-accent transition-colors items-center">
                   {product.name}
                 </h3>
               </Link>
@@ -154,7 +154,7 @@ export default function PopularProducts({ categorySlug }) {
                     </svg>
                   ))}
                 </div>
-                <span className="text-gray-600 text-lg ml-2">4.8</span>
+                <span className="text-text text-lg ml-2">4.8</span>
               </div>
 
               {/* <p className="text-gray-600 mb-3 line-clamp-2">
@@ -165,14 +165,12 @@ export default function PopularProducts({ categorySlug }) {
                 {/* <span className="text-2xl font-bold text-green-600">
                   {product.basePrice} руб.
                 </span> */}
-                <div className="text-3xl font-bold text-blue-600 mb-5">
+                <div className="text-3xl font-bold text-text mb-5">
                   {product.basePrice
                     ? `${product.basePrice.toLocaleString("ru-RU")} руб.`
                     : "Цена недоступна"}
                 </div>
-                <button className="bg-primary w-full hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors">
-                  В корзину
-                </button>
+                <button className="btn-gold w-full">В корзину</button>
               </div>
 
               <div className="mt-3 flex flex-wrap gap-2">
