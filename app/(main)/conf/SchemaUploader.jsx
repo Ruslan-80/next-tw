@@ -273,7 +273,7 @@ export default function SchemaUploader() {
     status === STATUS.CONVERTING || status === STATUS.UPLOADING;
 
   return (
-    <div className="bg-slate-900 border border-slate-800 rounded-xl p-5 space-y-4">
+    <div className="bg-cardBackground border border-slate-800 rounded-xl p-5 space-y-4">
       {/* Заголовок */}
       <div className="flex items-center gap-3">
         <div className="w-1 h-6 rounded-full bg-amber-500 flex-shrink-0" />

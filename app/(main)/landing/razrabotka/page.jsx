@@ -6,29 +6,29 @@ export const metadata = {
     "Данная страница находится в разработке. Скоро здесь появится новый контент от ЭЛЕКТРОЩИТ-ПРО.",
 };
 
-const UnderConstruction = () => {
+export default function UnderConstruction() {
   return (
     // Главный контейнер: занимает всю высоту экрана, центрирует контент
-    <div className="flex items-center justify-center min-h-screen bg-gray-50 p-4">
+    <div className="flex items-center justify-center min-h-screen bg-card p-4">
       {/* Карточка с сообщением */}
-      <div className="text-center bg-white p-8 md:p-12 rounded-xl shadow-2xl max-w-lg w-full transform transition duration-500 hover:scale-[1.01]">
+      <div className="text-center bg-card p-8 md:p-12 rounded-xl shadow-2xl max-w-lg w-full transform transition duration-500 hover:scale-[1.01]">
         {/* Иконка (можно заменить на любое SVG или emoji) */}
         <div className="text-6xl mb-4 text-yellow-500">🛠️</div>
 
         {/* Заголовок */}
-        <h1 className="text-3xl md:text-4xl font-extrabold text-gray-900 mb-3">
+        <h1 className="text-3xl md:text-4xl font-extrabold text-text mb-3">
           Страница находится в разработке
         </h1>
 
         {/* Описание */}
-        <p className="text-base text-gray-600 mb-6">
+        <p className="text-base text-text mb-6">
           Мы активно работаем над этим разделом и скоро представим вам новый
           контент. Приносим извинения за временные неудобства!
         </p>
 
         {/* Дополнительная информация или призыв к действию */}
         <div className="mt-6 pt-4 border-t border-gray-100">
-          <p className="text-sm text-gray-500">
+          <p className="text-sm text-text">
             Следите за обновлениями на нашей главной странице.
           </p>
 
@@ -43,6 +43,4 @@ const UnderConstruction = () => {
       </div>
     </div>
   );
-};
-
-export default UnderConstruction;
+}

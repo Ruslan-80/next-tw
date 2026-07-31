@@ -1,8 +1,8 @@
-export const dynamic = "force-dynamic";
+export const revalidate = 3600;
 import { cache } from "react";
-import { prisma } from "../../../../lib/prisma";
+import { prisma } from "@/lib/prisma";
 import ProductPageClient from "./ProductPageClient";
-import Breadcrumbs from "../../../../components/Breadcrumbs";
+import Breadcrumbs from "@/components/Breadcrumbs";
 import JsonLd from "@/components/JsonLdComponent";
 import getProductJsonLd from "@/lib/productJsonLd";
 import metaDescriptions from "@/app/data/metaDescriptions.json";
@@ -148,6 +148,8 @@ export default async function Page({ params }) {
     ratingValue,
     ratingCount,
   );
+
+  // console.log(product);
 
   return (
     <>

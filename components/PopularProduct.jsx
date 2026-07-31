@@ -170,7 +170,9 @@ export default function PopularProducts({ categorySlug }) {
                     ? `${product.basePrice.toLocaleString("ru-RU")} руб.`
                     : "Цена недоступна"}
                 </div>
-                <button className="btn-gold w-full">В корзину</button>
+                <button className="btn-gold w-full">
+                  <Link href={`/product/${product.slug}`}>Подробнее</Link>
+                </button>
               </div>
 
               <div className="mt-3 flex flex-wrap gap-2">

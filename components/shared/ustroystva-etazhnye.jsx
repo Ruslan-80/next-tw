@@ -15,8 +15,8 @@ import ComparisonTable from "@/app/(main)/landing/ustroystva-etazhnye/table";
 export function UstroystvaEtazhnyeTop() {
   return (
     <>
-      <section className="mb-4 mx-2 lg:mx-0">
-        <div className="flex flex-col lg:flex-row bg-blue-300/20 shadow-xl items-center rounded-4xl px-2 lg:px-8 py-4 lg:py-12 mx-auto border border-blue-200">
+      <section className="container mx-auto mb-4">
+        <div className="flex flex-col lg:flex-row bg-card shadow-xl items-center rounded-4xl px-2 lg:px-8 py-4 lg:py-12 mx-auto border border-card">
           <div className="p-4">
             <Image
               src="/images/categories/SE24L.png"
@@ -28,39 +28,39 @@ export function UstroystvaEtazhnyeTop() {
           </div>
 
           <div className="text-justify text-lg lg:text-2xl px-2 lg:px-8 mb-8">
-            <p className="text-gray-600">
+            <p className="text-text">
               Устройства типа{" "}
               <Link
                 href="uerm"
-                className="font-bold text-blue-600 hover:text-blue-800 hover:underline"
+                className="font-bold text-accent hover:text-accent/80 hover:underline"
               >
                 УЭРМ
               </Link>
               ,{" "}
               <Link
                 href="uerb"
-                className="font-bold text-blue-600 hover:text-blue-800 hover:underline"
+                className="font-bold text-accent hover:text-accent/80 hover:underline"
               >
                 УЭРБ
               </Link>
               ,{" "}
               <Link
                 href="uerk"
-                className="font-bold text-blue-600 hover:text-blue-800 hover:underline"
+                className="font-bold text-accent hover:text-accent/80 hover:underline"
               >
                 УЭРК
               </Link>
               ,{" "}
               <Link
                 href="uerv"
-                className="font-bold text-blue-600 hover:text-blue-800 hover:underline"
+                className="font-bold text-accent hover:text-accent/80 hover:underline"
               >
                 УЭРВ
               </Link>
               ,{" "}
               <Link
                 href="uern"
-                className="font-bold text-blue-600 hover:text-blue-800 hover:underline"
+                className="font-bold text-accent hover:text-accent/80 hover:underline"
               >
                 УЭРН
               </Link>{" "}
@@ -71,7 +71,7 @@ export function UstroystvaEtazhnyeTop() {
               интернет, сигнализация, АСКУЭ). Соответствуют ГОСТ Р 51321.1-2007,
               ГОСТ IEC 60439.3-2012, ТР ТС 004/2011.
             </p>
-            <ul className="list-disc pl-6 mt-2 text-gray-600">
+            <ul className="list-disc pl-6 mt-2 text-text">
               <li>Применение: этажи жилых зданий, коммунальные объекты.</li>
               <li>Обслуживание: 6–12 квартир.</li>
               <li>

@@ -41,14 +41,14 @@ export default function CatalogUI({ categories, text }) {
   return (
     <section className="new__catalog">
       <div className="container">
-        <h2 className="text-3xl font-bold text-text mb-10">{text}</h2>
+        <h2 className="text-3xl text-accent mb-10">{text}</h2>
         <div className="catalog__inner">
           {categories &&
             categories.map((category, index) => (
               <motion.div
                 key={index}
                 data-id={`${category.id}-${index}`}
-                className="catalog__wrapper"
+                className="catalog__wrapper "
                 initial={{ opacity: 0, y: 50 }}
                 animate={
                   visibleItems.includes(`${category.id}-${index}`)
@@ -64,12 +64,14 @@ export default function CatalogUI({ categories, text }) {
                   onClick={(e) => handleCardClick(e, category.slug)} // Передаем slug категории
                   className="catalog__item"
                 >
-                  <h3 className="cursor-pointer">{category.name}</h3>
+                  <h3 className="cursor-pointer relative z-50 text-textPrimary">
+                    {category.name}
+                  </h3>
                   {category.child &&
                     category.child.map((subcategory, subIndex) => (
                       <div key={subIndex}>
                         <Link href={`/catalog/${subcategory.slug}`}>
-                          <span className="text-text text-xl cursor-pointer hover:text-accent transition duration-300 ease-in-out">
+                          <span className="relative z-50 text-xl cursor-pointer text-[#f47b20] hover:text-[#4d479d] transition duration-300 ease-in-out">
                             {subcategory.name}
                           </span>
                         </Link>

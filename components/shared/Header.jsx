@@ -11,7 +11,7 @@ import {
   ChevronDown,
 } from "lucide-react";
 import Image from "next/image";
-import Logo from "../../public/mainLogo.svg";
+import Logo from "@/public/mainLogo.svg";
 import { Search } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import { Skeleton } from "../ui/skeleton";
@@ -19,6 +19,7 @@ import { useRouter } from "next/navigation";
 import { Button } from "../ui/button";
 import CatalogButton from "./CatalogButton1";
 import { useCartStore } from "../../lib/store/testCartStore";
+import { ModeToggle } from "../ModeToggle";
 
 export default function Header() {
   const [query, setQuery] = useState("");
@@ -95,21 +96,22 @@ export default function Header() {
     { name: "Гарантии и возврат", href: "/guarantees" },
     { name: "Статьи", href: "/blogs" },
     { name: "Объекты", href: "/objects" },
+    { name: "Конфигуратор", href: "/conf" },
     { name: "Контакты", href: "/contacts" },
   ];
 
   return (
     <>
-      <header className="sticky top-0 z-50 bg-background border-b border-border">
+      <header className="sticky top-0 z-50 bg-card border-b border-border">
         {/* Верхняя панель — тонкая и легкая */}
-        <div className="bg-background py-2 border-b border-border">
+        <div className="bg-card py-2 border-b border-border">
           <div className="container mx-auto px-6 flex justify-center lg:justify-between h-full items-center text-xs text-slate-500 font-light uppercase tracking-wider">
-            <nav className="hidden lg:flex gap-6 text-sm text-slate-700">
+            <nav className="hidden lg:flex gap-6 text-sm text-text">
               {navLinks.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="text-[12px] font-medium uppercase tracking-[0.12em] text-slate-500 hover:text-slate-900 transition-colors duration-200"
+                  className="text-[12px] font-medium uppercase tracking-[0.12em] text-text hover:text-accent transition-colors duration-200"
                 >
                   {link.name}
                 </Link>
@@ -117,10 +119,11 @@ export default function Header() {
             </nav>
 
             <div className="flex items-center gap-6">
+              <ModeToggle />
               {/* Email */}
               <Link
                 href="mailto:info@electroshit-pro.ru"
-                className="text-xs md:text-sm flex items-center gap-2 hover:text-blue-600 lowercase transition-colors"
+                className="text-xs md:text-sm flex items-center gap-2 hover:text-accent transition-colors font-medium text-text lowercase"
               >
                 <Mail size={12} /> info@electroshit-pro.ru
               </Link>
@@ -130,7 +133,7 @@ export default function Header() {
                 <div className="flex items-center gap-1">
                   <Link
                     href="tel:+74993901467"
-                    className="text-xs md:text-sm flex items-center gap-2 hover:text-blue-600 transition-colors font-medium text-slate-700"
+                    className="text-xs md:text-sm flex items-center gap-2 hover:text-accent transition-colors font-medium text-text"
                   >
                     <Headset size={12} /> +7 (499) 390-14-67
                   </Link>
@@ -138,18 +141,18 @@ export default function Header() {
                   {/* Кнопка раскрытия */}
                   <button
                     onClick={() => setIsOpentelephone(!isOpentelephone)}
-                    className={`p-1 hover:bg-slate-100 rounded-full transition-transform ${isOpentelephone ? "rotate-180" : ""}`}
+                    className={`p-1 bg-card hover:bg-card/40 rounded-full transition-transform ${isOpentelephone ? "rotate-180" : ""}`}
                   >
-                    <ChevronDown size={14} className="text-slate-500" />
+                    <ChevronDown size={14} className="text-text" />
                   </button>
                 </div>
 
                 {/* Выпадающий список */}
                 {isOpentelephone && (
-                  <div className="absolute top-full right-0 mt-2 bg-white shadow-lg border border-slate-100 rounded-md py-2 z-50 min-w-[180px]">
+                  <div className="absolute top-full right-0 mt-2 bg-card shadow-lg border border-card rounded-md py-2 z-50 min-w-[180px]">
                     <Link
                       href="tel:+79299759489" // Замените на нужный номер
-                      className="block px-4 py-2 text-xs md:text-sm text-slate-700 hover:bg-blue-50 hover:text-blue-600 transition-colors"
+                      className="block px-4 py-2 text-xs md:text-sm text-text hover:text-accent transition-colors font-medium"
                     >
                       +7 (929) 975-94-89
                     </Link>
@@ -167,14 +170,18 @@ export default function Header() {
             {/* Левая часть: Каталог + Лого */}
             <div className="flex items-center gap-6">
               <CatalogButton />
-              <Link href="/" className="flex-shrink-1">
+              {/* <Link href="/" className="flex-shrink-1" alt="logo">
                 <Image
                   src={Logo}
                   alt="Electroshit-pro"
-                  width={140}
-                  height={40}
-                  style={{ height: "auto" }} // Добавляем эту строчку
+                  style={{ width: "140px", height: "60px" }}
                 />
+              </Link> */}
+              <Link href="/" className="flex-shrink-1">
+                {" "}
+                <span className="font-bold text-xl text-text">
+                  ЭЛЕКТРОЩИТ-ПРО
+                </span>{" "}
               </Link>
             </div>
 

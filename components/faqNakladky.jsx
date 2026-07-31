@@ -138,19 +138,22 @@ export default function FaqNakladky() {
   };
 
   return (
-    <div className="container mx-auto px-2 lg:px-6 bg-white text-gray-800">
-      <h2 className="text-2xl lg:text-3xl font-bold mb-6 text-gray-800">
+    <div className="container mx-auto pb-4 lg:px-6 text-text">
+      <h2 className="text-2xl lg:text-3xl text-accent font-bold mb-6 ">
         Вопросы и ответы
       </h2>
       <div className="space-y-4">
         {faqs2.map((faq, index) => (
-          <div key={index} className="border rounded-2xl shadow-sm bg-gray-50">
+          <div
+            key={index}
+            className="border rounded-2xl shadow-sm bg-cardBackground"
+          >
             <button
               onClick={() => toggle(index)}
-              className="w-full text-left px-4 lg:px-6 py-4 flex justify-between items-center font-semibold text-xl lg:text-2xl"
+              className="w-full text-left px-4 lg:px-6 py-4 flex justify-between items-center font-semibold text-accent text-xl lg:text-2xl"
             >
               {faq.question}
-              <span className="ml-4 lg:ml-8 text-black text-2xl leading-none">
+              <span className="ml-4 lg:ml-8 text-2xl text-accent leading-none">
                 {openIndex === index ? "−" : "+"}
               </span>
             </button>
@@ -161,7 +164,7 @@ export default function FaqNakladky() {
                   : "max-h-0 opacity-0"
               }`}
             >
-              <div className="px-6 pb-6 text-black text-lg leading-relaxed">
+              <div className="px-6 pb-6 text-text text-lg leading-relaxed">
                 {faq.answer}
               </div>
             </div>

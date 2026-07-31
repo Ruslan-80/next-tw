@@ -36,9 +36,9 @@ export default async function BlogsList() {
   return (
     <main id="main-content" role="main">
       {/* Breadcrumbs */}
-      <section className="sticky top-0 z-50 border-b border-gray-200 bg-gray-100/95 backdrop-blur supports-[backdrop-filter]:bg-gray-100/60">
+      <section className="sticky top-0 z-50 border-b border-card bg-card backdrop-blur supports-[backdrop-filter]:bg-card/60">
         <nav
-          className="container mx-auto px-6 py-2 text-sm text-gray-600"
+          className="container mx-auto px-6 py-2 text-sm text-text"
           itemScope
           itemType="https://schema.org/BreadcrumbList"
         >
@@ -59,7 +59,7 @@ export default async function BlogsList() {
               itemScope
               itemType="https://schema.org/ListItem"
             >
-              <span itemProp="name" className="text-gray-800">
+              <span itemProp="name" className="text-text">
                 Статьи
               </span>
               <meta itemProp="position" content="2" />
@@ -86,7 +86,7 @@ export default async function BlogsList() {
             {posts.map((post) => (
               <article
                 key={post.slug}
-                className="bg-white shadow-sm border rounded-2xl overflow-hidden flex flex-col"
+                className="bg-card shadow-sm border rounded-2xl overflow-hidden flex flex-col"
                 itemScope
                 itemType="https://schema.org/BlogPosting"
               >

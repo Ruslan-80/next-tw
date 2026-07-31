@@ -30,7 +30,7 @@ export function KozhukhTop() {
   };
   return (
     <>
-      <section>
+      <section className="container mx-auto px-2">
         <div className="grid lg:grid-cols-2 gap-12 items-center mb-12">
           <div className="space-y-8 animate-fade-in-up">
             <div className="space-y-4">

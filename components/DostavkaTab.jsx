@@ -14,19 +14,21 @@ import Link from "next/link";
 export default function Dostavka({ article }) {
   const text = data[article] || "";
   return (
-    <div className="bg-surface-highest shadow text-sm lg:text-base rounded-md lg:p-6">
-      <section className="py-4">
+    <div className="shadow text-sm lg:text-base rounded-md lg:p-6">
+      <section className="py-4 text-text">
         <div className="container mx-auto lg:px-6">
-          <div className="flex items-center gap-3 mb-8">
-            <Truck className="h-8 w-8 text-accent" />
-            <h2 className="text-xl lg:text-4xl font-bold">Способы доставки</h2>
+          <div className="flex items-baseline gap-3 mb-8">
+            <Truck className="h-10 w-10 text-text" />
+            <h2 className="text-xl text-text lg:text-4xl font-bold">
+              Способы доставки
+            </h2>
           </div>
           <Card>
             <CardContent className="lg:p-8 space-y-6">
-              <div className="text-gray-900 leading-relaxed text-muted-foreground text-sm lg:text-2xl text-justify lg:indent-30">
+              <div className="leading-relaxed text-muted-foreground text-sm lg:text-2xl text-justify lg:indent-30">
                 {text}
               </div>
-              <p className="text-justify text-sm lg:text-xl leading-relaxed text-muted-foreground mb-6">
+              <p className="text-justify text-sm lg:text-xl leading-relaxed mb-6">
                 Мы предлагаем следующие варианты доставки:
               </p>
 
@@ -34,10 +36,10 @@ export default function Dostavka({ article }) {
                 <div className="font-bold text-xl lg:text-2xl">
                   БЕСПЛАТНАЯ ДОСТАВКА
                 </div>
-                <p className="text-muted-foreground ml-4">
+                <p className="ml-4">
                   Осуществляется в московском регионе при заказе:
                 </p>
-                <ul className="list-disc pl-8 text-muted-foreground">
+                <ul className="list-disc pl-8">
                   <li>
                     от 50 000 рублей — в пределах МКАД или до терминала ТТК
                     которую вы укажите. (Работаем со всеми ТТК региона)
@@ -48,7 +50,7 @@ export default function Dostavka({ article }) {
                 <div className="font-bold text-xl lg:text-2xl">
                   ПЛАТНАЯ ДОСТАВКА
                 </div>
-                <p className="text-muted-foreground">
+                <p className="">
                   Доставка при заказе на сумму менее 50 000 рублей
                   осуществляется на платной основе и рассчитывается
                   индивидуально
@@ -57,7 +59,7 @@ export default function Dostavka({ article }) {
                 <div className="font-bold text-xl lg:text-2xl">
                   ДРУГИЕ ВИДЫ ДОСТАВКИ
                 </div>
-                <ul className="list-disc pl-8 text-muted-foreground space-y-2">
+                <ul className="list-disc pl-8 space-y-2">
                   <li>
                     Курьерская доставка: рассчитывается индивидуально у
                     оператора, которого вы выбрали
@@ -68,7 +70,7 @@ export default function Dostavka({ article }) {
                     ул. Чермянская, д1с1
                   </li>
                 </ul>
-                <p className="text-muted-foreground">
+                <p className="">
                   Точные сроки и стоимость зависят от региона. Рассчитываются
                   при оформлении заказа.
                 </p>

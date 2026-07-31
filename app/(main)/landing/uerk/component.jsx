@@ -104,8 +104,8 @@ export default function ComponentUERK() {
           </div>
         </nav>
       </section>
-      <div className="container mx-auto py-6 bg-white text-xl lg:text-2xl">
-        <section className="container mx-auto p-4 bg-white text-xl lg:text-2xl">
+      <div className="container mx-auto py-6 bg-background text-xl lg:text-2xl">
+        <section className="container mx-auto p-4 bg-background text-xl lg:text-2xl">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-8 animate-fade-in-up">
               <div className="space-y-4">

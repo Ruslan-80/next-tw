@@ -23,15 +23,15 @@ export default function Support() {
               href="mailto:support@shop.com"
               className="text-blue-600 hover:underline"
             >
-              support@shop.com
+              info@electroshit.ru
             </a>
           </li>
           <li>
-            <strong>Телефон:</strong> +7 (800) 123-45-67 (Пн-Пт, 9:00–18:00)
+            <strong>Телефон:</strong> +7(499) 390-14-67 (Пн-Пт, 9:00–18:00)
           </li>
-          <li>
+          {/* <li>
             <strong>Чат:</strong> Доступен на сайте в правом нижнем углу
-          </li>
+          </li> */}
         </ul>
       </section>
 

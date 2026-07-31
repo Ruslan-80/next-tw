@@ -15,6 +15,7 @@ export default function Modal({
     productName,
   });
 
+  const [agreed, setAgreed] = useState(false); // Чекбокс согласия по умолчанию FALSE
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [formError, setFormError] = useState("");
 
@@ -41,9 +42,27 @@ export default function Modal({
       return;
     }
 
+    if (!agreed) {
+      setFormError("Необходимо согласие на обработку персональных данных.");
+      return;
+    }
+
+    // 1. Получаем URL текущей страницы, где открыта форма
+    const currentUrl =
+      typeof window !== "undefined" ? window.location.href : "";
+
+    // 2. Формируем сообщение, добавляя в него URL страницы
+    const formattedMessage = [
+      initialContent,
+      formData.message ? `Комментарий: ${formData.message}` : "",
+      `Страница отправки: ${currentUrl}`,
+    ]
+      .filter(Boolean)
+      .join("\n\n");
+
     const dataToSend = {
       ...formData,
-      message: `${initialContent}\n\n${formData.message}`,
+      message: formattedMessage,
     };
 
     const result = await onSubmit(dataToSend);
@@ -57,7 +76,14 @@ export default function Modal({
 
   const handleClose = () => {
     setIsSubmitted(false);
-    setFormData({ contact: "", name: "", message: "", productName: "" });
+    setAgreed(false);
+    // При сбросе возвращаем productName из пропсов, чтобы не ломать логику при повторном открытии
+    setFormData({
+      contact: "",
+      name: "",
+      message: "",
+      productName: productName || "",
+    });
     setFormError("");
     onClose();
   };
@@ -75,13 +101,13 @@ export default function Modal({
       className="fixed inset-0 bg-black/40 backdrop-blur-md flex items-center justify-center z-50 transition-opacity duration-500 ease-in-out"
       onClick={handleOverlayClick}
     >
-      <div className="bg-white text-lg p-8 rounded-2xl max-w-md w-full shadow-2xl transform transition-all duration-500 ease-in-out scale-100 hover:scale-105 dark:bg-gray-900 dark:text-white">
+      <div className="bg-card text-lg p-8 rounded-2xl max-w-md w-full shadow-2xl transform transition-all duration-500 ease-in-out scale-100 hover:scale-105 dark:bg-gray-900 dark:text-white">
         {isSubmitted ? (
           <div className="text-center">
-            <p className="mb-6 text-xl text-gray-600 dark:text-white">
+            <p className="mb-6 text-xl text-text">
               {`Ваш контакт ${formData.contact} отправлен менеджеру.`}
             </p>
-            <p className="mb-6 text-xl text-gray-600 dark:text-white">
+            <p className="mb-6 text-xl text-text">
               В ближайшее время менеджер с вами свяжется.
             </p>
             <button
@@ -94,10 +120,10 @@ export default function Modal({
           </div>
         ) : (
           <>
-            <h2 className="text-2xl font-bold mb-4 text-gray-800 dark:text-white">
+            <h2 className="bg-card text-2xl font-bold mb-4 text-text">
               {initialContent}
             </h2>
-            <p className="mb-6 text-xl text-gray-600 dark:text-white">
+            <p className="mb-6 text-xl text-text">
               Укажите Ваш телефон или email, и мы свяжемся с вами!
             </p>
             <form onSubmit={handleSubmit}>
@@ -131,6 +157,33 @@ export default function Modal({
                 onChange={handleChange}
                 style={{ display: "none" }}
               />
+
+              {/* Блок согласия на обработку ПД */}
+              <div className="mb-4 flex items-start gap-3">
+                <input
+                  type="checkbox"
+                  id="privacy"
+                  checked={agreed}
+                  onChange={(e) => setAgreed(e.target.checked)}
+                  className="mt-1 h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500 cursor-pointer"
+                />
+                <label
+                  htmlFor="privacy"
+                  className="text-xs text-gray-600 dark:text-gray-300 cursor-pointer leading-tight"
+                >
+                  Даю согласие на{" "}
+                  <a
+                    href="/privacy" // Замените на реальный URL политики конфиденциальности
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="underline text-blue-500 hover:text-blue-600"
+                  >
+                    обработку персональных данных
+                  </a>{" "}
+                  в соответствии с ФЗ №152.
+                </label>
+              </div>
+
               {formError && (
                 <p className="text-red-500 mb-4 text-sm">{formError}</p>
               )}
@@ -144,7 +197,10 @@ export default function Modal({
                 </button>
                 <button
                   type="submit"
-                  className="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-all duration-300"
+                  disabled={!agreed}
+                  className={`btn-gold ${
+                    !agreed ? "opacity-50 cursor-not-allowed" : ""
+                  }`}
                 >
                   Отправить
                 </button>

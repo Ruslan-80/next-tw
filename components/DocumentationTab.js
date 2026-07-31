@@ -46,7 +46,7 @@ export default function DocumentationTab() {
                 href={doc.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-red hover:underline"
+                className="text-text hover:underline"
               >
                 {doc.name} ({doc.format}, {doc.size})
               </a>

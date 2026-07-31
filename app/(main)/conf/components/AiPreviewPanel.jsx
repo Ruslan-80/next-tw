@@ -36,9 +36,7 @@ function ComponentCard({ comp, sectionKey }) {
         )}
         {comp.poles && <span title="Полюса">{comp.poles}П</span>}
         {comp.current_transformers && (
-          <span title="Трансформатор тока">
-            ТТ {comp.current_transformers}
-          </span>
+          <span title="Трансформатор тока">ТТ {comp.current_transformers}</span>
         )}
       </div>
     </div>
@@ -93,7 +91,7 @@ export default function AiPreviewPanel() {
   };
 
   return (
-    <div className="bg-slate-900 border border-indigo-700/50 rounded-xl p-5 space-y-4">
+    <div className="bg-cardBackground border border-indigo-700/50 rounded-xl p-5 space-y-4">
       <div className="flex items-center justify-between flex-wrap gap-2">
         <div className="flex items-center gap-3">
           <div className="w-8 h-8 rounded-lg bg-indigo-600/20 flex items-center justify-center">
@@ -103,14 +101,14 @@ export default function AiPreviewPanel() {
             <h2 className="text-base font-semibold text-indigo-300">
               Распознано компонентов: {grouped.total}
             </h2>
-            <p className="text-[11px] text-slate-500">
+            <p className="text-[11px] text-foreground">
               Проверьте распределение по секциям перед применением
             </p>
           </div>
         </div>
         <button
           onClick={clearAiPreview}
-          className="text-slate-500 hover:text-red-400 p-1"
+          className="text-foreground hover:text-red-400 p-1"
           title="Отклонить"
         >
           <X size={18} />

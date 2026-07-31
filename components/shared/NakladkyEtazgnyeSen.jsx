@@ -37,7 +37,7 @@ export function NakladkyEtazhnyeTop() {
   return (
     <>
       <JsonLd data={FaqJsonLd} script_name="FAQ-jsonld" />
-      <section className="mb-12 px-2">
+      <section className="container mx-auto mb-12 px-2">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-8 animate-fade-in-up">
             <div className="space-y-4">
@@ -179,58 +179,56 @@ export function NakladkyEtazhnyeBottom() {
   return (
     <div className="container mx-auto lg:px-6 space-y-10 text-2xl mt-12">
       <section className="py-4 mt-12">
-        <div className="container mx-auto">
-          <div className="w-full">
-            <div className="text-center mb-12">
-              <h3 className="text-2xl lg:text-4xl font-bold mb-4 text-balance">
-                Преимущества накладок щитов этажных
-              </h3>
-            </div>
-            <div className="grid md:grid-cols-2 gap-6">
-              {[
-                {
-                  title: "Простота установки",
-                  description:
-                    "Лицевые панели ЩЭ крепятся на саморезы, дюбели или привариваются через проушины, минимизируя демонтаж и трудозатраты.",
-                },
-                {
-                  title: "Эстетичный дизайн",
-                  description:
-                    "Порошковое покрытие (стандарт RAL7035, другие цвета по запросу) придает современный вид подъездному электрощитку.",
-                },
-                {
-                  title: "Безопасность",
-                  description:
-                    "Над учетным или совмещен с ним, для автоматических выключателей, АВДТ, УЗО, УЗИП (до 12–24 модулей на квартиру). Обеспечивает защиту от перегрузок и короткого замыкания.",
-                },
-                {
-                  title: "Индивидуальное производство",
-                  description:
-                    "Надежные замки (почтовый, треугольник, мастер-ключ) и смотровые окна для обзора счетчиков исключают риск поражения электрическим током.",
-                },
-                {
-                  title: "Быстрая доставка",
-                  description:
-                    " Поставка в Москву, МО и регионы России в кратчайшие сроки.",
-                },
-              ].map((module, index) => (
-                <Card
-                  key={index}
-                  className="hover:shadow-lg transition-shadow duration-300"
-                >
-                  <CardHeader>
-                    <CardTitle className="text-2xl text-accent">
-                      {module.title}
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-justify text-muted-foreground text-xl leading-relaxed">
-                      {module.description}
-                    </p>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
+        <div className="w-full">
+          <div className="text-center mb-12">
+            <h3 className="text-2xl lg:text-4xl font-bold mb-4 text-balance">
+              Преимущества накладок щитов этажных
+            </h3>
+          </div>
+          <div className="grid md:grid-cols-2 gap-6">
+            {[
+              {
+                title: "Простота установки",
+                description:
+                  "Лицевые панели ЩЭ крепятся на саморезы, дюбели или привариваются через проушины, минимизируя демонтаж и трудозатраты.",
+              },
+              {
+                title: "Эстетичный дизайн",
+                description:
+                  "Порошковое покрытие (стандарт RAL7035, другие цвета по запросу) придает современный вид подъездному электрощитку.",
+              },
+              {
+                title: "Безопасность",
+                description:
+                  "Над учетным или совмещен с ним, для автоматических выключателей, АВДТ, УЗО, УЗИП (до 12–24 модулей на квартиру). Обеспечивает защиту от перегрузок и короткого замыкания.",
+              },
+              {
+                title: "Индивидуальное производство",
+                description:
+                  "Надежные замки (почтовый, треугольник, мастер-ключ) и смотровые окна для обзора счетчиков исключают риск поражения электрическим током.",
+              },
+              {
+                title: "Быстрая доставка",
+                description:
+                  " Поставка в Москву, МО и регионы России в кратчайшие сроки.",
+              },
+            ].map((module, index) => (
+              <Card
+                key={index}
+                className="hover:shadow-lg transition-shadow duration-300"
+              >
+                <CardHeader>
+                  <CardTitle className="text-2xl text-accent">
+                    {module.title}
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-justify text-muted-foreground text-xl leading-relaxed">
+                    {module.description}
+                  </p>
+                </CardContent>
+              </Card>
+            ))}
           </div>
         </div>
       </section>
@@ -323,13 +321,13 @@ export function NakladkyEtazhnyeBottom() {
       </section>
 
       <section className="container mx-auto lg:px-6 px-2 py-12">
-        <h2 className="text-2xl lg:text-3xl font-bold mb-8 text-gray-800 text-center">
+        <h2 className="text-2xl lg:text-3xl font-bold mb-8 text-text text-center">
           Сравнение замены щита и установки лицевой панели
         </h2>
 
         <div className="overflow-x-auto">
-          <table className="w-full max-w-8xl mx-auto border border-gray-200 text-left text-gray-700 text-sm lg:text-xl rounded-lg overflow-hidden shadow-md">
-            <thead className="bg-gray-100">
+          <table className="w-full max-w-8xl mx-auto border border-gray-200 text-left text-foreground text-sm lg:text-xl rounded-xl overflow-hidden shadow-md">
+            <thead className="bg-accent">
               <tr>
                 <th className="px-6 py-4 border-b font-semibold">Параметр</th>
                 <th className="px-6 py-4 border-b font-semibold">
@@ -373,8 +371,8 @@ export function NakladkyEtazhnyeBottom() {
                 <tr
                   key={idx}
                   className={`${
-                    idx % 2 === 0 ? "bg-white" : "bg-gray-50"
-                  } hover:bg-gray-100 transition-colors`}
+                    idx % 2 === 0 ? "bg-cardBackground" : "bg-cardBackground/50"
+                  } hover:bg-cardBackground/80 transition-colors`}
                 >
                   <td className="px-6 py-4 border-b">{row[0]}</td>
                   <td className="px-6 py-4 border-b">{row[1]}</td>

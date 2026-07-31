@@ -406,7 +406,7 @@ export default function RowEditor({
 
   return (
     <div
-      className="bg-slate-900 border border-slate-800 rounded-xl overflow-hidden transition-all"
+      className="bg-cardBackground text-foreground border border-slate-800 rounded-xl overflow-hidden transition-all"
       style={{ borderLeftColor: accentColor, borderLeftWidth: 3 }}
     >
       <div className="p-3 space-y-2">
@@ -426,26 +426,24 @@ export default function RowEditor({
 
           {/* Название */}
           <div className="flex flex-col gap-0.5">
-            <span className="text-[9px] text-slate-500 uppercase tracking-wide">
-              Название
-            </span>
+            <span className="text-[9px] uppercase tracking-wide">Название</span>
             <input
               type="text"
               placeholder="Линия..."
               value={localLabel}
               onChange={(e) => setLocalLabel(e.target.value)}
               onBlur={() => onChange("label", localLabel)}
-              className="bg-slate-800 border border-slate-700 text-white p-1.5 rounded text-xs w-36"
+              className="bg-cardBackground border border-slate-700 text-foreground p-1.5 rounded text-xs w-36"
             />
           </div>
 
           {/* Тип устройства */}
           <div className="flex flex-col gap-0.5">
-            <span className="text-[9px] text-slate-500 uppercase tracking-wide">
+            <span className="text-[9px] text-foreground uppercase tracking-wide">
               Тип
             </span>
             <select
-              className="bg-slate-700 border border-slate-600 text-white p-1.5 rounded outline-none"
+              className="bg-cardBackground border border-slate-600 text-foreground p-1.5 rounded outline-none"
               value={deviceType}
               onChange={(e) => handleDeviceTypeChange(e.target.value)}
             >
@@ -460,11 +458,11 @@ export default function RowEditor({
           {/* Параметры типа устройства */}
           {visibleParams.map((key) => (
             <div key={key} className="flex flex-col gap-0.5">
-              <span className="text-[9px] text-slate-500 uppercase tracking-wide">
+              <span className="text-[9px] text-foreground uppercase tracking-wide">
                 {FIELD_LABELS[key]}
               </span>
               <select
-                className="bg-slate-800 border border-slate-700 text-white p-1.5 rounded outline-none"
+                className="bg-cardBackground border border-slate-700 text-foreground p-1.5 rounded outline-none"
                 value={item.params?.[key] || ""}
                 onChange={(e) => onParamsChange(key, e.target.value)}
               >
@@ -546,7 +544,7 @@ export default function RowEditor({
                 placeholder="Параметр"
                 value={customKey}
                 onChange={(e) => setCustomKey(e.target.value)}
-                className="bg-slate-800 border border-slate-700 text-white p-1 rounded text-xs w-24"
+                className="bg-cardBackground border border-slate-700 text-foreground p-1 rounded text-xs w-24"
                 autoFocus
               />
               <input
@@ -555,12 +553,12 @@ export default function RowEditor({
                 value={customValue}
                 onChange={(e) => setCustomValue(e.target.value)}
                 onKeyDown={(e) => e.key === "Enter" && addCustomParam(e)}
-                className="bg-slate-800 border border-slate-700 text-white p-1 rounded text-xs w-24"
+                className="bg-cardBackground border border-slate-700 text-foreground p-1 rounded text-xs w-24"
               />
               <button
                 type="button"
                 onClick={addCustomParam}
-                className="text-[10px] bg-slate-700 hover:bg-slate-600 text-white px-2 py-1 rounded transition-colors"
+                className="text-[10px] bg-cardBackground hover:bg-slate-600 text-foreground px-2 py-1 rounded transition-colors"
               >
                 ОК
               </button>
@@ -572,7 +570,7 @@ export default function RowEditor({
                   setCustomKey("");
                   setCustomValue("");
                 }}
-                className="text-slate-500 hover:text-red-400"
+                className="text-foreground hover:text-red-400"
               >
                 <X size={13} />
               </button>
@@ -596,20 +594,20 @@ export default function RowEditor({
         {(results.length > 0 || notFound) && (
           <div className="mt-2">
             {notFound && (
-              <div className="text-xs text-slate-500 italic px-1">
+              <div className="text-xs text-foreground italic px-1">
                 Ничего не найдено
               </div>
             )}
             {results.length > 0 && (
-              <div className="bg-black/40 rounded p-2 max-h-44 overflow-y-auto space-y-0.5">
+              <div className="bg-cardBackground/10 rounded p-2 max-h-44 overflow-y-auto space-y-0.5">
                 {results.map((prod) => (
                   <div
                     key={prod.sync_uid}
                     onClick={(e) => selectProduct(e, prod)}
-                    className="p-2 hover:bg-slate-800 cursor-pointer rounded transition-colors"
+                    className="p-2 hover:bg-cardBackground/10 cursor-pointer rounded transition-colors"
                   >
-                    <div className="text-xs text-white">{prod.header}</div>
-                    <div className="text-[10px] text-slate-400">
+                    <div className="text-xs text-foreground">{prod.header}</div>
+                    <div className="text-[10px] text-foreground">
                       {prod.articul} — {prod.price} ₽
                     </div>
                   </div>
@@ -642,17 +640,17 @@ export default function RowEditor({
                 <button
                   type="button"
                   onClick={(e) => changeQty(e, localQty - 1)}
-                  className="px-2 py-1 bg-slate-800 hover:bg-slate-700 text-slate-300"
+                  className="px-2 py-1 bg-cardBackground hover:bg-cardBackground/10 text-foreground"
                 >
                   <Minus size={11} />
                 </button>
-                <span className="px-3 py-1 bg-slate-900 text-xs font-medium min-w-[32px] text-center">
+                <span className="px-3 py-1 bg-cardBackground text-xs font-medium min-w-[32px] text-center">
                   {localQty}
                 </span>
                 <button
                   type="button"
                   onClick={(e) => changeQty(e, localQty + 1)}
-                  className="px-2 py-1 bg-slate-800 hover:bg-slate-700 text-slate-300"
+                  className="px-2 py-1 bg-cardBackground hover:bg-cardBackground/10 text-foreground"
                 >
                   <Plus size={11} />
                 </button>

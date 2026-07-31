@@ -1,6 +1,7 @@
 /* === Tailwind v4 Core === */
 @import "tailwindcss";
 @import "tw-animate-css";
+@plugin "@tailwindcss/typography";
 
 /* === Custom Dark Variant === */
 @custom-variant dark (&:is(.dark *));
@@ -69,6 +70,8 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
+  --color-cardBackground: var(--cardBackground);
+  --color-cardBackgroundHover: var(--card-backgroundHover);
   --color-card-foreground: var(--card-foreground);
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
@@ -83,6 +86,10 @@
   --color-surface-container: var(--surface-container);
   --color-surface-highest: var(--surface-highest);
   --color-text: var(--text);
+  --color-textPrimary: var(--textPrimary);
+  --color-textForeground: var(--textForeground);
+  --color-error: var(--error);
+  --color-success: var(--success);
 
   /* Дополнительные брендовые цвета */
   --color-link: #6cb4f4;
@@ -122,6 +129,7 @@
   --accent-hover: #b08d57;
   --card: #f8f9fa;
   --card-background: rgba(0, 0, 0, 0.05);
+  --card-backgroundHover: #eae9f1;
   --card-border: rgba(0, 0, 0, 0.1);
   --border: rgba(196, 164, 112, 0.2); /* Золотистая полупрозрачная рамка */
 
@@ -129,6 +137,7 @@
   --backgroundAlt: oklch(0.93 0.02 270); /* Светло-сероватый блок */
 
   --cardMy: #f4f5f7;
+  --cardBackground: #f2f2f3;
   --cardForeground: oklch(0.15 0.02 85);
 
   --accentForeground: oklch(0.98 0.005 85);
@@ -138,9 +147,10 @@
   --textW: oklch(85.209% 0.02158 271.166);
   --textWMuted: oklch(98.221% 0.00423 271.371);
   --success: oklch(0.75 0.16 150); /* Мягкий зелёный */
-  --error: oklch(0.65 0.2 30); /* Красно-оранжевый */
+  --error: rgb(247, 8, 40); /* Красно-оранжевый */
 
   --text: #1a1a1a;
+  --textForeground: oklch(0.15 0.02 85);
 
   --mutedForeground: oklch(0.55 0.02 85);
 
@@ -177,18 +187,25 @@
 
   --card: #161b24;
   --card-background: rgba(255, 255, 255, 0.05);
+  --card-backgroundHover: #161b24;
   --card-border: rgba(255, 255, 255, 0.1);
   --border: rgba(196, 164, 112, 0.3);
+  --cardBackground: #161b24;
 
   --muted: #94a3b8;
 
   --text: #b08d57;
+  --textPrimary: oklch(84.251% 0.00572 274.896); /* Почти белый */
 
   --textForeground: oklch(0.95 0.005 85);
   --cardForeground: oklch(0.95 0.005 85);
   --primaryForeground: oklch(0.1 0.02 220);
+  --primaryLight: #4a69c4; /* Осветлённая версия синего */
+
+  --success: oklch(0.75 0.16 150);
 
   --ring: oklch(0.65 0.15 45);
+  --error: rgb(247, 8, 40); /* Красно-оранжевый */
 
   --surface-container: #1a1d23;
   --surface-highest: #2a2e37;
@@ -259,7 +276,7 @@
 
   /* Индустриальная карточка */
   .card-machined {
-    @apply bg-surface-container p-6 rounded-lg transition-all duration-500;
+    @apply bg-surface-container px-8 py-3 rounded-md font-semibold transition-all duration-300 shadow-lg active:scale-95 text-[var(--text)];
     /* Ghost Border (едва заметный блеск золота) */
     border: 1px solid rgba(212, 175, 55, 0.15);
   }

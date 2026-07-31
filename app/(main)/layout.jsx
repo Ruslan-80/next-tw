@@ -6,7 +6,7 @@ import { CompareProvider } from "@/context/CompareContext";
 import { FavoritesProvider } from "@/context/FavoritesContext";
 import MetricsInitializer from "@/components/MetricsInitializer";
 import MobileSearch from "@/components/shared/MobileSearch";
-// import CookieBanner from "@/components/CookieBanner";
+import CookieBanner from "@/components/CookieBanner";
 
 import "../../styles/globals2.css";
 
@@ -37,8 +37,8 @@ export default function MainLayout({ children }) {
           </div>
         </FavoritesProvider>
       </CompareProvider>
-      {/* <MetricsInitializer /> */}
-      {/* <CookieBanner /> */}
+      <MetricsInitializer />
+      <CookieBanner />
     </>
   );
 }

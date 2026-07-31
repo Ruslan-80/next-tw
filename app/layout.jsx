@@ -1,5 +1,4 @@
-export const dynamic = "force-dynamic";
-export const fetchCache = "force-no-store";
+import { ThemeProvider } from "@/components/theme-provider";
 import GoogleTag from "@/components/GoogleTag";
 import { Roboto, Roboto_Mono } from "next/font/google";
 import Script from "next/script";
@@ -21,14 +20,24 @@ export default function RootLayout({ children }) {
   return (
     <html
       lang="ru"
-      className={`${roboto.variable} ${robotoMono.variable} antialiased dark`}
+      suppressHydrationWarning
+      className={`${roboto.variable} ${robotoMono.variable} antialiased`}
       // data-theme="dark"
     >
-      <head>
+      {/* <head>
         <GoogleTag />
-      </head>
+      </head> */}
 
-      <body className="bg-background">{children}</body>
+      <body>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {children}
+        </ThemeProvider>
+      </body>
     </html>
   );
 }

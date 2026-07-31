@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 export function proxy(request) {
   const { pathname } = request.nextUrl;
 
-  // ⛔️ 1. ВСЕГДА пропускаем служебные пути Next.js
+  // ⛔️ 1. Пропускаем служебные файлы Next.js
   if (
     pathname.startsWith("/_next") ||
     pathname.startsWith("/__nextjs_font") ||
@@ -14,13 +14,33 @@ export function proxy(request) {
     return NextResponse.next();
   }
 
-  // ⛔️ 2. Ограничиваем область действия
-  const shouldHandle =
+  // 🔒 2. Защита админки (/admin)
+  if (pathname.startsWith("/admin") && !pathname.startsWith("/admin/login")) {
+    const authCookie = request.cookies.get("admin_auth");
+
+    if (!authCookie || authCookie.value !== "true") {
+      const loginUrl = new URL("/admin/login", request.url);
+      return NextResponse.redirect(loginUrl);
+    }
+  }
+
+  // 🔒 3. Защита конфигуратора (/conf)
+  if (pathname.startsWith("/conf") && !pathname.startsWith("/conf/login")) {
+    const confCookie = request.cookies.get("conf_auth");
+
+    if (!confCookie || confCookie.value !== "true") {
+      const loginUrl = new URL("/conf/login", request.url);
+      return NextResponse.redirect(loginUrl);
+    }
+  }
+
+  // ⛔️ 4. Логика cartToken для каталога и корзины
+  const shouldHandleCart =
     pathname.startsWith("/api/cart") ||
     pathname === "/cart" ||
     pathname.startsWith("/catalog/");
 
-  if (!shouldHandle) {
+  if (!shouldHandleCart) {
     return NextResponse.next();
   }
 
@@ -38,7 +58,6 @@ export function proxy(request) {
   );
 
   let token = cookies.cartToken;
-
   const response = NextResponse.next();
 
   if (!token) {
@@ -62,6 +81,13 @@ export function proxy(request) {
   return response;
 }
 
+// 🎯 Не забудьте добавить /conf/:path* в matcher!
 export const config = {
-  matcher: ["/api/cart/:path*", "/cart", "/catalog/:path*"],
+  matcher: [
+    "/admin/:path*",
+    "/conf/:path*",
+    "/api/cart/:path*",
+    "/cart",
+    "/catalog/:path*",
+  ],
 };

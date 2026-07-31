@@ -60,7 +60,7 @@ function Slider() {
     >
       <SwiperSlide>
         <img
-          src="/images/slider/image1.jpg"
+          src="/images/slider/image1.png"
           alt="slider 1"
           style={{ width: "100%" }}
         />

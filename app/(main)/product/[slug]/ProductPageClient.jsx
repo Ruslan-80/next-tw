@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import CharacteristicsTab from "./CharacteristicsTab";
 import DocumentationTab from "../../../../components/DocumentationTab";
 import DostavkaTab from "../../../../components/DostavkaTab";
+import Markdown from "react-markdown";
 
 import ReviewsTab from "../../../../components/ReviewsTab";
 import DescriptionsTab from "../../../../components/DescriptionsTab";
@@ -22,7 +23,6 @@ import VideoGallery from "@/components/VideoGallery";
 import ProductFaq from "../../faq/voprosiky";
 import RandomObjects from "@/components/object";
 import Link from "next/link";
-import ProductCard from "./test";
 
 export default function ProductPageClient({
   product,
@@ -213,6 +213,7 @@ export default function ProductPageClient({
                         src={img}
                         alt={`Preview ${index}`}
                         fill
+                        sizes="(max-width: 768px) 100vw, 50vw"
                         className="object-contain p-1"
                       />
                     </button>
@@ -221,43 +222,45 @@ export default function ProductPageClient({
               </div>
             </div>
 
-            {/* ПРАВАЯ КОЛОНКА: Инфо и Покупка */}
-            <div className="lg:col-span-6 xl:col-span-6 space-y-8">
-              <h1
-                className="text-2xl lg:text-4xl font-extrabold mb-6 tracking-tight text-textForeground max-w-[1000px]"
-                itemProp="name"
-              >
-                {product.name || "Продукт"}
-              </h1>
-              {/* Блок цены и кнопок */}
-              <div
-                className="card-glass text-text"
-                itemProp="offers"
-                itemScope
-                itemType="https://schema.org/Offer"
-              >
-                <meta itemProp="priceCurrency" content="RUB" />
-                <meta
-                  itemProp="price"
-                  content={product.basePrice?.toString() || "0"}
-                />
-                <link
-                  itemProp="availability"
-                  href={
-                    product.stock > 0
-                      ? "https://schema.org/InStock"
-                      : "https://schema.org/OutOfStock"
-                  }
-                />
-
-                <div className="flex flex-col gap-6">
-                  <div className="flex items-baseline gap-2">
-                    <span className="text-4xl lg:text-5xl font-black text-accent">
-                      {product.basePrice
-                        ? product.basePrice.toLocaleString("ru-RU")
-                        : "0"}
-                    </span>
-                    <span className="text-xl font-bold text-textMuted">₽</span>
+            {/* Product Details */}
+            <div className="lg:col-span-6 py-6 bg-gray-50 dark:bg-gray-900 dark:text-white rounded-2xl">
+              <meta itemProp="sku" content={product.article || "N/A"} />
+              <Link
+                itemProp="url"
+                content={`https://electroshit-pro.ru/product/${product.slug}`}
+                href={`/product/${product.slug}`}
+              />
+              <div className="mb-8">
+                {/* Price and Actions */}
+                <div className="flex flex-col lg:flex-row items-center gap-4 mb-6 mx-4">
+                  <div
+                    className="text-3xl font-bold text-accent"
+                    itemProp="offers"
+                    itemScope
+                    itemType="https://schema.org/Offer"
+                  >
+                    <meta itemProp="priceCurrency" content="RUB" />
+                    <meta
+                      itemProp="price"
+                      content={
+                        product.basePrice ? product.basePrice.toString() : "0"
+                      }
+                    />
+                    <link
+                      itemProp="availability"
+                      href={
+                        product.stock > 0
+                          ? "https://schema.org/InStock"
+                          : "https://schema.org/OutOfStock"
+                      }
+                    />
+                    <link
+                      itemProp="itemCondition"
+                      href="https://schema.org/NewCondition"
+                    />
+                    {product.basePrice
+                      ? `${product.basePrice.toLocaleString("ru-RU")} руб.`
+                      : "Цена недоступна"}
                   </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -274,19 +277,273 @@ export default function ProductPageClient({
                       }
                       className="bg-primary hover:bg-primary-hover text-white py-4 rounded-2xl font-bold text-lg transition-colors"
                     >
-                      В 1 клик
+                      Купить в 1 клик
                     </button>
                   </div>
                 </div>
               </div>
 
+              {/* Rating */}
+              <div
+                itemProp="aggregateRating"
+                itemScope
+                itemType="https://schema.org/AggregateRating"
+                style={{ display: "none" }}
+              >
+                <span itemProp="ratingValue">{parseFloat(ratingValue)}</span>
+                <span itemProp="reviewCount">{parseInt(ratingCount)}</span>
+              </div>
+              <RatingDisplay
+                ratingValue={parseFloat(ratingValue)}
+                ratingCount={parseInt(ratingCount)}
+              />
+              <div>
+                <span
+                  itemProp="brand"
+                  itemScope
+                  itemType="https://schema.org/Brand"
+                >
+                  <meta itemProp="name" content="Electroshit-PRO" />
+                </span>
+              </div>
+
+              {/* Info Cards */}
+              {/* <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8 ">
+                <div className="card-glass p-4 rounded-xl shadow-sm flex items-center dark:bg-gray-500 dark:text-white">
+                  <div className="bg-blue-100 p-3 rounded-full mr-4 ">
+                    <svg
+                      className="w-6 h-6 text-blue-600"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+                      />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-text">Обратный звонок</h3>
+                    <button
+                      onClick={() =>
+                        handleButtonClick(`Перезвонить мне: ${product.name}`)
+                      }
+                      className="text-blue-600 hover:text-blue-800 font-medium mt-1"
+                    >
+                      Перезвонить мне
+                    </button>
+                  </div>
+                </div>
+
+                <div className="bg-surface-low border border-border p-4 rounded-xl shadow-sm flex items-center">
+                  <div className="bg-green-100 p-3 rounded-full mr-4">
+                    <svg
+                      className="w-6 h-6 text-green-600"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                      />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-gray-900">Оплата</h3>
+                    <p className="text-gray-600">Наличными/Безналичными</p>
+                  </div>
+                </div>
+
+                <div className="bg-white p-4 rounded-xl shadow-sm flex items-center dark:bg-gray-500 dark:text-white">
+                  <div className="bg-purple-100 p-3 rounded-full mr-4">
+                    <svg
+                      className="w-6 h-6 text-purple-600"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+                      />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-gray-900">Нашли дешевле?</h3>
+                    <p className="text-gray-600">Снизим цену!</p>
+                  </div>
+                </div>
+
+                <div className="bg-white p-4 rounded-xl shadow-sm flex items-center dark:bg-gray-500 dark:text-white">
+                  <div className="bg-red-100 p-3 rounded-full mr-4">
+                    <svg
+                      className="w-6 h-6 text-red-600"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+                      />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-gray-900">Возврат и обмен</h3>
+                    <p className="text-gray-600">В течение 14 дней</p>
+                  </div>
+                </div>
+              </div> */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8 mx-4">
+                {/* Обратный звонок */}
+                <div className="card-glass flex items-center">
+                  <div className="bg-accent/10 p-3 rounded-full mr-4">
+                    <svg
+                      className="w-6 h-6 text-accent"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+                      />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-foreground">
+                      Обратный звонок
+                    </h3>
+                    <button
+                      onClick={() =>
+                        handleButtonClick(`Перезвонить мне: ${product.name}`)
+                      }
+                      className=" text-accent hover:text-accentHover font-medium mt-1"
+                    >
+                      Перезвонить мне
+                    </button>
+                  </div>
+                </div>
+
+                {/* Оплата */}
+                <div className="card-glass flex items-center">
+                  <div className="bg-accent/10 p-3 rounded-full mr-4">
+                    <svg
+                      className="w-6 h-6 text-accent"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                      />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-foreground">Оплата</h3>
+                    <p className="text-sm text-muted-foreground">
+                      Наличными/Безналичными
+                    </p>
+                  </div>
+                </div>
+
+                {/* Нашли дешевле? */}
+                <div className="card-glass flex items-center">
+                  <div className="bg-accent/10 p-3 rounded-full mr-4">
+                    <svg
+                      className="w-6 h-6 text-accent"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+                      />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-foreground">
+                      Нашли дешевле?
+                    </h3>
+                    <p className="text-muted-foreground">Снизим цену!</p>
+                  </div>
+                </div>
+
+                {/* Возврат и обмен */}
+                <div className="card-glass flex items-center">
+                  <div className="bg-accent/10 p-3 rounded-full mr-4">
+                    <svg
+                      className="w-6 h-6 text-accent"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+                      />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-foreground">
+                      Возврат и обмен
+                    </h3>
+                    <p className="text-muted-foreground">В течение 14 дней</p>
+                  </div>
+                </div>
+              </div>
+              {/* Additional Actions */}
+              <div className="flex flex-col gap-3 mx-4">
+                <button
+                  onClick={() =>
+                    handleButtonClick(
+                      `Заказать бесплатный расчет: ${product.name}`,
+                    )
+                  }
+                  // className="w-full py-3 px-6 bg-primary hover:bg-primaryLight text-white font-medium rounded-lg transition-colors duration-300"
+                  className="bg-gradient-metal rounded-md font-bold py-3 px-6"
+                >
+                  Заказать бесплатный расчет
+                </button>
+                <button
+                  onClick={() =>
+                    handleButtonClick(
+                      `Заказать бесплатный замер с выездом специалиста: ${product.name}`,
+                    )
+                  }
+                  // className="w-full py-3 px-6 bg-accent hover:bg-accentHover text-white font-medium rounded-lg transition-colors duration-300"
+                  className="btn-gold"
+                >
+                  Заказать бесплатный замер с выездом специалиста
+                </button>
+              </div>
+
               {/* Краткие характеристики */}
-              <div className="space-y-4">
+              <div className="space-y-4 mt-4 mx-4">
                 <h3 className="text-lg font-bold flex items-center gap-2">
                   <span className="w-1.5 h-6 bg-accent rounded-full"></span>
                   Ключевые параметры
                 </h3>
-                {/* Таблица характеристик (Glassmorphism) */}
                 {/* Таблица характеристик (Glassmorphism) */}
                 <div className="card-glass text-text">
                   <table className="w-full text-sm border-separate border-spacing-y-3">
@@ -312,26 +569,26 @@ export default function ProductPageClient({
                 </div>
                 <button
                   onClick={() => setActiveTab("characteristics")}
-                  className="text-accent font-semibold hover:underline decoration-2 underline-offset-4"
+                  className="text-accent font-semibold hover:underline decoration-2 underline-offset-4 mx-4 mb-4"
                 >
                   Все характеристики ({product.attributes?.length})
                 </button>
               </div>
 
               {/* Инфо-карточки (сетка 2х2) */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              {/* <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mx-4">
                 {[
                   {
                     label: "Оплата",
                     val: "Любые способы",
-                    icon: "M12 8c-1.6...",
+                    icon: "M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z",
                     color: "text-green-600",
-                    bg: "bg-green-50",
+                    bg: "bg-green-100",
                   },
                   {
                     label: "Гарантия",
                     val: "От производителя",
-                    icon: "M9 12l2 2 4-4m5...",
+                    icon: "M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z",
                     color: "text-blue-600",
                     bg: "bg-blue-50",
                   },
@@ -364,35 +621,84 @@ export default function ProductPageClient({
                   </div>
                 ))}
               </div>
+              {product.attributes
+                .filter((attr) =>
+                  allowed.some((word) =>
+                    attr.attributeName.toLowerCase().includes(word),
+                  ),
+                )
+                .map((attr) => (
+                  <div
+                    key={`${product.id}-${attr.attributeName}-${attr.attributeValueName}`}
+                    className="flex justify-between my-4 px-2 mx-4"
+                  >
+                    <span className="font-medium dark:text-white">
+                      {attr.attributeName}:
+                    </span>
+                    <span className=" dark:text-white">
+                      {attr.attributeValueName}
+                    </span>
+                  </div>
+                ))}
+              {product.attributes.length > 3 && (
+                <button
+                  onClick={() => {
+                    setActiveTab("characteristics");
+                    characteristicsRef.current?.scrollIntoView({
+                      behavior: "smooth",
+                    });
+                  }}
+                  className="text-xl text-blue-500 hover:text-gray-700 mx-4 mb-4"
+                >
+                  Все характеристики ({product.attributes.length})
+                </button>
+              )} */}
 
-              {/* Срок и кратность */}
-              <div className="p-5 rounded-2xl bg-red-50 card-glass">
-                <div className="flex flex-col gap-2">
-                  <p className="text-white-700 font-bold">
-                    Минимальный заказ:{" "}
-                    {product.attributes?.find(
-                      (a) => a.attributeName === "Кратность",
-                    )?.attributeValueName ?? 10}{" "}
-                    шт.
-                  </p>
-                  <p className="text-sm">
-                    Срок производства:{" "}
-                    <span className="font-bold">
+              {/* Share and Production Time */}
+              <div className="border-t border-accent/40 pt-6 mx-4">
+                <div className="flex flex-col md:flex-col justify-between gap-4 text-xl">
+                  <div className="text-red-700">
+                    <span className="font-semibold">
+                      Заказ от{" "}
+                      {product.attributes?.find(
+                        (attr) => attr.attributeName === "Кратность",
+                      )?.attributeValueName ?? 10}{" "}
+                      шт.
+                    </span>
+                  </div>
+                  <div className="text-text">
+                    {/* <span className="font-semibold">Срок изготовления:</span> 7
+                    до 14 дней */}
+                    <span className="font-semibold">
+                      Срок изготовления:{" "}
                       {product.attributes?.find(
                         (a) => a.attributeName === "Срок изготовления",
                       )?.attributeValueName ?? "10-14 дней"}
                     </span>
-                  </p>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
+          <div className="my-2 lg:my-8 rounded-2xl shadow-xl p-2">
+            {/* <div
+              className="container mx-auto text-textForeground text-sm lg:text-xl text-justify lg:indent-30 px-2 lg:px-8"
+              itemProp="description"
+            >
+              {product.description}
+            </div> */}
+            <div className="container mx-auto text-textForeground text-sm lg:text-xl text-justify lg:indent-10 px-2 pb-10 lg:px-8">
+              <Markdown>{product.description}</Markdown>
+            </div>
+
+            <Advantages />
+          </div>
         </div>
 
         {/* ТАБЫ (Нижний блок) */}
-        <section className="bg-gradient-metal animate-metal border-t border-border animation-duration: 5s; animation-direction: reverse">
-          <div className="container mx-auto py-4 lg:py-8 px-4  pt-16">
-            <div className="flex gap-2 overflow-x-auto pb-4 no-scrollbar mb-8">
+        <section className="bg-gradient-metal border-t border-border md:animate-metal">
+          <div className="container mx-auto py-4 lg:py-8 px-4 pt-16">
+            <div className="flex flex-col md:flex-row gap-3 md:gap-5 pb-4 no-scrollbar mb-8">
               {[
                 "characteristics",
                 "description",
@@ -405,8 +711,9 @@ export default function ProductPageClient({
                   onClick={() => setActiveTab(tab)}
                   className={`px-8 py-3 rounded-xl font-bold whitespace-nowrap transition-all ${
                     activeTab === tab
-                      ? "bg-accent text-white shadow-lg shadow-accent/20"
-                      : "bg-surface-high text-textMuted hover:bg-surface-highest"
+                      ? "btn-gold"
+                      : // : "bg-surface-high text-textMuted hover:bg-surface-highest"
+                        "bg-gradient-metal"
                   }`}
                 >
                   {tab === "characteristics" && "Характеристики"}
@@ -418,24 +725,37 @@ export default function ProductPageClient({
               ))}
             </div>
 
-            <div className="min-h-[300px] rounded-3xl py-6 lg:py-10 shadow-sm ">
+            <div className="min-h-[300px]">
               {/* Контент табов */}
               {activeTab === "characteristics" && (
                 <CharacteristicsTab attributes={product.attributes || []} />
               )}
               {activeTab === "description" && (
-                <div className="prose prose-lg max-w-none">
-                  {product.description}
+                <div className="prose prose-lg max-w-none text-textForeground">
+                  <Markdown>{product.description}</Markdown>
                 </div>
               )}
-              {/* ... остальные табы ... */}
+              {activeTab === "documentation" && (
+                <div className="prose prose-lg max-w-none">
+                  <DocumentationTab files={product.documentationFiles || []} />
+                </div>
+              )}
+              {activeTab === "dostavka" && (
+                <div className="prose prose-lg max-w-none">
+                  <DostavkaTab article={product.article} />
+                </div>
+              )}
+              {activeTab === "reviews" && (
+                <div className="prose prose-lg max-w-none">
+                  <ReviewsTab reviews={product.reviews || []} />
+                </div>
+              )}
             </div>
           </div>
         </section>
 
         {/* Дополнительные секции */}
         <div className="">
-          <Advantages />
           <ProductFaq />
           <WorksGallery />
           <RandomObjects />

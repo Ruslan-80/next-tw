@@ -562,7 +562,8 @@ export default function ComponentUERN() {
                     handleButtonClick("Получить коммерческое предложение")
                   }
                   size="lg"
-                  className="bg-accent hover:bg-accent/90 text-accent-foreground text-sm lg:text-xl mx-4 py-8"
+                  // className="bg-accent hover:bg-accent/90 text-accent-foreground text-sm lg:text-xl mx-4 py-8"
+                  className="btn-gold text-primary text-sm lg:text-xl mx-4 py-8"
                 >
                   Получить коммерческое предложение
                   <ArrowRight className="ml-2 h-4 w-4" />

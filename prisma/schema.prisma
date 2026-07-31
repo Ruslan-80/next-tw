@@ -74,7 +74,7 @@ model Order {
   updatedAt DateTime @updatedAt
 
   @@index([userId, status])
-  @@map("order")
+  @@map("orders")
 }
 
 model VerificationCode {

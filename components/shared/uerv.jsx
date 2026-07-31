@@ -28,7 +28,7 @@ export function uervTop() {
   };
   return (
     <>
-      <section>
+      <section className="container mx-auto px-2">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-8 animate-fade-in-up">
             <div className="space-y-4">

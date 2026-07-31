@@ -1,21 +1,13 @@
 import Image from "next/image";
-import Logo from "../../public/mainLogo.svg";
+import Logo from "@/public/mainLogo.svg";
 import Link from "next/link";
-import {
-  Mail,
-  Phone,
-  MapPin,
-  Facebook,
-  Instagram,
-  Twitter,
-  Youtube,
-  Vk,
-} from "lucide-react";
+import { Mail, Phone, MapPin, Youtube } from "lucide-react";
+import FooterSubscribeForm from "./FooterSubscribeForm"; // или укажите правильный путь
 
 export default function Footer() {
   return (
     <footer
-      className="bg-gray-900 text-white pt-12 pb-6 text-sm lg:text-xl"
+      className="bg-card text-foreground pt-12 pb-6 text-sm lg:text-xl border-t border-t-accent/40"
       itemScope
       itemType="https://schema.org/Store"
     >
@@ -31,27 +23,23 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
           {/* Лого и контакты */}
           <div>
-            <Link href="/">
-              <Image
-                src={Logo}
-                // width={200}
-                // height={80}
-                alt="Электрощит-ПРО"
-                className="h-12 w-auto mb-4 bg-white px-4 rounded-lg"
-              />
+            <Link href="/" className="flex-shrink-1">
+              <span className="font-bold text-3xl text-text">
+                ЭЛЕКТРОЩИТ-PRO
+              </span>
             </Link>
-            <p className="text-gray-400 mb-4 text-xs md:text-sm">
+            <p className="my-4 text-xs md:text-sm">
               Комплексные поставки электротехнических щитов и оборудования для
               жилых и коммерческих объектов.
             </p>
 
-            <div className="space-y-2">
+            <div className="space-y-2 text-sm">
               <div className="flex items-center gap-2">
                 <Phone size={16} className="text-gray-400" />
                 <a
                   itemProp="telephone"
                   href="tel:+74993901467"
-                  className="hover:text-red-500 transition-colors"
+                  className="hover:text-text transition-colors"
                 >
                   +7 (499) 390-14-67
                 </a>
@@ -61,7 +49,7 @@ export default function Footer() {
                 <a
                   itemProp="telephone"
                   href="tel:+79262762415"
-                  className="hover:text-red-500 transition-colors"
+                  className="hover:text-text transition-colors"
                 >
                   +7 (926) 276-24-15
                 </a>
@@ -71,30 +59,32 @@ export default function Footer() {
                 <a
                   itemProp="email"
                   href="mailto:info@electroshit-pro.ru"
-                  className="hover:text-red-500 transition-colors"
+                  className="hover:text-text transition-colors"
                 >
                   info@electroshit-pro.ru
                 </a>
               </div>
               <div className="flex items-start gap-2 mt-3">
-                <MapPin size={16} className="text-gray-400 mt-1" />
-                <span className="text-gray-400">
-                  Режим работы: Пн-Пт 9:00 - 18:00
-                </span>
+                <MapPin
+                  size={16}
+                  className="text-gray-400 mt-1 flex-shrink-0"
+                />
+                <span>Режим работы: Пн-Пт 9:00 - 18:00</span>
               </div>
               <div className="flex items-start gap-2 mt-3">
                 <div
                   itemProp="address"
                   itemScope
                   itemType="https://schema.org/PostalAddress"
-                  className="flex items-start gap-2 mt-3"
+                  className="flex items-start gap-2"
                 >
-                  <MapPin size={16} className="text-gray-400 mt-1" />
-                  <span className="text-gray-400">
-                    <span itemProp="addressLocality">г. Москва</span>,
-                    <span itemProp="streetAddress">
-                      улица Чермянская, дом 1, строение 1
-                    </span>
+                  <MapPin
+                    size={16}
+                    className="text-gray-400 mt-1 flex-shrink-0"
+                  />
+                  <span>
+                    <span itemProp="addressLocality">г. Москва</span>,{" "}
+                    <span itemProp="streetAddress">улица Чермянская, 1с1</span>
                   </span>
                 </div>
               </div>
@@ -103,14 +93,14 @@ export default function Footer() {
 
           {/* Каталог */}
           <div>
-            <h3 className="text-xl font-semibold mb-4 border-b border-gray-700 pb-2">
+            <h3 className="text-accent text-xl font-semibold mb-4 border-b border-accent/40 pb-2">
               Каталог
             </h3>
-            <ul className="space-y-2">
+            <ul className="space-y-2 text-sm">
               <li>
                 <Link
                   href="/catalog/schity-etazhnye-i-ustroystva-podezdnye"
-                  className="text-gray-400 hover:text-red-500 transition-colors"
+                  className="hover:text-accent transition-colors"
                 >
                   Щиты и устройства этажные
                 </Link>
@@ -118,7 +108,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/catalog/nakladki-shitov-etazhnyh-she"
-                  className="text-gray-400 hover:text-red-500 transition-colors"
+                  className="hover:text-accent transition-colors"
                 >
                   Накладки щитов этажных ЩЭ
                 </Link>
@@ -126,7 +116,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/catalog/ustroystva-etazhnye"
-                  className="text-gray-400 hover:text-red-500 transition-colors"
+                  className="hover:text-accent transition-colors"
                 >
                   Устройства модульные
                 </Link>
@@ -134,7 +124,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/catalog/vvodno-raspredelitelnye-ustrojstva-vru"
-                  className="text-gray-400 hover:text-accenthover transition-colors"
+                  className="hover:text-accent transition-colors"
                 >
                   Корпуса ВРУ
                 </Link>
@@ -152,14 +142,14 @@ export default function Footer() {
 
           {/* Покупателям */}
           <div>
-            <h3 className="text-lg font-semibold mb-4 border-b border-gray-700 pb-2">
+            <h3 className="text-accent text-lg font-semibold mb-4 border-b border-accent/40 pb-2">
               Покупателям
             </h3>
-            <ul className="space-y-2">
+            <ul className="space-y-2 text-sm">
               <li>
                 <Link
                   href="/delivery"
-                  className="text-gray-400 hover:text-red-500 transition-colors"
+                  className="hover:text-accent transition-colors"
                 >
                   Доставка и оплата
                 </Link>
@@ -167,7 +157,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/guarantees"
-                  className="text-gray-400 hover:text-red-500 transition-colors"
+                  className="hover:text-accent transition-colors"
                 >
                   Гарантии и возврат
                 </Link>
@@ -175,7 +165,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/promotions"
-                  className="text-gray-400 hover:text-red-500 transition-colors"
+                  className="hover:text-accent transition-colors"
                 >
                   Бонусная программа
                 </Link>
@@ -183,7 +173,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/faq"
-                  className="text-gray-400 hover:text-red-500 transition-colors"
+                  className="hover:text-accent transition-colors"
                 >
                   Вопросы и ответы
                 </Link>
@@ -191,7 +181,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/objects"
-                  className="text-gray-400 hover:text-red-500 transition-colors"
+                  className="hover:text-accent transition-colors"
                 >
                   Наши объекты
                 </Link>
@@ -199,7 +189,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/contacts"
-                  className="text-gray-400 hover:text-red-500 transition-colors"
+                  className="hover:text-accent transition-colors"
                 >
                   Контакты
                 </Link>
@@ -209,52 +199,24 @@ export default function Footer() {
 
           {/* Соцсети и подписка */}
           <div>
-            <h3 className="text-xl font-semibold mb-4 border-b border-gray-700 pb-2">
+            <h3 className="text-accent text-xl font-semibold mb-4 border-b border-accent/40 pb-2">
               Подписка
             </h3>
-            <p className="text-gray-400 mb-4">Подпишитесь на новости и акции</p>
-            <form className="flex mb-6" id="footer_form" name="footer_form">
-              <input
-                id="footer_email"
-                type="email"
-                placeholder="Ваш email"
-                className="bg-gray-800 text-white rounded-l-lg px-4 py-2 w-full focus:outline-none focus:ring-2 focus:ring-red-500"
-              />
-              <button
-                id="footer_submit"
-                type="submit"
-                className="bg-accent hover:bg-accentHover text-white rounded-r-lg px-4 py-2 transition-colors"
-              >
-                OK
-              </button>
-            </form>
+            <p className="mb-4 text-sm">Подпишитесь на новости и акции</p>
+
+            {/* Вставляем интерактивный компонент формы */}
+            <FooterSubscribeForm />
 
             <div className="mt-6">
-              <h3 className="text-lg font-semibold mb-4 border-b border-gray-700 pb-2">
+              <h3 className="text-lg font-semibold mb-4 border-b border-accent/40 pb-2">
                 Социальные сети
               </h3>
               <div className="flex space-x-4">
-                {/* <a
-                  href="#"
-                  className="bg-gray-800 p-2 rounded-full hover:bg-red-600 transition-colors"
-                >
-                  <Facebook size={20} />
-                </a> */}
-                {/* <a
-                  href="#"
-                  className="bg-gray-800 p-2 rounded-full hover:bg-red-600 transition-colors"
-                >
-                  <Instagram size={20} />
-                </a> */}
-                {/* <a
-                  href="#"
-                  className="bg-gray-800 p-2 rounded-full hover:bg-red-600 transition-colors"
-                >
-                  <Twitter size={20} />
-                </a> */}
                 <a
                   href="https://www.youtube.com/@electroshit-pro/shorts"
-                  className="bg-gray-800 p-2 rounded-full hover:bg-red-600 transition-colors"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-background p-2 rounded-full hover:bg-red-600 transition-colors"
                 >
                   <Youtube size={20} />
                 </a>
@@ -262,44 +224,68 @@ export default function Footer() {
             </div>
           </div>
         </div>
+      </div>
 
-        {/* Нижняя панель */}
-        <div className="pt-6 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center">
-          <div className="text-gray-500 text-sm mb-4 md:mb-0">
-            © 2026 ElectroShit-PRO. Все права защищены.
-          </div>
-          <div className="flex flex-col text-justify px-4">
-            <div className="text-gray-500 text-sm mb-4 md:mb-0">
+      {/* Нижняя панель */}
+      <div className="mt-auto border-t border-accent/40 pt-6 pb-8">
+        <div className="container mx-auto px-4 space-y-6">
+          {/* Информационные дисклеймеры */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs text-gray-500">
+            <p className="leading-relaxed">
               Сайт носит информационный характер и не является публичной
               офертой. Стоимость товаров и их наличие не гарантируются.
-            </div>
-            <div className="text-gray-500 text-sm mb-4 md:mb-0">
-              Отправляя свой запрос на адреса электронной почты
-              sale@electroshit-pro.ru и info@electroshit-pro.ru (в случае заказа
-              на сайте), Вы даете свое согласие на обработку персональных
-              данных, файлов cookie и рассылку информационных, рекламных и
-              новостных сообщений, согласно{" "}
+            </p>
+
+            <p className="leading-relaxed">
+              Отправляя свой запрос на адреса электронной почты{" "}
+              <a
+                href="mailto:sale@electroshit-pro.ru"
+                className="text-gray-400 hover:text-text transition-colors underline"
+              >
+                sale@electroshit-pro.ru
+              </a>{" "}
+              и{" "}
+              <a
+                href="mailto:info@electroshit-pro.ru"
+                className="text-gray-400 hover:text-text transition-colors underline"
+              >
+                info@electroshit-pro.ru
+              </a>{" "}
+              (в случае заказа на сайте), Вы даете свое согласие на обработку
+              персональных данных, файлов cookie и рассылку информационных,
+              рекламных и новостных сообщений, согласно{" "}
               <Link
                 href="/privacy"
-                className="text-gray-500 hover:text-white transition-colors text-sm"
+                className="text-gray-400 hover:text-text transition-colors underline rounded-sm focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent"
               >
                 политике конфиденциальности и обработки персональных данных.
-              </Link>{" "}
-            </div>
+              </Link>
+            </p>
           </div>
-          <div className="flex flex-col md:flex-row space-x-6">
-            <Link
-              href="/privacy"
-              className="text-gray-500 hover:text-white transition-colors text-sm"
+
+          {/* Нижний блок: Копирайт и юридические ссылки */}
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4 pt-4 border-t border-white/5 text-xs text-gray-500">
+            <p>
+              © {new Date().getFullYear()} ElectroShit-PRO. Все права защищены.
+            </p>
+
+            <nav
+              aria-label="Юридическая информация"
+              className="flex flex-wrap items-center gap-x-6 gap-y-2"
             >
-              Политика конфиденциальности
-            </Link>
-            <Link
-              href="/terms"
-              className="text-gray-500 hover:text-white transition-colors text-sm"
-            >
-              Пользовательское соглашение
-            </Link>
+              <Link
+                href="/privacy"
+                className="hover:text-text transition-colors underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent"
+              >
+                Политика конфиденциальности
+              </Link>
+              <Link
+                href="/terms"
+                className="hover:text-text transition-colors underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent"
+              >
+                Пользовательское соглашение
+              </Link>
+            </nav>
           </div>
         </div>
       </div>

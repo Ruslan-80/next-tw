@@ -1,19 +1,21 @@
 "use client";
 import Script from "next/script";
 import { useConsentStore } from "@/lib/store/useConsentStore";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 
 export default function MetricsInitializer() {
-  // const { isAccepted } = useConsentStore();
-  // const [isMounted, setIsMounted] = useState(false);
+  const { isAccepted, isInitialized, initConsent } = useConsentStore();
 
-  // useEffect(() => {
-  //   setIsMounted(true);
-  // }, []);
+  useEffect(() => {
+    initConsent();
+  }, [initConsent]);
 
-  // if (!isMounted || !isAccepted) {
-  //   return null;
-  // }
+  // Не рендерим скрипты пока:
+  // 1) consent ещё не инициализирован (не прочитали cookie)
+  // 2) пользователь не дал согласие
+  if (!isInitialized || !isAccepted) {
+    return null;
+  }
 
   return (
     <>

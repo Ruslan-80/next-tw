@@ -28,13 +28,13 @@ export default function Home() {
         </h1>
 
         <Slider />
-        <TestHeader />
-        <TestHero />
-        <TestSectionText />
-        <TestProjects />
-        <TestFooter />
+        {/* <TestHeader /> */}
+        {/* <TestHero /> */}
+        {/* <TestSectionText /> */}
+        {/* <TestProjects /> */}
+        {/* <TestFooter /> */}
         <Category />
-        <Partners />
+        {/* <Partners /> */}
       </main>
     </>
   );

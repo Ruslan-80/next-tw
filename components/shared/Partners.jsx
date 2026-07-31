@@ -7,7 +7,7 @@ const Partners = () => {
     <section className="partners max-w-[1280px] mx-auto mb-20">
       <div className="container_my">
         <div className="partners__inner ">
-          <h1 className="text-3xl lg:text-5xl uppercase">
+          {/* <h1 className="text-3xl lg:text-5xl uppercase">
             Precision Engineering &{" "}
             <span className="text-gold">
               При производстве используются комплектующие ведущих производителей
@@ -19,14 +19,44 @@ const Partners = () => {
           </button>
           <h3 className="text-3xl  text-gray-700 mb-20 text-center">
             При производстве используются комплектующие ведущих производителей
-          </h3>
+          </h3> */}
           <div className="partners__logo card-industrial">
-            <Image
+            <div className="group">
+              <figure
+                className="w-[175px] h-[28px] bg-[#E31F0E] transition-colors duration-300
+      [mask-repeat:no-repeat] [mask-position:center] [mask-size:contain]
+      [-webkit-mask-repeat:no-repeat] [-webkit-mask-position:center] [-webkit-mask-size:contain]
+      group-hover:bg-transparent"
+                style={{
+                  WebkitMaskImage: `url(/images/partners/dkc.svg)`,
+                  maskImage: `url(/images/partners/dkc.svg)`,
+                }}
+              />
+
+              <img
+                src="/images/partners/dkc.svg"
+                className="w-[175px] h-[28px] opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                alt=""
+              />
+
+              <div
+                className="w-[89px] h-[34px] bg-[#2e3a59] hover:bg-[#E31F0E] transition-colors duration-300
+                  [mask-repeat:no-repeat] [mask-position:center] [mask-size:contain]
+                  [-webkit-mask-repeat:no-repeat] [-webkit-mask-position:center]
+                  [-webkit-mask-size:contain]"
+                style={{
+                  WebkitMaskImage: `url(/images/partners/iek.svg)`,
+                  maskImage: `url(/images/partners/iek.svg)`,
+                }}
+              />
+            </div>
+
+            {/* <Image
               src="/images/box/DKC.jpg"
               width={178}
               height={80}
               alt="logp"
-            />
+            /> */}
             <Image
               src="/images/box/IEK.png"
               width={172}

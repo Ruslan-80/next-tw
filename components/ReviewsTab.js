@@ -38,7 +38,7 @@ export default function ReviewsTab() {
               strokeWidth="2"
               strokeLinecap="round"
               strokeLinejoin="round"
-              className="text-gray-300"
+              className="text-text"
             >
               <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
             </svg>
@@ -46,18 +46,15 @@ export default function ReviewsTab() {
         </div>
       </div>
 
-      <div className="bg-blue-50 p-4 rounded-md mb-6">
-        <p className="text-center text-gray-600">
+      <div className="p-4 rounded-md mb-6">
+        <p className="text-center text-text">
           Станьте первым, кто оставит отзыв об этом товаре.
         </p>
       </div>
 
-      <div className="bg-orange-50 p-4 rounded-md">
-        <p className="text-center text-gray-600">
-          <a
-            href="#"
-            className="text-[hsl(var(--ekf-red))] font-medium hover:underline"
-          >
+      <div className="p-4 rounded-md">
+        <p className="text-center text-text">
+          <a href="#" className="text-text font-medium hover:underline">
             Авторизуйтесь
           </a>{" "}
           на сайте, чтобы добавить отзыв.

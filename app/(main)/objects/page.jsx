@@ -12,7 +12,7 @@ export default function RandomObjects() {
 
   return (
     <>
-      <h1 className="text-2xl md:text-3xl font-bold text-gray-900 text-center py-16">
+      <h1 className="text-2xl md:text-3xl font-bold text-accent text-center py-16">
         Наши объекты
       </h1>
       {items.map((item, index) => {
@@ -28,10 +28,10 @@ export default function RandomObjects() {
               >
                 {/* Текст */}
                 <div className="w-full md:w-1/2 space-y-6">
-                  <h2 className="text-2xl md:text-3xl font-bold text-gray-900">
+                  <h2 className="text-2xl md:text-3xl font-bold text-text">
                     {item.address}
                   </h2>
-                  <p className="text-gray-700 leading-relaxed text-base md:text-xl">
+                  <p className="text-foreground leading-relaxed text-base md:text-xl">
                     {item.text}
                   </p>
                 </div>

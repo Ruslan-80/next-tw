@@ -13,21 +13,21 @@ const AttributeItem = ({ attribute, index }) => {
   return (
     <motion.div
       key={attribute.id}
-      className="flex justify-between w-full px-2 py-4 rounded-lg border border-gold transition-colors duration-200 text-text hover:bg-blue-50"
-      // className={`
-      //   flex justify-between w-full p-4 rounded-lg transition-colors duration-200 text-text
-      //   ${index % 2 === 0 ? "bg-glass" : "bg-gray-50"}
-      //   ${isBlue ? "sm:bg-blue-50" : "sm:bg-gray-50"}
-      // `}
+      // className="flex justify-between w-full px-2 py-4 rounded-lg border border-gold transition-colors duration-200 text-text hover:bg-blue-50"
+      className={`
+        flex justify-between w-full p-4 rounded-lg transition-colors duration-200 text-text hover:bg-accent-hover
+        ${index % 2 === 0 ? "bg-glass" : "bg-card-background"}
+        ${isBlue ? "sm:bg-accent-hover" : "sm:bg-card-background"}
+      `}
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.05 }}
       role="listitem"
     >
-      <span className="text-sm md:text-base  font-medium">
+      <span className="text-sm md:text-base font-medium">
         {attribute.attributeName}
       </span>
-      <span className="text-sm md:text-base  font-semibold">
+      <span className="text-sm md:text-base font-semibold">
         {attribute.attributeValueName}
       </span>
     </motion.div>
@@ -52,7 +52,7 @@ export default function CharacteristicsTab({
   }
 
   return (
-    <div className=" shadow-lg rounded-2xl">
+    <>
       <div
         className="grid grid-cols-1 sm:grid-cols-2 gap-2"
         role="list"
@@ -62,6 +62,6 @@ export default function CharacteristicsTab({
           <AttributeItem key={attr.id} attribute={attr} index={index} />
         ))}
       </div>
-    </div>
+    </>
   );
 }

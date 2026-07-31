@@ -138,9 +138,9 @@ export default function Blog() {
     <>
       <JsonLd data={blogJsonLd} script_name="blog-jsonld" />
       <JsonLd data={HowTo} script_name="howto-jsonld" />
-      <div className="min-h-screen bg-white text-gray-900">
+      <div className="min-h-screen bg-background text-foreground">
         {/* Header/Navigation */}
-        <section className="sticky top-0 z-50 border-b border-gray-200 bg-gray-100/95 backdrop-blur supports-[backdrop-filter]:bg-gray-100/60">
+        <section className="sticky top-0 z-50 border-b border-text bg-background backdrop-blur supports-[backdrop-filter]:bg-background">
           <nav className="container mx-auto px-4 sm:px-6 lg:px-8 py-2">
             <ol className="hidden md:flex flex-wrap items-center gap-2 text-sm text-gray-600">
               <li>
@@ -167,7 +167,7 @@ export default function Blog() {
         </section>
 
         {/* Hero Section */}
-        <section className=" bg-gray-100 ">
+        <section className="">
           <div className="container mx-auto px-4 lg:px-8 py-6 lg:py-24">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
               {/* Left Content */}
@@ -178,19 +178,19 @@ export default function Blog() {
                   </span>
                 </div>
 
-                <h1 className="text-2xl md:text-3xl font-light tracking-tighter leading-tight text-slate-900 mb-8">
+                <h1 className="text-2xl md:text-3xl font-light tracking-tighter leading-tight mb-8">
                   Щит этажный ЩЭ: расключение, монтаж и выбор - полное
                   руководство 2026 года
                 </h1>
-                <h1 className="text-3xl lg:text-5xl font-bold leading-tight mb-8 text-balance">
+                {/* <h1 className="text-3xl lg:text-5xl font-bold leading-tight mb-8 text-balance">
                   Щит этажный ЩЭ: расключение, монтаж и выбор - полное
                   руководство 2026 года
-                </h1>
+                </h1> */}
 
-                <p className="text-xl lg:text-2xl text-gray-700 leading-relaxed mb-8 text-justify">
+                <p className="text-xl lg:text-2xl leading-relaxed mb-8 text-justify">
                   <Link
                     href="/catalog/shity-etazhnye-she"
-                    className="text-blue-600 font-semibold hover:text-blue-700 transition-colors"
+                    className="text-accent font-semibold hover:text-accenthover transition-colors"
                   >
                     Щит этажный (ЩЭ)
                   </Link>{" "}
@@ -198,7 +198,7 @@ export default function Blog() {
                   многоквартирных домов, обеспечивающим безопасное распределение
                   электроэнергии между квартирами.
                 </p>
-                <p className="text-xl lg:text-2xl text-gray-700 leading-relaxed mb-16 text-justify">
+                <p className="text-xl lg:text-2xl leading-relaxed mb-16 text-justify">
                   Правильное расключение, качественный монтаж и грамотный выбор
                   компонентов напрямую влияют на надежность и безопасность всей
                   электрической системы здания.
@@ -211,7 +211,8 @@ export default function Blog() {
                   <Knopka props="Получить консультацию" />
                   <Link
                     href={"/catalog/shity-etazhnye-she"}
-                    className="px-4 lg:px-8 py-3 border-2 border-blue-600 text-blue-600 hover:bg-blue-50 font-semibold rounded-lg transition-colors text-xl"
+                    // className="px-4 lg:px-8 py-3 border-2 border-blue-600 text-blue-600 hover:bg-blue-50 font-semibold rounded-lg transition-colors text-xl"
+                    className="card-machined"
                   >
                     Смотреть каталог
                   </Link>
@@ -229,28 +230,21 @@ export default function Blog() {
                   playsInline
                   className="w-full h-auto object-contain rounded-2xl hover:scale-105 transition-transform duration-500"
                 />
-                {/* <Image
-                  src="/images/categories/SE24L.png"
-                  alt="image"
-                  fill
-                  sizes="(max-width: 768px) 100vw, 33vw"
-                  className="object-contain rounded-2xl transition-transform duration-300 hover:scale-105 p-2"
-                /> */}
               </div>
             </div>
           </div>
         </section>
 
         {/* Main Content */}
-        <section className="bg-white py-6 lg:py-12">
+        <section className="py-6 lg:py-12">
           <div>
             <div className="max-w-5xl mx-auto space-y-16 px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
               {/* Section 1 */}
               <section>
-                <h2 className="text-3xl lg:text-5xl font-bold mb-8 text-primary">
+                <h2 className="text-3xl lg:text-5xl font-bold mb-8 text-accent">
                   Что такое щит этажный ЩЭ
                 </h2>
-                <p className="text-2xl text-gray-700 leading-relaxed mb-8 text-justify">
+                <p className="text-2xl leading-relaxed mb-8 text-justify">
                   <Link
                     href="/catalog/shity-etazhnye-she"
                     className="text-accent font-semibold hover:text-accenthover"
@@ -264,7 +258,7 @@ export default function Blog() {
                   размещения слаботочных сетей.
                 </p>
 
-                <h3 className="text-2xl lg:text-3xl font-semibold mb-6 text-gray-900">
+                <h3 className="text-2xl lg:text-3xl font-semibold mb-6 text-accent">
                   Основные функции этажного щита
                 </h3>
                 <ul className="space-y-4 pl-4">
@@ -275,11 +269,8 @@ export default function Blog() {
                     "Защита от аварийных ситуаций — КЗ, перегрузки, утечки тока на землю",
                     "Размещение слаботочных сетей — интернет, домофон, ТВ, охранная сигнализация",
                   ].map((item, i) => (
-                    <li
-                      key={i}
-                      className="flex gap-4 text-2xl text-gray-700 leading-relaxed"
-                    >
-                      <span className="text-blue-600 font-bold flex-shrink-0">
+                    <li key={i} className="flex gap-4 text-2xl leading-relaxed">
+                      <span className="text-accent font-bold flex-shrink-0">
                         •
                       </span>
                       <span>{item}</span>
@@ -289,12 +280,12 @@ export default function Blog() {
               </section>
 
               {/* Section 2 */}
-              <section className="pt-8 border-t border-gray-200">
-                <h2 className="text-3xl lg:text-4xl font-bold mb-8 text-blue-600">
+              <section className="pt-8 border-t border-accent">
+                <h2 className="text-3xl lg:text-4xl font-bold mb-8 text-accent">
                   Конструкция и устройство ЩЭ
                 </h2>
 
-                <p className="text-2xl text-gray-700 leading-relaxed mb-8 text-justify">
+                <p className="text-2xl leading-relaxed mb-8 text-justify">
                   Современный этажный щит изготавливается из стали толщиной
                   1-1,2 мм с антикоррозийным полимерно-порошковым покрытием
                   серого цвета RAL 7035. Степень защиты корпуса IP31
@@ -302,12 +293,11 @@ export default function Blog() {
                   капель воды.
                 </p>
 
-                <h3 className="text-3xl font-semibold mb-8 text-gray-900">
+                <h3 className="text-3xl font-semibold mb-8 text-accent">
                   Основные отсеки этажного щита
                 </h3>
-                <p className="text-base text-slate-600 leading-relaxed max-w-prose">
-                  Мы верим, что детали — это не просто детали. Это и есть сам
-                  дизайн. Именно поэтому мы уделяем внимание каждому пикселю.
+                <p className="text-2xl leading-relaxed max-w-prose mb-4">
+                  Современный этажный щит состоит из трех основных отсеков:
                 </p>
 
                 <div className="space-y-8">
@@ -342,20 +332,15 @@ export default function Blog() {
                   ].map((section, idx) => (
                     <div
                       key={idx}
-                      className="bg-gray-50 border border-blue-200 rounded-lg p-8 hover:border-blue-300 transition-colors"
+                      className="bg-card border border-accent rounded-lg p-8 hover:border-accenthover transition-colors"
                     >
-                      <h4 className="text-2xl font-semibold mb-6 text-blue-700">
+                      <h4 className="text-2xl font-semibold mb-6 text-accent">
                         {section.title}
                       </h4>
                       <ul className="space-y-3">
                         {section.items.map((item, i) => (
-                          <li
-                            key={i}
-                            className="text-xl text-gray-700 flex gap-3"
-                          >
-                            <span className="text-blue-600 flex-shrink-0">
-                              ✓
-                            </span>
+                          <li key={i} className="text-xl flex gap-3">
+                            <span className="text-accent flex-shrink-0">✓</span>
                             <span>{item}</span>
                           </li>
                         ))}
@@ -365,8 +350,8 @@ export default function Blog() {
                 </div>
               </section>
               {/* Виды этажных щитов по способу установки */}
-              <section className="pt-8 border-t border-gray-200">
-                <h2 className="text-4xl sm:text-5xl font-bold mb-8 text-blue-600">
+              <section className="pt-8 border-t border-accent">
+                <h2 className="text-4xl sm:text-5xl font-bold mb-8 text-accent">
                   Виды этажных щитов по способу установки
                 </h2>
 
@@ -427,21 +412,18 @@ export default function Blog() {
                   ].map((section, idx) => (
                     <div
                       key={idx}
-                      className="bg-gray-50 border border-blue-200 rounded-lg p-8 hover:border-blue-300 transition-colors"
+                      className="bg-card border border-accent/40 rounded-lg p-8 hover:border-accent transition-colors"
                     >
-                      <h4 className="text-2xl font-semibold mb-6 text-blue-700">
+                      <h4 className="text-2xl font-semibold mb-6 text-accent">
                         {section.title}
                       </h4>
                       <ul className="space-y-3">
                         {section.items.map((item, i) => (
-                          <li
-                            className="text-sm lg:text-xl text-gray-700 flex gap-3"
-                            key={i}
-                          >
-                            <span className="text-blue-600 flex-shrink-0">
-                              ✓
-                            </span>
-                            <span className="font-medium">{item.label}:</span>{" "}
+                          <li className="text-sm lg:text-xl flex gap-3" key={i}>
+                            <span className="text-accent flex-shrink-0">✓</span>
+                            <span className="font-medium">
+                              {item.label}:
+                            </span>{" "}
                             {item.description}
                           </li>
                         ))}
@@ -452,7 +434,7 @@ export default function Blog() {
               </section>
               {/* Технические характеристики ЩЭ */}
               <section className="mb-10">
-                <h2 className="text-3xl lg:text-4xl font-bold mb-8 text-blue-600 dark:text-blue-400">
+                <h2 className="text-3xl lg:text-4xl font-bold mb-8 text-accent">
                   Технические характеристики ЩЭ
                 </h2>
                 <div className="space-y-8">
@@ -488,20 +470,15 @@ export default function Blog() {
                   ].map((section, idx) => (
                     <div
                       key={idx}
-                      className="bg-gray-50 border border-blue-200 rounded-lg p-4 lg:p-8 hover:border-blue-300 transition-colors"
+                      className="bg-card border border-accent/40 rounded-lg p-4 lg:p-8 hover:border-accent transition-colors"
                     >
-                      <h4 className="text-2xl font-semibold mb-6 text-blue-700">
+                      <h4 className="text-2xl font-semibold mb-6 text-accent">
                         {section.title}
                       </h4>
                       <ul className="space-y-3">
                         {section.items.map((item, i) => (
-                          <li
-                            key={i}
-                            className="text-xl text-gray-700 flex gap-3"
-                          >
-                            <span className="text-blue-600 flex-shrink-0">
-                              ✓
-                            </span>
+                          <li key={i} className="text-xl flex gap-3">
+                            <span className="text-accent flex-shrink-0">✓</span>
                             <span>{item}</span>
                           </li>
                         ))}
@@ -512,14 +489,14 @@ export default function Blog() {
               </section>
               {/* Расключение этажного щита: пошаговая инструкция */}
               <section className="mb-10">
-                <h2 className="text-3xl lg:text-4xl font-bold mb-8 text-blue-600">
+                <h2 className="text-3xl lg:text-4xl font-bold mb-8 text-accent">
                   Расключение этажного щита: пошаговая инструкция
                 </h2>
 
-                <h3 className="text-2xl lg:text-3xl font-semibold mb-6 text-gray-900">
+                <h3 className="text-2xl lg:text-3xl font-semibold mb-6 text-accent">
                   Подготовительные работы
                 </h3>
-                <p className="text-gray-700 dark:text-gray-300 mb-8 text-xl lg:text-2xl leading-relaxed text-justify">
+                <p className="mb-8 text-xl lg:text-2xl leading-relaxed text-justify">
                   Перед началом расключения необходимо полностью обесточить щит
                   и убедиться в отсутствии напряжения. Составляется подробная
                   схема подключения с указанием всех потребителей и их
@@ -528,10 +505,10 @@ export default function Blog() {
 
                 <div className="grid grid-cols-1 gap-6 mb-6  ">
                   <div className="p-8 border border-yellow-300 bg-yellow-50 dark:bg-yellow-900/30 rounded-lg">
-                    <h4 className="text-2xl font-medium text-gray-900 dark:text-white mb-8">
+                    <h4 className="text-2xl font-medium text-accent mb-8">
                       Необходимый инструмент
                     </h4>
-                    <ul className="text-xl lg:text-2xl list-disc list-inside space-y-1 pl-4 text-gray-700 dark:text-gray-300 mb-8">
+                    <ul className="text-xl lg:text-2xl list-disc list-inside space-y-1 pl-4 mb-8">
                       <li>Крестовые и шлицевые отвертки различных размеров</li>
                       <li>Кусачки, стрипперы для зачистки проводов</li>
                       <li>Пресс-клещи для опрессовки наконечников НШВИ</li>
@@ -541,10 +518,10 @@ export default function Blog() {
                   </div>
 
                   <div className="p-8 border border-green-300 bg-green-50 dark:bg-green-900/30 rounded-lg">
-                    <h4 className="text-2xl font-medium text-gray-900 dark:text-white mb-8">
+                    <h4 className="text-2xl font-medium text-accent mb-8">
                       Материалы для монтажа
                     </h4>
-                    <ul className="text-xl lg:text-2xl list-disc list-inside space-y-1 pl-4 text-gray-700 dark:text-gray-300 mb-8">
+                    <ul className="text-xl lg:text-2xl list-disc list-inside space-y-1 pl-4 mb-8">
                       <li>
                         Автоматические выключатели соответствующих номиналов
                       </li>
@@ -569,12 +546,12 @@ export default function Blog() {
                   </div>
                 </div>
 
-                <h3 className="text-2xl lg:text-3xl font-semibold text-gray-800 dark:text-gray-200 mb-8 mt-8">
+                <h3 className="text-2xl lg:text-3xl font-semibold text-accent mb-8 mt-8">
                   Основные этапы расключения
                 </h3>
-                <ol className="text-2xl leading-relaxed list-inside space-y-4 lg:pl-4 text-gray-700 dark:text-gray-300 mt-8 mb-8">
+                <ol className="text-2xl leading-relaxed list-inside space-y-4 lg:pl-4 mt-8 mb-8">
                   <li>
-                    <span className="font-medium text-gray-900 dark:text-white mt-8 mb-8">
+                    <span className="font-medium text-accent mt-8 mb-8">
                       Этап 1: Разделение PEN проводника
                     </span>
                     <p className="text-xl lg:text-2xl mb-8 mt-4 text-justify">
@@ -589,7 +566,7 @@ export default function Blog() {
                     </p>
                   </li>
                   <li>
-                    <span className="font-medium text-gray-900 dark:text-white">
+                    <span className="font-medium text-accent">
                       Этап 2: Установка модульного оборудования
                     </span>
                     <p className="text-xl lg:text-2xl mb-8 mt-4 text-justify">
@@ -603,7 +580,7 @@ export default function Blog() {
                     </p>
                   </li>
                   <li>
-                    <span className="font-medium text-gray-900 dark:text-white">
+                    <span className="font-medium text-accent">
                       Этап 3: Выполнение внутренних соединений
                     </span>
                     <p className="text-xl lg:text-2xl mb-8 mt-4 text-justify">
@@ -617,7 +594,7 @@ export default function Blog() {
                     </p>
                   </li>
                   <li>
-                    <span className="font-medium text-gray-900 dark:text-white">
+                    <span className="font-medium text-accent">
                       Этап 4: Подключение отходящих линий
                     </span>
                     <div className="text-xl lg:text-2xl mb-8 mt-4 text-justify">
@@ -637,24 +614,24 @@ export default function Blog() {
               </section>
               {/* Схемы подключения этажных щитов */}
               <section className="mb-10">
-                <h2 className="lg:text-4xl text-3xl font-bold mb-8 text-blue-600 dark:text-blue-400">
+                <h2 className="lg:text-4xl text-3xl font-bold mb-8 text-accent">
                   Схемы подключения этажных щитов
                 </h2>
 
                 <div className="space-y-8">
-                  <div className="bg-gray-50 border border-blue-200 rounded-lg p-4 lg:p-8 hover:border-blue-300 transition-colors">
-                    <h3 className="text-2xl font-semibold mb-6 text-blue-700">
+                  <div className="bg-card border border-accent/40 rounded-lg p-4 lg:p-8 hover:border-accent transition-colors">
+                    <h3 className="text-2xl font-semibold mb-6 text-accent">
                       Однофазная схема подключения
                     </h3>
-                    <p className="text-gray-700 dark:text-gray-300 text-xl lg:text-2xl leading-relaxed mb-8">
+                    <p className="text-xl lg:text-2xl leading-relaxed mb-8">
                       В однофазной схеме от стояка приходит один фазный провод,
                       нулевой рабочий и защитный проводники. После вводного
                       двухполюсного автомата устанавливается счетчик
                       электроэнергии, затем УЗО на 30мА для защиты от утечек
                       тока.
                     </p>
-                    <p className="font-mono bg-gray-200 dark:bg-gray-900 text-gray-800 dark:text-gray-200 p-4 rounded-lg text-xl">
-                      <span className="text-blue-600">Схема подключения: </span>{" "}
+                    <p className="font-mono p-4 rounded-lg text-xl">
+                      <span className="text-accent">Схема подключения: </span>{" "}
                       <br />
                       <span>
                         Стояк → Вводный автомат → Счётчик → УЗО → Групповые
@@ -663,17 +640,17 @@ export default function Blog() {
                     </p>
                   </div>
 
-                  <div className="bg-gray-50 border border-blue-200 rounded-lg p-4 lg:p-8 hover:border-blue-300 transition-colors">
-                    <h3 className="text-2xl font-semibold mb-6 text-blue-700">
+                  <div className="bg-card border border-accent/40 rounded-lg p-4 lg:p-8 hover:border-accent transition-colors">
+                    <h3 className="text-2xl font-semibold mb-6 text-accent">
                       Трехфазная схема подключения
                     </h3>
-                    <p className="text-gray-700 dark:text-gray-300 mb-3 text-xl lg:text-2xl leading-relaxed">
+                    <p className="text-xl lg:text-2xl leading-relaxed mb-8">
                       При трехфазном питании от стояка приходят три фазы,
                       нулевой рабочий и защитный проводники. Устанавливается
                       трехполюсный вводный автомат и трехфазный счетчик
                       электроэнергии.
                     </p>
-                    <p className="text-gray-700 dark:text-gray-300 mb-3 text-xl lg:text-2xl leading-relaxed">
+                    <p className="text-xl lg:text-2xl leading-relaxed mb-8">
                       Нагрузки равномерно распределяются по трем фазам — каждая
                       квартира получает одну фазу напряжением 220В. Мощные
                       потребители типа электроплит могут подключаться трехфазно.
@@ -683,14 +660,14 @@ export default function Blog() {
               </section>
 
               {/* Section 3 */}
-              <section className="pt-8 border-t border-gray-200">
-                <h2 className="text-3xl lg:text-4xl font-bold mb-8 text-blue-600">
+              <section className="pt-8 border-t border-accent">
+                <h2 className="text-3xl lg:text-4xl font-bold mb-8 text-accent">
                   Типичные ошибки при монтаже ЩЭ
                 </h2>
 
                 <div className="space-y-6">
-                  <div className="bg-red-50 border-l-4 border-red-400 p-6 rounded-r-lg">
-                    <h4 className="text-2xl font-semibold mb-3 text-red-700">
+                  <div className="border-l-4 border-error/40 hover:border-error hover:bg-card transition-colors p-6 rounded-r-lg">
+                    <h4 className="text-2xl font-semibold mb-3 text-error">
                       Ошибки выбора оборудования
                     </h4>
                     <ul className="list-disc list-inside space-y-2 pl-4 text-gray-700 dark:text-gray-300 mb-6 text-xl leading-relaxed">
@@ -712,8 +689,8 @@ export default function Blog() {
                       аварийных режимах.
                     </p> */}
                   </div>
-                  <div className="bg-red-50 border-l-4 border-red-400 p-6 rounded-r-lg">
-                    <h4 className="text-2xl font-semibold mb-3 text-red-700">
+                  <div className="border-l-4 border-error/40 hover:border-error hover:bg-card transition-colors p-6 rounded-r-lg">
+                    <h4 className="text-2xl font-semibold mb-3 text-error">
                       Ошибки монтажа
                     </h4>
                     <ul className="list-disc list-inside space-y-2 pl-4 text-gray-700 dark:text-gray-300 mb-6 text-xl leading-relaxed">
@@ -733,8 +710,8 @@ export default function Blog() {
                       </li>
                     </ul>
                   </div>
-                  <div className="bg-red-50 border-l-4 border-red-400 p-6 rounded-r-lg">
-                    <h4 className="text-2xl font-semibold mb-3 text-red-700">
+                  <div className="border-l-4 border-error/40 hover:border-error hover:bg-card transition-colors p-6 rounded-r-lg">
+                    <h4 className="text-2xl font-semibold mb-3 text-error">
                       Ошибки в расключении
                     </h4>
                     <ul className="list-disc list-inside space-y-2 pl-4 text-gray-700 dark:text-gray-300 mb-6 text-xl leading-relaxed">
@@ -759,14 +736,14 @@ export default function Blog() {
               </section>
 
               {/* Section 4 */}
-              <section className="pt-8 border-t border-gray-200">
-                <h2 className="text-4xl sm:text-5xl font-bold mb-8 text-blue-600">
+              <section className="pt-8 border-t border-accent">
+                <h2 className="text-4xl sm:text-5xl font-bold mb-8 text-accent">
                   Техническое обслуживание
                 </h2>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-                  <div className="bg-green-50 border border-green-200 rounded-lg p-8">
-                    <h3 className="text-2xl font-semibold mb-6 text-green-700">
+                  <div className="border border-success/40 hover:border-success hover:bg-card transition-colors rounded-lg p-8">
+                    <h3 className="text-2xl font-semibold mb-6 text-success">
                       Периодичность осмотров
                     </h3>
                     <ul className="space-y-4">
@@ -776,15 +753,15 @@ export default function Blog() {
                         "Ежегодно: измерение сопротивления изоляции, проверка заземления",
                         "По необходимости: подтяжка контактных соединений после 3-4 недель эксплуатации",
                       ].map((item, i) => (
-                        <li key={i} className="text-xl text-gray-700">
+                        <li key={i} className="text-xl">
                           {item}
                         </li>
                       ))}
                     </ul>
                   </div>
 
-                  <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-8">
-                    <h3 className="text-2xl font-semibold mb-6 text-yellow-700">
+                  <div className="border border-ring/40 hover:border-ring hover:bg-card transition-colors rounded-lg p-8">
+                    <h3 className="text-2xl font-semibold mb-6 text-ring">
                       Признаки неисправности
                     </h3>
                     <ul className="space-y-4">
@@ -795,7 +772,7 @@ export default function Blog() {
                         "Ложные срабатывания защитных устройств",
                         `Отсутствие срабатывания УЗО при нажатии кнопки "ТЕСТ"`,
                       ].map((item, i) => (
-                        <li key={i} className="text-xl text-gray-700">
+                        <li key={i} className="text-xl">
                           {item}
                         </li>
                       ))}
@@ -805,17 +782,17 @@ export default function Blog() {
               </section>
               {/* Стоимость и выбор поставщика */}
               <section className="mb-10">
-                <h2 className="text-3xl lg:text-4xl font-bold mb-8 text-blue-600">
+                <h2 className="text-3xl lg:text-4xl font-bold mb-8 text-accent">
                   Стоимость и выбор поставщика
                 </h2>
-                <h3 className="text-3xl font-semibold text-gray-800 dark:text-gray-200 mb-8">
+                <h3 className="text-3xl font-semibold mb-8 text-accent">
                   Ценовые категории
                 </h3>
-                <p className="text-gray-700 dark:text-gray-300 mb-4 text-xl lg:text-2xl leading-relaxed">
+                <p className="mb-4 text-xl lg:text-2xl leading-relaxed">
                   В нашем магазине вы сможете приобрести как полноценные щиты
                   этажные, так и накладки на щиты щэ:
                 </p>
-                <ul className="list-disc list-inside space-y-2 pl-4 text-gray-700 dark:text-gray-300 mb-8 text-xl leading-relaxed">
+                <ul className="list-disc list-inside space-y-2 pl-4 mb-8 text-xl leading-relaxed">
                   <li>
                     <span className="font-medium">
                       Бюджетные решения (от 4000 руб.):
@@ -830,10 +807,10 @@ export default function Blog() {
                   </li>
                 </ul>
 
-                <h3 className="text-3xl font-semibold text-gray-800 dark:text-gray-200 mb-8">
+                <h3 className="text-3xl font-semibold mb-8 text-accent">
                   Факторы ценообразования
                 </h3>
-                <ul className="list-disc list-inside space-y-2 pl-4 text-gray-700 dark:text-gray-300 text-xl leading-relaxed ">
+                <ul className="list-disc list-inside space-y-2 pl-4 text-xl leading-relaxed ">
                   <li>
                     Количество квартир и соответственно объем оборудования
                   </li>
@@ -851,12 +828,12 @@ export default function Blog() {
 
               {/* Conclusion */}
 
-              <section className="pt-12 border-t border-gray-200 text-justify">
-                <h2 className="text-2xl lg:text-4xl font-bold mb-8 text-blue-600">
+              <section className="pt-12 border-t border-accent text-justify">
+                <h2 className="text-2xl lg:text-4xl font-bold mb-8 text-accent">
                   Заключение
                 </h2>
-                <div className="bg-gradient-to-r from-blue-50 to-gray-50 border border-blue-200 rounded-lg p-4 lg:p-8">
-                  <p className="text-xl lg:text-2xl text-gray-700 leading-relaxed mb-8">
+                <div className="border border-primaryLight/40 hover:border-primaryLight hover:bg-card transition-colors rounded-lg p-4 lg:p-8">
+                  <p className="text-xl lg:text-2xl leading-relaxed mb-8">
                     Этажный щит ЩЭ является критически важным элементом системы
                     электроснабжения, требующим профессионального подхода к
                     проектированию, монтажу и эксплуатации. Правильное
@@ -864,7 +841,7 @@ export default function Blog() {
                     обеспечивает безопасную и надежную работу электроустановки
                     на протяжении всего срока службы.
                   </p>
-                  <p className="text-xl lg:text-2xl font-semibold text-blue-700 leading-relaxed">
+                  <p className="text-xl lg:text-2xl font-semibold text-primaryLight leading-relaxed">
                     Экономия на качестве оборудования и квалификации монтажников
                     недопустима, так как может привести к серьезным аварийным
                     ситуациям. Инвестиции в качественный этажный щит и
@@ -873,13 +850,13 @@ export default function Blog() {
                   </p>
                 </div>
               </section>
-              <section className="lg:pt-12 border-t border-gray-200 text-justify">
-                <h2 className="lg:text-4xl text-2xl font-bold mb-8 text-blue-600">
+              <section className="lg:pt-12 border-t border-accent text-justify">
+                <h2 className="lg:text-4xl text-2xl font-bold mb-8 text-accent">
                   Список литературы:
                 </h2>
 
-                <div className="bg-gradient-to-r from-blue-50 to-gray-50 border border-blue-200 rounded-lg lg:p-8">
-                  <ul className="list-decimal space-y-2 py-4 px-8 lg:pl-12 text-gray-700 dark:text-gray-300 text-xl leading-relaxed ">
+                <div className="border border-accent/40 hover:border-accent hover:bg-card transition-colors rounded-lg lg:p-8">
+                  <ul className="list-decimal space-y-2 py-4 px-8 lg:pl-12 text-xl leading-relaxed ">
                     <li>
                       Головщиков В. О., Алтухов И. В., Епифанов А. Д. Монтаж
                       электрооборудования и средств автоматизации: учеб.
@@ -903,18 +880,15 @@ export default function Blog() {
         </section>
 
         {/* CTA Section */}
-        <section className="container mx-auto px-4 lg:px-8 py-20 lg:py-32 text-center bg-gradient-to-b from-white to-gray-50">
-          <h2 className="lg:text-4xl text-3xl font-bold mb-8 text-gray-900">
+        <section className="container mx-auto px-4 lg:px-8 py-10 lg:py-16 text-center">
+          <h2 className="lg:text-4xl text-3xl font-bold mb-8 text-accent">
             Нужна консультация?
           </h2>
-          <p className="text-2xl text-gray-700 mb-8 max-w-2xl mx-auto">
+          <p className="text-2xl text-accent mb-8 max-w-2xl mx-auto">
             Свяжитесь с нашими специалистами для получения профессиональной
             консультации по выбору и монтажу щитов
           </p>
           <Knopka props="Связаться с нами" />
-          {/* <button className="px-10 py-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-colors text-2xl">
-            Связаться с нами
-          </button> */}
         </section>
       </div>
     </>

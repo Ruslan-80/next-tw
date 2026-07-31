@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { redirect } from "next/navigation";
 import { DeleteButton } from "@/components/shared/DeleteButton";
+import SyncVariationsButton from "@/components/SyncVariationsButton";
 
 // Серверное действие для удаления товара
 async function deleteProduct(formData) {
@@ -38,38 +39,45 @@ export default async function ProductsPageAdmin() {
         >
           Создать новый товар
         </Link>
+        <SyncVariationsButton />
       </div>
       <div>
-
-      <UniversalTable
-        data={products}
-        caption="Список товаров"
-        excludeKeys={["createdAt", "updatedAt", "description", "descriptionSeo", "titleSeo", "category"]}
-        customHeaders={{
-          id: "ID",
-          name: "Название",
-          article: "Артикул",
-          slug: "Слаг",
-          basePrice: "Цена",
-          stock: "Запас",
-          visibility: "Видимость",
-          categoryId: "ID Категории",
-          categorySlug: "Слаг категории",
-          manufacturingTime: "Время производства",
-        }}
-        actions={(item) => (
-          <div className="flex gap-2 text-blue-100 ">
-            <Link
-              href={`products/${item.slug}`}
-              className="px-2 py-1 bg-blue-500 text-white rounded hover:bg-blue-600"
-            >
-              Редактировать
-            </Link>
-            <DeleteButton productId={item.id} />
-          </div>
-        )}
-      />
-    </div>
+        <UniversalTable
+          data={products}
+          caption="Список товаров"
+          excludeKeys={[
+            "createdAt",
+            "updatedAt",
+            "description",
+            "descriptionSeo",
+            "titleSeo",
+            "category",
+          ]}
+          customHeaders={{
+            id: "ID",
+            name: "Название",
+            article: "Артикул",
+            slug: "Слаг",
+            basePrice: "Цена",
+            stock: "Запас",
+            visibility: "Видимость",
+            categoryId: "ID Категории",
+            categorySlug: "Слаг категории",
+            manufacturingTime: "Время производства",
+          }}
+          actions={(item) => (
+            <div className="flex gap-2 text-blue-100 ">
+              <Link
+                href={`products/${item.slug}`}
+                className="px-2 py-1 bg-blue-500 text-white rounded hover:bg-blue-600"
+              >
+                Редактировать
+              </Link>
+              <DeleteButton productId={item.id} />
+            </div>
+          )}
+        />
+      </div>
     </div>
   );
 }

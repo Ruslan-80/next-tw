@@ -1,127 +1,195 @@
 /* === Tailwind v4 Core === */
 @import "tailwindcss";
 @import "tw-animate-css";
+@plugin "@tailwindcss/typography";
 
-/* === Custom Dark Variant === */
+/* === Dark Variant === */
 @custom-variant dark (&:is(.dark *));
 
 /* ======================================================================================
    THEME TOKENS
 ====================================================================================== */
-@theme {
-  /* --- Шрифты (связка с Next.js) --- */
+
+@theme inline {
+  /* Fonts */
   --font-sans: var(--font-roboto);
   --font-serif: var(--font-roboto);
   --font-mono: var(--font-roboto-mono);
-  --font-size-base: 18px;
 
-  /* Создаем "дорогую" шкалу (Major Third) */
-  --font-size-xs: 0.75rem; /* 12px */
-  --font-size-sm: 0.875rem; /* 14px */
-  --font-size-base: 1.125rem; /* 18px — премиальный стандарт для чтения */
+  /* Typography scale */
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1.125rem;
+  --font-size-lg: 1.25rem;
+  --font-size-xl: 1.5rem;
+  --font-size-2xl: 2.25rem;
+  --font-size-3xl: 4rem;
+  --font-size-4xl: 6rem;
 
-  --font-size-lg: 1.25rem; /* 20px (h3 Mobile) */
-  --font-size-xl: 1.5rem; /* 24px (h3 Desktop / h2 Mobile) */
-  --font-size-2xl: 2.25rem; /* 36px (h2 Desktop / h1 Mobile) */
-  --font-size-3xl: 4rem; /* 64px (h1 Desktop - заголовок-заявление) */
-  --font-size-4xl: 6rem; /* 96px (Для огромных Hero-секций) */
-
-  /* Тонкая настройка отступов для Roboto */
   --letter-spacing-tighter: -0.04em;
   --letter-spacing-tight: -0.02em;
 
-  /* --- Спейсинги и радиусы --- */
+  /* Layout */
   --spacing-8xl: 96rem;
   --spacing-9xl: 128rem;
+
+  /* Radius */
   --radius-4xl: 2rem;
   --radius-custom: var(--radius);
 
-  /* --- Анимации --- */
+  /* Animations */
   --animate-slide-in-left: slide-in-from-left 0.3s ease-out;
   --animate-slide-out-left: slide-out-to-left 0.3s ease-out;
   --animate-fade-in-up: fadeInUp 0.6s ease-out forwards;
   --animate-slide-in-right: slideInRight 0.6s ease-out forwards;
 
-  /* --- Цвета (Привязка к CSS-переменным для динамической смены темы) --- */
+  /* Semantic Colors */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+
   --color-card: var(--card);
   --color-card-foreground: var(--card-foreground);
+
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
+
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
+
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
+
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+
   --color-border: var(--border);
+  --color-input: var(--input);
   --color-ring: var(--ring);
 
-  /* Дополнительные брендовые цвета */
+  /* Brand Colors */
   --color-link: #6cb4f4;
   --color-blue: #3656b0;
 }
 
 /* ======================================================================================
-   VARIABLE DEFINITIONS (Цветовые палитры)
+   LIGHT THEME
 ====================================================================================== */
+
 :root {
-  /* Светлая тема */
-  --background: #fff; /* Почти белый, слегка холодный */
-  --backgroundAlt: oklch(0.93 0.02 270); /* Светло-сероватый блок */
+  --background: oklch(0.98 0.005 85);
+  --background-alt: oklch(0.93 0.02 270);
+
   --foreground: oklch(0.15 0.02 85);
+
   --card: oklch(1 0 0);
-  --cardMy: #f4f5f7;
-  --cardForeground: oklch(0.15 0.02 85);
-  --primary: oklch(0.34 0.157 266.4); /* Ваш темный синий #132A87 */
-  --primaryLight: oklch(0.45 0.12 266.4); /* Осветлённая версия синего */
-  --primaryForeground: oklch(0.98 0.005 85);
-  --accent: oklch(0.71 0.175 50.9); /* Оранжевый */
-  --accentForeground: oklch(0.98 0.005 85);
-  --accenthover: oklch(0.66 0.18 50.9); /* Более насыщенный оранжевый */
-  --textPrimary: oklch(0.18 0.03 270); /* Почти чёрный */
-  --textMuted: oklch(0.45 0.03 270); /* Серый для второстепенного текста */
-  --textW: oklch(85.209% 0.02158 271.166);
-  --textWMuted: oklch(98.221% 0.00423 271.371);
-  --success: oklch(0.75 0.16 150); /* Мягкий зелёный */
-  --error: oklch(0.65 0.2 30); /* Красно-оранжевый */
+  --card-alt: #f4f5f7;
+  --card-foreground: oklch(0.15 0.02 85);
+
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.15 0.02 85);
+
+  --primary: oklch(0.34 0.157 266.4);
+  --primary-light: oklch(0.45 0.12 266.4);
+  --primary-foreground: oklch(0.98 0.005 85);
+
+  --secondary: oklch(0.96 0.01 85);
+  --secondary-foreground: oklch(0.25 0.08 220);
+
+  --accent: oklch(0.71 0.175 50.9);
+  --accent-hover: oklch(0.66 0.18 50.9);
+  --accent-foreground: oklch(0.98 0.005 85);
+
   --muted: oklch(0.96 0.01 85);
-  --mutedForeground: oklch(0.55 0.02 85);
+  --muted-foreground: oklch(0.55 0.02 85);
+
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.98 0.005 85);
+
+  --text-primary: oklch(0.18 0.03 270);
+  --text-muted: oklch(0.45 0.03 270);
+
+  --success: oklch(0.75 0.16 150);
+  --error: oklch(0.65 0.2 30);
+
   --border: oklch(0.92 0.01 85);
+  --input: oklch(0.92 0.01 85);
   --ring: oklch(0.65 0.15 45);
+
   --radius: 0.75rem;
 }
 
+/* ======================================================================================
+   DARK THEME
+====================================================================================== */
+
 .dark {
-  /* Темная тема */
-  --background: oklch(0.15 0.02 220);
+  --background: oklch(0.08 0.01 220);
+  --background-alt: oklch(0.12 0.01 220);
+
   --foreground: oklch(0.95 0.005 85);
-  --textForeground: oklch(0.95 0.005 85);
-  --card: oklch(0.18 0.02 220);
-  --cardForeground: oklch(0.95 0.005 85);
-  --primary: oklch(0.75 0.12 45); /* В темноте primary может быть светлее */
-  --primaryForeground: oklch(0.1 0.02 220);
+
+  --card: oklch(0.12 0.01 220);
+  --card-alt: oklch(0.18 0.02 220);
+  --card-foreground: oklch(0.95 0.005 85);
+
+  --popover: oklch(0.12 0.01 220);
+  --popover-foreground: oklch(0.95 0.005 85);
+
+  --primary: oklch(0.75 0.12 45);
+  --primary-light: oklch(0.8 0.13 45);
+  --primary-foreground: oklch(0.08 0.01 220);
+
+  --secondary: oklch(0.18 0.02 220);
+  --secondary-foreground: oklch(0.95 0.005 85);
+
   --accent: oklch(0.65 0.15 45);
-  --muted: oklch(0.25 0.02 220);
-  --border: oklch(0.25 0.02 220);
+  --accent-hover: oklch(0.7 0.16 45);
+  --accent-foreground: oklch(0.08 0.01 220);
+
+  --muted: oklch(0.18 0.02 220);
+  --muted-foreground: oklch(0.65 0.02 85);
+
+  --destructive: oklch(0.396 0.141 25.723);
+  --destructive-foreground: oklch(0.95 0.005 85);
+
+  --text-primary: oklch(0.95 0.005 85);
+  --text-muted: oklch(0.75 0.01 85);
+
+  --success: oklch(0.68 0.14 150);
+  --error: oklch(0.62 0.18 30);
+
+  --border: oklch(0.18 0.02 220);
+  --input: oklch(0.18 0.02 220);
+  --ring: oklch(0.65 0.15 45);
 }
 
 /* ======================================================================================
    BASE LAYER
 ====================================================================================== */
+
 @layer base {
   * {
     @apply border-border;
+    outline-color: color-mix(in oklch, var(--ring) 50%, transparent);
   }
+
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: var(--font-sans); /* Теперь управляется через --font-roboto */
+    font-family: var(--font-sans);
     font-size: var(--font-size-base);
   }
 }
 
 /* ======================================================================================
-   KEYFRAMES & UTILITIES
+   ANIMATIONS
 ====================================================================================== */
+
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -153,15 +221,6 @@
   }
 }
 
-@utility text-balance {
-  text-wrap: balance;
-}
-/* ======================================================================================
-
-   3D ICON SPIN (Y-axis)
-
-====================================================================================== */
-
 @keyframes spinY360 {
   from {
     transform: rotateY(0deg);
@@ -170,11 +229,21 @@
     transform: rotateY(360deg);
   }
 }
+
+/* ======================================================================================
+   UTILITIES
+====================================================================================== */
+
+@utility text-balance {
+  text-wrap: balance;
+}
+
 .icon-spin-y-infinite {
   display: inline-block;
   animation: spinY360 2s linear infinite;
   transform-style: preserve-3d;
 }
+
 .icon-3d-wrapper {
   perspective: 1000px;
   display: inline-block;
@@ -193,18 +262,19 @@
 .btn-primary {
   background-color: var(--primary);
 }
+
 .btn-primary:hover {
-  background-color: var(--primaryLight);
+  background-color: var(--primary-light);
 }
+
 .btn-accent {
   background-color: var(--accent);
 }
+
 .btn-accent:hover {
-  background-color: var(--accentHover);
+  background-color: var(--accent-hover);
 }
-.text-balance {
-  text-wrap: balance;
-}
+
 .seo-hidden {
   position: absolute !important;
   height: 1px;
@@ -212,6 +282,6 @@
   overflow: hidden;
   clip: rect(1px, 1px, 1px, 1px);
 }
-.container {
-  max-width: 4xl;
+.logo-image {
+  height: auto;
 }

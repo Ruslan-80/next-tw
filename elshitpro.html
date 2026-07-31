@@ -1,0 +1,876 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ElectroShitPro — Карта Архитектуры</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;600;700&display=swap");
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family: "Inter", sans-serif;
+        background: #0d0f12;
+        color: #c8ccd4;
+        min-height: 100vh;
+        padding: 24px;
+      }
+      h1 {
+        font-family: "JetBrains Mono";
+        font-size: 28px;
+        color: #d4a853;
+        text-align: center;
+        margin-bottom: 8px;
+        letter-spacing: -0.04em;
+      }
+      .subtitle {
+        text-align: center;
+        color: #6b7280;
+        font-size: 13px;
+        margin-bottom: 32px;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+        gap: 20px;
+        max-width: 1400px;
+        margin: 0 auto;
+      }
+      .card {
+        background: #14171d;
+        border: 1px solid #1f2937;
+        border-radius: 12px;
+        padding: 20px;
+        transition: border-color 0.2s;
+      }
+      .card:hover {
+        border-color: #d4a853;
+      }
+      .card-title {
+        font-family: "JetBrains Mono";
+        font-size: 15px;
+        font-weight: 700;
+        color: #d4a853;
+        margin-bottom: 12px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .card-title span {
+        font-size: 18px;
+      }
+      .tag {
+        display: inline-block;
+        background: #1e2530;
+        color: #8b95a5;
+        border: 1px solid #2a3342;
+        border-radius: 4px;
+        padding: 2px 8px;
+        font-size: 11px;
+        font-family: "JetBrains Mono";
+        margin: 2px;
+      }
+      .tag.ok {
+        border-color: #22c55e50;
+        color: #4ade80;
+      }
+      .tag.warn {
+        border-color: #eab30850;
+        color: #fbbf24;
+      }
+      .tag.err {
+        border-color: #ef444450;
+        color: #f87171;
+      }
+      .tag.info {
+        border-color: #3b82f650;
+        color: #60a5fa;
+      }
+      .section {
+        margin-bottom: 14px;
+      }
+      .section-label {
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: #4b5563;
+        margin-bottom: 6px;
+        font-weight: 600;
+      }
+      .tree {
+        font-family: "JetBrains Mono";
+        font-size: 12px;
+        line-height: 1.7;
+        color: #8b95a5;
+      }
+      .tree .hl {
+        color: #d4a853;
+      }
+      .tree .file {
+        color: #a0aec0;
+      }
+      .tree .dir {
+        color: #60a5fa;
+      }
+      .tree .count {
+        color: #6b7280;
+        font-size: 10px;
+      }
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      ul li {
+        padding: 3px 0;
+        font-size: 13px;
+        line-height: 1.5;
+      }
+      li::before {
+        content: "›";
+        color: #d4a853;
+        margin-right: 8px;
+        font-weight: 700;
+      }
+      .cols {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+      }
+      .severity {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        margin-top: 8px;
+      }
+      .severity-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 8px;
+        font-size: 12px;
+        line-height: 1.5;
+      }
+      .severity-icon {
+        flex-shrink: 0;
+        width: 20px;
+        text-align: center;
+        font-size: 14px;
+      }
+      .bar {
+        height: 4px;
+        border-radius: 2px;
+        margin-top: 6px;
+      }
+      .bar-ok {
+        background: linear-gradient(90deg, #22c55e, #16a34a);
+        width: 75%;
+      }
+      .bar-warn {
+        background: linear-gradient(90deg, #eab308, #ca8a04);
+        width: 45%;
+      }
+      hr.sep {
+        border: none;
+        border-top: 1px solid #1f2937;
+        margin: 24px 0;
+      }
+      .manifest {
+        max-width: 1400px;
+        margin: 0 auto;
+      }
+      .color-swatch {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        margin: 4px 0;
+      }
+      .swatch-dot {
+        width: 24px;
+        height: 24px;
+        border-radius: 4px;
+        border: 1px solid #2a3342;
+        flex-shrink: 0;
+      }
+      .swatch-label {
+        font-family: "JetBrains Mono";
+        font-size: 12px;
+        color: #8b95a5;
+      }
+      .stat-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 12px;
+        margin-bottom: 20px;
+      }
+      .stat {
+        background: #14171d;
+        border: 1px solid #1f2937;
+        border-radius: 8px;
+        padding: 14px;
+        text-align: center;
+      }
+      .stat-num {
+        font-family: "JetBrains Mono";
+        font-size: 28px;
+        font-weight: 700;
+        color: #d4a853;
+      }
+      .stat-label {
+        font-size: 11px;
+        color: #6b7280;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-top: 4px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>⚡ ELECTROSHITPRO</h1>
+    <p class="subtitle">
+      Карта архитектуры проекта · Next.js App Router · Prisma · Tailwind v4
+    </p>
+
+    <!-- KPI -->
+    <div class="stat-grid">
+      <div class="stat">
+        <div class="stat-num">15</div>
+        <div class="stat-label">Prisma-моделей</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">17+</div>
+        <div class="stat-label">Маршрутов</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">63</div>
+        <div class="stat-label">Компонентов</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">10</div>
+        <div class="stat-label">API-эндпоинтов</div>
+      </div>
+    </div>
+
+    <div class="grid">
+      <!-- ═══════════════ DATABASE ═══════════════ -->
+      <div class="card">
+        <div class="card-title">
+          <span>🗄️</span> База Данных (MySQL + Prisma 6)
+        </div>
+        <div class="section">
+          <div class="section-label">Основные Модели</div>
+          <div class="tree">
+            <div>
+              <span class="hl">User</span> ↔ Cart ↔ CartItem ↔ ProductVariation
+            </div>
+            <div><span class="hl">Order</span> (JSON items, customerInfo)</div>
+            <div>
+              <span class="hl">Category</span> (self-ref parent/children, JSON
+              filters)
+            </div>
+            <div>
+              <span class="hl">Product</span> → Variations, Attributes,
+              MediaFiles, Tags
+            </div>
+            <div>
+              <span class="hl">Attribute</span> → AttributeValue →
+              ProductAttribute
+            </div>
+            <div>
+              <span class="hl">Tag</span> ↔ ProductTag / CategoryTag (M:N
+              джойны)
+            </div>
+            <div>
+              <span class="hl">TopSlider</span>,
+              <span class="hl">VerificationCode</span>,
+              <span class="hl">MediaFile</span>
+            </div>
+          </div>
+        </div>
+        <div class="section">
+          <div class="section-label">Оценка</div>
+          <span class="tag ok">✓ Индексы</span>
+          <span class="tag ok">✓ Fulltext поиск</span>
+          <span class="tag ok">✓ Cascade удаления</span>
+          <span class="tag warn">△ JSON в Order</span>
+          <span class="tag warn">△ JSON filters в Category</span>
+        </div>
+      </div>
+
+      <!-- ═══════════════ APP ROUTES ═══════════════ -->
+      <div class="card">
+        <div class="card-title"><span>🌐</span> Маршруты (App Router)</div>
+        <div class="section">
+          <div class="section-label">Публичные /(main)</div>
+          <div class="cols">
+            <div class="tree">
+              <div class="dir">/ <span class="count">(home)</span></div>
+              <div class="dir">/catalog <span class="count">(10)</span></div>
+              <div class="dir">/product <span class="count">(9)</span></div>
+              <div class="dir">/cart <span class="count">(3)</span></div>
+              <div class="dir">/blogs <span class="count">(6)</span></div>
+              <div class="dir">/search <span class="count">(2)</span></div>
+            </div>
+            <div class="tree">
+              <div class="dir">/landing <span class="count">(18)</span></div>
+              <div class="dir">/faq <span class="count">(3)</span></div>
+              <div class="dir">/delivery</div>
+              <div class="dir">/contacts</div>
+              <div class="dir">/guarantees</div>
+              <div class="dir">/compare</div>
+            </div>
+          </div>
+        </div>
+        <div class="section">
+          <div class="section-label">Админка /(admin)</div>
+          <div class="tree">
+            <div class="dir">
+              /admin
+              <span class="count"
+                >→ categories, products, attributes, calc, media, desc</span
+              >
+            </div>
+          </div>
+        </div>
+        <div class="section">
+          <div class="section-label">API-слой /api</div>
+          <div class="tree">
+            <div class="dir">
+              /api/admin/*
+              <span class="count"
+                >→ categories, products, productmin, description, sitemap</span
+              >
+            </div>
+            <div class="dir">
+              /api/cart, /api/order, /api/search, /api/submit, /api/category,
+              /api/consent, /api/prod, /api/variations
+            </div>
+          </div>
+        </div>
+        <div>
+          <span class="tag info">rewrites: uerk→landing, vru-*→razrabotka</span>
+          <span class="tag ok">standalone build</span>
+        </div>
+      </div>
+
+      <!-- ═══════════════ COMPONENTS ═══════════════ -->
+      <div class="card">
+        <div class="card-title"><span>🧩</span> Компоненты (63 файла)</div>
+        <div class="section">
+          <div class="section-label">components/shared/ (40)</div>
+          <div class="tree">
+            <div>Header(×3), Footer(×3), CardItem(×4), Pagination(×2)</div>
+            <div>BottomNavigation(×2), CatalogButton(×2), ProductList(×2)</div>
+            <div>
+              Landing-страницы: uerk, uerm, uerv, ShityEtazhnye, Nakladky…
+            </div>
+            <div>
+              MobileSearch, Proizvodstvo, Partners, Tables, DeleteButton
+            </div>
+          </div>
+        </div>
+        <div class="section">
+          <div class="section-label">components/ui/ (23 — Radix/shadcn)</div>
+          <div class="tree">
+            <div>button, card, dialog, sheet, sidebar, modal(×2), form</div>
+            <div>accordion, checkbox, input, textarea, tooltip, dropdown</div>
+            <div>table, badge, breadcrumb, skeleton, sonner, separator</div>
+          </div>
+        </div>
+        <div>
+          <span class="tag err"
+            >⚠ Дублирование: Header×3, Footer×3, CardItem×4</span
+          >
+          <span class="tag warn">△ modal.jsx + modal1.jsx</span>
+        </div>
+      </div>
+
+      <!-- ═══════════════ STATE & DATA ═══════════════ -->
+      <div class="card">
+        <div class="card-title"><span>🔮</span> Состояние и Данные</div>
+        <div class="section">
+          <div class="section-label">Zustand Stores (lib/store/)</div>
+          <div class="tree">
+            <div>cartStore, compareStore, useCatalogStore</div>
+            <div>mobileFilterButton, useConsentStore</div>
+            <div><span class="count">testCartStore (тестовый?)</span></div>
+          </div>
+        </div>
+        <div class="section">
+          <div class="section-label">Context (React Context)</div>
+          <div class="tree">
+            <div>CompareContext, FavoritesContext</div>
+            <div>
+              <span class="count">ConsentContext.jsx — 4 bytes (пустой!)</span>
+            </div>
+          </div>
+        </div>
+        <div class="section">
+          <div class="section-label">Утилиты</div>
+          <div class="tree">
+            <div>lib/prisma.js, lib/useCart.js, lib/utils.js</div>
+            <div>utils/slugParser.js, utils/smartSort.js</div>
+            <div>hooks/use-mobile.js, hooks/useFormSubmit.js</div>
+            <div>7× JSON-LD генераторов (SEO)</div>
+          </div>
+        </div>
+        <div>
+          <span class="tag warn"
+            >△ Context vs Zustand — двойное управление Compare</span
+          >
+          <span class="tag err">⚠ ConsentContext пустой файл</span>
+        </div>
+      </div>
+
+      <!-- ═══════════════ АНАЛИЗ ═══════════════ -->
+      <div class="card" style="grid-column: 1/-1">
+        <div class="card-title"><span>🔍</span> Критический Анализ</div>
+
+        <div class="section">
+          <div class="section-label">✅ Сильные стороны</div>
+          <div class="severity">
+            <div class="severity-item">
+              <span class="severity-icon">✅</span> <b>Prisma-схема</b> —
+              качественно спроектирована: правильные индексы, fulltext поиск,
+              cascade-удаления, M:N через join-таблицы
+            </div>
+            <div class="severity-item">
+              <span class="severity-icon">✅</span> <b>App Router</b> —
+              корректное использование route groups (main)/(admin), SSR по
+              умолчанию
+            </div>
+            <div class="severity-item">
+              <span class="severity-icon">✅</span> <b>SEO</b> — 7 JSON-LD
+              генераторов, sitemap-скрипты, SEO-поля в моделях, seo-hidden
+              утилита
+            </div>
+            <div class="severity-item">
+              <span class="severity-icon">✅</span> <b>Инфра</b> — standalone
+              build, Docker, CI/CD через GitHub Actions, sharp для изображений
+            </div>
+            <div class="severity-item">
+              <span class="severity-icon">✅</span> <b>Tailwind v4</b> — oklch
+              цветовая система, кастомные токены, правильная интеграция через
+              @theme
+            </div>
+          </div>
+        </div>
+
+        <div class="section" style="margin-top: 16px">
+          <div class="section-label">⚠️ Узкие места и Ошибки</div>
+          <div class="severity">
+            <div class="severity-item">
+              <span class="severity-icon">🔴</span>
+              <b>Массовое дублирование компонентов</b> — Header (×3), Footer
+              (×3), CardItem (×4), Breadcrumbs (×4), Pagination (×2),
+              CatalogButton (×2), Modal (×2). Нужна консолидация с
+              пропсами/вариантами через CVA
+            </div>
+            <div class="severity-item">
+              <span class="severity-icon">🔴</span>
+              <b>Лэндинги как компоненты</b> — 8+ гигантских JSX-файлов по
+              20-30K байт (uerk, uerm, uerv, shity-etazhnye…). Монолитны, не
+              переиспользуемы. Нужна CMS-based архитектура
+            </div>
+            <div class="severity-item">
+              <span class="severity-icon">🟡</span>
+              <b>Context + Zustand конфликт</b> — CompareContext дублирует
+              compareStore, ConsentContext пуст (4 bytes), а useConsentStore
+              существует. Нужно выбрать одну систему
+            </div>
+            <div class="severity-item">
+              <span class="severity-icon">🟡</span>
+              <b>force-dynamic на весь проект</b> — layout.jsx:
+              <code>export const dynamic = "force-dynamic"</code> отключает
+              ISR/SSG глобально. Для каталога электрооборудования это потеря
+              перформанса
+            </div>
+            <div class="severity-item">
+              <span class="severity-icon">🟡</span> <b>JSON-поля в Prisma</b> —
+              Order.items/customerInfo и Category.filters хранятся как JSON. Не
+              типобезопасно, нельзя фильтровать на уровне БД
+            </div>
+            <div class="severity-item">
+              <span class="severity-icon">🟡</span> <b>Мёртвый код</b> —
+              закомментированный блок в next.config.mjs (строки 55-79),
+              testCartStore.js, ConsentContext.jsx
+            </div>
+            <div class="severity-item">
+              <span class="severity-icon">🟡</span>
+              <b>layout.jsx body class</b> — <code>dark:background</code> и
+              <code>dark:textForeground</code> не являются валидными
+              Tailwind-классами (должно быть dark:bg-background,
+              dark:text-foreground)
+            </div>
+          </div>
+        </div>
+
+        <div class="section" style="margin-top: 16px">
+          <div class="section-label">📋 Предложения по Улучшению</div>
+          <div class="severity">
+            <div class="severity-item">
+              <span class="severity-icon">1.</span>
+              <b>Консолидация компонентов</b> — объединить
+              Header/Footer/CardItem в единые компоненты с вариантами (CVA).
+              Удалить дубли.
+            </div>
+            <div class="severity-item">
+              <span class="severity-icon">2.</span>
+              <b>Единый State Manager</b> — мигрировать CompareContext →
+              Zustand. Удалить пустые файлы. Создать единый index.js для stores.
+            </div>
+            <div class="severity-item">
+              <span class="severity-icon">3.</span>
+              <b>Гранулярное кэширование</b> — вместо force-dynamic глобально,
+              использовать per-route revalidation. Каталог → ISR 60s, корзина →
+              dynamic.
+            </div>
+            <div class="severity-item">
+              <span class="severity-icon">4.</span>
+              <b>CMS-слой для лэндингов</b> — вынести контент uerk/uerm/uerv в
+              JSON/MDX/БД, оставить один шаблонный компонент.
+            </div>
+            <div class="severity-item">
+              <span class="severity-icon">5.</span>
+              <b>Заменить bcrypt на bcryptjs</b> — в зависимостях оба (bcrypt и
+              bcryptjs). bcrypt требует native build, bcryptjs — чистый JS. Для
+              Docker лучше оставить только bcryptjs.
+            </div>
+            <div class="severity-item">
+              <span class="severity-icon">6.</span> <b>Типизация</b> — добавить
+              Zod-схемы для API endpoints (уже есть zod в зависимостях, но не
+              видно повсеместного использования).
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /grid -->
+
+    <hr class="sep" />
+
+    <!-- ═══════════════════════════════════════════════════════════════
+     DESIGN SYSTEM: SOVEREIGN INDUSTRIAL
+═══════════════════════════════════════════════════════════════ -->
+    <div class="manifest">
+      <h1>🛡️ SOVEREIGN INDUSTRIAL</h1>
+      <p class="subtitle">Манифест Дизайн-Системы для UI-Агента</p>
+
+      <div class="grid">
+        <!-- Цвета -->
+        <div class="card">
+          <div class="card-title"><span>🎨</span> Цветовая Палитра</div>
+
+          <div class="section">
+            <div class="section-label">Фоны (Background)</div>
+            <div class="color-swatch">
+              <span class="swatch-dot" style="background: #0d0f12"></span
+              ><span class="swatch-label"
+                >--si-bg-deep: #0d0f12 — основной фон</span
+              >
+            </div>
+            <br />
+            <div class="color-swatch">
+              <span class="swatch-dot" style="background: #14171d"></span
+              ><span class="swatch-label"
+                >--si-bg-card: #14171d — карточки</span
+              >
+            </div>
+            <br />
+            <div class="color-swatch">
+              <span class="swatch-dot" style="background: #1a1f28"></span
+              ><span class="swatch-label"
+                >--si-bg-elevated: #1a1f28 — поднятые</span
+              >
+            </div>
+            <br />
+            <div class="color-swatch">
+              <span class="swatch-dot" style="background: #1e2530"></span
+              ><span class="swatch-label">--si-bg-input: #1e2530 — инпуты</span>
+            </div>
+          </div>
+
+          <div class="section">
+            <div class="section-label">Бордеры (Borders)</div>
+            <div class="color-swatch">
+              <span class="swatch-dot" style="background: #1f2937"></span
+              ><span class="swatch-label"
+                >--si-border: #1f2937 — нейтральный</span
+              >
+            </div>
+            <br />
+            <div class="color-swatch">
+              <span class="swatch-dot" style="background: #2a3342"></span
+              ><span class="swatch-label"
+                >--si-border-hover: #2a3342 — при наведении</span
+              >
+            </div>
+            <br />
+            <div class="color-swatch">
+              <span class="swatch-dot" style="background: #d4a853"></span
+              ><span class="swatch-label"
+                >--si-border-accent: #d4a853 — акцент/фокус</span
+              >
+            </div>
+          </div>
+
+          <div class="section">
+            <div class="section-label">Акценты (Золото/Латунь)</div>
+            <div class="color-swatch">
+              <span class="swatch-dot" style="background: #d4a853"></span
+              ><span class="swatch-label"
+                >--si-gold: #d4a853 — основной акцент</span
+              >
+            </div>
+            <br />
+            <div class="color-swatch">
+              <span class="swatch-dot" style="background: #c49a47"></span
+              ><span class="swatch-label"
+                >--si-gold-hover: #c49a47 — hover</span
+              >
+            </div>
+            <br />
+            <div class="color-swatch">
+              <span class="swatch-dot" style="background: #b8903d"></span
+              ><span class="swatch-label"
+                >--si-gold-active: #b8903d — active/pressed</span
+              >
+            </div>
+            <br />
+            <div class="color-swatch">
+              <span
+                class="swatch-dot"
+                style="background: rgba(212, 168, 83, 0.12)"
+              ></span
+              ><span class="swatch-label"
+                >--si-gold-ghost: rgba(212,168,83,0.12) — ghost bg</span
+              >
+            </div>
+          </div>
+
+          <div class="section">
+            <div class="section-label">Текст</div>
+            <div class="color-swatch">
+              <span class="swatch-dot" style="background: #e8ecf2"></span
+              ><span class="swatch-label"
+                >--si-text: #e8ecf2 — основной текст</span
+              >
+            </div>
+            <br />
+            <div class="color-swatch">
+              <span class="swatch-dot" style="background: #8b95a5"></span
+              ><span class="swatch-label"
+                >--si-text-muted: #8b95a5 — вторичный</span
+              >
+            </div>
+            <br />
+            <div class="color-swatch">
+              <span class="swatch-dot" style="background: #4b5563"></span
+              ><span class="swatch-label"
+                >--si-text-dim: #4b5563 — подписи</span
+              >
+            </div>
+          </div>
+
+          <div class="section">
+            <div class="section-label">Семантические</div>
+            <div class="color-swatch">
+              <span class="swatch-dot" style="background: #22c55e"></span
+              ><span class="swatch-label">--si-success: #22c55e</span>
+            </div>
+            <br />
+            <div class="color-swatch">
+              <span class="swatch-dot" style="background: #eab308"></span
+              ><span class="swatch-label">--si-warning: #eab308</span>
+            </div>
+            <br />
+            <div class="color-swatch">
+              <span class="swatch-dot" style="background: #ef4444"></span
+              ><span class="swatch-label">--si-danger: #ef4444</span>
+            </div>
+            <br />
+            <div class="color-swatch">
+              <span class="swatch-dot" style="background: #3b82f6"></span
+              ><span class="swatch-label">--si-info: #3b82f6</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Типографика -->
+        <div class="card">
+          <div class="card-title"><span>🔤</span> Типографика</div>
+
+          <div class="section">
+            <div class="section-label">Шрифты</div>
+            <ul>
+              <li><b>Основной:</b> Roboto (400, 500, 700) — для текста и UI</li>
+              <li>
+                <b>Моноширинный:</b> JetBrains Mono — для артикулов, цен,
+                технических данных
+              </li>
+              <li><b>Fallback:</b> system-ui, -apple-system, sans-serif</li>
+            </ul>
+          </div>
+
+          <div class="section">
+            <div class="section-label">Шкала (Major Third)</div>
+            <ul>
+              <li><b>Caption:</b> 11px / 600 / uppercase / tracking 0.1em</li>
+              <li><b>Small:</b> 13px / 400 / normal</li>
+              <li><b>Body:</b> 15px / 400 / line-height 1.6</li>
+              <li><b>Lead:</b> 18px / 400 / line-height 1.5</li>
+              <li><b>H4:</b> 18px / 600 / tracking -0.02em</li>
+              <li><b>H3:</b> 22px / 600 / tracking -0.02em</li>
+              <li><b>H2:</b> 30px / 700 / tracking -0.03em</li>
+              <li><b>H1:</b> 42px / 700 / tracking -0.04em</li>
+              <li><b>Display:</b> 64px / 700 / tracking -0.04em</li>
+            </ul>
+          </div>
+
+          <div class="section">
+            <div class="section-label">Правила</div>
+            <ul>
+              <li>Цены и артикулы → JetBrains Mono, gold accent</li>
+              <li>Заголовки → Roboto Bold, tight tracking</li>
+              <li>Описания → Roboto Regular, comfortable leading</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Компоненты -->
+        <div class="card">
+          <div class="card-title"><span>⬛</span> Компоненты</div>
+
+          <div class="section">
+            <div class="section-label">Кнопки</div>
+            <ul>
+              <li>
+                <b>Primary (CTA):</b> bg gold, text #0d0f12, radius 6px, h:44px,
+                hover → darken 10%
+              </li>
+              <li>
+                <b>Secondary:</b> bg transparent, border #2a3342, text #e8ecf2,
+                hover → border gold
+              </li>
+              <li>
+                <b>Ghost:</b> bg gold-ghost, text gold, no border, hover → bg
+                gold-ghost × 2
+              </li>
+              <li>
+                <b>Danger:</b> bg danger/10, text danger, hover → bg danger/20
+              </li>
+              <li>
+                <b>Все:</b> font-weight 600, font-size 14px, transition 150ms
+                ease
+              </li>
+            </ul>
+          </div>
+
+          <div class="section">
+            <div class="section-label">Инпуты</div>
+            <ul>
+              <li>bg: si-bg-input, border: si-border, h: 44px, radius: 6px</li>
+              <li>focus: border-gold, ring 2px gold-ghost</li>
+              <li>placeholder: si-text-dim</li>
+              <li>Label: caption стиль, mb:6px</li>
+            </ul>
+          </div>
+
+          <div class="section">
+            <div class="section-label">Карточки</div>
+            <ul>
+              <li>
+                bg: si-bg-card, border: si-border, radius: 12px, p: 16-20px
+              </li>
+              <li>hover: border → si-gold (transition 200ms)</li>
+              <li>Цена → JetBrains Mono, gold, 24px</li>
+              <li>Артикул → JetBrains Mono, muted, 12px</li>
+            </ul>
+          </div>
+
+          <div class="section">
+            <div class="section-label">Навигация</div>
+            <ul>
+              <li>
+                Header: bg si-bg-deep, border-bottom si-border, h:64px, sticky
+              </li>
+              <li>
+                BottomNav (mobile): bg si-bg-card, border-top si-border, h:60px,
+                fixed
+              </li>
+              <li>
+                Sidebar (admin): bg si-bg-card, w:260px, border-right si-border
+              </li>
+              <li>Active state: gold accent icon + text</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Принципы -->
+        <div class="card">
+          <div class="card-title"><span>📐</span> Принципы Дизайна</div>
+
+          <div class="section">
+            <div class="section-label">Идентичность</div>
+            <ul>
+              <li>
+                <b>Sovereign</b> — каждый элемент выглядит выточенным,
+                уверенным, контролируемым
+              </li>
+              <li>
+                <b>Industrial</b> — жёсткие формы, высокая плотность данных,
+                минимальный «шум»
+              </li>
+              <li>
+                <b>Premium</b> — золотые акценты как знак качества, не украшение
+              </li>
+            </ul>
+          </div>
+
+          <div class="section">
+            <div class="section-label">Spacing (8px Grid)</div>
+            <ul>
+              <li>4px — micro (внутри тегов)</li>
+              <li>8px — compact (между элементами)</li>
+              <li>16px — base (padding карточек)</li>
+              <li>24px — section (между блоками)</li>
+              <li>48px — area (между разделами страницы)</li>
+            </ul>
+          </div>
+
+          <div class="section">
+            <div class="section-label">Радиусы</div>
+            <ul>
+              <li>0px — теги, чипы (хардкор)</li>
+              <li>4px — мелкие элементы (badge, tag)</li>
+              <li>6px — кнопки, инпуты</li>
+              <li>12px — карточки, модалки</li>
+            </ul>
+          </div>
+
+          <div class="section">
+            <div class="section-label">Тени</div>
+            <ul>
+              <li>Никаких box-shadow для карточек — только бордеры</li>
+              <li>Dropdown/Modal: 0 8px 30px rgba(0,0,0,0.5)</li>
+              <li>Glow-эффект для CTA: 0 0 20px rgba(212,168,83,0.2)</li>
+            </ul>
+          </div>
+
+          <div class="section">
+            <div class="section-label">Анимации</div>
+            <ul>
+              <li>Все transition: 150ms ease — быстро и чётко</li>
+              <li>Hover-карточки: border-color transition</li>
+              <li>Page-enter: fadeInUp 300ms</li>
+              <li>Никаких «жидких», «прыгающих» анимаций</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!-- /grid -->
+    </div>
+  </body>
+</html>

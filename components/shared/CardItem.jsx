@@ -6,18 +6,7 @@ import PropTypes from "prop-types";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useFavorites } from "@/context/FavoritesContext";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogDescription,
-  DialogFooter,
-} from "../../components/ui/dialog";
 import { Button } from "../../components/ui/button";
-import { Input } from "../../components/ui/input";
-import { Textarea } from "../../components/ui/textarea";
-import { Label } from "../../components/ui/label";
 import { useForm } from "react-hook-form";
 import { Skeleton } from "../../components/ui/skeleton";
 import { useCartStore } from "../../lib/store/testCartStore";
@@ -334,8 +323,12 @@ export default function CardItem({ product, view }) {
             {isFavorite ? "Удалить из избранного" : "В избранное"}
           </Button> */}
           <Button
-            onClick={() => handleButtonClick("Расчитать индивидуальный размер")}
-            className="w-full bg-primaryLight mb-2 px-4 text-accent font-medium rounded-lg py-2 transition-all duration-300"
+            onClick={() =>
+              handleButtonClick(
+                `Расчитать индивидуальный размер: ${product.name}`,
+              )
+            }
+            className="w-full bg-primary mb-2 px-4 text-accent font-medium rounded-lg py-2 transition-all duration-300"
           >
             Расчитать индивидуальный размер
           </Button>

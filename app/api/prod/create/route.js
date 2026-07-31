@@ -2,7 +2,6 @@ import { NextResponse } from "next/server";
 import { PrismaClient } from "@prisma/client";
 import slugify from "slugify";
 
-// Инициализируем Prisma (в идеале это должно быть в отдельном файле lib/prisma.js)
 const prisma = new PrismaClient();
 
 export async function POST(request) {
@@ -53,6 +52,11 @@ export async function POST(request) {
           lower: true,
           strict: true,
         });
+
+        const MAX_DESC_LEN = 191; // уточните ваше ограничение
+        if (item.descriptionSeo?.length > MAX_DESC_LEN) {
+          item.descriptionSeo = item.descriptionSeo.slice(0, MAX_DESC_LEN);
+        }
 
         const product = await prisma.product.upsert({
           where: { article: item.article },

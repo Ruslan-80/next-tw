@@ -13,7 +13,7 @@ export default function WorksGallery() {
   ];
 
   return (
-    <section className="bg-gradient-metal animate-metal">
+    <section className="bg-gradient-metal animate-metal rounded-xl">
       <div className="container mx-auto px-6 py-12">
         <h2 className="text-xl lg:text-3xl font-bold mb-10 text-center text-text">
           Выполненные работы

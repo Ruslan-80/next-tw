@@ -1,0 +1,194 @@
+# CMS Landing Architecture — Prisma Schema Design
+
+## Architectural Analysis
+
+### Current State (Monolithic)
+
+8+ landing files totaling ~220KB of duplicated JSX:
+
+| File | Lines | Size | Exports |
+|------|-------|------|---------|
+| [uerk.jsx](file:///d:/PRODACTION/electroshitpro/next-tw/components/shared/uerk.jsx) | 578 | 32KB | [uermTop()](file:///d:/PRODACTION/electroshitpro/next-tw/components/shared/uerk.jsx#21-116) + [uermBottom()](file:///d:/PRODACTION/electroshitpro/next-tw/components/shared/uerm.jsx#115-576) |
+| [uerm.jsx](file:///d:/PRODACTION/electroshitpro/next-tw/components/shared/uerm.jsx) | 576 | 32KB | [uermTop()](file:///d:/PRODACTION/electroshitpro/next-tw/components/shared/uerk.jsx#21-116) + [uermBottom()](file:///d:/PRODACTION/electroshitpro/next-tw/components/shared/uerm.jsx#115-576) |
+| [uerv.jsx](file:///d:/PRODACTION/electroshitpro/next-tw/components/shared/uerv.jsx) | 527 | 29KB | [uervTop()](file:///d:/PRODACTION/electroshitpro/next-tw/components/shared/uerv.jsx#20-168) + [uervBottom()](file:///d:/PRODACTION/electroshitpro/next-tw/components/shared/uerv.jsx#169-527) |
+| [ShityEtazhnyeShe.jsx](file:///d:/PRODACTION/electroshitpro/next-tw/components/shared/ShityEtazhnyeShe.jsx) | 561 | 31KB | [ShityEtazhnyeTop()](file:///d:/PRODACTION/electroshitpro/next-tw/components/shared/ShityEtazhnyeShe.jsx#27-123) + [ShityEtazhnyeBottom()](file:///d:/PRODACTION/electroshitpro/next-tw/components/shared/ShityEtazhnyeShe.jsx#124-561) |
+| [NakladkyEtazgnyeSen.jsx](file:///d:/PRODACTION/electroshitpro/next-tw/components/shared/NakladkyEtazgnyeSen.jsx) | 509 | 26KB | [NakladkyEtazhnyeTop()](file:///d:/PRODACTION/electroshitpro/next-tw/components/shared/NakladkyEtazgnyeSen.jsx#27-96) + [NakladkyEtazhnyeBottom()](file:///d:/PRODACTION/electroshitpro/next-tw/components/shared/NakladkyEtazgnyeSen.jsx#97-509) |
+| [UstrojstvaEtazhnyepodeznye.jsx](file:///d:/PRODACTION/electroshitpro/next-tw/components/shared/UstrojstvaEtazhnyepodeznye.jsx) | 567 | 25KB | [Top()](file:///d:/PRODACTION/electroshitpro/next-tw/components/shared/uerk.jsx#21-116) + [Bottom()](file:///d:/PRODACTION/electroshitpro/next-tw/components/shared/uerm.jsx#115-576) |
+| [shity-etazhnye-she.jsx](file:///d:/PRODACTION/electroshitpro/next-tw/components/shared/shity-etazhnye-she.jsx) | 486 | 27KB | duplicated variant |
+| [kozhuh-she-dlya-etazhnogo-shita.jsx](file:///d:/PRODACTION/electroshitpro/next-tw/components/shared/kozhuh-she-dlya-etazhnogo-shita.jsx) | 443 | 23KB | duplicated variant |
+
+**Problem:** Identical block structures (Hero → Purpose → Construction → Specs → Advantages → CTA) hardcoded with different text/images. Any UI change requires editing 8+ files.
+
+### Block Type Taxonomy (Extracted)
+
+| Block Type | Data Shape | Occurrence |
+|------------|-----------|------------|
+| `HERO` | badge, heading, description, ctaText, stats[{value,label}], imageUrl, imageAlt | Every page (Top) |
+| `PURPOSE` | heading, bodyText, features[{title,description}] | Every page |
+| `CONSTRUCTION` | icon, heading, paragraphs[] | Every page |
+| `MODULES` | heading, items[{title,description}], footerText | Most pages |
+| `TECH_SPECS` | heading, specs[] (string list) | Every page |
+| `ADVANTAGES` | heading, items[] (string list) | Every page |
+| `COMPLETENESS` | heading, items[] (string list) | Most pages |
+| `INSTALLATION` | heading, items[] (string list) | Most pages |
+| `RELATED_PRODUCTS` | heading, products[{href,title,description}] | Every page |
+| `CTA` | heading, bodyText, orderItems[], buttons[{text,variant}] | Every page |
+| `FAQ` | items[{question,answer}] | Some pages (ShityEtazhnye, Nakladky) |
+| `GALLERY` | images[{src,alt}] or beforeAfter pairs | Some pages |
+| `RICH_TEXT` | html content (markdown/raw) | Flexible filler |
+
+---
+
+## Proposed Prisma Schema
+
+```prisma
+model LandingPage {
+  id             Int            @id @default(autoincrement())
+  slug           String         @unique
+  title          String
+  titleSeo       String?
+  descriptionSeo String?        @db.Text
+  ogImageUrl     String?
+  jsonLdType     String?        @default("Product")
+  categoryId     Int?
+  category       Category?      @relation(fields: [categoryId], references: [id], onDelete: SetNull)
+  status         LandingStatus  @default(DRAFT)
+  blocks         LandingBlock[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([slug, status])
+  @@map("landingpage")
+}
+
+model LandingBlock {
+  id            Int           @id @default(autoincrement())
+  landingPageId Int
+  landingPage   LandingPage   @relation(fields: [landingPageId], references: [id], onDelete: Cascade)
+  type          BlockType
+  content       Json
+  sortOrder     Int           @default(0)
+  visibility    Boolean       @default(true)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([landingPageId, sortOrder])
+  @@map("landingblock")
+}
+
+enum LandingStatus {
+  DRAFT
+  PUBLISHED
+  ARCHIVED
+}
+
+enum BlockType {
+  HERO
+  PURPOSE
+  CONSTRUCTION
+  MODULES
+  TECH_SPECS
+  ADVANTAGES
+  COMPLETENESS
+  INSTALLATION
+  RELATED_PRODUCTS
+  CTA
+  FAQ
+  GALLERY
+  RICH_TEXT
+}
+```
+
+### Safety Guarantees
+
+- **Non-destructive:** Two new tables only. Zero modifications to existing `product`, `category`, `order`, or any other model
+- **Optional link:** `categoryId` on [LandingPage](file:///d:/PRODACTION/electroshitpro/next-tw/app/%28main%29/landing/test/page.jsx#91-95) is nullable — pages can exist independently of the product catalog
+- **Cascade delete:** Deleting a [LandingPage](file:///d:/PRODACTION/electroshitpro/next-tw/app/%28main%29/landing/test/page.jsx#91-95) cascades to its blocks; deleting a [Category](file:///d:/PRODACTION/electroshitpro/next-tw/app/%28main%29/catalog/%5Bslug%5D/page.jsx#142-293) sets `categoryId` to null (no orphaned pages)
+- **JSON content:** Each `BlockType` has its own JSON schema (validated at the backend layer via Zod, not at the DB level)
+
+---
+
+## JSON Manifest for db-agent
+
+```json
+{
+  "target_agent": "db-agent",
+  "context_files": [
+    "prisma/schema.prisma",
+    "components/shared/uerk.jsx",
+    "components/shared/uerm.jsx",
+    "components/shared/uerv.jsx"
+  ],
+  "task_description": "Add two new Prisma models to prisma/schema.prisma: LandingPage and LandingBlock, with enums LandingStatus and BlockType. LandingPage has fields: id (autoincrement), slug (unique String), title (String), titleSeo (optional String), descriptionSeo (optional Text), ogImageUrl (optional String), jsonLdType (optional String, default 'Product'), categoryId (optional Int, relation to Category with onDelete SetNull), status (LandingStatus enum, default DRAFT), blocks (LandingBlock[]), timestamps. LandingBlock has fields: id (autoincrement), landingPageId (Int, relation to LandingPage with onDelete Cascade), type (BlockType enum), content (Json), sortOrder (Int, default 0), visibility (Boolean, default true), timestamps. Add @@index([slug, status]) on LandingPage and @@index([landingPageId, sortOrder]) on LandingBlock. Map tables as 'landingpage' and 'landingblock'. LandingStatus enum: DRAFT, PUBLISHED, ARCHIVED. BlockType enum: HERO, PURPOSE, CONSTRUCTION, MODULES, TECH_SPECS, ADVANTAGES, COMPLETENESS, INSTALLATION, RELATED_PRODUCTS, CTA, FAQ, GALLERY, RICH_TEXT. Add the Category relation field 'landingPages LandingPage[]' to the existing Category model. Do NOT modify any existing model fields or indexes. Run 'npx prisma migrate dev --name add-landing-cms' after schema update.",
+  "expected_output": "Updated prisma/schema.prisma with LandingPage, LandingBlock models, LandingStatus and BlockType enums, and a successful migration in prisma/migrations/. The existing schema remains byte-identical except for the new relation field on Category."
+}
+```
+
+---
+
+## Content JSON Schema Reference (for future backend-agent Zod validation)
+
+```js
+// HERO block content shape
+{
+  badge: "Модульное решение",
+  heading: "Устройство этажное распределительное модульное",
+  accentWord: "УЭРМ",
+  description: "Современное модульное устройство...",
+  ctaText: "Получить консультацию",
+  stats: [
+    { value: "6-12", label: "квартир" },
+    { value: "25", label: "лет службы" },
+    { value: "IP31", label: "защита" }
+  ],
+  imageUrl: "/images/landing/uerm1.png",
+  imageAlt: "УЭРМ - Устройство этажное распределительное модульное"
+}
+
+// TECH_SPECS block content shape
+{
+  heading: "Технические характеристики",
+  icon: "Zap",
+  items: [
+    "Номинальное напряжение: 230/400 В (AC), 50 Гц.",
+    "Системы заземления: TN-S, TN-C, TN-C-S.",
+    ...
+  ]
+}
+
+// RELATED_PRODUCTS block content shape
+{
+  heading: "Вам также может быть интересно",
+  icon: "Home",
+  products: [
+    { href: "/catalog/uerv", title: "УЭРВ", description: "Встроенное..." },
+    ...
+  ]
+}
+
+// CTA block content shape
+{
+  heading: "Заказ и покупка",
+  bodyText: "Предлагаем купить...",
+  orderItems: ["Количество квартир (1–12).", "Тип счетчиков...", ...],
+  buttons: [
+    { text: "Получить коммерческое предложение", variant: "primary" },
+    { text: "Связаться с менеджером", variant: "outline" }
+  ],
+  footerText: "Каталог, фото, схемы и отзывы..."
+}
+```
+
+---
+
+## Phased Rollout
+
+| Phase | Agent | Scope |
+|-------|-------|-------|
+| **1 (current)** | db-agent | Prisma schema + migration |
+| 2 | backend-agent | Seed script extracting data from 8 JSX files into LandingPage+LandingBlock rows |
+| 3 | backend-agent | Dynamic route handler `app/(main)/landing/[slug]/page.jsx` fetching from DB |
+| 4 | ui-agent | Block factory components (`HeroBlock`, `SpecsBlock`, etc.) following Sovereign Industrial |
+| 5 | qa-agent | Verify all 9 landing URLs render identical content from DB vs. old hardcoded files |

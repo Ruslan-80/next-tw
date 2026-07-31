@@ -7,12 +7,17 @@ import { useState } from "react";
 import { updateCartItemQuantity, deleteCartItem, clearCart } from "./actions";
 import { IMaskInput } from "react-imask";
 import { useCartStore } from "../../../lib/store/testCartStore";
+import { useRouter } from "next/navigation";
 
 export default function CartClient({ cartData, items, item }) {
   // Состояние для валидации телефона
   const [phone, setPhone] = useState("");
   const [phoneError, setPhoneError] = useState("");
+  const [agreed, setAgreed] = useState(false); // Состояние согласия на обработку ПД
+  const [orderStatus, setOrderStatus] = useState(null); // 'loading' | 'success' | 'error'
+  const [orderError, setOrderError] = useState("");
   const { setCart } = useCartStore();
+  const router = useRouter();
 
   // Вычисляем итоговую сумму
   const totalPrice = items.reduce(
@@ -33,9 +38,49 @@ export default function CartClient({ cartData, items, item }) {
   };
 
   // Обработка отправки формы
-  const handleSubmit = (e) => {
+  const handleOrderSubmit = async (e) => {
+    e.preventDefault();
+
     if (!validatePhone(phone)) {
-      e.preventDefault();
+      return;
+    }
+
+    if (!agreed) {
+      setOrderError("Необходимо согласие на обработку персональных данных.");
+      return;
+    }
+
+    const formData = new FormData(e.target);
+    const data = {
+      cartToken: formData.get("cartToken"),
+      fullName: formData.get("fullName"),
+      phone: formData.get("phone"),
+      comment: formData.get("comment"),
+    };
+
+    setOrderStatus("loading");
+    setOrderError("");
+
+    try {
+      const res = await fetch("/api/orders", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+
+      const result = await res.json();
+
+      if (!res.ok) {
+        throw new Error(result.error || "Ошибка при оформлении заказа");
+      }
+
+      setOrderStatus("success");
+      setCart({ count: 0, total: 0 });
+      // Перенаправляем на страницу успеха или обновляем страницу
+      router.refresh();
+    } catch (error) {
+      setOrderStatus("error");
+      setOrderError(error.message);
     }
   };
 
@@ -104,7 +149,7 @@ export default function CartClient({ cartData, items, item }) {
 
           {/* Таблица товаров */}
           <div className="bg-background rounded-lg shadow-sm mb-8">
-            <div className="hidden md:grid md:grid-cols-6 gap-4 p-4 bg-blue-100/50 rounded-t-lg font-medium text-textForeground">
+            <div className="hidden md:grid md:grid-cols-6 gap-4 p-4 bg-card/80 rounded-t-lg font-medium text-textForeground">
               <div className="col-span-1">Изображение</div>
               <div className="col-span-2">Товар</div>
               <div className="col-span-1">Цена</div>
@@ -122,12 +167,13 @@ export default function CartClient({ cartData, items, item }) {
             <div className="bg-background rounded-lg shadow-sm p-6 flex-1 max-w-md">
               <div className="flex justify-between items-center mb-4">
                 <h2 className="text-xl font-bold text-textForeground">Итого</h2>
-                <p className="text-2xl font-bold text-orange-500">
+                <p className="text-2xl font-bold text-accent">
                   {totalPrice.toLocaleString("ru-RU")} ₽
                 </p>
               </div>
               <p className="text-sm text-textForeground mb-6">
-                Цены указаны с учетом НДС и стоимости доставки
+                Цены указаны с учетом НДС и стоимости доставки по г. Москве или
+                до Транспортной компании
               </p>
               <div className="bg-background p-4 rounded-md mb-6">
                 <p className="text-textForeground text-sm">
@@ -139,10 +185,8 @@ export default function CartClient({ cartData, items, item }) {
 
             {/* Форма */}
             <form
-              action="/api/order/create"
-              method="POST"
+              onSubmit={handleOrderSubmit}
               className="bg-background rounded-lg shadow-sm p-6 flex-1 max-w-lg"
-              onSubmit={handleSubmit}
             >
               <h2 className="text-xl font-bold text-textForeground mb-6">
                 Контактные данные
@@ -207,13 +251,54 @@ export default function CartClient({ cartData, items, item }) {
                     placeholder="Особенности доставки, пожелания и т.д."
                   />
                 </div>
+
+                {/* Блок согласия 152-ФЗ */}
+                <div className="flex items-start gap-3">
+                  <input
+                    type="checkbox"
+                    id="cartPrivacy"
+                    checked={agreed}
+                    onChange={(e) => setAgreed(e.target.checked)}
+                    className="mt-1 h-4 w-4 rounded border-gray-300 text-orange-500 focus:ring-orange-400 cursor-pointer"
+                  />
+                  <label
+                    htmlFor="cartPrivacy"
+                    className="text-xs text-textForeground cursor-pointer leading-tight"
+                  >
+                    Даю согласие на{" "}
+                    <a
+                      href="/privacy" // Укажите актуальную ссылку на политику
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="underline text-orange-500 hover:text-orange-600"
+                    >
+                      обработку персональных данных
+                    </a>{" "}
+                    в соответствии с ФЗ №152.
+                  </label>
+                </div>
+
                 <button
                   type="submit"
-                  className="w-full btn-gold "
-                  disabled={phoneError}
+                  className={`w-full btn-gold ${
+                    !agreed || phoneError || orderStatus === "loading"
+                      ? "opacity-50 cursor-not-allowed"
+                      : ""
+                  }`}
+                  disabled={!agreed || phoneError || orderStatus === "loading"}
                 >
-                  Оформить заказ
+                  {orderStatus === "loading"
+                    ? "Оформляем..."
+                    : "Оформить заказ"}
                 </button>
+                {orderStatus === "success" && (
+                  <p className="text-green-600 text-sm mt-2">
+                    ✅ Заказ успешно оформлен! Менеджер свяжется с вами.
+                  </p>
+                )}
+                {orderStatus === "error" && (
+                  <p className="text-red-500 text-sm mt-2">❌ {orderError}</p>
+                )}
               </div>
             </form>
           </div>
@@ -269,7 +354,7 @@ function CartItem({ item }) {
   );
 
   return (
-    <div className="flex flex-col md:grid md:grid-cols-6 gap-4 p-4 border-b border-gray-200 last:border-b-0">
+    <div className="flex flex-col md:grid md:grid-cols-6 gap-4 p-4 border-b border-accent/50 last:border-b-0">
       {/* Верхняя часть (мобильная) */}
       <div className="flex items-center justify-between md:hidden">
         {/* Изображение и название */}
@@ -447,7 +532,7 @@ function CartItem({ item }) {
               name="action"
               value="decrease"
               disabled={optimisticQuantity <= 1 || quantityPending}
-              className="p-1 bg-gray-100 rounded-md hover:bg-gray-200 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="p-1 bg-background rounded-md hover:text-accent disabled:opacity-50 disabled:cursor-not-allowed"
             >
               <svg
                 className="w-4 h-4"
@@ -476,7 +561,7 @@ function CartItem({ item }) {
               name="action"
               value="increase"
               disabled={quantityPending}
-              className="p-1 bg-gray-100 rounded-md hover:bg-gray-200 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="p-1 bg-background rounded-md hover:text-accent disabled:opacity-50 disabled:cursor-not-allowed"
             >
               <svg
                 className="w-4 h-4"

@@ -24,7 +24,9 @@ export default function ShieldConfigurator() {
 
   const [isBulkLoading, setIsBulkLoading] = useState(false);
 
-  const calculatedCurrent = Math.round(totalLineCurrent(shield.lines) * demandFactor);
+  const calculatedCurrent = Math.round(
+    totalLineCurrent(shield.lines) * demandFactor,
+  );
 
   // ─── «Подобрать всё»: параллельный подбор по всем секциям ──────────────────
   // Раньше секции обрабатывались последовательно в цикле. Теперь все запросы
@@ -70,10 +72,10 @@ export default function ShieldConfigurator() {
     shield.lines.length > 0;
 
   return (
-    <div className="p-6 bg-slate-950 min-h-screen text-white space-y-8">
+    <div className="p-6 border border-slate-800 rounded-xl min-h-screen text-white space-y-8">
       {/* Шапка */}
       <div className="flex items-center justify-between flex-wrap gap-3">
-        <h1 className="text-2xl font-bold">Конфигуратор ВРУ</h1>
+        <h1 className="text-2xl text-foreground font-bold">Конфигуратор ВРУ</h1>
         {hasItems && (
           <button
             onClick={handleBulkMatch}
@@ -87,7 +89,7 @@ export default function ShieldConfigurator() {
         <input
           value={shield.name}
           onChange={(e) => setName(e.target.value)}
-          className="bg-slate-800 border border-slate-700 text-white px-3 py-1.5 rounded text-sm"
+          className="bg-cardBackground border border-slate-700 text-foreground px-3 py-1.5 rounded text-sm"
           placeholder="Название щита"
         />
       </div>
@@ -113,11 +115,11 @@ export default function ShieldConfigurator() {
         deviceType="breaker"
         addLabel="Добавить линию"
         extra={
-          <div className="flex items-center gap-2 text-xs text-slate-400">
+          <div className="flex items-center gap-2 text-xs text-foreground">
             <span>
               Σ {totalLineCurrent(shield.lines)} A → {calculatedCurrent} A
             </span>
-            <span className="text-slate-600">k=</span>
+            <span className="text-foreground">k=</span>
             <input
               type="number"
               min="0.1"
@@ -130,7 +132,7 @@ export default function ShieldConfigurator() {
                   setDemandFactor(val);
                 }
               }}
-              className="w-14 bg-slate-800 border border-slate-700 text-white px-1.5 py-0.5 rounded text-xs"
+              className="w-14 bg-cardBackground border border-slate-700 text-foreground px-1.5 py-0.5 rounded text-xs"
               title="Коэффициент спроса"
             />
           </div>

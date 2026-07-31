@@ -105,19 +105,19 @@ export default function Breadcrumbs({ items, productName }) {
                 <>
                   <Link
                     href={item.href}
-                    className="hover:text-orange-400 transition-colors break-words"
+                    className="text-muted hover:text-text transition-colors break-words"
                     itemProp="item"
                     title={item.name}
                   >
                     <span itemProp="name">{item.name}</span>
                   </Link>
                   <meta itemProp="position" content={position} />
-                  <span className="mx-1 text-gray-400">/</span>
+                  <span className="mx-1 text-text">/</span>
                 </>
               ) : (
                 <>
                   <span
-                    className="text-gray-900 font-medium break-words"
+                    className="text-muted font-medium break-words"
                     itemProp="name"
                     title={item.name}
                   >

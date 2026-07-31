@@ -69,7 +69,7 @@ export default function MobileSearch() {
   };
 
   return (
-    <div className="fixed top-0 z-50 w-full bg-white/80 backdrop-blur-md border-b border-slate-100 px-4 py-3">
+    <div className="fixed top-0 z-50 w-full bg-background backdrop-blur-md border-b border-slate-100 px-4 py-3">
       {/* Ваш код поиска здесь */}
       <div className="relative w-full">
         <form onSubmit={handleSubmit} className="relative">
@@ -80,7 +80,7 @@ export default function MobileSearch() {
             placeholder="Поиск товаров..."
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            className="w-full bg-slate-100 border-none rounded-2xl px-5 py-2.5 pr-12 text-sm focus:ring-2 focus:ring-blue-500/20 transition-all"
+            className="w-full bg-card border-none rounded-2xl px-5 py-2.5 pr-12 text-sm focus:ring-2 focus:ring-blue-500/20 transition-all"
           />
           <button
             type="submit"
