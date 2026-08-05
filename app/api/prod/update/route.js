@@ -49,7 +49,7 @@ export async function POST(request) {
           continue;
         }
 
-        const MAX_DESC_LEN = 191; // уточните ваше ограничение
+        const MAX_DESC_LEN = 255; // уточните ваше ограничение
         if (item.descriptionSeo?.length > MAX_DESC_LEN) {
           item.descriptionSeo = item.descriptionSeo.slice(0, MAX_DESC_LEN);
         }
@@ -61,10 +61,10 @@ export async function POST(request) {
             name: item.name ?? existingProduct.name,
             titleSeo: item.titleSeo || "",
             descriptionSeo: item.descriptionSeo || "",
-            // seoBlock: item.seoBlock || "",
+            seoBlock: item.seoBlock || "",
             description: item.description || "",
             // Массив usp сохраняется напрямую, если в вашей Prisma schema это поле Json или String[]
-            // usp: item.usp || [],
+            usp: item.usp || [],
           },
         });
 

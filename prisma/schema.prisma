@@ -112,14 +112,82 @@ model Category {
   children        Category[]    @relation("CategoryToParent")
   parent          Category?     @relation("CategoryToParent", fields: [parentId], references: [id], onDelete: SetNull)
   products        Product[]
-  tags            CategoryTag[]
+  tags            Tag[]
   filters         Json          @default("[]")
+
+  // Связи с доп. таблицами по category.slug
+  categoryDescription CategoryDescription?
+  faqs                Faq[]
+  worksObjects        WorksObject[]
+  worksBeforeAfter    WorkBeforeAfter[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
   @@index([parentId, slug])
   @@map("category")
+}
+
+model CategoryDescription {
+  id                 Int      @id @default(autoincrement())
+  categorySlug       String   @unique
+  top_description    String?  @db.Text
+  bottom_description String?  @db.Text
+  
+  category           Category @relation(fields: [categorySlug], references: [slug], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("category_description")
+}
+
+model Faq {
+  id           Int      @id @default(autoincrement())
+  categorySlug String
+  question     String   @db.Text
+  answer       String   @db.Text
+  
+  category     Category @relation(fields: [categorySlug], references: [slug], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([categorySlug])
+  @@map("faq")
+}
+
+model WorksObject {
+  id           Int      @id @default(autoincrement())
+  categorySlug String
+  address      String?
+  alt          String?
+  imageUrl     String
+  text         String?  @db.Text
+  
+  category     Category @relation(fields: [categorySlug], references: [slug], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([categorySlug])
+  @@map("works_object")
+}
+
+model WorkBeforeAfter {
+  id           Int      @id @default(autoincrement())
+  categorySlug String
+  imageUrl     String   @map("image_url")
+  name         String
+  description  String?  @db.Text
+
+  category     Category @relation(fields: [categorySlug], references: [slug], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([categorySlug])
+  @@map("works_before_after")
 }
 
 model Product {
@@ -131,7 +199,10 @@ model Product {
   slug              String             @unique
   description       String?            @db.Text
   titleSeo          String?
-  descriptionSeo    String?
+  descriptionSeo    String?            @db.VarChar(255)
+  seoBlock          String?            @db.Text
+  usp               Json?            
+  multiplicity      Int                @default(1)
   basePrice         Int
   manufacturingTime String
   stock             Int
@@ -171,15 +242,18 @@ model ProductVariation {
 }
 
 model Tag {
-  id         Int           @id @default(autoincrement())
-  name       String        @unique
-  slug       String        @unique
-  products   ProductTag[]
-  categories CategoryTag[]
-  createdAt  DateTime      @default(now())
-  updatedAt  DateTime      @updatedAt
+  id           Int          @id @default(autoincrement())
+  categorySlug String
+  name         String
+  slug         String       @unique
+  category     Category     @relation(fields: [categorySlug], references: [slug], onDelete: Cascade)
+  products     ProductTag[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@index([name, slug])
+  @@index([categorySlug])
   @@map("tag")
 }
 
@@ -192,17 +266,6 @@ model ProductTag {
 
   @@unique([productId, tagId])
   @@map("producttag")
-}
-
-model CategoryTag {
-  id         Int      @id @default(autoincrement())
-  categoryId Int
-  tagId      Int
-  category   Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
-  tag        Tag      @relation(fields: [tagId], references: [id], onDelete: Cascade)
-
-  @@unique([categoryId, tagId])
-  @@map("categorytag")
 }
 
 model Attribute {

@@ -4,17 +4,15 @@ import { prisma } from "@/lib/prisma";
 
 export async function POST() {
   try {
-    // Получаем все товары
     const products = await prisma.product.findMany();
 
     for (const product of products) {
-      // Проверяем, есть ли уже вариации для этого товара
       const existingCount = await prisma.productVariation.count({
         where: { productId: product.id },
       });
 
       if (existingCount === 0) {
-        // Создаём дефолтную вариацию на основе данных товара
+        // Создаём дефолтную вариацию
         await prisma.productVariation.create({
           data: {
             productId: product.id,
@@ -28,21 +26,27 @@ export async function POST() {
           },
         });
       } else {
-        // Если вариации есть, но нет дефолтной — помечаем первую как дефолтную
-        const defaultExists = await prisma.productVariation.findFirst({
+        // Ищем существующую дефолтную вариацию или берём первую попавшуюся
+        let targetVariation = await prisma.productVariation.findFirst({
           where: { productId: product.id, isDefault: true },
         });
-        if (!defaultExists) {
-          const firstVar = await prisma.productVariation.findFirst({
+
+        if (!targetVariation) {
+          targetVariation = await prisma.productVariation.findFirst({
             where: { productId: product.id },
             orderBy: { id: "asc" },
           });
-          if (firstVar) {
-            await prisma.productVariation.update({
-              where: { id: firstVar.id },
-              data: { isDefault: true },
-            });
-          }
+        }
+
+        // Обновляем цену и флаг isDefault для найденной вариации
+        if (targetVariation) {
+          await prisma.productVariation.update({
+            where: { id: targetVariation.id },
+            data: {
+              price: product.basePrice,
+              isDefault: true,
+            },
+          });
         }
       }
     }

@@ -36,6 +36,26 @@ export default function AdminProducts() {
       setIsLoading((prev) => ({ ...prev, export: false }));
     }
   };
+  const handleImportPrice = async () => {
+    if (!file) return toast.error("Please select an XLSX file");
+    setIsLoading((prev) => ({ ...prev, import: true }));
+    const formData = new FormData();
+    formData.append("file", file);
+    try {
+      const response = await fetch("/api/admin/products/importprice", {
+        method: "POST",
+        body: formData,
+      });
+      const result = await response.json();
+      if (response.ok)
+        toast.success(result.message || "Imported successfully!");
+      else throw new Error(result.error || "Failed to import");
+    } catch (error) {
+      toast.error(`Import error: ${error.message}`);
+    } finally {
+      setIsLoading((prev) => ({ ...prev, import: false }));
+    }
+  };
 
   const handleImport = async () => {
     if (!file) return toast.error("Please select an XLSX file");
@@ -233,6 +253,24 @@ export default function AdminProducts() {
           >
             {isLoading.jsonImport ? "Processing..." : "Upload JSON"}
           </Button>
+        </div>
+      </section>
+      <section className="p-4 border border-accent rounded-lg bg-card">
+        <h2 className="text-lg font-semibold mb-3">XLSX Import Price</h2>
+        <div className="space-y-4">
+          <div className="flex items-center space-x-4">
+            <Input
+              type="file"
+              accept=".xlsx"
+              onChange={(e) => setFile(e.target.files?.[0] || null)}
+            />
+            <Button
+              onClick={handleImportPrice}
+              disabled={isLoading.import || !file}
+            >
+              {isLoading.import ? "Importing..." : "Import XLSX"}
+            </Button>
+          </div>
         </div>
       </section>
     </div>

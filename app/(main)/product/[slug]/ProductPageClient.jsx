@@ -57,7 +57,6 @@ export default function ProductPageClient({
   if (!product) {
     return <div className="container mx-auto py-8 px-4">Загрузка...</div>;
   }
-
   const allowed = [
     "количество дверей",
     "количество квартир (счетчиков)",
@@ -143,6 +142,21 @@ export default function ProductPageClient({
     );
   };
 
+  const getArticleNote = (article) => {
+    const code = article?.toLowerCase() || "";
+
+    if (code.startsWith("se")) {
+      return "* Итоговая стоимость зависит от количества, толщины металла, типа конструкции.";
+    }
+    if (code.startsWith("vru")) {
+      return "* Итоговая стоимость зависит от количества, брендов автоматики, материала шин и комплектации.";
+    }
+
+    return null;
+  };
+
+  // console.log(product);
+
   return (
     // <div className="antialiased bg-[#0a0f1a] bg-radial-[at_50%_50%] from-[#1e2a44] via-[#0a0f1a] to-[#05080f] text-text">
     // <div className="antialiased bg-[#f8fafc] bg-radial-[at_50%_50%] from-[#e2e8f0] via-[#f8fafc] to-[#ffffff] text-[#0f172a]">
@@ -223,7 +237,7 @@ export default function ProductPageClient({
             </div>
 
             {/* Product Details */}
-            <div className="lg:col-span-6 py-6 bg-gray-50 dark:bg-gray-900 dark:text-white rounded-2xl">
+            <div className="lg:col-span-6 py-6 bg-card text-text rounded-2xl">
               <meta itemProp="sku" content={product.article || "N/A"} />
               <Link
                 itemProp="url"
@@ -232,7 +246,14 @@ export default function ProductPageClient({
               />
               <div className="mb-8">
                 {/* Price and Actions */}
-                <div className="flex flex-col lg:flex-row items-center gap-4 mb-6 mx-4">
+                {/* <div className="flex flex-col lg:flex-row items-center gap-4 mb-6 mx-4">
+                  <h1
+                    className="w-full text-xl lg:text-2xl font-extrabold mb-6 tracking-tight text-text"
+                    itemProp="name"
+                  >
+                    {product.name || "Продукт"}
+                  </h1>
+                  <span className="text-xl font-bold text-accent">от</span>
                   <div
                     className="text-3xl font-bold text-accent"
                     itemProp="offers"
@@ -260,7 +281,7 @@ export default function ProductPageClient({
                     />
                     {product.basePrice
                       ? `${product.basePrice.toLocaleString("ru-RU")} руб.`
-                      : "Цена недоступна"}
+                      : "Запросить стоимость"}
                   </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -276,6 +297,93 @@ export default function ProductPageClient({
                         handleButtonClick(`Купить в 1 клик: ${product.name}`)
                       }
                       className="bg-primary hover:bg-primary-hover text-white py-4 rounded-2xl font-bold text-lg transition-colors"
+                    >
+                      Купить в 1 клик
+                    </button>
+                  </div>
+                </div> */}
+                <div className="flex flex-col gap-4 mb-6 mx-4">
+                  {/* 1. Название в одну строчку наверху */}
+                  <h1
+                    className="w-full text-xl lg:text-2xl font-extrabold tracking-tight text-text"
+                    itemProp="name"
+                  >
+                    {product.name || "Продукт"}
+                  </h1>
+
+                  {/* 2. Блок стоимости с разметкой Schema.org */}
+                  <div
+                    itemProp="offers"
+                    itemScope
+                    itemType="https://schema.org/Offer"
+                    className="flex items-baseline gap-2"
+                  >
+                    <meta itemProp="priceCurrency" content="RUB" />
+                    <meta
+                      itemProp="price"
+                      content={
+                        product.basePrice && product.basePrice > 0
+                          ? product.basePrice.toString()
+                          : "0"
+                      }
+                    />
+                    <link
+                      itemProp="availability"
+                      href={
+                        product.stock > 0
+                          ? "https://schema.org/InStock"
+                          : "https://schema.org/OutOfStock"
+                      }
+                    />
+                    <link
+                      itemProp="itemCondition"
+                      href="https://schema.org/NewCondition"
+                    />
+
+                    {product.basePrice && product.basePrice > 0 ? (
+                      <>
+                        <span className="text-xl font-bold text-accent">
+                          от
+                        </span>
+                        <div className="text-3xl font-bold text-accent">
+                          {product.basePrice.toLocaleString("ru-RU")} руб.{" "}
+                          <sup className="">*</sup>
+                          {getArticleNote(product?.article) && (
+                            <div className="mt-2 text-xs text-gray-500">
+                              {getArticleNote(product?.article)}
+                            </div>
+                          )}
+                        </div>
+                      </>
+                    ) : (
+                      <button
+                        type="button"
+                        onClick={() =>
+                          handleButtonClick(
+                            `Запросить стоимость: ${product.name}`,
+                          )
+                        }
+                        className="text-2xl font-bold text-accent hover:scale-105 text-left cursor-pointer transition-all"
+                      >
+                        Запросить стоимость
+                      </button>
+                    )}
+                  </div>
+
+                  {/* 3. Кнопки рядом в 1 строку на ПК (md/lg) */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-2">
+                    <button
+                      onClick={handleAddToCart}
+                      disabled={adding}
+                      className="btn-gold py-4 rounded-2xl font-bold text-lg shadow-lg shadow-orange-500/20 active:scale-95 transition-transform disabled:opacity-50"
+                    >
+                      {adding ? "Добавляем..." : "В корзину"}
+                    </button>
+                    <button
+                      onClick={() =>
+                        handleButtonClick(`Купить в 1 клик: ${product.name}`)
+                      }
+                      className="bg-primary hover:scale-105 text-white py-4 rounded-2xl font-bold text-lg transition-all"
                     >
                       Купить в 1 клик
                     </button>
@@ -659,11 +767,7 @@ export default function ProductPageClient({
                 <div className="flex flex-col md:flex-col justify-between gap-4 text-xl">
                   <div className="text-red-700">
                     <span className="font-semibold">
-                      Заказ от{" "}
-                      {product.attributes?.find(
-                        (attr) => attr.attributeName === "Кратность",
-                      )?.attributeValueName ?? 10}{" "}
-                      шт.
+                      Заказ от {product.multiplicity} шт.
                     </span>
                   </div>
                   <div className="text-text">
@@ -687,8 +791,57 @@ export default function ProductPageClient({
             >
               {product.description}
             </div> */}
-            <div className="container mx-auto text-textForeground text-sm lg:text-xl text-justify lg:indent-10 px-2 pb-10 lg:px-8">
-              <Markdown>{product.description}</Markdown>
+            <div
+              className="container mx-auto text-text px-2 pb-10 lg:px-8"
+              itemProp="description"
+            >
+              {/* 1. СЕТКА USP: 1 колонка на мобильных, 2 колонки на ПК (md:) + Компактный вид */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2.5 mb-6">
+                {Array.isArray(product.usp) &&
+                  product.usp.map((item, i) => {
+                    // 1. Выделяем эмодзи в начале строки
+                    const emojiMatch =
+                      typeof item === "string" &&
+                      item.match(/^(\p{Extended_Pictographic}|\p{Emoji})/u);
+                    const emoji = emojiMatch ? emojiMatch[0] : "✔";
+
+                    // 2. Убираем эмодзи из остального текста
+                    const cleanText = emojiMatch
+                      ? item.slice(emoji.length).trim()
+                      : item;
+
+                    // 3. Делим текст по тире
+                    const [title, ...descriptionParts] = cleanText.split(" – ");
+                    const description = descriptionParts.join(" – ");
+
+                    return (
+                      <div
+                        key={i}
+                        className="flex items-center text-text p-2.5 rounded-xl bg-card border border-border"
+                      >
+                        {/* Уменьшенный блок с эмодзи (было w-12 h-12 -> стало w-8 h-8) */}
+                        <div className="p-1.5 rounded-lg mr-3 bg-surface-medium text-base flex items-center justify-center w-8 h-8 shrink-0">
+                          {emoji}
+                        </div>
+
+                        {/* Компактный текст */}
+                        <div className="leading-tight">
+                          <div className="font-bold">{title}</div>
+                          {description && (
+                            <div className="mt-0.5 text-textMuted">
+                              {description}
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    );
+                  })}
+              </div>
+
+              {/* 2. ВЕРСТКА МАРКДАУНА (Стилизация элементов) */}
+              <div className="markdown-content leading-relaxed space-y-3 [&_p]:mb-2 [&_ul]:list-disc [&_ul]:pl-5 [&_ol]:list-decimal [&_ol]:pl-5 [&_h2]:text-lg [&_h2]:font-bold [&_h2]:mt-4 [&_a]:text-primary [&_a]:underline">
+                <Markdown>{product.description}</Markdown>
+              </div>
             </div>
 
             <Advantages />
@@ -731,7 +884,7 @@ export default function ProductPageClient({
                 <CharacteristicsTab attributes={product.attributes || []} />
               )}
               {activeTab === "description" && (
-                <div className="prose prose-lg max-w-none text-textForeground">
+                <div className="markdown-content text-text leading-relaxed space-y-3 [&_p]:mb-2 [&_ul]:list-disc [&_ul]:pl-5 [&_ol]:list-decimal [&_ol]:pl-5 [&_h2]:text-lg [&_h2]:font-bold [&_h2]:mt-4 [&_a]:text-primary [&_a]:underline">
                   <Markdown>{product.description}</Markdown>
                 </div>
               )}

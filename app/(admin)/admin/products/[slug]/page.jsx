@@ -11,7 +11,7 @@ import { DeleteButton } from "@/components/shared/DeleteButton";
 import { uploadFiles } from "./updateProduct.js";
 
 export default async function EditProductPage({ params }) {
-  const { slug } = params;
+  const { slug } = await params;
 
   // Загружаем продукт вместе с медиафайлами
   let product = null;
