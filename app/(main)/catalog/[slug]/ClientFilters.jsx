@@ -81,7 +81,7 @@ const FILTER_GROUPS = [
   },
   {
     id: "equipment",
-    name: "Дополнительное оборудование",
+    name: "Устанавливаемое оборудование",
     icon: (
       <CircuitBoard className="icon-spin-y-infinite w-6 h-6 mr-4 text-primary" />
     ),
@@ -281,14 +281,14 @@ export default function ClientFilters({
                 : "bg-transparent border-transparent hover:bg-secondary/50",
             )}
           >
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-3 flex-1 min-w-0">
               <Checkbox
                 checked={isChecked}
                 onCheckedChange={() =>
                   toggleCheckbox(attr.slug, option, isMobile)
                 }
               />
-              <span className="text-sm font-medium">{option}</span>
+              <span className="text-sm font-medium break-words">{option}</span>
             </div>
             <span className="text-[10px] opacity-40">
               {attr.counts[option] || 0}

@@ -53,7 +53,7 @@ export async function POST(request) {
           strict: true,
         });
 
-        const MAX_DESC_LEN = 191; // уточните ваше ограничение
+        const MAX_DESC_LEN = 255; // уточните ваше ограничение
         if (item.descriptionSeo?.length > MAX_DESC_LEN) {
           item.descriptionSeo = item.descriptionSeo.slice(0, MAX_DESC_LEN);
         }
@@ -90,59 +90,62 @@ export async function POST(request) {
         });
 
         // 4. Обработка атрибутов
-        // if (item.attributes && item.attributes.length > 0) {
-        //   for (const attr of item.attributes) {
-        //     const attrSlug = slugify(attr.name, { lower: true, strict: true });
+        if (item.attributes && item.attributes.length > 0) {
+          for (const attr of item.attributes) {
+            const attrSlug = slugify(attr.name, { lower: true, strict: true });
 
-        //     const attribute = await prisma.attribute.upsert({
-        //       where: { slug: attrSlug },
-        //       update: {},
-        //       create: {
-        //         name: attr.name,
-        //         slug: attrSlug,
-        //         unitName: attr.unitName || null,
-        //       },
-        //     });
+            const attribute = await prisma.attribute.upsert({
+              where: { slug: attrSlug },
+              update: {},
+              create: {
+                name: attr.name,
+                slug: attrSlug,
+                unitName: attr.unitName || null,
+              },
+            });
 
-        //     const valueSlug = slugify(String(attr.value), { lower: true, strict: true });
+            const valueSlug = slugify(String(attr.value), {
+              lower: true,
+              strict: true,
+            });
 
-        //     const value = await prisma.attributeValue.upsert({
-        //       where: {
-        //         attributeId_name: {
-        //           attributeId: attribute.id,
-        //           name: String(attr.value),
-        //         },
-        //       },
-        //       update: {},
-        //       create: {
-        //         attributeId: attribute.id,
-        //         name: String(attr.value),
-        //         slug: valueSlug,
-        //       },
-        //     });
+            const value = await prisma.attributeValue.upsert({
+              where: {
+                attributeId_name: {
+                  attributeId: attribute.id,
+                  name: String(attr.value),
+                },
+              },
+              update: {},
+              create: {
+                attributeId: attribute.id,
+                name: String(attr.value),
+                slug: valueSlug,
+              },
+            });
 
-        //     await prisma.productAttribute.upsert({
-        //       where: {
-        //         productId_attributeId_attributeValueId: {
-        //           productId: product.id,
-        //           attributeId: attribute.id,
-        //           attributeValueId: value.id,
-        //         },
-        //       },
-        //       update: {
-        //         attributeName: attr.name,
-        //         attributeValueName: String(attr.value),
-        //       },
-        //       create: {
-        //         productId: product.id,
-        //         attributeId: attribute.id,
-        //         attributeValueId: value.id,
-        //         attributeName: attr.name,
-        //         attributeValueName: String(attr.value),
-        //       },
-        //     });
-        //   }
-        // }
+            await prisma.productAttribute.upsert({
+              where: {
+                productId_attributeId_attributeValueId: {
+                  productId: product.id,
+                  attributeId: attribute.id,
+                  attributeValueId: value.id,
+                },
+              },
+              update: {
+                attributeName: attr.name,
+                attributeValueName: String(attr.value),
+              },
+              create: {
+                productId: product.id,
+                attributeId: attribute.id,
+                attributeValueId: value.id,
+                attributeName: attr.name,
+                attributeValueName: String(attr.value),
+              },
+            });
+          }
+        }
         if (item.attributes && item.attributes.length > 0) {
           for (const attr of item.attributes) {
             try {

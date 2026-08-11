@@ -13,6 +13,7 @@ import JsonLd from "@/components/JsonLdComponent";
 import getCategoryJsonLd from "@/lib/categoryJsonLd";
 import categoryComponents from "@/components/categoryBlocksMap";
 import PopularNabor from "@/components/PopularNabor";
+import PopularNaborVru from "@/components/PopularNaborVru";
 import RandomObjects from "@/components/object";
 
 export async function generateMetadata({ params, searchParams }) {
@@ -27,8 +28,10 @@ export async function generateMetadata({ params, searchParams }) {
     where: { slug: baseSlug },
     select: {
       name: true,
+      fullName: true,
       titleSeo: true,
       descriptionSeo: true,
+      fullDescription: true,
       imageUrl: true,
     },
   });
@@ -291,6 +294,7 @@ export default async function CategoryPage({ params, searchParams }) {
 
         {page === 1 && BottomComponent && <BottomComponent />}
         <PopularNabor excludeSlug={slug} />
+        <PopularNaborVru excludeSlug={slug} />
 
         {page === 1 && <RandomObjects />}
 
