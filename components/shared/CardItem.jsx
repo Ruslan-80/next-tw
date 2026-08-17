@@ -10,6 +10,7 @@ import { Button } from "../../components/ui/button";
 import { useForm } from "react-hook-form";
 import { Skeleton } from "../../components/ui/skeleton";
 import { useCartStore } from "../../lib/store/testCartStore";
+import Markdown from "react-markdown";
 
 import Modal from "@/components/ui/modal";
 import useFormSubmit from "hooks/useFormSubmit";
@@ -169,7 +170,7 @@ export default function CardItem({ product, view }) {
                   {/* ID: <span itemProp="productID">{product.id || "N/A"}</span> */}
                 </p>
 
-                {product.description && (
+                {/* {product.description && (
                   <p
                     className={
                       view === "grid"
@@ -180,6 +181,16 @@ export default function CardItem({ product, view }) {
                   >
                     {product.description}
                   </p>
+                )} */}
+                {product.description && (
+                  <div
+                    itemProp="description"
+                    className={`markdown-content text-sm text-text mb-3 leading-relaxed space-y-3 ${
+                      view === "grid" ? "line-clamp-2" : "line-clamp-4"
+                    } [&_p]:mb-2 [&_ul]:list-disc [&_ul]:pl-5 [&_ol]:list-decimal [&_ol]:pl-5 [&_h2]:text-lg [&_h2]:font-bold [&_h2]:mt-4 [&_a]:text-primary [&_a]:underline`}
+                  >
+                    <Markdown>{product.description}</Markdown>
+                  </div>
                 )}
                 {/* Бренд */}
                 <div

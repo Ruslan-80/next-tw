@@ -18,6 +18,7 @@ import { useState } from "react";
 import Modal from "@/components/ui/modal";
 import useFormSubmit from "hooks/useFormSubmit";
 import FaqVru from "@/components/faqVru";
+import PopularNaborVru from "@/components/PopularNaborVru";
 
 export function vru1Top() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -106,6 +107,7 @@ export function vru1Top() {
           </div>
         </div>
       </section>
+      <PopularNaborVru />
       <Modal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}

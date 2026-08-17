@@ -557,7 +557,7 @@ export function ShityEtazhnyeBottom() {
           </table>
         </div>
       </div>
-      <WorksGallery />
+      <WorksGallery slug="se" />
       <PopularNabor excludeSlug="shity-etazhnye-she" />
       <FaqShity />
     </div>

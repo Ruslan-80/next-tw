@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import WorksGallery from "@/components/imageDoPosle";
 
 export default function ComponentsFAQ() {
   const [openIndex, setOpenIndex] = useState(null);
@@ -861,7 +860,6 @@ export default function ComponentsFAQ() {
           ))}
         </div>
       </div>
-      {/* <WorksGallery /> */}
     </>
   );
 }

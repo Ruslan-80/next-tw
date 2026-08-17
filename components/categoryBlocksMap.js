@@ -41,6 +41,16 @@ const vru1Top = dynamic(() =>
 const vru1Bottom = dynamic(() =>
   import("./shared/vru-1").then((mod) => mod.vru1Bottom),
 );
+const vru15kvtTop = dynamic(() =>
+  import("./shared/vru-1-15-kvt-380v-trehfaznyj").then(
+    (mod) => mod.vru15kvtTop,
+  ),
+);
+const vru15kvtBottom = dynamic(() =>
+  import("./shared/vru-1-15-kvt-380v-trehfaznyj").then(
+    (mod) => mod.vru15kvtBottom,
+  ),
+);
 const vruTop = dynamic(() => import("./shared/vru").then((mod) => mod.vruTop));
 const vruBottom = dynamic(() =>
   import("./shared/vru").then((mod) => mod.vruBottom),
@@ -84,6 +94,10 @@ const categoryComponents = {
   "vru-1": {
     top: vru1Top,
     bottom: vru1Bottom,
+  },
+  "vru-1-15-kvt-380v-trehfaznyj": {
+    top: vru15kvtTop,
+    bottom: vru15kvtBottom,
   },
   "nakladki-shitov-etazhnyh-she": {
     top: NakladkyEtazhnyeTop,

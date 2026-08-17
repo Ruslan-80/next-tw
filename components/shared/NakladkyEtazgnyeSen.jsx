@@ -499,7 +499,7 @@ export function NakladkyEtazhnyeBottom() {
         </div>
       </section>
 
-      <WorksGallery />
+      <WorksGallery slug="se" />
       <FaqNakladky />
     </div>
   );

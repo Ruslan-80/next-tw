@@ -910,7 +910,7 @@ export default function ProductPageClient({
         {/* Дополнительные секции */}
         <div className="">
           <ProductFaq />
-          <WorksGallery />
+          <WorksGallery slug={product.slug} />
           <RandomObjects />
         </div>
         {/* Feedback Modal */}

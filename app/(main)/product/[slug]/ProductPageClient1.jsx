@@ -791,7 +791,7 @@ export default function ProductPageClient({
         </div>
       </div>
       <ProductFaq />
-      <WorksGallery />
+      <WorksGallery slug={product.slug} />
       <VideoGallery />
       <RandomObjects />
       {/* Feedback Modal */}

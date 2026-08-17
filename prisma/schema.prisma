@@ -109,6 +109,7 @@ model Category {
   imageUrl        String?
   titleSeo        String?
   descriptionSeo  String?
+  visibility      Boolean       @default(true)
   children        Category[]    @relation("CategoryToParent")
   parent          Category?     @relation("CategoryToParent", fields: [parentId], references: [id], onDelete: SetNull)
   products        Product[]
@@ -227,7 +228,7 @@ model ProductVariation {
   sku            String     @unique
   variationValue String
   titleSeo       String?
-  descriptionSeo String?
+  descriptionSeo String?    @db.VarChar(255)
   price          Int
   stock          Int
   isDefault      Boolean    @default(false)
@@ -246,6 +247,7 @@ model Tag {
   categorySlug String
   name         String
   slug         String       @unique
+  visibility   Boolean      @default(true)
   category     Category     @relation(fields: [categorySlug], references: [slug], onDelete: Cascade)
   products     ProductTag[]
 
@@ -273,6 +275,7 @@ model Attribute {
   name     String             @unique
   slug     String             @unique
   unitName String?
+  visibility Boolean          @default(true)
   values   AttributeValue[]
   products ProductAttribute[]
 
