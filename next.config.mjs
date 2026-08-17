@@ -54,6 +54,140 @@ const nextConfig = {
       // },
     ];
   },
+  async redirects() {
+    return [
+      {
+        source: "/product/vru-1-21-10",
+        destination: "/product/vru-1-21-10-250a",
+        permanent: true, // 301 редирект для SEO
+      },
+      {
+        source: "/product/vru-1-26-60a",
+        destination: "/product/vru-1-26-60a-250a",
+        permanent: true,
+      },
+      {
+        source: "/product/vru-1-23-55",
+        destination: "/product/vru-1-23-55-250a",
+        permanent: true,
+      },
+      {
+        source: "/product/vru-1-23-50",
+        destination: "/product/vru-1-23-55-250a",
+        permanent: true,
+      },
+      {
+        source: "/product/vru-1-26-63",
+        destination: "/product/vru-1-26-63-250a",
+        permanent: true,
+      },
+      {
+        source: "/product/vru-1-26-64",
+        destination: "/product/vru-1-26-64-250a",
+        permanent: true,
+      },
+      {
+        source: "/product/vru-1-26-65",
+        destination: "/product/vru-1-26-65-250a",
+        permanent: true,
+      },
+      {
+        source: "/product/vru-1-13-20",
+        destination: "/product/vru-1-13-20-400a",
+        permanent: true,
+      },
+      {
+        source: "/product/vru-1-11-10",
+        destination: "/product/vru-1-11-10-250a",
+        permanent: true,
+      },
+      {
+        source: "/product/vru-1-18-80",
+        destination: "/product/vru-1-18-80-250a",
+        permanent: true,
+      },
+      {
+        source: "/product/vru-1-17-70",
+        destination: "/product/vru-1-17-70-100a",
+        permanent: true,
+      },
+      {
+        source: "/product/vru-1-14-20",
+        destination: "/product/vru-1-14-20-400a",
+        permanent: true,
+      },
+      {
+        source: "/product/vru-1-12-10",
+        destination: "/product/vru-1-12-10k-250a",
+        permanent: true,
+      },
+      {
+        source: "/product/vru-1-18-89",
+        destination: "/product/vru-1-18-89-250a",
+        permanent: true,
+      },
+      {
+        source: "/product/vru-1-13-10",
+        destination: "/product/vru-1-13-10a-250a",
+        permanent: true,
+      },
+      {
+        source: "/product/vru-1-19-90",
+        destination: "/product/vru-1-19-90-160a",
+        permanent: true,
+      },
+      {
+        source: "/product/vru-1-15-30",
+        destination: "/product/vru-1-15-30-630a",
+        permanent: true,
+      },
+      {
+        source: "/product/vru-1-16-40",
+        destination: "/product/vru-1-16-40a-800a",
+        permanent: true,
+      },
+      {
+        source: "/product/vru-1-19-99",
+        destination: "/product/vru-1-19-99-160a",
+        permanent: true,
+      },
+      {
+        source: "/product/vru-1-48-03",
+        destination: "/product/vru-1-48-03-100a",
+        permanent: true,
+      },
+      {
+        source: "/product/vru-1-41-00",
+        destination: "/product/vru-1-41-00-100a",
+        permanent: true,
+      },
+      {
+        source: "/product/vru-1-50-00",
+        destination: "/product/vru-1-50-00-250a",
+        permanent: true,
+      },
+      {
+        source: "/product/vru-1-49-00",
+        destination: "/product/vru-1-49-00-s-buo-200a",
+        permanent: true,
+      },
+      {
+        source: "/product/vru-1-47-00",
+        destination: "/product/vru-1-47-00-200a",
+        permanent: true,
+      },
+      {
+        source: "/product/vru-1-50-01",
+        destination: "/product/vru-1-50-01-250a",
+        permanent: true,
+      },
+      {
+        source: "/product/vru-1-42-01",
+        destination: "/product/vru-1-42-01-100a",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;
