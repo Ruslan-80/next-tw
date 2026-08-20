@@ -15,65 +15,100 @@ export async function POST(request) {
     if (!contact) {
       return NextResponse.json(
         { error: "Отсутствуют обязательные поля: contact" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
-    // Настройка Nodemailer для отправки письма
-    // const transporter = nodemailer.createTransport({
-    //   service: "gmail",
-    //   auth: {
-    //     user: process.env.EMAIL_USER,
-    //     pass: process.env.EMAIL_PASS,
-    //   },
-    // });
+    const timeString = new Date().toLocaleString();
 
-    // const mailOptions = {
-    //   from: process.env.EMAIL_USER,
-    //   to: "manager@example.com", // Укажите ваш email
-    //   subject: "Новое сообщение с сайта",
-    //   text: `Контакт: ${contact}\nКнопка: ${buttonId}\nВремя: ${new Date().toLocaleString()}`,
-    //   html: `<p><strong>Контакт:</strong> ${contact}</p>
-    //          <p><strong>Кнопка:</strong> ${buttonId}</p>
-    //          <p><strong>Время:</strong> ${new Date().toLocaleString()}</p>`,
-    // };
+    // Формируем текст сообщения
+    const notificationText = `Новое сообщение:
+Контакт: ${contact}
+Email: ${email || "не указан"}
+Сообщение: ${message || "не указано"}
+Товар: ${productName || "не указан"}
+Время: ${timeString}`;
 
-    // // Отправка письма
-    // await transporter.sendMail(mailOptions);
+    let telegramSent = false;
+    let emailSent = false;
+    let telegramErrorMsg = null;
 
-    // Отправка сообщения в Telegram
-    const telegramMessage = `Новое сообщение:\nКонтакт: ${contact}\nEmail: ${email}\nСообщение: ${message}\nТовар: ${productName}\nВремя: ${new Date().toLocaleString()}`;
-    await axios.post(
-      `https://api.telegram.org/bot${process.env.TELEGRAM_BOT_TOKEN}/sendMessage`,
-      {
-        chat_id: process.env.TELEGRAM_CHAT_ID,
-        text: telegramMessage,
-      }
-    );
+    // 1. Пытаемся отправить сообщение в Telegram
+    try {
+      await axios.post(
+        `https://api.telegram.org/bot${process.env.TELEGRAM_BOT_TOKEN}/sendMessage`,
+        {
+          chat_id: process.env.TELEGRAM_CHAT_ID,
+          text: notificationText,
+        },
+      );
+      telegramSent = true;
+    } catch (tgError) {
+      telegramErrorMsg = tgError.response?.data?.description || tgError.message;
+      console.error("Ошибка отправки в Telegram:", telegramErrorMsg);
+    }
 
-    console.log("Письмо и Telegram-сообщение отправлены:", {
-      contact,
+    // 2. Настраиваем Nodemailer для отправки письма
+    const transporter = nodemailer.createTransport({
+      host: "smtp.mail.ru", // Хост Mail.ru
+      port: 465, // Порт для SSL
+      secure: true, // true для 465 порта
+      family: 4,
+      auth: {
+        user: process.env.EMAIL_USER, // Ваш email на mail.ru
+        pass: process.env.EMAIL_PASS, // Пароль для внешних приложений
+      },
     });
 
-    // Здесь можно добавить логику для сохранения данных, например, в базу данных
-    // Пример: await saveToDatabase({ contact, buttonId });
+    const mailOptions = {
+      from: process.env.EMAIL_USER,
+      to: "ruslan-80@inbox.ru",
+      subject: telegramSent
+        ? "Новое сообщение с сайта"
+        : "⚠️ Ошибка Telegram! Новое сообщение с сайта",
+      text: notificationText,
+      html: `<p><strong>Контакт:</strong> ${contact}</p>
+             <p><strong>Email:</strong> ${email || "не указан"}</p>
+             <p><strong>Сообщение:</strong> ${message || "не указано"}</p>
+             <p><strong>Товар:</strong> ${productName || "не указан"}</p>
+             <p><strong>Время:</strong> ${timeString}</p>
+             ${!telegramSent ? `<p style="color: red;"><strong>Внимание:</strong> Не удалось отправить сообщение в Telegram. Ошибка: ${telegramErrorMsg}</p>` : ""}`,
+    };
 
-    // Имитация успешной обработки
-    // console.log("Получены данные:", { contact });
+    // Если Telegram упал, обязательно отправляем на почту
+    try {
+      await transporter.sendMail(mailOptions);
+      emailSent = true;
+    } catch (mailError) {
+      console.error("Ошибка отправки email:", mailError.message);
+    }
+
+    // Если и Telegram, и Почта не сработали — возвращаем 500 ошибку
+    if (!telegramSent && !emailSent) {
+      return NextResponse.json(
+        {
+          error:
+            "Внутренняя ошибка сервера: не удалось отправить уведомление ни в Telegram, ни на почту.",
+        },
+        { status: 500 },
+      );
+    }
+
+    console.log("Результаты отправки:", { telegramSent, emailSent, contact });
 
     return NextResponse.json(
       {
         status: "success",
-        message: "Данные успешно отправленны",
-        data: { contact },
+        message: "Данные успешно отправлены",
+        data: { contact, telegramSent, emailSent },
       },
-      { status: 200 }
+      { status: 200 },
     );
   } catch (error) {
-    console.error("Ошибка сервера:", error.message);
+    console.error("Критическая ошибка сервера:", error.message);
     return NextResponse.json(
       { error: "Внутренняя ошибка сервера" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
