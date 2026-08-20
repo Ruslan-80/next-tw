@@ -74,6 +74,10 @@ const data = {
           url: "/admin/products/exp",
         },
         {
+          title: "Сообщения",
+          url: "/admin/messages",
+        },
+        {
           title: "Настройки",
           url: "#",
         },
