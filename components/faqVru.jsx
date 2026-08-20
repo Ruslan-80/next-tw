@@ -1,6 +1,15 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
+const SkeletonItem = () => (
+  <div className="border rounded-2xl shadow-sm animate-pulse">
+    <div className="px-6 py-4 flex justify-between items-center">
+      <div className="h-6 rounded w-3/4"></div>
+      <div className="w-8 h-8 rounded-full"></div>
+    </div>
+  </div>
+);
 
 const faqs = [
   {
@@ -572,41 +581,52 @@ const faqs = [
 ];
 
 export default function FaqVru() {
+  const [items, setItems] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const [openIndex, setOpenIndex] = useState(null);
 
-  const toggle = (index) => {
-    setOpenIndex(openIndex === index ? null : index);
-  };
+  useEffect(() => {
+    // Имитация загрузки + рандомизация
+    setTimeout(() => {
+      const shuffled = [...faqs].sort(() => Math.random() - 0.5);
+      setItems(shuffled.slice(0, 4));
+      setIsLoading(false);
+    }, 800);
+  }, []);
+
+  const toggle = (i) => setOpenIndex(openIndex === i ? null : i);
 
   return (
-    <div className="container mx-auto py-6 text-text">
-      <h2 className="text-3xl font-bold mb-6 text-accent">Вопросы и ответы</h2>
-      <div className="space-y-4">
-        {faqs.map((faq, index) => (
-          <div key={index} className="border rounded-2xl shadow-sm bg-card">
-            <button
-              onClick={() => toggle(index)}
-              className="w-full text-left px-6 py-4 text-accent flex justify-between items-center font-semibold text-2xl"
-            >
-              {faq.question}
-              <span className="ml-2 text-2xl text-accent leading-none">
-                {openIndex === index ? "−" : "+"}
-              </span>
-            </button>
-            <div
-              className={`transition-all duration-500 overflow-hidden ${
-                openIndex === index
-                  ? "max-h-[1000px] opacity-100"
-                  : "max-h-0 opacity-0"
-              }`}
-            >
-              <div className="px-6 pb-6 text-text text-xl leading-relaxed">
-                {faq.answer}
-              </div>
-            </div>
-          </div>
-        ))}
+    <section className="text-text">
+      <div className="container mx-auto py-4 lg:py-8 px-4">
+        <h2 className="text-xl lg:text-3xl font-bold mb-8">Частые вопросы</h2>
+
+        <div className="space-y-4 text-sm lg:text-2xl">
+          {isLoading
+            ? Array(4)
+                .fill()
+                .map((_, i) => <SkeletonItem key={i} />)
+            : items.map((faq, i) => (
+                <div key={i} className="border rounded-2xl shadow-sm">
+                  <button
+                    onClick={() => toggle(i)}
+                    className="w-full text-left px-4 lg:px-6 py-4 flex justify-between items-center font-semibold text-accent"
+                  >
+                    {faq.question}
+                    <span>{openIndex === i ? "−" : "+"}</span>
+                  </button>
+
+                  <div
+                    className={`overflow-hidden transition-all duration-500 ${
+                      openIndex === i ? "max-h-96" : "max-h-0"
+                    }`}
+                  >
+                    <div className="px-4 lg:px-6 pb-6">{faq.answer}</div>
+                  </div>
+                </div>
+              ))}
+        </div>
       </div>
-    </div>
+    </section>
   );
 }

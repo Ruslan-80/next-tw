@@ -321,12 +321,14 @@ model MediaFile {
   productId Int
   type      FileType
   url       String
+  isMain    Boolean  @default(false)
   product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  @@index([productId, type])
+  // Индекс по productId и isMain поможет быстро находить главное изображение товара
+  @@index([productId, isMain])
   @@map("mediafile")
 }
 

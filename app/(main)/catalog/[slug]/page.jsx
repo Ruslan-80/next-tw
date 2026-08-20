@@ -254,7 +254,8 @@ export default async function CategoryPage({ params, searchParams }) {
       <Breadcrumbs items={breadcrumbs} />
       <div className="bg-gradient-metal animate-metal">
         <h1 className="flex items-center justify-center text-2xl md:text-3xl font-light tracking-tighter leading-tight text-text py-16">
-          {finalH1}
+          {/* {finalH1} */}
+          {category.fullName}
           {page > 1 && <span className="ml-2">— страница {page}</span>}
         </h1>
         {page === 1 && (
