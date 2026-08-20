@@ -5,15 +5,12 @@ import Image from "next/image";
 export default function WorksGallery({ slug }) {
   // Список картинок для vru
   const vruImages = [
-    // "/images/after/before-after-1.jpg",
-    // "/images/after/before-after-2.jpg",
-    // "/images/after/before-after-3.jpg",
-    // "/images/after/before-after-4.jpg",
-    // "/images/after/before-after-5.jpg",
-    // "/images/after/before-after-6.jpg",
-    "/images/after/vru_before-0.jpg",
-    "/images/after/vru_before-2.jpg",
-    "/images/after/vru_before-3.jpg",
+    "/images/after/before-2.jpg",
+    "/images/after/before-5.jpg",
+    "/images/after/before-6.jpg",
+    "/images/after/before-1.jpg",
+    "/images/after/before-4.jpg",
+    "/images/after/before-3.jpg",
   ];
 
   // Список картинок для se

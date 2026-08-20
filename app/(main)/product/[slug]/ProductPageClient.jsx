@@ -206,7 +206,7 @@ export default function ProductPageClient({
                     </span>
                   </div>
 
-                  <div className="absolute bottom-4 right-4 bg-black/60 backdrop-blur-md text-white text-[10px] lg:text-xs px-3 py-1.5 rounded-lg border border-white/20">
+                  <div className="bg-card absolute top-4 right-4 text-text font-extrabold text-[12px] lg:text-[18px] lg:top-12 px-3 py-1.5 rounded-lg border border-accent">
                     Артикул: {product.article || "N/A"}
                   </div>
                 </div>
@@ -310,6 +310,9 @@ export default function ProductPageClient({
                   >
                     {product.name || "Продукт"}
                   </h1>
+                  <div className="text-text font-extrabold text-[18px] py-1.5">
+                    Артикул: {product.article || "N/A"}
+                  </div>
 
                   {/* 2. Блок стоимости с разметкой Schema.org */}
                   <div

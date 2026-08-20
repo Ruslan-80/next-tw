@@ -332,6 +332,15 @@ model MediaFile {
   @@map("mediafile")
 }
 
+model MessageQueue {
+  id        Int      @id @default(autoincrement())
+  contact   String
+  data      Json     // Здесь храним email, message, productName
+  status    String   @default("pending") // pending, sent, failed
+  error     String?  // Текст ошибки, если отправка не удалась
+  createdAt DateTime @default(now())
+}
+
 enum FileType {
   IMAGE
   VIDEO
