@@ -38,9 +38,9 @@ export function vru1Top() {
             <div className="space-y-4 px-2">
               <h2 className="text-2xl lg:text-5xl font-bold text-balance leading-tight">
                 Вводно-распределительные устройства ВРУ-1 (
-                <a href="https://example.com" target="_blank">
+                <Link href="/catalog/vvodno-raspredelitelnye-ustrojstva-vru?nominalnoe-napryazhenie=380%2F220">
                   380В
-                </a>
+                </Link>
                 ) <small>от 60 кВт</small>{" "}
               </h2>
               <p className="text-muted-foreground text-balance leading-relaxed">
@@ -240,10 +240,15 @@ export function vru1Bottom() {
                     45 000 руб.
                   </td>
                   <td className="py-2 px-4 hover:underline">
-                    <Link href="vru-1?kolichestvo-vvodov=1">1 ввод</Link>
+                    <Link href="/catalog/vvodno-raspredelitelnye-ustrojstva-vru?kolichestvo-vvodov=1">
+                      1 ввод
+                    </Link>
                   </td>
                   <td className="py-2 px-4">
-                    <Link href="vru-1?stepen-zashity-ip=IP55" passHref>
+                    <Link
+                      href="/catalog/vvodno-raspredelitelnye-ustrojstva-vru?stepen-zashity-ip=IP55"
+                      passHref
+                    >
                       <span className="bg-accent text-background hover:text-primaryLight text-xs font-semibold px-2.5 py-0.5 rounded-full">
                         IP55
                       </span>
@@ -263,13 +268,16 @@ export function vru1Bottom() {
                     90 000 руб.
                   </td>
                   <td className="py-2 px-4 hover:underline">
-                    <Link href="vru-1?kolichestvo-vvodov=2&s-blokom-avr=да">
+                    <Link href="/catalog/vvodno-raspredelitelnye-ustrojstva-vru?kolichestvo-vvodov=2&s-blokom-avr=да">
                       2 ввода + АВР
                     </Link>
                   </td>
 
                   <td className="py-2 px-4">
-                    <Link href="vru-1?stepen-zashity-ip=IP31" passHref>
+                    <Link
+                      href="/catalog/vvodno-raspredelitelnye-ustrojstva-vru?stepen-zashity-ip=IP31"
+                      passHref
+                    >
                       <span className="bg-accent text-background hover:text-primaryLight text-xs font-semibold px-2.5 py-0.5 rounded-full">
                         IP31
                       </span>
@@ -289,10 +297,15 @@ export function vru1Bottom() {
                     75 000 руб.
                   </td>
                   <td className="py-2 px-4 hover:underline">
-                    <Link href="vru-1?kolichestvo-vvodov=1">1 ввод</Link>
+                    <Link href="/catalog/vvodno-raspredelitelnye-ustrojstva-vru?kolichestvo-vvodov=1">
+                      1 ввод
+                    </Link>
                   </td>
                   <td className="py-2 px-4">
-                    <Link href="vru-1?stepen-zashity-ip=IP31" passHref>
+                    <Link
+                      href="/catalog/vvodno-raspredelitelnye-ustrojstva-vru?stepen-zashity-ip=IP31"
+                      passHref
+                    >
                       <span className="bg-accent text-background hover:text-primaryLight text-xs font-semibold px-2.5 py-0.5 rounded-full">
                         IP31
                       </span>
@@ -312,12 +325,15 @@ export function vru1Bottom() {
                     110 000 руб.
                   </td>
                   <td className="py-2 px-4 hover:underline">
-                    <Link href="vru-1?kolichestvo-vvodov=2&s-blokom-avr=да">
+                    <Link href="/catalog/vvodno-raspredelitelnye-ustrojstva-vru?kolichestvo-vvodov=2&s-blokom-avr=да">
                       2 ввода + АВР
                     </Link>
                   </td>
                   <td className="py-2 px-4">
-                    <Link href="vru-1?stepen-zashity-ip=IP31" passHref>
+                    <Link
+                      href="/catalog/vvodno-raspredelitelnye-ustrojstva-vru?stepen-zashity-ip=IP31"
+                      passHref
+                    >
                       <span className="bg-accent text-background hover:text-primaryLight text-xs font-semibold px-2.5 py-0.5 rounded-full">
                         IP31
                       </span>
@@ -337,12 +353,15 @@ export function vru1Bottom() {
                     110 000 руб.
                   </td>
                   <td className="py-2 px-4 hover:underline">
-                    <Link href="vru-1?kolichestvo-vvodov=2&s-blokom-avr=да">
+                    <Link href="/catalog/vvodno-raspredelitelnye-ustrojstva-vru?kolichestvo-vvodov=2&s-blokom-avr=да">
                       2 ввода + АВР
                     </Link>
                   </td>
                   <td className="py-2 px-4">
-                    <Link href="vru-1?stepen-zashity-ip=IP65" passHref>
+                    <Link
+                      href="/catalog/vvodno-raspredelitelnye-ustrojstva-vru?stepen-zashity-ip=IP65"
+                      passHref
+                    >
                       <span className="bg-accent text-background hover:text-primaryLight text-xs font-semibold px-2.5 py-0.5 rounded-full">
                         IP65
                       </span>
@@ -362,10 +381,15 @@ export function vru1Bottom() {
                     95 000 руб.
                   </td>
                   <td className="py-2 px-4 hover:underline">
-                    <Link href="vru-1?kolichestvo-vvodov=1">1 ввод</Link>
+                    <Link href="/catalog/vvodno-raspredelitelnye-ustrojstva-vru?kolichestvo-vvodov=1">
+                      1 ввод
+                    </Link>
                   </td>
                   <td className="py-2 px-4">
-                    <Link href="vru-1?stepen-zashity-ip=IP31" passHref>
+                    <Link
+                      href="/catalog/vvodno-raspredelitelnye-ustrojstva-vru?stepen-zashity-ip=IP31"
+                      passHref
+                    >
                       <span className="bg-accent text-background hover:text-primaryLight text-xs font-semibold px-2.5 py-0.5 rounded-full">
                         IP31
                       </span>
@@ -385,10 +409,15 @@ export function vru1Bottom() {
                     45 000 руб.
                   </td>
                   <td className="py-2 px-4 hover:underline">
-                    <Link href="vru-1?kolichestvo-vvodov=1">1 ввод</Link>
+                    <Link href="/catalog/vvodno-raspredelitelnye-ustrojstva-vru?kolichestvo-vvodov=1">
+                      1 ввод
+                    </Link>
                   </td>
                   <td className="py-2 px-4">
-                    <Link href="vru-1?stepen-zashity-ip=IP31" passHref>
+                    <Link
+                      href="/catalog/vvodno-raspredelitelnye-ustrojstva-vru?stepen-zashity-ip=IP31"
+                      passHref
+                    >
                       <span className="bg-accent text-background hover:text-primaryLight text-xs font-semibold px-2.5 py-0.5 rounded-full">
                         IP31
                       </span>
@@ -408,10 +437,15 @@ export function vru1Bottom() {
                     135 000 руб.
                   </td>
                   <td className="py-2 px-4 hover:underline">
-                    <Link href="vru-1?kolichestvo-vvodov=2">2 ввода</Link>
+                    <Link href="/catalog/vvodno-raspredelitelnye-ustrojstva-vru?kolichestvo-vvodov=2">
+                      2 ввода
+                    </Link>
                   </td>
                   <td className="py-2 px-4">
-                    <Link href="vru-1?stepen-zashity-ip=IP66" passHref>
+                    <Link
+                      href="/catalog/vvodno-raspredelitelnye-ustrojstva-vru?stepen-zashity-ip=IP66"
+                      passHref
+                    >
                       <span className="bg-accent text-background hover:text-primaryLight text-xs font-semibold px-2.5 py-0.5 rounded-full">
                         IP66
                       </span>
@@ -428,9 +462,12 @@ export function vru1Bottom() {
             <span>
               <strong>Требуется решение для малого бизнеса?</strong> Перейдите
               на специализированную страницу{" "}
-              <a href="/vru-1-15-kw" className="text-blue-600 hover:underline">
+              <Link
+                href="/catalog/vru-1-15-kvt-380v-trehfaznyj"
+                className="text-blue-600 hover:underline"
+              >
                 ВРУ-1 на 15 кВт (380В)
-              </a>
+              </Link>
               .
             </span>
             <Button
@@ -568,7 +605,7 @@ export function vru1Bottom() {
                   вариантах глубины 450 мм и 600 мм. Выбор глубины 600 мм
                   обязателен при использовании{" "}
                   <a
-                    href="/current-transformers"
+                    href="/catalog/vvodno-raspredelitelnye-ustrojstva-vru?transformator-toka=да"
                     className="text-accent hover:underline"
                   >
                     трансформаторов тока
@@ -633,21 +670,21 @@ export function vru1Bottom() {
                   <td className="py-2 px-4">
                     <strong>Назначение:</strong> 11–19 —{" "}
                     <a
-                      href="vru-1?naznachenie-paneli=вводные"
+                      href="/catalog/vvodno-raspredelitelnye-ustrojstva-vru?naznachenie-paneli=вводные"
                       className="text-blue-600 hover:underline"
                     >
                       вводные
                     </a>
                     ; 21–29 —{" "}
                     <a
-                      href="vru-1?naznachenie-paneli=вводно-распределительные"
+                      href="/catalog/vvodno-raspredelitelnye-ustrojstva-vru?naznachenie-paneli=вводно-распределительные"
                       className="text-blue-600 hover:underline"
                     >
                       вводно-распределительные
                     </a>
                     ; 41–50 —{" "}
                     <a
-                      href="vru-1?naznachenie-paneli=распределительные"
+                      href="/catalog/vvodno-raspredelitelnye-ustrojstva-vru?naznachenie-paneli=распределительные"
                       className="text-blue-600 hover:underline"
                     >
                       распределительные
@@ -661,7 +698,7 @@ export function vru1Bottom() {
                     <strong>Аппарат на вводе:</strong> 0 — нет; 1-3 —
                     переключатель; 4-5 — выключатель; 7-9 —{" "}
                     <a
-                      href="vru-1?s-blokom-avr=да"
+                      href="/catalog/vvodno-raspredelitelnye-ustrojstva-vru?s-blokom-avr=да"
                       className="text-blue-600 hover:underline"
                     >
                       блок с АВР
@@ -682,7 +719,7 @@ export function vru1Bottom() {
                   <td className="py-2 px-4">
                     <strong>Защита отходящих линий:</strong> «А» —{" "}
                     <a
-                      href="vru-1?vyklyuchatel-na-othodyashih-liniyah=да"
+                      href="/catalog/vvodno-raspredelitelnye-ustrojstva-vru?vyklyuchatel-na-othodyashih-liniyah=да"
                       className="text-blue-600 hover:underline"
                     >
                       автоматические выключатели

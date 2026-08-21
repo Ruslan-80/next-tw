@@ -294,8 +294,8 @@ export default async function CategoryPage({ params, searchParams }) {
         />
 
         {page === 1 && BottomComponent && <BottomComponent />}
-        <PopularNabor excludeSlug={slug} />
-        <PopularNaborVru excludeSlug={slug} />
+        {/* <PopularNabor excludeSlug={slug} /> */}
+        {/* <PopularNaborVru excludeSlug={slug} /> */}
 
         {page === 1 && <RandomObjects />}
 

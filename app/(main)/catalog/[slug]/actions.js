@@ -42,8 +42,10 @@ export async function getProductsByCategory(slug, searchParams = {}) {
   };
 
   const filterEntries = Object.entries(resolvedSearchParams).filter(
-    ([key, value]) => key !== "page" && value !== undefined && value !== ""
+    ([key, value]) => key !== "page" && value !== undefined && value !== "",
   );
+
+  console.log("filterEntries:", filterEntries);
 
   if (filterEntries.length > 0) {
     const attributeConditions = filterEntries.map(([attributeSlug, value]) => {
@@ -51,8 +53,8 @@ export async function getProductsByCategory(slug, searchParams = {}) {
         typeof value === "string"
           ? value.split("-").filter((v) => v.trim() !== "")
           : Array.isArray(value)
-          ? value
-          : [value];
+            ? value
+            : [value];
       return {
         attributes: {
           some: {

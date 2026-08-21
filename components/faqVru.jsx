@@ -589,7 +589,7 @@ export default function FaqVru() {
     // Имитация загрузки + рандомизация
     setTimeout(() => {
       const shuffled = [...faqs].sort(() => Math.random() - 0.5);
-      setItems(shuffled.slice(0, 4));
+      setItems(shuffled.slice(0, 5));
       setIsLoading(false);
     }, 800);
   }, []);

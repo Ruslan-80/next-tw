@@ -41,6 +41,12 @@ const vru1Top = dynamic(() =>
 const vru1Bottom = dynamic(() =>
   import("./shared/vru-1").then((mod) => mod.vru1Bottom),
 );
+const vru3Top = dynamic(() =>
+  import("./shared/vru-3").then((mod) => mod.vru3Top),
+);
+const vru3Bottom = dynamic(() =>
+  import("./shared/vru-3").then((mod) => mod.vru3Bottom),
+);
 const vru15kvtTop = dynamic(() =>
   import("./shared/vru-1-15-kvt-380v-trehfaznyj").then(
     (mod) => mod.vru15kvtTop,
@@ -94,6 +100,10 @@ const categoryComponents = {
   "vru-1": {
     top: vru1Top,
     bottom: vru1Bottom,
+  },
+  "vru-3": {
+    top: vru3Top,
+    bottom: vru3Bottom,
   },
   "vru-1-15-kvt-380v-trehfaznyj": {
     top: vru15kvtTop,

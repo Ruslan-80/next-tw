@@ -64,7 +64,10 @@ export default async function Filters({
       },
     },
   });
-  // console.log("Filters.jsx - attributesData:", attributesData);
+  // console.log(
+  //   "Filters.jsx - attributesData:",
+  //   JSON.stringify(attributesData, null, 2),
+  // );
 
   const valueCounts = await prisma.productAttribute.groupBy({
     by: ["attributeId", "attributeValueName"],
