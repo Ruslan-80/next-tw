@@ -12,8 +12,6 @@ import PopularProducts from "@/components/PopularProduct";
 import JsonLd from "@/components/JsonLdComponent";
 import getCategoryJsonLd from "@/lib/categoryJsonLd";
 import categoryComponents from "@/components/categoryBlocksMap";
-import PopularNabor from "@/components/PopularNabor";
-import PopularNaborVru from "@/components/PopularNaborVru";
 import RandomObjects from "@/components/object";
 
 export async function generateMetadata({ params, searchParams }) {

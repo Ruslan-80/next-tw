@@ -45,13 +45,13 @@ export async function getProductsByCategory(slug, searchParams = {}) {
     ([key, value]) => key !== "page" && value !== undefined && value !== "",
   );
 
-  console.log("filterEntries:", filterEntries);
+  // console.log("filterEntries:", filterEntries);
 
   if (filterEntries.length > 0) {
     const attributeConditions = filterEntries.map(([attributeSlug, value]) => {
       const values =
         typeof value === "string"
-          ? value.split("-").filter((v) => v.trim() !== "")
+          ? value.split("--").filter((v) => v.trim() !== "")
           : Array.isArray(value)
             ? value
             : [value];

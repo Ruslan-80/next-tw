@@ -695,7 +695,7 @@ export function vru3Bottom() {
 
         {/* 7. Контакты и Оплата */}
         <div className="grid md:grid-cols-2 gap-8 mb-12">
-          <div className="p-6 rounded-xl border bg-slate-50">
+          <div className="p-6 rounded-xl border">
             <h3 className="font-bold text-xl mb-4">📍 Контакты и логистика</h3>
             <ul className="list-disc pl-5 space-y-2 text-base">
               <li>
@@ -712,7 +712,7 @@ export function vru3Bottom() {
               </li>
             </ul>
           </div>
-          <div className="p-6 rounded-xl border bg-slate-50">
+          <div className="p-6 rounded-xl border">
             <h3 className="font-bold text-xl mb-4">💳 Оплата и гарантии</h3>
             <ul className="list-disc pl-5 space-y-2 text-base">
               <li>
@@ -733,58 +733,58 @@ export function vru3Bottom() {
         </div>
 
         {/* Пошаговый блок заказа */}
-        <div className="p-8 rounded-xl border shadow-sm bg-white">
+        <div className="p-8 rounded-xl border shadow-sm">
           <h3 className="text-2xl font-bold mb-6 border-b pb-3">
             Как заказать сборку ВРУ-3: 4 шага к готовому оборудованию
           </h3>
           <ol className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 list-none p-0">
-            <li className="p-5 rounded-lg bg-blue-50/50 border-l-4 border-blue-600">
+            <li className="p-5 rounded-lg border-l-4 border-blue-600">
               <div className="text-3xl font-extrabold text-blue-600 mb-2">
                 01
               </div>
-              <strong className="block text-lg mb-2">
+              <strong className="block text-lg mb-2 text-accent">
                 Отправка заявки и ТЗ
               </strong>
-              <p className="text-sm text-gray-700">
+              <p className="text-sm">
                 Вы присылаете нам однолинейную схему (ОЛС) или заполненный
                 опросный лист. Нет проекта? Наши инженеры помогут составить
                 спецификацию.
               </p>
             </li>
-            <li className="p-5 rounded-lg bg-blue-50/50 border-l-4 border-blue-600">
+            <li className="p-5 rounded-lg border-l-4 border-blue-600">
               <div className="text-3xl font-extrabold text-blue-600 mb-2">
                 02
               </div>
-              <strong className="block text-lg mb-2">
+              <strong className="block text-lg mb-2 text-accent">
                 Расчёт сметы и согласование
               </strong>
-              <p className="text-sm text-gray-700">
+              <p className="text-sm">
                 Подбираем комплектующие (КЭАЗ, IEK, CHINT и др.), оптимизируем
                 бюджет и высылаем коммерческое предложение с фиксированными
                 ценами и сроками.
               </p>
             </li>
-            <li className="p-5 rounded-lg bg-blue-50/50 border-l-4 border-blue-600">
+            <li className="p-5 rounded-lg border-l-4 border-blue-600">
               <div className="text-3xl font-extrabold text-blue-600 mb-2">
                 03
               </div>
-              <strong className="block text-lg mb-2">
+              <strong className="block text-lg mb-2 text-accent">
                 Производство и контроль (ОТК)
               </strong>
-              <p className="text-sm text-gray-700">
+              <p className="text-sm">
                 После согласования щит отправляется на сборку. Готовое изделие
                 маркируется и проходит строгую проверку отделом технического
                 контроля.
               </p>
             </li>
-            <li className="p-5 rounded-lg bg-blue-50/50 border-l-4 border-blue-600">
+            <li className="p-5 rounded-lg border-l-4 border-blue-600">
               <div className="text-3xl font-extrabold text-blue-600 mb-2">
                 04
               </div>
-              <strong className="block text-lg mb-2">
+              <strong className="block text-lg mb-2 text-accent">
                 Доставка и документы
               </strong>
-              <p className="text-sm text-gray-700">
+              <p className="text-sm">
                 Доставляем оборудование на объект (бесплатно по Москве от 70
                 тыс. руб.). В комплекте — паспорт, сертификаты и однолинейная
                 схема.

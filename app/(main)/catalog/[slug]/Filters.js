@@ -11,10 +11,7 @@ export default async function Filters({
 }) {
   // console.log("Filters.jsx - attributeIds:", attributeIds);
 
-  if (!Array.isArray(attributeIds) || attributeIds.length === 0) {
-    // console.log("Filters.jsx - No valid attributeIds provided");
-    return null;
-  }
+  if (!Array.isArray(attributeIds) || attributeIds.length === 0) return null;
 
   const category = await prisma.category.findUnique({
     where: { slug: categorySlug },
@@ -44,90 +41,98 @@ export default async function Filters({
     });
   };
   collectCategoryIds(category.children || []);
-  //   console.log('Filters.jsx - categoryIds:', categoryIds);
+
+  // 1. Извлекаем выбранные фильтры из searchParams
+  const selectedFilters = {};
+  Object.entries(searchParams).forEach(([key, value]) => {
+    if (key !== "page" && value) {
+      const parsed =
+        typeof value === "string"
+          ? value.split("--").filter((v) => v.trim() !== "")
+          : Array.isArray(value)
+            ? value
+            : [value];
+      if (parsed.length > 0) {
+        selectedFilters[key] = parsed;
+      }
+    }
+  });
 
   const attributesData = await prisma.attribute.findMany({
-    where: {
-      id: { in: attributeIds },
-    },
+    where: { id: { in: attributeIds } },
     include: {
       products: {
-        where: {
-          product: {
-            categoryId: { in: categoryIds },
-          },
-        },
-        select: {
-          attributeValueName: true,
-          productId: true,
-        },
+        where: { product: { categoryId: { in: categoryIds } } },
+        select: { attributeValueName: true },
       },
     },
   });
-  // console.log(
-  //   "Filters.jsx - attributesData:",
-  //   JSON.stringify(attributesData, null, 2),
-  // );
 
-  const valueCounts = await prisma.productAttribute.groupBy({
-    by: ["attributeId", "attributeValueName"],
-    where: {
-      attributeId: { in: attributeIds },
-      product: { categoryId: { in: categoryIds } },
-    },
-    _count: {
-      productId: true,
-    },
-  });
-  // console.log("Filters.jsx - valueCounts:", valueCounts);
+  // 2. Для каждого атрибута считаем кол-во товаров с учетом фильтров ПО ДРУГИМ атрибутам
+  const validAttributes = {};
 
-  const valueCountsMap = new Map();
-  valueCounts.forEach((item) => {
-    valueCountsMap.set(
-      `${item.attributeId}-${item.attributeValueName}`,
-      item._count.productId,
-    );
-  });
-  // console.log("valueCounts:", valueCountsMap);
+  for (const attr of attributesData) {
+    // Формируем whereClause без учета текущего атрибута attr.slug
+    const otherFilterConditions = Object.entries(selectedFilters)
+      .filter(([key]) => key !== attr.slug)
+      .map(([filterSlug, values]) => ({
+        attributes: {
+          some: {
+            attribute: { slug: filterSlug },
+            attributeValueName: { in: values },
+          },
+        },
+      }));
 
-  const attributes = attributesData.map((attr) => {
+    const whereClause = {
+      categoryId: { in: categoryIds },
+      ...(otherFilterConditions.length > 0 && { AND: otherFilterConditions }),
+    };
+
+    // Подсчитываем количество товаров для каждого значения ТЕКУЩЕГО атрибута
+    const valueCounts = await prisma.productAttribute.groupBy({
+      by: ["attributeValueName"],
+      where: {
+        attributeId: attr.id,
+        product: whereClause,
+      },
+      _count: {
+        productId: true,
+      },
+    });
+
+    const countsMap = {};
+    valueCounts.forEach((item) => {
+      countsMap[item.attributeValueName] = item._count.productId;
+    });
+
     const uniqueValues = [
       ...new Set(attr.products.map((pa) => pa.attributeValueName)),
-    ].sort();
+    ];
+
     const valuesWithCounts = uniqueValues
-      .map((value) => ({
-        name: value,
-        count: valueCountsMap.get(`${attr.id}-${value}`) || 0,
+      .map((val) => ({
+        name: val,
+        count: countsMap[val] || 0,
       }))
-      .filter((v) => v.count > 0);
+      .filter((v) => v.count > 0); // Оставляем только те варианты, где товаров > 0
 
-    return {
-      name: attr.name,
-      slug: attr.slug,
-      values: valuesWithCounts,
-    };
-  });
-  // console.log("attributes:", attributes);
-
-  const validAttributes = attributes
-    .filter((attr) => attr.values.length > 0)
-    .reduce((acc, attr) => {
-      const values = attr.values.map((v) => v.name);
-
-      acc[attr.slug] = {
+    // ЛОГИКА СКРЫТИЯ: если доступных вариантов <= 1, не выводим атрибут в UI
+    if (valuesWithCounts.length > 1) {
+      const valuesNames = valuesWithCounts.map((v) => v.name);
+      validAttributes[attr.slug] = {
         name: attr.name,
-        values: values.sort(smartSort),
-        counts: attr.values.reduce((c, v) => ({ ...c, [v.name]: v.count }), {}),
+        values: valuesNames.sort(smartSort),
+        counts: valuesWithCounts.reduce(
+          (acc, item) => ({ ...acc, [item.name]: item.count }),
+          {},
+        ),
       };
-
-      return acc;
-    }, {});
-
-  if (!Object.keys(validAttributes).length) {
-    console.log("Filters.jsx - No valid attributes found");
-    return null;
+    }
   }
-  // console.log("validAttributes:", validAttributes);
+
+  if (!Object.keys(validAttributes).length) return null;
+
   return (
     <ClientFilters
       totalProducts={totalProducts}

@@ -32,14 +32,27 @@ import {
 
 const FILTER_GROUPS = [
   {
+    id: "purpose-and-identification",
+    name: "Назначение и идентификация",
+    icon: (
+      <ClipboardList className="icon-spin-y-infinite w-6 h-6 mr-4 text-primary" />
+    ),
+    attributes: [
+      "naznachenie-paneli",
+      "nomer-razrabotki",
+      "strana",
+      "proizvoditel",
+    ],
+  },
+  {
     id: "electrical-characteristics",
     name: "Электротехнические характеристики",
     icon: <Bolt className="icon-spin-y-infinite w-6 h-6 mr-4 text-primary" />,
     attributes: [
+      "kolichestvo-vvodov",
       "nominalnoe-napryazhenie",
       "nominalnyj-tok",
       "chastota-gc",
-      "kolichestvo-vvodov",
     ],
   },
   {
@@ -93,22 +106,10 @@ const FILTER_GROUPS = [
       "transformator-toka",
     ],
   },
-  {
-    id: "purpose-and-identification",
-    name: "Назначение и идентификация",
-    icon: (
-      <ClipboardList className="icon-spin-y-infinite w-6 h-6 mr-4 text-primary" />
-    ),
-    attributes: [
-      "naznachenie-paneli",
-      "nomer-razrabotki",
-      "strana",
-      "proizvoditel",
-    ],
-  },
+
   {
     id: "commercial-parameters",
-    name: "Коммерческие параметры",
+    name: "Логистические параметры",
     icon: <Box className="icon-spin-y-infinite w-6 h-6 mr-4 text-primary" />,
     attributes: [
       "ed-izmereniya",
@@ -139,7 +140,7 @@ export default function ClientFilters({
       init[attr] = Array.isArray(param)
         ? param
         : param
-          ? param.split("-").filter((v) => v.trim() !== "")
+          ? param.split("--").filter((v) => v.trim() !== "")
           : [];
     }
     return init;
@@ -197,7 +198,7 @@ export default function ClientFilters({
         filters[key].length > 0 &&
         !(key === selectedAttribute && filters[key].includes(selectedValue))
       ) {
-        params.set(key, filters[key].join("-"));
+        params.set(key, filters[key].join("--"));
       }
     }
 
@@ -288,7 +289,9 @@ export default function ClientFilters({
                   toggleCheckbox(attr.slug, option, isMobile)
                 }
               />
-              <span className="text-sm font-medium break-words">{option}</span>
+              <span className="text-sm text-text font-medium break-words">
+                {option}
+              </span>
             </div>
             <span className="text-[10px] opacity-40">
               {attr.counts[option] || 0}
@@ -315,7 +318,7 @@ export default function ClientFilters({
         {/* Группированные фильтры (например, Размеры) */}
         {grouped.map((group) => (
           <div key={group.id} className="space-y-2">
-            <div className="flex items-center text-[16px] font-bold uppercase tracking-tighter text-muted-foreground px-1">
+            <div className="flex items-center text-[16px] font-bold uppercase tracking-tighter text-text px-1">
               {group.icon} {group.name}
             </div>
             <Accordion
@@ -330,7 +333,7 @@ export default function ClientFilters({
                   key={attr.slug}
                   className="px-3"
                 >
-                  <AccordionTrigger className="text-sm py-3 font-semibold hover:no-underline">
+                  <AccordionTrigger className="text-sm text-text py-3 font-semibold hover:no-underline">
                     {attr.name}
                   </AccordionTrigger>
                   <AccordionContent>
@@ -344,7 +347,7 @@ export default function ClientFilters({
 
         {/* Одиночные параметры (Все параметры) */}
         <div className="space-y-2">
-          <div className="text-[10px] font-bold uppercase text-muted-foreground px-1">
+          <div className="text-[10px] font-bold uppercase text-text px-1">
             Все параметры
           </div>
           <Accordion
@@ -354,7 +357,7 @@ export default function ClientFilters({
           >
             {single.map((attr) => (
               <AccordionItem value={attr.slug} key={attr.slug} className="px-3">
-                <AccordionTrigger className="text-sm py-3 font-semibold hover:no-underline">
+                <AccordionTrigger className="text-sm text-text py-3 font-semibold hover:no-underline">
                   {attr.name}
                 </AccordionTrigger>
                 <AccordionContent>
@@ -379,14 +382,14 @@ export default function ClientFilters({
       {/* DESKTOP: Показываем только на md и выше */}
       <aside className="hidden md:block rounded-3xl p-2 border top-24">
         <div className="flex justify-between items-center my-2 mx-4">
-          <h3 className="font-black text-xl">Фильтры</h3>
+          <h3 className="font-black text-text text-xl">Фильтры</h3>
           <Button
             variant="ghost"
             size="sm"
             onClick={clearAll}
-            className="text-destructive h-8"
+            className="text-destructive text-text h-8"
           >
-            <RotateCcw className="w-3 h-3 mr-1" /> Сброс
+            <RotateCcw className="text-text w-3 h-3 mr-1" /> Сброс
           </Button>
         </div>
         <FilterContent />
