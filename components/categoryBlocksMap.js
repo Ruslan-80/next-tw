@@ -53,6 +53,18 @@ const vru8504Top = dynamic(() =>
 const vru8504Bottom = dynamic(() =>
   import("./shared/vru-8504").then((mod) => mod.vru8504Bottom),
 );
+const vru8505Top = dynamic(() =>
+  import("./shared/vru-8505").then((mod) => mod.vru8505Top),
+);
+const vru8505Bottom = dynamic(() =>
+  import("./shared/vru-8505").then((mod) => mod.vru8505Bottom),
+);
+const vru21Top = dynamic(() =>
+  import("./shared/vru-21").then((mod) => mod.vru21Top),
+);
+const vru21Bottom = dynamic(() =>
+  import("./shared/vru-21").then((mod) => mod.vru21Bottom),
+);
 const vru15kvtTop = dynamic(() =>
   import("./shared/vru-1-15-kvt-380v-trehfaznyj").then(
     (mod) => mod.vru15kvtTop,
@@ -114,6 +126,14 @@ const categoryComponents = {
   "vru-8504": {
     top: vru8504Top,
     bottom: vru8504Bottom,
+  },
+  "vru-8505": {
+    top: vru8505Top,
+    bottom: vru8505Bottom,
+  },
+  "vru-21": {
+    top: vru21Top,
+    bottom: vru21Bottom,
   },
   "vru-1-15-kvt-380v-trehfaznyj": {
     top: vru15kvtTop,

@@ -15,7 +15,8 @@ export default function Modal({
     productName,
   });
 
-  const [agreed, setAgreed] = useState(false); // Чекбокс согласия по умолчанию FALSE
+  const [files, setFiles] = useState([]); // Состояние для хранения файлов
+  const [agreed, setAgreed] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [formError, setFormError] = useState("");
 
@@ -27,6 +28,44 @@ export default function Modal({
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  // Обработчик выбора файлов
+  const handleFileChange = async (e) => {
+    if (e.target.files && e.target.files.length > 0) {
+      const newFiles = Array.from(e.target.files);
+
+      // 1. Добавляем файлы к существующим в интерфейсе
+      setFiles((prevFiles) => [...prevFiles, ...newFiles]);
+
+      // 2. Фоново отправляем файлы на сервер для немедленного сохранения на диске
+      newFiles.forEach((file) => uploadFileInBackground(file));
+
+      // Сбрасываем значение input, чтобы можно было повторно выбрать тот же файл
+      e.target.value = "";
+    }
+  };
+
+  const uploadFileInBackground = async (file) => {
+    try {
+      const body = new FormData();
+      body.append("file", file);
+
+      // Фоновый запрос на сервер
+      await fetch("/api/upload-temp", {
+        method: "POST",
+        body,
+      });
+    } catch (error) {
+      console.error("Ошибка фоновой загрузки файла:", error);
+    }
+  };
+
+  // Удаление файла из списка перед отправкой
+  const handleRemoveFile = (indexToRemove) => {
+    setFiles((prevFiles) =>
+      prevFiles.filter((_, index) => index !== indexToRemove),
+    );
   };
 
   const handleSubmit = async (e) => {
@@ -47,11 +86,9 @@ export default function Modal({
       return;
     }
 
-    // 1. Получаем URL текущей страницы, где открыта форма
     const currentUrl =
       typeof window !== "undefined" ? window.location.href : "";
 
-    // 2. Формируем сообщение, добавляя в него URL страницы
     const formattedMessage = [
       initialContent,
       formData.message ? `Комментарий: ${formData.message}` : "",
@@ -60,12 +97,20 @@ export default function Modal({
       .filter(Boolean)
       .join("\n\n");
 
-    const dataToSend = {
-      ...formData,
-      message: formattedMessage,
-    };
+    // Формируем FormData для отправки текстовых полей и файлов
+    const submissionData = new FormData();
+    submissionData.append("contact", formData.contact);
+    submissionData.append("message", formattedMessage);
+    if (formData.productName) {
+      submissionData.append("productName", formData.productName);
+    }
 
-    const result = await onSubmit(dataToSend);
+    // Добавляем файлы
+    files.forEach((file) => {
+      submissionData.append("files", file);
+    });
+
+    const result = await onSubmit(submissionData);
 
     if (result.success) {
       setIsSubmitted(true);
@@ -77,7 +122,7 @@ export default function Modal({
   const handleClose = () => {
     setIsSubmitted(false);
     setAgreed(false);
-    // При сбросе возвращаем productName из пропсов, чтобы не ломать логику при повторном открытии
+    setFiles([]); // Сброс выбранных файлов
     setFormData({
       contact: "",
       name: "",
@@ -113,7 +158,7 @@ export default function Modal({
             <button
               type="button"
               onClick={handleClose}
-              className="px-6 py-2 bg-gray-200 rounded-lg text-gray-700 hover:bg-gray-300 transition-all duration-300"
+              className="px-6 py-2 bg-gray-200 rounded-lg text-gray-700 hover:bg-gray-300 transition-all duration-300 dark:bg-gray-700 dark:text-gray-200"
             >
               Закрыть
             </button>
@@ -143,6 +188,44 @@ export default function Modal({
                 rows={3}
                 className="w-full p-3 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300 dark:bg-gray-800 dark:border-gray-600 dark:text-white"
               />
+
+              {/* Блок прикрепления файлов */}
+              <div className="mb-4">
+                <label className="block text-sm font-medium mb-2 text-gray-700 dark:text-gray-300">
+                  Прикрепить файлы (документы, изображения):
+                </label>
+                <input
+                  type="file"
+                  multiple
+                  onChange={handleFileChange}
+                  accept="image/*,.pdf,.doc,.docx,.xls,.xlsx,.zip,.txt"
+                  className="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 dark:file:bg-gray-800 dark:file:text-blue-400"
+                />
+
+                {/* Список прикрепленных файлов с возможностью удаления */}
+                {files.length > 0 && (
+                  <ul className="mt-2 space-y-1">
+                    {files.map((file, index) => (
+                      <li
+                        key={index}
+                        className="flex items-center justify-between text-xs bg-gray-100 dark:bg-gray-800 p-2 rounded"
+                      >
+                        <span className="truncate max-w-[200px]">
+                          {file.name}
+                        </span>
+                        <button
+                          type="button"
+                          onClick={() => handleRemoveFile(index)}
+                          className="text-red-500 hover:text-red-700 ml-2 font-bold"
+                        >
+                          ✕
+                        </button>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+
               <input
                 type="text"
                 name="name"
@@ -158,7 +241,6 @@ export default function Modal({
                 style={{ display: "none" }}
               />
 
-              {/* Блок согласия на обработку ПД */}
               <div className="mb-4 flex items-start gap-3">
                 <input
                   type="checkbox"
@@ -173,7 +255,7 @@ export default function Modal({
                 >
                   Даю согласие на{" "}
                   <a
-                    href="/privacy" // Замените на реальный URL политики конфиденциальности
+                    href="/privacy"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="underline text-blue-500 hover:text-blue-600"
@@ -191,7 +273,7 @@ export default function Modal({
                 <button
                   type="button"
                   onClick={handleClose}
-                  className="px-6 py-2 bg-gray-200 rounded-lg text-gray-700 hover:bg-gray-300 transition-all duration-300"
+                  className="px-6 py-2 bg-gray-200 rounded-lg text-gray-700 hover:bg-gray-300 transition-all duration-300 dark:bg-gray-700 dark:text-gray-200"
                 >
                   Отмена
                 </button>

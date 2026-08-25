@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import Modal from "@/components/ui/modal";
 import useFormSubmit from "hooks/useFormSubmit";
-// import FaqVru8504 from "@/components/faqVru-8504";
+import FaqVru8504 from "@/components/faqVru-8504";
 import PopularNaborVru from "@/components/PopularNaborVru";
 
 export function vru8504Top() {
@@ -26,11 +26,11 @@ export function vru8504Top() {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-8 animate-fade-in-up">
             <div className="space-y-4 px-2">
-              <h1 className="text-2xl lg:text-5xl font-bold text-balance leading-tight">
+              <h1 className="text-2xl lg:text-5xl font-bold text-text leading-tight">
                 Вводно-распределительные устройства ВРУ 8504 в Москве
               </h1>
-              <p className="text-muted-foreground text-balance leading-relaxed">
-                <strong>
+              <p className="text-muted-foreground text-text leading-relaxed">
+                <strong className="text-accent">
                   Вводно-распределительные устройства (ВРУ) серии 8504
                 </strong>{" "}
                 — это электрощитовое оборудование для приема, учета и
@@ -38,18 +38,20 @@ export function vru8504Top() {
                 напряжением 380/220В частотой 50 Гц, применяемое для
                 комплектации трансформаторных подстанций и электрощитовых в
                 жилых и промышленных зданиях Москвы.{" "}
-                <strong>Вводно распределительное устройство вру 8504</strong>{" "}
+                <strong className="text-accent">
+                  Вводно распределительное устройство вру 8504
+                </strong>{" "}
                 предназначено для защиты отходящих линий от перегрузок и
                 коротких замыканий, объединяя ввод, учет и защиту в едином
                 сертифицированном изделии.{" "}
-                <strong>
+                <strong className="text-accent">
                   Вводно распределительное устройство типа вру 8504
                 </strong>{" "}
                 может быть выполнено с одним или двумя вводами, с автоматическим
                 вводом резерва (АВР) или без него.{" "}
-                <strong>Вру 8504 цена</strong> на базовые модели указана в
-                каталоге ниже и зависит от номинального тока, количества вводов
-                и выбранной комплектации.
+                <strong className="text-accent">Вру 8504 цена</strong> на
+                базовые модели указана в каталоге ниже и зависит от номинального
+                тока, количества вводов и выбранной комплектации.
               </p>
             </div>
 
@@ -214,25 +216,25 @@ export function vru8504Bottom() {
           рассчитали оптимальную конфигурацию.
         </p>
         <div className="flex gap-4 flex-wrap">
-          {/* <Button
+          <Button
             asChild
             variant="outline"
             className="border-orange-600 text-orange-700 hover:bg-orange-100"
           >
             <a
-              href="/oprosnyj-list-vru8504.pdf"
+              href="/docs/oprosnyj-list-vru.docx"
               target="_blank"
               rel="noopener noreferrer"
             >
-              Скачать опросный лист (PDF)
+              Скачать опросный лист (DOCX)
             </a>
-          </Button> */}
-          {/* <Button
+          </Button>
+          <Button
             onClick={() => handleButtonClick("Загрузить схему на расчёт")}
             className="bg-orange-600 hover:bg-orange-700 text-white font-bold"
           >
             Загрузить схему на расчёт
-          </Button> */}
+          </Button>
         </div>
       </section>
 
@@ -260,12 +262,12 @@ export function vru8504Bottom() {
             выбрать выгодный вариант.
           </li>
         </ul>
-        {/* <Button
+        <Button
           onClick={() => handleButtonClick("Загрузить спецификацию на аудит")}
           className="bg-red-600 hover:bg-red-700 text-white font-bold"
         >
           Загрузить спецификацию на аудит
-        </Button> */}
+        </Button>
       </section>
 
       {/* Коммерческие преимущества и сервис */}
@@ -409,7 +411,7 @@ export function vru8504Bottom() {
         </div>
       </section>
 
-      {/* <FaqVru8504 /> */}
+      <FaqVru8504 />
       <Modal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}

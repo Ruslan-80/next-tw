@@ -1,29 +1,49 @@
 "use client";
 
-import { m } from "framer-motion";
 import { useState } from "react";
 
 export default function useFormSubmit() {
   const [error, setError] = useState(null);
 
-  const handleFormSubmit = async (formData, buttonId) => {
-    if (formData.name) {
-      setError("Обнаружен бот, отправка отменена");
-      return { success: false, error: "Обнаружен бот" };
-    }
-
+  // Теперь dataToSend — это либо объект FormData, либо обычный объект
+  const handleFormSubmit = async (dataToSend, buttonId) => {
     try {
+      let body;
+
+      // Если в хук передали объект FormData (из модалки с файлами)
+      if (dataToSend instanceof FormData) {
+        body = dataToSend;
+
+        // Проверка Honeypot (защита от ботов) для FormData
+        if (body.get("name")) {
+          setError("Обнаружен бот, отправка отменена");
+          return { success: false, error: "Обнаружен бот" };
+        }
+
+        // Если передали buttonId, добавляем его в FormData
+        if (buttonId) {
+          body.append("buttonId", buttonId);
+        }
+      } else {
+        // Запасной вариант: если передали обычный JS-объект
+        if (dataToSend.name) {
+          setError("Обнаружен бот, отправка отменена");
+          return { success: false, error: "Обнаружен бот" };
+        }
+
+        body = new FormData();
+        Object.entries(dataToSend).forEach(([key, value]) => {
+          if (value !== undefined && value !== null) {
+            body.append(key, value);
+          }
+        });
+        if (buttonId) body.append("buttonId", buttonId);
+      }
+
+      // ВАЖНО: Не указываем 'Content-Type'! Браузер установит его автоматически.
       const response = await fetch("/api/submit", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          contact: formData.contact,
-          email: formData.email || "",
-          message: formData.message || "",
-          buttonId: buttonId,
-        }),
+        body: body,
       });
 
       if (!response.ok) {
