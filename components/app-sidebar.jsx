@@ -74,8 +74,16 @@ const data = {
           url: "/admin/products/exp",
         },
         {
+          title: "Импорт/Экспорт",
+          url: "/admin/import",
+        },
+        {
           title: "Сообщения",
           url: "/admin/messages",
+        },
+        {
+          title: "Загруженные файлы",
+          url: "/admin/uploads",
         },
         {
           title: "Настройки",
