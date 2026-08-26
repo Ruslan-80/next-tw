@@ -5,32 +5,32 @@ import Image from "next/image";
 export default function WorksGallery({ slug }) {
   // Список картинок для vru
   const vruImages = [
-    "/images/after/before-2.jpg",
-    "/images/after/before-5.jpg",
-    "/images/after/before-6.jpg",
-    "/images/after/before-1.jpg",
-    "/images/after/before-4.jpg",
-    "/images/after/before-3.jpg",
+    "/images/after/before-2.webp",
+    "/images/after/before-5.webp",
+    "/images/after/before-6.webp",
+    "/images/after/before-1.webp",
+    "/images/after/before-4.webp",
+    "/images/after/before-3.webp",
   ];
 
   // Список картинок для se
   const seImages = [
-    "/images/after/after-1.jpg",
-    "/images/after/after-2.jpg",
-    "/images/after/after-3.jpg",
-    "/images/after/after-4.jpg",
-    "/images/after/after-5.jpg",
-    "/images/after/after-6.jpg",
+    "/images/after/after-1.webp",
+    "/images/after/after-2.webp",
+    "/images/after/after-3.webp",
+    "/images/after/after-4.webp",
+    "/images/after/after-5.webp",
+    "/images/after/after-6.webp",
   ];
 
   // Дефолтный список (если slug не содержит ни vru, ни se)
   const defaultImages = [
-    "/images/after/after-1.jpg",
-    "/images/after/after-2.jpg",
-    "/images/after/after-3.jpg",
-    "/images/after/after-4.jpg",
-    "/images/after/after-5.jpg",
-    "/images/after/after-6.jpg",
+    "/images/after/after-1.webp",
+    "/images/after/after-2.webp",
+    "/images/after/after-3.webp",
+    "/images/after/after-4.webp",
+    "/images/after/after-5.webp",
+    "/images/after/after-6.webp",
   ];
 
   // Нормализуем slug (приводим к нижнему регистру и проверяем на undefined)

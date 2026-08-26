@@ -60,14 +60,14 @@ function Slider() {
     >
       <SwiperSlide>
         <img
-          src="/images/slider/image1.png"
+          src="/images/slider/image1.webp"
           alt="slider 1"
           style={{ width: "100%" }}
         />
       </SwiperSlide>
       <SwiperSlide>
         <img
-          src="/images/slider/test.png"
+          src="/images/slider/test.webp"
           alt="slider 3"
           style={{ width: "100%" }}
         />
@@ -75,7 +75,7 @@ function Slider() {
       <SwiperSlide>
         <Link href="catalog/shity-etazhnye-she">
           <img
-            src="/images/slider/abstract.jpg"
+            src="/images/slider/abstract.webp"
             alt="slider 3"
             style={{ width: "100%" }}
           />
@@ -83,28 +83,28 @@ function Slider() {
       </SwiperSlide>
       <SwiperSlide>
         <img
-          src="/images/slider/abstract1.jpg"
+          src="/images/slider/abstract1.webp"
           alt="slider 3"
           style={{ width: "100%" }}
         />
       </SwiperSlide>
       <SwiperSlide>
         <img
-          src="/images/slider/abstract2.jpg"
+          src="/images/slider/abstract2.webp"
           alt="slider 3"
           style={{ width: "100%" }}
         />
       </SwiperSlide>
       <SwiperSlide>
         <img
-          src="/images/slider/image-4.jpg"
+          src="/images/slider/image-4.webp"
           alt="slider 4"
           style={{ width: "100%" }}
         />
       </SwiperSlide>
       <SwiperSlide>
         <img
-          src="/images/slider/image-5.jpg"
+          src="/images/slider/image-5.webp"
           alt="slider 5"
           style={{ width: "100%" }}
         />
