@@ -59,7 +59,7 @@ export function vru21Top() {
             {/* Адаптивный контейнер */}
             <div className="relative w-full max-w-[350px] md:max-w-[450px] lg:max-w-[500px] aspect-square rounded-3xl p-4 md:p-6 lg:p-8 shadow-2xl flex justify-center mx-auto">
               <Image
-                src="/images/categories/vvodno-raspredelitelnye-ustrojstva-vru.png"
+                src="/images/categories/vvodno-raspredelitelnye-ustrojstva-vru.webp"
                 alt="Щиты ВРУ-21"
                 fill
                 className="object-contain hover:scale-105 transition-transform duration-500 p-2 md:p-4"

@@ -42,21 +42,45 @@ export default async function Filters({
   };
   collectCategoryIds(category.children || []);
 
-  // 1. Извлекаем выбранные фильтры из searchParams
-  const selectedFilters = {};
-  Object.entries(searchParams).forEach(([key, value]) => {
-    if (key !== "page" && value) {
-      const parsed =
-        typeof value === "string"
-          ? value.split("--").filter((v) => v.trim() !== "")
-          : Array.isArray(value)
-            ? value
-            : [value];
+  // Используем Set для мгновенной проверки O(1)
+  const IGNORED_KEYS = new Set([
+    "page",
+    "ysclid",
+    "gclid",
+    "fbclid",
+    "utm_source",
+    "utm_medium",
+    "utm_campaign",
+    "utm_term",
+    "utm_content",
+  ]);
+
+  const parseCatalogFilters = (searchParams = {}) => {
+    const selectedFilters = {};
+
+    for (const [key, value] of Object.entries(searchParams)) {
+      // 1. Пропускаем служебные ключи и пустые значения
+      if (IGNORED_KEYS.has(key) || !value) continue;
+
+      // 2. Приводим к массиву строк
+      const rawItems = Array.isArray(value)
+        ? value
+        : typeof value === "string"
+          ? value.split("--")
+          : [];
+
+      // 3. Убираем пробелы и отсекаем пустые элементы
+      const parsed = rawItems
+        .map((item) => (typeof item === "string" ? item.trim() : ""))
+        .filter(Boolean);
+
       if (parsed.length > 0) {
         selectedFilters[key] = parsed;
       }
     }
-  });
+
+    return selectedFilters;
+  };
 
   const attributesData = await prisma.attribute.findMany({
     where: { id: { in: attributeIds } },
@@ -73,7 +97,9 @@ export default async function Filters({
 
   for (const attr of attributesData) {
     // Формируем whereClause без учета текущего атрибута attr.slug
-    const otherFilterConditions = Object.entries(selectedFilters)
+    const otherFilterConditions = Object.entries(
+      parseCatalogFilters(searchParams),
+    )
       .filter(([key]) => key !== attr.slug)
       .map(([filterSlug, values]) => ({
         attributes: {

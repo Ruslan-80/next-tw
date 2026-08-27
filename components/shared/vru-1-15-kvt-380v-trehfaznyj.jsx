@@ -76,7 +76,7 @@ export function vru15kvtTop() {
             <div className="absolute inset-0 bg-gradient-to-br from-accent/20 to-primary/20 rounded-3xl blur-3xl"></div>
             <div className="relative w-full max-w-[350px] md:max-w-[450px] lg:max-w-[500px] aspect-square rounded-3xl p-4 md:p-6 lg:p-8 shadow-2xl flex justify-center mx-auto">
               <Image
-                src="/images/categories/vvodno-raspredelitelnye-ustrojstva-vru.png"
+                src="/images/categories/vvodno-raspredelitelnye-ustrojstva-vru.webp"
                 alt="Щит ВРУ в сборе"
                 fill
                 className="object-contain hover:scale-105 transition-transform duration-500 p-2 md:p-4"
@@ -118,7 +118,7 @@ export function vru15kvtBottom() {
           <div className="grid lg:grid-cols-2 gap-2 items-center">
             <div className="space-y-8 animate-fade-in-up">
               <div className="space-y-4 px-2">
-                <Badge className="bg-accent text-accent-foreground mb-2">
+                <Badge className="bg-accent text-background mb-2">
                   ТУ Россетей 2026
                 </Badge>
                 <h1 className="text-2xl lg:text-5xl font-bold text-balance leading-tight">
@@ -134,7 +134,7 @@ export function vru15kvtBottom() {
                 <Button
                   onClick={() => handleButtonClick("Получить консультацию")}
                   size="lg"
-                  className="bg-accent hover:bg-accent/90 text-accent-foreground text-xl py-8"
+                  className="bg-accent hover:bg-accent/90 text-background text-xl py-8"
                 >
                   Получить консультацию
                   <ArrowRight className="ml-2 h-4 w-4" />
@@ -146,7 +146,7 @@ export function vru15kvtBottom() {
               <div className="absolute inset-0 bg-gradient-to-br from-accent/20 to-primary/20 rounded-3xl blur-3xl"></div>
               <div className="relative w-full max-w-[350px] md:max-w-[450px] lg:max-w-[500px] aspect-square rounded-3xl p-4 md:p-6 lg:p-8 shadow-2xl flex justify-center mx-auto">
                 <Image
-                  src="/images/categories/vvodno-raspredelitelnye-ustrojstva-vru.png"
+                  src="/images/categories/vvodno-raspredelitelnye-ustrojstva-vru.webp"
                   alt="ВРУ 15 кВт 380В"
                   fill
                   className="object-contain hover:scale-105 transition-transform duration-500 p-2 md:p-4"
@@ -445,7 +445,7 @@ export function vru15kvtBottom() {
           <Button
             onClick={() => handleButtonClick("Заказать ВРУ 15 кВт")}
             size="lg"
-            className="bg-accent hover:bg-accent/90 text-accent-foreground text-xl py-8"
+            className="bg-accent hover:bg-accent/90 text-background text-xl py-8"
           >
             Заказать ВРУ 15 кВт
             <ArrowRight className="ml-2 h-4 w-4" />

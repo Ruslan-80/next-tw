@@ -20,7 +20,7 @@ async function main() {
       mediaFiles: [
         {
           type: "IMAGE",
-          url: "/images/categories/vvodno-raspredelitelnye-ustrojstva-vru.png",
+          url: "/images/categories/vvodno-raspredelitelnye-ustrojstva-vru.webp",
         },
       ],
       stock: 0,
@@ -87,7 +87,7 @@ async function main() {
       mediaFiles: [
         {
           type: "IMAGE",
-          url: "/images/categories/vvodno-raspredelitelnye-ustrojstva-vru.png",
+          url: "/images/categories/vvodno-raspredelitelnye-ustrojstva-vru.webp",
         },
       ],
       stock: 0,
@@ -153,7 +153,7 @@ async function main() {
       mediaFiles: [
         {
           type: "IMAGE",
-          url: "/images/categories/vvodno-raspredelitelnye-ustrojstva-vru.png",
+          url: "/images/categories/vvodno-raspredelitelnye-ustrojstva-vru.webp",
         },
       ],
       stock: 0,
@@ -219,7 +219,7 @@ async function main() {
       mediaFiles: [
         {
           type: "IMAGE",
-          url: "/images/categories/vvodno-raspredelitelnye-ustrojstva-vru.png",
+          url: "/images/categories/vvodno-raspredelitelnye-ustrojstva-vru.webp",
         },
       ],
       stock: 0,
@@ -285,7 +285,7 @@ async function main() {
       mediaFiles: [
         {
           type: "IMAGE",
-          url: "/images/categories/vvodno-raspredelitelnye-ustrojstva-vru.png",
+          url: "/images/categories/vvodno-raspredelitelnye-ustrojstva-vru.webp",
         },
       ],
       stock: 0,
@@ -351,7 +351,7 @@ async function main() {
       mediaFiles: [
         {
           type: "IMAGE",
-          url: "/images/categories/vvodno-raspredelitelnye-ustrojstva-vru.png",
+          url: "/images/categories/vvodno-raspredelitelnye-ustrojstva-vru.webp",
         },
       ],
       stock: 0,
@@ -417,7 +417,7 @@ async function main() {
       mediaFiles: [
         {
           type: "IMAGE",
-          url: "/images/categories/vvodno-raspredelitelnye-ustrojstva-vru.png",
+          url: "/images/categories/vvodno-raspredelitelnye-ustrojstva-vru.webp",
         },
       ],
       stock: 0,
@@ -483,7 +483,7 @@ async function main() {
       mediaFiles: [
         {
           type: "IMAGE",
-          url: "/images/categories/vvodno-raspredelitelnye-ustrojstva-vru.png",
+          url: "/images/categories/vvodno-raspredelitelnye-ustrojstva-vru.webp",
         },
       ],
       stock: 0,
@@ -549,7 +549,7 @@ async function main() {
       mediaFiles: [
         {
           type: "IMAGE",
-          url: "/images/categories/vvodno-raspredelitelnye-ustrojstva-vru.png",
+          url: "/images/categories/vvodno-raspredelitelnye-ustrojstva-vru.webp",
         },
       ],
       stock: 0,
@@ -615,7 +615,7 @@ async function main() {
       mediaFiles: [
         {
           type: "IMAGE",
-          url: "/images/categories/vvodno-raspredelitelnye-ustrojstva-vru.png",
+          url: "/images/categories/vvodno-raspredelitelnye-ustrojstva-vru.webp",
         },
       ],
       stock: 0,
@@ -681,7 +681,7 @@ async function main() {
       mediaFiles: [
         {
           type: "IMAGE",
-          url: "/images/categories/vvodno-raspredelitelnye-ustrojstva-vru.png",
+          url: "/images/categories/vvodno-raspredelitelnye-ustrojstva-vru.webp",
         },
       ],
       stock: 0,
@@ -747,7 +747,7 @@ async function main() {
       mediaFiles: [
         {
           type: "IMAGE",
-          url: "/images/categories/vvodno-raspredelitelnye-ustrojstva-vru.png",
+          url: "/images/categories/vvodno-raspredelitelnye-ustrojstva-vru.webp",
         },
       ],
       stock: 0,
@@ -813,7 +813,7 @@ async function main() {
       mediaFiles: [
         {
           type: "IMAGE",
-          url: "/images/categories/vvodno-raspredelitelnye-ustrojstva-vru.png",
+          url: "/images/categories/vvodno-raspredelitelnye-ustrojstva-vru.webp",
         },
       ],
       stock: 0,
@@ -879,7 +879,7 @@ async function main() {
       mediaFiles: [
         {
           type: "IMAGE",
-          url: "/images/categories/vvodno-raspredelitelnye-ustrojstva-vru.png",
+          url: "/images/categories/vvodno-raspredelitelnye-ustrojstva-vru.webp",
         },
       ],
       stock: 0,
@@ -945,7 +945,7 @@ async function main() {
       mediaFiles: [
         {
           type: "IMAGE",
-          url: "/images/categories/vvodno-raspredelitelnye-ustrojstva-vru.png",
+          url: "/images/categories/vvodno-raspredelitelnye-ustrojstva-vru.webp",
         },
       ],
       stock: 0,
@@ -1011,7 +1011,7 @@ async function main() {
       mediaFiles: [
         {
           type: "IMAGE",
-          url: "/images/categories/vvodno-raspredelitelnye-ustrojstva-vru.png",
+          url: "/images/categories/vvodno-raspredelitelnye-ustrojstva-vru.webp",
         },
       ],
       stock: 0,
@@ -1077,7 +1077,7 @@ async function main() {
       mediaFiles: [
         {
           type: "IMAGE",
-          url: "/images/categories/vvodno-raspredelitelnye-ustrojstva-vru.png",
+          url: "/images/categories/vvodno-raspredelitelnye-ustrojstva-vru.webp",
         },
       ],
       stock: 0,
@@ -1143,7 +1143,7 @@ async function main() {
       mediaFiles: [
         {
           type: "IMAGE",
-          url: "/images/categories/vvodno-raspredelitelnye-ustrojstva-vru.png",
+          url: "/images/categories/vvodno-raspredelitelnye-ustrojstva-vru.webp",
         },
       ],
       stock: 0,
