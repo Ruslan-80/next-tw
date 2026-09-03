@@ -122,6 +122,7 @@ export default function Header() {
               <ModeToggle />
               {/* Email */}
               <Link
+                alt="email"
                 href="mailto:info@electroshit-pro.ru"
                 className="text-xs md:text-sm flex items-center gap-2 hover:text-accent transition-colors font-medium text-text lowercase"
               >
@@ -132,6 +133,7 @@ export default function Header() {
               <div className="relative flex flex-col items-end">
                 <div className="flex items-center gap-1">
                   <Link
+                    alt="telephone"
                     href="tel:+74993901467"
                     className="text-xs md:text-sm flex items-center gap-2 hover:text-accent transition-colors font-medium text-text"
                   >
@@ -151,6 +153,7 @@ export default function Header() {
                 {isOpentelephone && (
                   <div className="absolute top-full right-0 mt-2 bg-card shadow-lg border border-card rounded-md py-2 z-50 min-w-[180px]">
                     <Link
+                      alt="telephone"
                       href="tel:+79299759489" // Замените на нужный номер
                       className="block px-4 py-2 text-xs md:text-sm text-text hover:text-accent transition-colors font-medium"
                     >
@@ -228,7 +231,7 @@ export default function Header() {
                                 setQuery("");
                                 setIsOpen(false);
                               }}
-                              className="flex items-center gap-4 p-4 hover:bg-accent hover:text-card transition-colors group"
+                              className="flex items-center gap-4 p-4 hover:text-card transition-colors group"
                             >
                               {product.image ? (
                                 <div className="relative w-12 h-12 flex-shrink-0 bg-background border border-accent rounded-xl overflow-hidden">

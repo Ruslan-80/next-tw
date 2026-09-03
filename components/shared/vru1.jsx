@@ -35,10 +35,10 @@ export function vruTop() {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-8 animate-fade-in-up">
             <div className="space-y-4 px-2">
-              <h2 className="text-2xl lg:text-5xl font-bold text-balance leading-tight">
+              <h2 className="text-2xl lg:text-5xl font-bold text-text leading-tight">
                 Вводно-распределительные устройства (ВРУ)
               </h2>
-              <p className="text-muted-foreground text-balance leading-relaxed">
+              <p className="text-muted-foreground text-text leading-relaxed">
                 это электрический шкаф, который служит для приёма, распределения
                 и учёта электроэнергии в сетях{" "}
                 <a href="https://example.com" target="_blank">

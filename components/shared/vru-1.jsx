@@ -36,14 +36,14 @@ export function vru1Top() {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-8 animate-fade-in-up">
             <div className="space-y-4 px-2">
-              <h2 className="text-2xl lg:text-5xl font-bold text-balance leading-tight">
+              <h2 className="text-2xl lg:text-5xl font-bold text-text leading-tight">
                 Вводно-распределительные устройства ВРУ-1 (
                 <Link href="/catalog/vvodno-raspredelitelnye-ustrojstva-vru?nominalnoe-napryazhenie=380%2F220">
                   380В
                 </Link>
                 ) <small>от 60 кВт</small>{" "}
               </h2>
-              <p className="text-muted-foreground text-balance leading-relaxed">
+              <p className="text-muted-foreground text-text leading-relaxed">
                 Производство и комплектация электрощитовых панелей строго по{" "}
                 <strong>ГОСТ Р 51321.1</strong>. Предназначены для приема, учета
                 и распределения электрической энергии в сетях трехфазного
@@ -58,7 +58,8 @@ export function vru1Top() {
               <Button
                 onClick={() => handleButtonClick("Получить консультацию")}
                 size="lg"
-                className="bg-accent hover:bg-accent/90 text-accent-foreground text-xl py-8"
+                // className="bg-accent hover:bg-accent/90 text-background text-xl py-8"
+                className="btn-gold text-xl text-background py-8"
               >
                 Получить консультацию
                 <ArrowRight className="ml-2 h-4 w-4" />

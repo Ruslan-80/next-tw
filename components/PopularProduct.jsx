@@ -122,7 +122,7 @@ export default function PopularProducts({ categorySlug }) {
                     src={product.mediaFiles[0].url}
                     alt={product.name}
                     fill
-                    className="object-cover rounded-xl"
+                    className="object-contain rounded-xl"
                     sizes={"(max-width: 768px) 100vw, 192px"}
                   />
                 ) : (
