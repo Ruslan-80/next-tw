@@ -1,6 +1,8 @@
 #!/bin/sh
 set -e
 
+export NODE_OPTIONS="--dns-result-order=ipv4first"
+
 echo "==> Применение изменений Prisma..."
 npx prisma db push --skip-generate --accept-data-loss
 

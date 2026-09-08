@@ -5,7 +5,7 @@ import { processQueue } from "./queueProcessor.js"; // Указан точный
 console.log("🚀 Воркер очереди успешно запущен...");
 
 // Запускаем проверку очереди каждые 30 секунд
-cron.schedule("*/30 * * * * *", async () => {
+cron.schedule("*/5 * * * *", async () => {
   console.log("⏱️  Проверка очереди сообщений...");
   await processQueue();
 });
