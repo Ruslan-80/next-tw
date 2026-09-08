@@ -4,6 +4,7 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import { parseSlug } from "@/utils/slugParser";
 import React from "react";
 import getCategoryJsonLd from "@/lib/categoryJsonLd";
+import UnderConstruction from "../../landing/razrabotka/page";
 
 export async function generateMetadata({ params, searchParams }) {
   const { slug } = await params;
@@ -197,6 +198,7 @@ export default async function shkafyavtomatizacii({ params, searchParams }) {
         </h1>
         <p>{category.descriptionSeo}</p>
       </div>
+      <UnderConstruction />
     </>
   );
 }

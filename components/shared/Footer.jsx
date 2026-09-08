@@ -126,7 +126,7 @@ export default function Footer() {
                   href="/catalog/vvodno-raspredelitelnye-ustrojstva-vru"
                   className="hover:text-accent transition-colors"
                 >
-                  Корпуса ВРУ
+                  Щиты ВРУ
                 </Link>
               </li>
               <li>

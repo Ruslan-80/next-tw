@@ -35,6 +35,16 @@ const UstroystvaEtazhnyeBottom = dynamic(() =>
     (mod) => mod.UstroystvaEtazhnyeBottom,
   ),
 );
+const VruSoSchetchikamiTop = dynamic(() =>
+  import("./shared/vru-so-schetchikami").then(
+    (mod) => mod.VruSoSchetchikamiTop,
+  ),
+);
+const VruSoSchetchikamiBottom = dynamic(() =>
+  import("./shared/vru-so-schetchikami").then(
+    (mod) => mod.VruSoSchetchikamiBottom,
+  ),
+);
 const vru1Top = dynamic(() =>
   import("./shared/vru-1").then((mod) => mod.vru1Top),
 );
@@ -148,6 +158,10 @@ const categoryComponents = {
   "vru-1-15-kvt-380v-trehfaznyj": {
     top: vru15kvtTop,
     bottom: vru15kvtBottom,
+  },
+  "vru-so-schetchikami": {
+    top: VruSoSchetchikamiTop,
+    bottom: VruSoSchetchikamiBottom,
   },
   "nakladki-shitov-etazhnyh-she": {
     top: NakladkyEtazhnyeTop,

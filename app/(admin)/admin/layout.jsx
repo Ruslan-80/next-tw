@@ -12,7 +12,7 @@ import {
 import { Separator } from "@/components/ui/separator";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 
-import "@/styles/globals.css";
+import "@/styles/globals2.css";
 
 export default function AdminLayout({ children }) {
   return (

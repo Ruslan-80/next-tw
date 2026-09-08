@@ -64,7 +64,8 @@ export function vruTop() {
               <Button
                 onClick={() => handleButtonClick("Получить консультацию")}
                 size="lg"
-                className="bg-accent hover:bg-accent/90 text-accent-foreground text-xl py-8"
+                // className="bg-accent hover:bg-accent/90 text-accent-foreground text-xl py-8"
+                className="btn-gold text-xl py-8 text-black"
               >
                 Получить консультацию
                 <ArrowRight className="ml-2 h-4 w-4" />

@@ -323,8 +323,8 @@ export default function CardItem({ product, view }) {
         <div
           className={
             view === "grid"
-              ? "p-4 text-foreground"
-              : "p-4 flex-shrink-0 flex flex-col justify-center text-foreground"
+              ? "p-4 text-black"
+              : "p-4 flex-shrink-0 flex flex-col justify-center text-black"
           }
         >
           {/* <Button

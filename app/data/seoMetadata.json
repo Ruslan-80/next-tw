@@ -199,5 +199,16 @@
         "type": "info"
       }
     }
+  },
+  "vru-so-schetchikami": {
+    "default": {
+      "title": "ВРУ со счетчиками",
+      "description": "...",
+      "fulldescription": "...",
+      "advantage": "...",
+      "h1": "Все ВРУ со счетчиками",
+      "parentSlug": "vvodno-raspredelitelnye-ustrojstva-vru",
+      "type": "catalog"
+    }
   }
 }

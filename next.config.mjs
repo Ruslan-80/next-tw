@@ -40,6 +40,40 @@ const nextConfig = {
         source: "/promotions",
         destination: "/landing/razrabotka",
       },
+      {
+        source: "/catalog/glavnye-raspredelitelnye-shity-grsh",
+        destination: "/landing/razrabotka",
+      },
+      {
+        source: "/catalog/shkafy-avtomatizacii",
+        destination: "/landing/razrabotka",
+      },
+      {
+        source:
+          "/catalog/shkafy-upravleniya-s-chastotnym-preobrazovatelyami-shup",
+        destination: "/landing/razrabotka",
+      },
+
+      {
+        source: "/catalog/shity-silovye",
+        destination: "/landing/razrabotka",
+      },
+      {
+        source: "/catalog/paneli-upravleniya",
+        destination: "/landing/razrabotka",
+      },
+      {
+        source: "/catalog/ustrojstva-kompensacii-reaktivnoj-moshnosti-ukrm",
+        destination: "/landing/razrabotka",
+      },
+      {
+        source: "/catalog/punkty-raspredelitelnye-pr",
+        destination: "/landing/razrabotka",
+      },
+      {
+        source: "/catalog/shkafy-avtomaticheskogo-rezerva-avr",
+        destination: "/landing/razrabotka",
+      },
       // {
       //   source: "/catalog/vru-8504",
       //   destination: "/landing/razrabotka",

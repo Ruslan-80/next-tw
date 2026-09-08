@@ -742,6 +742,8 @@ export function vru15kvtBottom() {
           </p>
         </section>
 
+        <FaqVru15kwt />
+
         {/* CTA */}
         <section
           className="rounded-3xl bg-card border border-accent p-8 text-center space-y-6 mt-6"

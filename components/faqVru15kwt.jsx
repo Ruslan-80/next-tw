@@ -69,8 +69,8 @@ export default function FaqVru15kwt() {
 
   return (
     <section className="text-text">
-      <div className="container mx-auto py-4 lg:py-8 px-4">
-        <h2 className="text-xl lg:text-3xl font-bold mb-8">Частые вопросы</h2>
+      <div className="container mx-auto py-4 lg:py-8">
+        <h2 className="text-xl lg:text-3xl font-bold my-8">Частые вопросы</h2>
 
         <div className="space-y-4 text-sm lg:text-2xl">
           {isLoading
