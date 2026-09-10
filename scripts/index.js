@@ -6,9 +6,10 @@ import { processEmailQueue } from "./emailQueueProcessor.js"; // 1. Импорт
 console.log("🚀 Воркер очереди (Telegram + Email) успешно запущен...");
 
 // Запускаем проверку каждые 5 минут (согласно cron-расписанию "*/5 * * * *")
-cron.schedule("*/30 * * * * *", async () => {
+cron.schedule("*/15 * * * *", async () => {
   console.log("⏱️  Проверка очередей...");
 
   // Выполняем параллельно
-  await Promise.allSettled([processQueue(), processEmailQueue()]);
+  //   await Promise.allSettled([processQueue(), processEmailQueue()]);
+  await Promise.allSettled([processQueue()]);
 });
