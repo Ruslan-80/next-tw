@@ -10,6 +10,5 @@ cron.schedule("*/15 * * * *", async () => {
   console.log("⏱️  Проверка очередей...");
 
   // Выполняем параллельно
-  //   await Promise.allSettled([processQueue(), processEmailQueue()]);
-  await Promise.allSettled([processQueue()]);
+  await Promise.allSettled([processQueue(), processEmailQueue()]);
 });

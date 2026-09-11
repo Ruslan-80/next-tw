@@ -14,10 +14,10 @@ const transporter = nodemailer.createTransport({
     user: process.env.SMTP_USER || "ruslan-80@inbox.ru",
     pass: process.env.SMTP_PASS,
   },
-  tls: {
-    ciphers: "SSLv3",
-    rejectUnauthorized: false, // Исключает ошибки с локальными SSL-сертификатами
-  },
+  //   tls: {
+  //     ciphers: "SSLv3",
+  //     rejectUnauthorized: false, // Исключает ошибки с локальными SSL-сертификатами
+  //   },
 });
 
 const mailTo = process.env.EMAIL_TO;
