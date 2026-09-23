@@ -157,7 +157,7 @@ export default function CardItem({ product, view }) {
                 <h4
                   className={
                     view === "grid"
-                      ? "max-h-[140px] text-xl font-semibold text-text mb-2 group relative text-text"
+                      ? "max-h-[140px] min-h-[140px] text-xl font-semibold text-text mb-2 group relative text-text"
                       : "text-2xl font-semibold text-text mb-2 group relative text-text"
                   }
                 >
@@ -167,7 +167,7 @@ export default function CardItem({ product, view }) {
                 <p className="text-sm text-text mb-2">
                   Артикул:{" "}
                   <span itemProp="sku">{product.article || "N/A"}</span> <br />
-                  {/* ID: <span itemProp="productID">{product.id || "N/A"}</span> */}
+                  ID: <span itemProp="productID">{product.id || "N/A"}</span>
                 </p>
 
                 {/* {product.description && (
@@ -336,12 +336,12 @@ export default function CardItem({ product, view }) {
           <Button
             onClick={() =>
               handleButtonClick(
-                `Расчитать индивидуальный размер: ${product.name}`,
+                `Запросить индивидуальный расчет: ${product.name}`,
               )
             }
             className="w-full bg-primary mb-2 px-4 text-accent font-medium rounded-lg py-2 transition-all duration-300"
           >
-            Расчитать индивидуальный размер
+            Запросить индивидуальный расчет
           </Button>
           <Button
             onClick={handleAddToCart}

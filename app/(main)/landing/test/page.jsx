@@ -55,7 +55,7 @@ export async function generateMetadata({ params, searchParams }) {
   const canonicalUrl = `/catalog/${slug}${page > 1 ? `?page=${page}` : ""}`;
 
   return {
-    metadataBase: new URL("https://your-site.com"),
+    metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL),
     title,
     description,
     alternates: {

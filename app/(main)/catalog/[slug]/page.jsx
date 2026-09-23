@@ -18,9 +18,13 @@ export async function generateMetadata({ params, searchParams }) {
   const { slug } = await params;
   const resolvedSearchParams = await searchParams;
 
-  // Разбираем slug с помощью вспомогательной функции
-  const { baseSlug, selectedAttribute, selectedValue, categoryMetadata } =
-    parseSlug(slug, resolvedSearchParams);
+  const {
+    baseSlug,
+    categoryMetadata,
+    titleText,
+    fullDescription,
+    appliedFilters = {},
+  } = parseSlug(slug, { ...resolvedSearchParams });
 
   const category = await prisma.category.findUnique({
     where: { slug: baseSlug },
@@ -34,25 +38,7 @@ export async function generateMetadata({ params, searchParams }) {
     },
   });
 
-  // console.log("Category in metadata:", category);
-
-  let titleSeo = "";
-
-  if (category) {
-    // Если категория найдена, используем ее свойства
-    titleSeo = category.titleSeo || "";
-    // ... и другие свойства
-  }
-  //  else {
-  //   // Если категория не найдена, можно установить значения по умолчанию
-  //   // или пробросить ошибку, если наличие категории обязательно.
-  //   console.error(`Category with slug '${baseSlug}' not found.`);
-  // }
-
-  // const imgUrl = category.imageUrl || "/default-og-image.jpg";
-
   if (!category) {
-    // console.error(`Category with slug '${baseSlug}' not found.`);
     return {
       title: "Категория не найдена | ЭЛЕКТРОЩИТ-ПРО",
       description: "Запрошенная категория не существует.",
@@ -62,43 +48,27 @@ export async function generateMetadata({ params, searchParams }) {
         images: ["/default-og-image.jpg"],
       },
     };
-    // 👇 Или если нужно реально отдать 404:
-    // notFound();
   }
 
-  // Определяем текущую страницу
   const page = resolvedSearchParams.page
     ? parseInt(resolvedSearchParams.page)
     : 1;
 
-  // Заголовок и описание
-  let title, description;
-  if (
-    selectedAttribute &&
-    selectedValue &&
-    categoryMetadata[selectedAttribute]?.[selectedValue]
-  ) {
-    title =
-      categoryMetadata[selectedAttribute][selectedValue].title || titleSeo;
-    description =
-      categoryMetadata[selectedAttribute][selectedValue].description;
-  } else {
-    title =
-      titleSeo ||
-      categoryMetadata.default?.title ||
-      `${category.name} | ЭЛЕКТРОЩИТ-ПРО`;
-    description =
-      categoryMetadata.default?.description ||
-      category.descriptionSeo ||
-      `Купить товары из категории ${category.name} по выгодным ценам.`;
-  }
+  // Приоритет: meta комбинации/фильтра → SEO категории → дефолт
+  let title =
+    titleText ||
+    category.titleSeo ||
+    categoryMetadata?.default?.title ||
+    `${category.name} | ЭЛЕКТРОЩИТ-ПРО`;
 
-  // Добавляем "Страница N" только для страниц > 1
-  if (page > 1) {
-    title = `${title} - Страница ${page}`;
-  }
+  let description =
+    fullDescription ||
+    category.descriptionSeo ||
+    categoryMetadata?.default?.description ||
+    `Купить товары из категории ${category.name} по выгодным ценам.`;
 
-  // Правильный каноникал: без ?page=1, но с ?page=N для остальных
+  if (page > 1) title = `${title} - Страница ${page}`;
+
   const canonicalUrl =
     page >= 1 ? `/catalog/${slug}` : `/catalog/${slug}?page=${page}`;
 
@@ -110,9 +80,7 @@ export async function generateMetadata({ params, searchParams }) {
     metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL),
     title,
     description,
-    alternates: {
-      canonical: canonicalUrl,
-    },
+    alternates: { canonical: canonicalUrl },
     openGraph: {
       title,
       description,
@@ -133,10 +101,7 @@ export async function generateMetadata({ params, searchParams }) {
       description,
       images: [imgCategoryUrl || "/default-og-image.jpg"],
     },
-    robots: {
-      index: true,
-      follow: true,
-    },
+    robots: { index: true, follow: true },
   };
 }
 
@@ -144,7 +109,6 @@ export default async function CategoryPage({ params, searchParams }) {
   const { slug } = await params;
   const resolvedSearchParams = await searchParams;
 
-  // Получаем компоненты для конкретного slug
   const extraComponents = categoryComponents[slug] || {};
   const TopComponent = extraComponents.top;
   const BottomComponent = extraComponents.bottom;
@@ -153,7 +117,6 @@ export default async function CategoryPage({ params, searchParams }) {
     ? parseInt(resolvedSearchParams.page)
     : 1;
 
-  // Разбираем slug с помощью вспомогательной функции
   const {
     baseSlug,
     selectedAttribute,
@@ -161,24 +124,23 @@ export default async function CategoryPage({ params, searchParams }) {
     categoryMetadata,
     h1Text,
     fullDescription,
-    advantageText,
-  } = parseSlug(slug, resolvedSearchParams);
+  } = parseSlug(slug, { ...resolvedSearchParams });
+
+  // Объединённый набор фильтров (path + query) для Filters и SQL
+  const { appliedFilters = {} } = parseSlug(slug, { ...resolvedSearchParams });
+  const mergedSearchParams = {
+    ...resolvedSearchParams,
+    ...appliedFilters,
+  };
+  // убрать page из merged-объекта, чтобы не портить SQL
+  delete mergedSearchParams.page;
 
   const category = await prisma.category.findUnique({
     where: { slug: baseSlug },
     include: {
-      parent: {
-        include: {
-          parent: true,
-        },
-      },
+      parent: { include: { parent: true } },
       children: {
-        select: {
-          id: true,
-          name: true,
-          slug: true,
-          imageUrl: true,
-        },
+        select: { id: true, name: true, slug: true, imageUrl: true },
       },
     },
   });
@@ -187,15 +149,17 @@ export default async function CategoryPage({ params, searchParams }) {
     return <p className="text-center py-8">Категория не найдена</p>;
   }
 
-  // Передаем resolvedSearchParams в getProductsByCategory
   const { products, totalProducts, totalPages, currentPage } =
-    await getProductsByCategory(baseSlug, resolvedSearchParams);
+    await getProductsByCategory(baseSlug, {
+      ...mergedSearchParams,
+      page: resolvedSearchParams.page,
+    });
 
-  // Fallback для h1
+  // H1: приоритет — то, что вернул parseSlug
   const displaySuffix =
     selectedAttribute === "kolichestvo-kvartir-schetchikov"
       ? ` на ${selectedValue} квартиры`
-      : selectedValue
+      : !h1Text && selectedValue
         ? ` (${selectedValue})`
         : "";
   const finalH1 = h1Text || `${category.fullName}${displaySuffix}`;
@@ -214,28 +178,22 @@ export default async function CategoryPage({ params, searchParams }) {
     return <p className="text-center py-8">Страница не найдена</p>;
   }
 
-  // Исправленная функция getPageUrl для сохранения всех параметров
   const getPageUrl = (page) => {
-    const params = new URLSearchParams(resolvedSearchParams);
-    params.set("page", page); // Устанавливаем параметр page
-    // Убедимся, что все остальные параметры сохраняются
+    const params = new URLSearchParams();
+    // всё, что было в query, кроме page
     for (const [key, value] of Object.entries(resolvedSearchParams)) {
-      if (key !== "page" && value) {
-        params.set(key, value);
-      }
+      if (key !== "page" && value) params.set(key, value);
     }
-    const base = selectedAttribute
-      ? `/catalog/${baseSlug}${
-          categoryMetadata[selectedAttribute][selectedValue]?.urlSuffix || ""
-        }`
-      : `/catalog/${baseSlug}`;
-    return `${base}${params.toString() ? `?${params.toString()}` : ""}`;
+    params.set("page", page);
+    return `/catalog/${slug}?${params.toString()}`;
   };
 
   const canonicalUrl =
     page > 1
       ? `${process.env.NEXT_PUBLIC_SITE_URL}/catalog/${slug}?page=${page}`
       : `${process.env.NEXT_PUBLIC_SITE_URL}/catalog/${slug}`;
+
+  // console.log(category);
 
   const categoryJsonLd = getCategoryJsonLd(
     category,
@@ -252,8 +210,7 @@ export default async function CategoryPage({ params, searchParams }) {
       <Breadcrumbs items={breadcrumbs} />
       <div className="bg-gradient-metal animate-metal">
         <h1 className="flex items-center justify-center text-2xl md:text-3xl font-light tracking-tighter leading-tight text-text py-16">
-          {/* {finalH1} */}
-          {category.fullName}
+          {finalH1}
           {page > 1 && <span className="ml-2">— страница {page}</span>}
         </h1>
         {page === 1 && (
@@ -276,7 +233,7 @@ export default async function CategoryPage({ params, searchParams }) {
               <Filters
                 totalProducts={totalProducts}
                 attributeIds={category.filters}
-                searchParams={resolvedSearchParams}
+                searchParams={mergedSearchParams}
                 baseUrl={`/catalog/${baseSlug}`}
                 categorySlug={baseSlug}
               />
@@ -292,8 +249,6 @@ export default async function CategoryPage({ params, searchParams }) {
         />
 
         {page === 1 && BottomComponent && <BottomComponent />}
-        {/* <PopularNabor excludeSlug={slug} /> */}
-        {/* <PopularNaborVru excludeSlug={slug} /> */}
 
         {page === 1 && <RandomObjects />}
 

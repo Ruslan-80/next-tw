@@ -1,0 +1,252 @@
+"use client";
+
+import { useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import Modal from "@/components/ui/modal";
+import useFormSubmit from "hooks/useFormSubmit";
+
+const CONSULTATION_LABEL = "Получить расчёт стоимости ВРУ";
+const PHONE_LABEL = "Позвонить";
+const PHONE = "+74993901467";
+const REQUEST_LABEL = "Загрузить схему на расчёт";
+
+const H2 = "text-2xl md:text-3xl font-bold";
+
+const QUICK_LINKS = [
+  {
+    href: "/catalog/vvodno-raspredelitelnye-ustrojstva-vru-250a-1-vvod",
+    label: "ВРУ 250А 1 ввод",
+  },
+  {
+    href: "/catalog/vvodno-raspredelitelnye-ustrojstva-vru-630a-2-vvoda",
+    label: "ВРУ 630А 2 ввода",
+  },
+  {
+    href: "/catalog/vvodno-raspredelitelnye-ustrojstva-vru-400a-s-avr",
+    label: "ВРУ 400А с АВР",
+  },
+];
+
+const FAQ = [
+  {
+    q: "В чем отличие ВРУ на 2 ввода от щита с АВР?",
+    a: "Щит на 2 ввода подразумевает ручное переключение между основным и резервным источником питания (перекидным рубильником или выключателями). ВРУ с АВР осуществляет это переключение автоматически с помощью контроллера при малейшем пропадании фазы.",
+  },
+  {
+    q: "Допускается ли одновременная работа двух вводов (параллельная работа)?",
+    a: "Нет. В классической схеме с перекидным рубильником нагрузка получает питание только от одного ввода единовременно. Для параллельной работы независимых вводов необходимо заказывать двухсекционное ВРУ с секционным выключателем.",
+  },
+];
+
+export function vru400a2VvodaTop() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalContent, setModalContent] = useState("");
+  const { handleFormSubmit, error } = useFormSubmit();
+
+  const handleButtonClick = (content) => {
+    setModalContent(content);
+    setIsModalOpen(true);
+  };
+
+  return (
+    <div className="bg-gradient-metal animate-metal">
+      <section className="container mx-auto py-6 text-xl lg:text-2xl">
+        {/* Osnovnoj setchatyj blok: Tekst + Izobrazhenie */}
+        <div className="grid items-center gap-8 lg:grid-cols-2 lg:gap-12">
+          {/* Levaya kolonka — tekst */}
+          <div className="animate-fade-in-up space-y-8 px-2">
+            <div className="space-y-4">
+              <h1 className="text-text pb-4 text-2xl font-bold leading-tight lg:text-5xl">
+                Вводно-распределительные устройства ВРУ 400А (2 ввода)
+              </h1>
+              <p className="text-text/80 leading-relaxed">
+                <strong>
+                  Вводно-распределительные устройства ВРУ 400А на два ввода
+                </strong>{" "}
+                — это мощные распределительные узлы, спроектированные для приёма
+                энергии от двух независимых трансформаторных подстанций. При
+                номинальном токе 400 Ампер наличие двух вводов (с ручным
+                управлением переключением) позволяет проводить плановое
+                обслуживание секций под напряжением, обеспечивая стабильную
+                работу крупных бизнес-центров и производственных линий. Данная
+                модификация представляет собой классическое двухфидерное
+                устройство, обеспечивающее II категорию надёжности
+                электроснабжения. Схема исключает длительные простои: если
+                пропадает напряжение на одном вводе, дежурный персонал вручную
+                переводит питание на резервную магистраль. Такое вводное
+                устройство многоквартирного дома или промышленного объекта
+                является стандартом для обеспечения надёжности инфраструктуры.
+              </p>
+            </div>
+            <div className="flex flex-wrap gap-4">
+              <Button
+                size="lg"
+                onClick={() => handleButtonClick(CONSULTATION_LABEL)}
+                className="btn-gold py-8 text-xl text-black"
+              >
+                {CONSULTATION_LABEL}
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
+            </div>
+          </div>
+
+          {/* Pravaya kolonka — izobrazhenie */}
+          <div className="relative mx-auto w-full max-w-[350px] animate-slide-in-right md:max-w-[450px] lg:max-w-[500px]">
+            <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-accent/20 to-primary/20 blur-3xl" />
+            <div className="relative aspect-square overflow-hidden rounded-3xl p-4 shadow-2xl md:p-6 lg:p-8">
+              <Image
+                src="/images/categories/vru-all.webp"
+                alt="Вводно-распределительные устройства ВРУ 400А (2 ввода)"
+                fill
+                priority
+                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 450px, 500px"
+                className="rounded-3xl object-contain transition-transform duration-500 hover:scale-105"
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* Blok bystrykh ssylok vo vsyu shirinu pod dvukhkolonochnym blokom */}
+        <div className="mt-8 border-t border-border/40 px-2 pt-6">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+            <span className="whitespace-nowrap text-base font-semibold text-text/70 lg:text-lg">
+              Смотрите также:
+            </span>
+            <div className="flex flex-wrap gap-2.5 text-base">
+              {QUICK_LINKS.map(({ href, label }) => (
+                <Link
+                  key={href}
+                  href={href}
+                  className="inline-flex items-center rounded-full border border-border bg-card/50 px-4 py-1.5 font-medium text-text transition-colors hover:border-accent hover:bg-accent/10 hover:text-accent"
+                >
+                  {label}
+                </Link>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <Modal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        title={modalContent}
+        onSubmit={handleFormSubmit}
+        error={error}
+      />
+    </div>
+  );
+}
+
+export function vru400a2VvodaBottom() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalContent, setModalContent] = useState("");
+  const { handleFormSubmit, error } = useFormSubmit();
+
+  const handleButtonClick = (content) => {
+    setModalContent(content);
+    setIsModalOpen(true);
+  };
+
+  return (
+    <div className="container mx-auto space-y-12 py-8 text-text">
+      {/* Skhemotekhnika i mekhanicheskaya blokirovka */}
+      <section className="space-y-4 rounded-xl border border-border bg-card p-6">
+        <h2 className={H2}>Схемотехника и механическая блокировка</h2>
+        <p className="text-sm leading-relaxed text-muted-foreground md:text-base">
+          Главная инженерная задача при сборке двухфидерных щитов на 400А —
+          исключить встречное напряжение.
+        </p>
+        <ul className="list-disc space-y-2 pl-5 text-sm leading-relaxed text-muted-foreground md:text-base">
+          <li>
+            Для обеспечения переключения между двумя независимыми магистралями в
+            этих ВРУ применяется мощный{" "}
+            <strong>реверсивный (перекидной) рубильник</strong> или сборка из
+            двух рубильников типа ВР32.
+          </li>
+          <li>
+            Такая <strong>однолинейная схема вру</strong> гарантирует жёсткую
+            механическую блокировку: одновременное замыкание обоих вводов
+            физически невозможно.
+          </li>
+          <li>
+            Для высоких токов в 400А мы используем аппараты с усиленными
+            дугогасительными камерами и надёжной контактной группой.
+          </li>
+          <li>
+            Щиты могут выполняться как в одной панели (при достаточных габаритах
+            шкафа), так и в двухпанельном (секционном) исполнении.
+          </li>
+          <li>
+            Согласно ПУЭ, наибольшее количество и сечение жил (медных или
+            алюминиевых) для вводных зажимов на 400А составляет{" "}
+            <strong>2х120 мм²</strong> на каждую фазу.
+          </li>
+        </ul>
+      </section>
+
+      {/* FAQ */}
+      <section className="space-y-6">
+        <h2 className={H2}>Часто задаваемые вопросы</h2>
+        <div className="space-y-4">
+          {FAQ.map(({ q, a }) => (
+            <div
+              key={q}
+              className="space-y-2 rounded-xl border border-accent bg-card p-4"
+            >
+              <h3 className="text-lg font-bold">{q}</h3>
+              <p className="text-sm leading-relaxed text-muted-foreground">
+                {a}
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section
+        id="calculate"
+        className="space-y-4 rounded-2xl border border-accent bg-card p-6"
+      >
+        <h2 className={H2}>Заказать расчёт стоимости ВРУ 400А на 2 ввода</h2>
+        <p className="text-sm text-muted-foreground md:text-base">
+          Отправьте нам вашу однолинейную схему или техническое задание —
+          инженеры подберут аппараты, рассчитают сечение ошиновки и подготовят
+          коммерческое предложение с фиксированной ценой и сроками сборки.
+        </p>
+        <div className="flex flex-wrap gap-4 pt-2">
+          <Button
+            asChild
+            size="lg"
+            className="bg-accent font-bold text-background hover:bg-accent/90"
+          >
+            <a href={`tel:${PHONE}`}>{PHONE_LABEL}</a>
+          </Button>
+          <Button
+            onClick={() => handleButtonClick(REQUEST_LABEL)}
+            size="lg"
+            variant="outline"
+            className="border-2 border-accent font-bold text-accent hover:bg-accent hover:text-background"
+          >
+            {REQUEST_LABEL}
+          </Button>
+        </div>
+        <p className="text-xs italic text-muted-foreground">
+          Итоговая стоимость ВРУ зависит от выбранной схемы, бренда
+          комплектующих и дополнительных опций (АВР, узлы учёта и т. д.).
+        </p>
+      </section>
+
+      <Modal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        title={modalContent}
+        onSubmit={handleFormSubmit}
+        error={error}
+      />
+    </div>
+  );
+}

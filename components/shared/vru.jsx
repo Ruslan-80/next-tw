@@ -36,10 +36,10 @@ export function vruTop() {
         <div className="grid lg:grid-cols-2 gap-2 items-center">
           <div className="space-y-8 animate-fade-in-up">
             <div className="space-y-4 px-2">
-              <h2 className="text-2xl lg:text-5xl font-bold text-balance leading-tight">
+              <h2 className="text-2xl lg:text-5xl font-bold text-text leading-tight">
                 Вводно-распределительное устройство (ВРУ)
               </h2>
-              <p className="text-muted-foreground text-balance leading-relaxed">
+              <p className="text-muted-foreground text-text leading-relaxed">
                 <strong>ВРУ</strong> — это электрический шкаф, который служит
                 для приёма, распределения и учёта электроэнергии в сетях{" "}
                 <a
@@ -53,7 +53,7 @@ export function vruTop() {
                 можете напрямую с нашего производства — без посредников, с
                 полным пакетом документов и гарантией 3 года.
               </p>
-              <p className="text-muted-foreground text-balance leading-relaxed">
+              <p className="text-muted-foreground text-text leading-relaxed">
                 Мы занимаемся изготовлением ВРУ на заказ по однолинейным схемам,
                 а также предлагаем готовые силовые щиты ВРУ, собранные на
                 проверенной аппаратуре отечественных и зарубежных брендов.
@@ -77,11 +77,12 @@ export function vruTop() {
             <div className="absolute inset-0 bg-gradient-to-br from-accent/20 to-primary/20 rounded-3xl blur-3xl"></div>
             <div className="relative w-full max-w-[350px] md:max-w-[450px] lg:max-w-[500px] aspect-square rounded-3xl p-4 md:p-6 lg:p-8 shadow-2xl flex justify-center mx-auto">
               <Image
-                src="/images/categories/vvodno-raspredelitelnye-ustrojstva-vru.webp"
+                src="/images/categories/vru-all.webp"
                 alt="Щит ВРУ в сборе"
                 fill
                 className="object-contain hover:scale-105 transition-transform duration-500 p-2 md:p-4"
                 sizes="(max-width: 768px) 100vw, (max-width: 1024px) 450px, 500px"
+                priority
               />
             </div>
           </div>
@@ -422,28 +423,28 @@ export function vruBottom() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 mb-6">
             <Button
               variant={activeTab === "tab-1" ? "default" : "outline"}
-              className={`h-auto py-3 px-4 text-sm font-bold justify-center ${activeTab === "tab-1" ? "bg-accent text-accent-foreground hover:bg-accent/90" : ""}`}
+              className={`h-auto py-3 px-4 text-sm font-bold justify-center ${activeTab === "tab-1" ? "bg-accent text-background hover:bg-accent/90" : ""}`}
               onClick={() => setActiveTab("tab-1")}
             >
               Расшифровка маркировки
             </Button>
             <Button
               variant={activeTab === "tab-2" ? "default" : "outline"}
-              className={`h-auto py-3 px-4 text-sm font-bold justify-center ${activeTab === "tab-2" ? "bg-accent text-accent-foreground hover:bg-accent/90" : ""}`}
+              className={`h-auto py-3 px-4 text-sm font-bold justify-center ${activeTab === "tab-2" ? "bg-accent text-background hover:bg-accent/90" : ""}`}
               onClick={() => setActiveTab("tab-2")}
             >
               Тип ВРУ
             </Button>
             <Button
               variant={activeTab === "tab-3" ? "default" : "outline"}
-              className={`h-auto py-3 px-4 text-sm font-bold justify-center ${activeTab === "tab-3" ? "bg-accent text-accent-foreground hover:bg-accent/90" : ""}`}
+              className={`h-auto py-3 px-4 text-sm font-bold justify-center ${activeTab === "tab-3" ? "bg-accent text-background hover:bg-accent/90" : ""}`}
               onClick={() => setActiveTab("tab-3")}
             >
               Номинальный ток
             </Button>
             <Button
               variant={activeTab === "tab-4" ? "default" : "outline"}
-              className={`h-auto py-3 px-4 text-sm font-bold justify-center ${activeTab === "tab-4" ? "bg-accent text-accent-foreground hover:bg-accent/90" : ""}`}
+              className={`h-auto py-3 px-4 text-sm font-bold justify-center ${activeTab === "tab-4" ? "bg-accent text-background hover:bg-accent/90" : ""}`}
               onClick={() => setActiveTab("tab-4")}
             >
               Схема ввода
@@ -472,7 +473,7 @@ export function vruBottom() {
                 </div>
                 <Button
                   type="submit"
-                  className="w-full bg-accent hover:bg-accent/90 text-accent-foreground font-bold"
+                  className="w-full bg-accent hover:bg-accent/90 text-background font-bold"
                 >
                   Получить расшифровку
                 </Button>
@@ -624,7 +625,7 @@ export function vruBottom() {
                 </div>
                 <Button
                   type="submit"
-                  className="w-full bg-accent hover:bg-accent/90 text-accent-foreground font-bold"
+                  className="w-full bg-accent hover:bg-accent/90 text-background font-bold"
                 >
                   Подобрать тип ВРУ
                 </Button>
@@ -735,7 +736,7 @@ export function vruBottom() {
                 </div>
                 <Button
                   type="submit"
-                  className="w-full bg-accent hover:bg-accent/90 text-accent-foreground font-bold"
+                  className="w-full bg-accent hover:bg-accent/90 text-background font-bold"
                 >
                   Рассчитать номинальный ток
                 </Button>
@@ -838,7 +839,7 @@ export function vruBottom() {
                 </div>
                 <Button
                   type="submit"
-                  className="w-full bg-accent hover:bg-accent/90 text-accent-foreground font-bold"
+                  className="w-full bg-accent hover:bg-accent/90 text-background font-bold"
                 >
                   Подобрать конфигурацию ввода
                 </Button>
@@ -1000,7 +1001,7 @@ export function vruBottom() {
             <Button
               onClick={() => handleButtonClick("Запросить точную смету")}
               size="lg"
-              className="bg-accent hover:bg-accent/90 text-accent-foreground text-lg py-4"
+              className="bg-accent hover:bg-accent/90 text-background text-lg py-4"
             >
               Запросить точную смету
               <ArrowRight className="ml-2 h-4 w-4" />
@@ -2214,7 +2215,7 @@ export function vruBottom() {
             <Button
               onClick={() => handleButtonClick("Получить бесплатный расчёт")}
               size="lg"
-              className="bg-accent hover:bg-accent/90 text-accent-foreground text-xl py-6 px-8"
+              className="bg-accent hover:bg-accent/90 text-background text-xl py-6 px-8"
             >
               Получить бесплатный расчёт
             </Button>

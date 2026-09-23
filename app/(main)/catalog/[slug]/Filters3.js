@@ -100,7 +100,7 @@ export default async function Filters({
       item._count.productId,
     );
   });
-  console.log("valueCounts:", valueCountsMap);
+  // console.log("valueCounts:", valueCountsMap);
 
   const attributes = attributesData.map((attr) => {
     const uniqueValues = [

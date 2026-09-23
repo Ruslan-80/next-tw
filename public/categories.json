@@ -3,102 +3,102 @@
     {
       "id": 1,
       "slug": "glavnye-raspredelitelnye-shity-grsh",
-      "updatedAt": "2026-08-25T13:40:55.120Z"
+      "updatedAt": "2026-09-14T13:36:39.883Z"
     },
     {
       "id": 2,
       "slug": "shkafy-upravleniya-s-chastotnym-preobrazovatelyami-shup",
-      "updatedAt": "2026-08-25T13:40:55.127Z"
+      "updatedAt": "2026-09-14T13:36:39.886Z"
     },
     {
       "id": 3,
       "slug": "vvodno-raspredelitelnye-ustrojstva-vru",
-      "updatedAt": "2026-08-25T13:40:55.129Z"
+      "updatedAt": "2026-09-16T13:41:05.011Z"
     },
     {
       "id": 4,
       "slug": "shkafy-avtomatizacii",
-      "updatedAt": "2026-08-25T13:40:55.130Z"
+      "updatedAt": "2026-09-14T13:36:39.890Z"
     },
     {
       "id": 5,
       "slug": "shity-silovye",
-      "updatedAt": "2026-08-25T13:40:55.132Z"
+      "updatedAt": "2026-09-14T13:36:39.891Z"
     },
     {
       "id": 6,
       "slug": "shkafy-avtomaticheskogo-rezerva-avr",
-      "updatedAt": "2026-08-25T13:40:55.134Z"
+      "updatedAt": "2026-09-14T13:36:39.892Z"
     },
     {
       "id": 7,
       "slug": "punkty-raspredelitelnye-pr",
-      "updatedAt": "2026-08-25T13:40:55.136Z"
+      "updatedAt": "2026-09-14T13:36:39.894Z"
     },
     {
       "id": 8,
       "slug": "paneli-upravleniya",
-      "updatedAt": "2026-08-25T13:40:55.137Z"
+      "updatedAt": "2026-09-14T13:36:39.895Z"
     },
     {
       "id": 9,
       "slug": "ustrojstva-kompensacii-reaktivnoj-moshnosti-ukrm",
-      "updatedAt": "2026-08-25T13:40:55.139Z"
+      "updatedAt": "2026-09-14T13:36:39.897Z"
     },
     {
       "id": 10,
       "slug": "shity-etazhnye-she",
-      "updatedAt": "2026-08-25T13:40:55.142Z"
+      "updatedAt": "2026-09-14T13:36:39.898Z"
     },
     {
       "id": 18,
       "slug": "schity-etazhnye-i-ustroystva-podezdnye",
-      "updatedAt": "2026-08-25T13:40:55.154Z"
+      "updatedAt": "2026-09-14T13:36:39.909Z"
     },
     {
       "id": 19,
       "slug": "nakladki-shitov-etazhnyh-she",
-      "updatedAt": "2026-08-25T13:40:55.155Z"
+      "updatedAt": "2026-09-14T13:36:39.911Z"
     },
     {
       "id": 21,
       "slug": "kozhuh-she-dlya-etazhnogo-shita",
-      "updatedAt": "2026-08-25T13:40:55.158Z"
+      "updatedAt": "2026-09-14T13:36:39.912Z"
     },
     {
       "id": 22,
       "slug": "vru-1",
-      "updatedAt": "2026-08-25T13:40:55.160Z"
+      "updatedAt": "2026-09-16T13:06:44.020Z"
     },
     {
       "id": 23,
       "slug": "vru-3",
-      "updatedAt": "2026-08-25T13:40:55.162Z"
+      "updatedAt": "2026-09-16T13:06:44.020Z"
     },
     {
       "id": 24,
       "slug": "vru-8504",
-      "updatedAt": "2026-08-25T13:40:55.164Z"
+      "updatedAt": "2026-09-16T13:06:44.020Z"
     },
     {
       "id": 25,
       "slug": "vru-8505",
-      "updatedAt": "2026-08-25T13:40:55.166Z"
+      "updatedAt": "2026-09-16T13:06:44.020Z"
     },
     {
       "id": 26,
       "slug": "vru-4",
-      "updatedAt": "2026-08-25T13:40:55.168Z"
+      "updatedAt": "2026-09-16T13:06:44.020Z"
     },
     {
       "id": 27,
       "slug": "vru-21",
-      "updatedAt": "2026-08-25T13:40:55.170Z"
+      "updatedAt": "2026-09-16T13:06:44.020Z"
     },
     {
       "id": 29,
       "slug": "vru-1-15-kvt-380v-trehfaznyj",
-      "updatedAt": "2026-08-25T13:40:55.171Z"
+      "updatedAt": "2026-09-16T13:06:44.020Z"
     }
   ],
   "filters": [
@@ -118,6 +118,64 @@
     "shity-etazhnye-she-bez-slabotochnogo-otseka",
     "shity-etazhnye-she-so-slabotochnym-otsekom",
     "shity-etazhnye-she-nakladnye"
+  ],
+  "seoFilterPaths": [
+    "/catalog/shity-etazhnye-she-na-1-kvartiry",
+    "/catalog/shity-etazhnye-she-na-2-kvartiry",
+    "/catalog/shity-etazhnye-she-na-3-kvartiry",
+    "/catalog/shity-etazhnye-she-na-4-kvartiry",
+    "/catalog/shity-etazhnye-she-na-5-kvartir",
+    "/catalog/shity-etazhnye-she-na-6-kvartir",
+    "/catalog/shity-etazhnye-she-na-7-kvartir",
+    "/catalog/shity-etazhnye-she-na-8-kvartir",
+    "/catalog/shity-etazhnye-she-na-9-kvartir",
+    "/catalog/shity-etazhnye-she-na-10-kvartir",
+    "/catalog/shity-etazhnye-she-na-12-kvartir",
+    "/catalog/shity-etazhnye-she-vstraivaemye",
+    "/catalog/shity-etazhnye-she-bez-okon",
+    "/catalog/shity-etazhnye-she-bez-slabotochnogo-otseka",
+    "/catalog/shity-etazhnye-she-so-slabotochnym-otsekom",
+    "/catalog/shity-etazhnye-she-nakladnye",
+    "/catalog/vvodno-raspredelitelnye-ustrojstva-vru-paneli-pvr",
+    "/catalog/vvodno-raspredelitelnye-ustrojstva-vru-vvodnye-paneli-vp",
+    "/catalog/vvodno-raspredelitelnye-ustrojstva-vru-paneli-rp",
+    "/catalog/vvodno-raspredelitelnye-ustrojstva-vru-1-vvod",
+    "/catalog/vvodno-raspredelitelnye-ustrojstva-vru-2-vvoda",
+    "/catalog/vvodno-raspredelitelnye-ustrojstva-vru-32a",
+    "/catalog/vvodno-raspredelitelnye-ustrojstva-vru-40a",
+    "/catalog/vvodno-raspredelitelnye-ustrojstva-vru-63a",
+    "/catalog/vvodno-raspredelitelnye-ustrojstva-vru-100a",
+    "/catalog/vvodno-raspredelitelnye-ustrojstva-vru-125a",
+    "/catalog/vvodno-raspredelitelnye-ustrojstva-vru-250a",
+    "/catalog/vvodno-raspredelitelnye-ustrojstva-vru-400a",
+    "/catalog/vvodno-raspredelitelnye-ustrojstva-vru-500a",
+    "/catalog/vvodno-raspredelitelnye-ustrojstva-vru-630a",
+    "/catalog/vvodno-raspredelitelnye-ustrojstva-vru-800a",
+    "/catalog/vvodno-raspredelitelnye-ustrojstva-vru-1000a",
+    "/catalog/vvodno-raspredelitelnye-ustrojstva-vru-1600a",
+    "/catalog/vvodno-raspredelitelnye-ustrojstva-vru-ip-55",
+    "/catalog/vvodno-raspredelitelnye-ustrojstva-vru-ip-65",
+    "/catalog/vvodno-raspredelitelnye-ustrojstva-vru-ip-31",
+    "/catalog/vvodno-raspredelitelnye-ustrojstva-vru-ip-66",
+    "/catalog/vvodno-raspredelitelnye-ustrojstva-vru-bez-schetchika",
+    "/catalog/vvodno-raspredelitelnye-ustrojstva-vru-so-schetchikami",
+    "/catalog/vvodno-raspredelitelnye-ustrojstva-vru-avtomaticheskij-vyklyuchatel",
+    "/catalog/vvodno-raspredelitelnye-ustrojstva-vru-na-kontaktorakh",
+    "/catalog/vvodno-raspredelitelnye-ustrojstva-vru-navesnye",
+    "/catalog/vvodno-raspredelitelnye-ustrojstva-vru-napolnye",
+    "/catalog/vvodno-raspredelitelnye-ustrojstva-vru-s-avr",
+    "/catalog/vvodno-raspredelitelnye-ustrojstva-vru-transformator-toka",
+    "/catalog/vvodno-raspredelitelnye-ustrojstva-vru-ukhl1",
+    "/catalog/vvodno-raspredelitelnye-ustrojstva-vru-ukhl4",
+    "/catalog/vvodno-raspredelitelnye-ustrojstva-vru-63a-s-avr",
+    "/catalog/vvodno-raspredelitelnye-ustrojstva-vru-250a-1-vvod",
+    "/catalog/vvodno-raspredelitelnye-ustrojstva-vru-250a-s-avr",
+    "/catalog/vvodno-raspredelitelnye-ustrojstva-vru-400a-1-vvod",
+    "/catalog/vvodno-raspredelitelnye-ustrojstva-vru-400a-2-vvoda",
+    "/catalog/vvodno-raspredelitelnye-ustrojstva-vru-400a-s-avr",
+    "/catalog/vvodno-raspredelitelnye-ustrojstva-vru-630a-2-vvoda",
+    "/catalog/vvodno-raspredelitelnye-ustrojstva-vru-630a-s-avr",
+    "/catalog/vvodno-raspredelitelnye-ustrojstva-vru-800a-2-vvoda"
   ],
   "sitemapPaths": [
     "/catalog/glavnye-raspredelitelnye-shity-grsh",
@@ -155,6 +213,46 @@
     "/catalog/shity-etazhnye-she-bez-okon",
     "/catalog/shity-etazhnye-she-bez-slabotochnogo-otseka",
     "/catalog/shity-etazhnye-she-so-slabotochnym-otsekom",
-    "/catalog/shity-etazhnye-she-nakladnye"
+    "/catalog/shity-etazhnye-she-nakladnye",
+    "/catalog/vvodno-raspredelitelnye-ustrojstva-vru-paneli-pvr",
+    "/catalog/vvodno-raspredelitelnye-ustrojstva-vru-vvodnye-paneli-vp",
+    "/catalog/vvodno-raspredelitelnye-ustrojstva-vru-paneli-rp",
+    "/catalog/vvodno-raspredelitelnye-ustrojstva-vru-1-vvod",
+    "/catalog/vvodno-raspredelitelnye-ustrojstva-vru-2-vvoda",
+    "/catalog/vvodno-raspredelitelnye-ustrojstva-vru-32a",
+    "/catalog/vvodno-raspredelitelnye-ustrojstva-vru-40a",
+    "/catalog/vvodno-raspredelitelnye-ustrojstva-vru-63a",
+    "/catalog/vvodno-raspredelitelnye-ustrojstva-vru-100a",
+    "/catalog/vvodno-raspredelitelnye-ustrojstva-vru-125a",
+    "/catalog/vvodno-raspredelitelnye-ustrojstva-vru-250a",
+    "/catalog/vvodno-raspredelitelnye-ustrojstva-vru-400a",
+    "/catalog/vvodno-raspredelitelnye-ustrojstva-vru-500a",
+    "/catalog/vvodno-raspredelitelnye-ustrojstva-vru-630a",
+    "/catalog/vvodno-raspredelitelnye-ustrojstva-vru-800a",
+    "/catalog/vvodno-raspredelitelnye-ustrojstva-vru-1000a",
+    "/catalog/vvodno-raspredelitelnye-ustrojstva-vru-1600a",
+    "/catalog/vvodno-raspredelitelnye-ustrojstva-vru-ip-55",
+    "/catalog/vvodno-raspredelitelnye-ustrojstva-vru-ip-65",
+    "/catalog/vvodno-raspredelitelnye-ustrojstva-vru-ip-31",
+    "/catalog/vvodno-raspredelitelnye-ustrojstva-vru-ip-66",
+    "/catalog/vvodno-raspredelitelnye-ustrojstva-vru-bez-schetchika",
+    "/catalog/vvodno-raspredelitelnye-ustrojstva-vru-so-schetchikami",
+    "/catalog/vvodno-raspredelitelnye-ustrojstva-vru-avtomaticheskij-vyklyuchatel",
+    "/catalog/vvodno-raspredelitelnye-ustrojstva-vru-na-kontaktorakh",
+    "/catalog/vvodno-raspredelitelnye-ustrojstva-vru-navesnye",
+    "/catalog/vvodno-raspredelitelnye-ustrojstva-vru-napolnye",
+    "/catalog/vvodno-raspredelitelnye-ustrojstva-vru-s-avr",
+    "/catalog/vvodno-raspredelitelnye-ustrojstva-vru-transformator-toka",
+    "/catalog/vvodno-raspredelitelnye-ustrojstva-vru-ukhl1",
+    "/catalog/vvodno-raspredelitelnye-ustrojstva-vru-ukhl4",
+    "/catalog/vvodno-raspredelitelnye-ustrojstva-vru-63a-s-avr",
+    "/catalog/vvodno-raspredelitelnye-ustrojstva-vru-250a-1-vvod",
+    "/catalog/vvodno-raspredelitelnye-ustrojstva-vru-250a-s-avr",
+    "/catalog/vvodno-raspredelitelnye-ustrojstva-vru-400a-1-vvod",
+    "/catalog/vvodno-raspredelitelnye-ustrojstva-vru-400a-2-vvoda",
+    "/catalog/vvodno-raspredelitelnye-ustrojstva-vru-400a-s-avr",
+    "/catalog/vvodno-raspredelitelnye-ustrojstva-vru-630a-2-vvoda",
+    "/catalog/vvodno-raspredelitelnye-ustrojstva-vru-630a-s-avr",
+    "/catalog/vvodno-raspredelitelnye-ustrojstva-vru-800a-2-vvoda"
   ]
 }
