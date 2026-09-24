@@ -71,14 +71,7 @@ function buildFilterUrlsForCategory(categoryKey, categoryMeta) {
 /*  Основной скрипт                                                   */
 /* ------------------------------------------------------------------ */
 async function generateCategoriesJson() {
-  const excludedCatalogNames = [
-    "ustroystva-etazhnye",
-    "uerm",
-    "uerv",
-    "uerb",
-    "uerk",
-    "uern",
-  ];
+  const excludedCatalogNames = ["uerb", "uerk", "uern"];
 
   // Оставляем ручной список — как fallback (например, если seoMetadata
   // отстаёт от жизни). Все дубликаты отсекутся через Set ниже.

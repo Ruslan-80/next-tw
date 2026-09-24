@@ -20,6 +20,21 @@ import useFormSubmit from "hooks/useFormSubmit";
 import FaqVru from "@/components/faqVru";
 import PopularNaborVru from "@/components/PopularNaborVru";
 
+const QUICK_LINKS = [
+  {
+    href: "/catalog/vvodno-raspredelitelnye-ustrojstva-vru-2-vvoda",
+    label: "ВРУ 2 ввода",
+  },
+  {
+    href: "/catalog/vvodno-raspredelitelnye-ustrojstva-vru-bez-schetchika",
+    label: "Без счетчика",
+  },
+  {
+    href: "/catalog/vvodno-raspredelitelnye-ustrojstva-vru-navesnye",
+    label: "Навесные щиты",
+  },
+];
+
 export function Vru1VvodTop() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalContent, setModalContent] = useState("");
@@ -83,9 +98,28 @@ export function Vru1VvodTop() {
             </div>
           </div>
         </div>
+        {/* Blok bystrykh ssylok vo vsyu shirinu pod dvukhkolonochnym blokom */}
+        <div className="mt-8 border-t border-border/40 px-2 pt-6">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+            <span className="whitespace-nowrap text-base font-semibold text-text/70 lg:text-lg">
+              Смотрите также:
+            </span>
+            <div className="flex flex-wrap gap-2.5 text-base">
+              {QUICK_LINKS.map(({ href, label }) => (
+                <Link
+                  key={href}
+                  href={href}
+                  className="inline-flex items-center rounded-full border border-border bg-card/50 px-4 py-1.5 font-medium text-text transition-colors hover:border-accent hover:bg-accent/10 hover:text-accent"
+                >
+                  {label}
+                </Link>
+              ))}
+            </div>
+          </div>
+        </div>
       </section>
 
-      <PopularNaborVru />
+      {/* <PopularNaborVru /> */}
 
       <Modal
         isOpen={isModalOpen}

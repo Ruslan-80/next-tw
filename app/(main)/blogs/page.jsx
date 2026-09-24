@@ -9,6 +9,36 @@ export const metadata = {
     "Полезные статьи и советы по сборке и выбору электрооборудования",
 };
 
+// Функция для парсинга дат на русском языке (например: "24 сентября 2026")
+const parseRussianDate = (dateStr) => {
+  if (!dateStr) return 0;
+
+  const months = {
+    января: 0,
+    февраля: 1,
+    марта: 2,
+    апреля: 3,
+    мая: 4,
+    июня: 5,
+    июля: 6,
+    августа: 7,
+    сентября: 8,
+    октября: 9,
+    ноября: 10,
+    декабря: 11,
+  };
+
+  const parts = dateStr.toLowerCase().split(" ");
+  if (parts.length >= 3) {
+    const day = parseInt(parts[0], 10);
+    const month = months[parts[1]];
+    const year = parseInt(parts[2], 10);
+    return new Date(year, month, day).getTime();
+  }
+
+  return 0;
+};
+
 export default async function BlogsList() {
   const postsDir = path.join(process.cwd(), "app/(main)/blogs/posts");
   const files = fs.readdirSync(postsDir).filter((f) => f.endsWith(".jsx"));
@@ -24,14 +54,14 @@ export default async function BlogsList() {
         title: module.metadata?.title || "Без названия",
         date: module.metadata?.date || "",
         excerpt: module.metadata?.description || "",
-        image: module.metadata?.image || "/images/blog-placeholder.jpg", // можно добавить в metadata
+        image: module.metadata?.image || "/images/blog-placeholder.jpg",
         href: `/blogs/${slug}`,
       };
     }),
   );
 
-  // Сортировка по дате (если есть)
-  posts.sort((a, b) => new Date(b.date) - new Date(a.date));
+  // Сортировка по дате с использованием парсера (от новых к старым)
+  posts.sort((a, b) => parseRussianDate(b.date) - parseRussianDate(a.date));
 
   return (
     <main id="main-content" role="main">
@@ -101,6 +131,7 @@ export default async function BlogsList() {
                       fill
                       sizes="(max-width: 768px) 100vw, 33vw"
                       className="object-contain rounded-2xl transition-transform duration-300 hover:scale-105 p-2"
+                      preload={true}
                     />
                   </div>
                 </Link>

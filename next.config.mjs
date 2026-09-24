@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  compress: false,
   // output: "standalone",
   ...(process.env.NODE_ENV === "production" && { output: "standalone" }),
   images: {

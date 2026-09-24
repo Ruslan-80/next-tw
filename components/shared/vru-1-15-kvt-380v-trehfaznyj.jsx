@@ -1,11 +1,6 @@
 "use client";
 
 import {
-  Cable,
-  Server,
-  Shield,
-  Home,
-  Zap,
   ArrowRight,
   CheckCircle,
   AlertTriangle,
@@ -16,7 +11,6 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import Modal from "@/components/ui/modal";
@@ -52,25 +46,6 @@ export function vru15kvtTop() {
                 документов, гарантирующий приёмку инспектором с первого раза без
                 переделок и скрытых бюрократических рисков.
               </p>
-
-              <p className="text-muted-foreground text-text leading-relaxed">
-                В зависимости от потребностей доступны проверенные конфигурации
-                – от базовой с трёхфазным счётчиком и противопожарным УЗО на 300
-                мА до «Премиум» с грозозащитой (УЗИП класс B+C) и «Умный дом» со
-                сплит-счётчиком и GSM‑модемом для автоматической передачи
-                показаний, а для тех, кому прибор учёта бесплатно ставит сетевая
-                организация, предусмотрен вариант «Эконом» без счётчика.
-              </p>
-              <p className="text-muted-foreground text-text leading-relaxed">
-                Внутренний монтаж выполнен негорючим медным проводом ПуГВ,
-                алюминиевые жилы СИП оконцованы гильзами ГАМ, автоматы имеют
-                отключающую способность 6 кА, что полностью исключает риск
-                пожара при коротком замыкании, при этом каждая сборка
-                сопровождается однолинейной схемой, паспортом и свежей поверкой
-                счётчика, закрывая как технические, так и регуляторные
-                требования, а значит, вы получаете безопасное и полностью
-                согласованное с сетевой организацией решение «под ключ».
-              </p>
             </div>
 
             <div className="flex flex-wrap gap-4 px-2">
@@ -89,18 +64,19 @@ export function vru15kvtTop() {
             <div className="absolute inset-0 bg-gradient-to-br from-accent/20 to-primary/20 rounded-3xl blur-3xl"></div>
             <div className="relative w-full max-w-[350px] md:max-w-[450px] lg:max-w-[500px] aspect-square rounded-3xl p-4 md:p-6 lg:p-8 shadow-2xl flex justify-center mx-auto">
               <Image
-                src="/images/categories/vvodno-raspredelitelnye-ustrojstva-vru.webp"
+                src="/images/categories/vru-15kvt.jpeg"
                 alt="ВРУ 15 кВт 380В трехфазный"
                 fill
                 className="object-contain hover:scale-105 transition-transform duration-500 p-2 md:p-4"
                 sizes="(max-width: 768px) 100vw, (max-width: 1024px) 450px, 500px"
+                preload={true}
               />
             </div>
           </div>
         </div>
       </section>
 
-      <PopularNaborVru />
+      {/* <PopularNaborVru /> */}
 
       <Modal
         isOpen={isModalOpen}
@@ -128,6 +104,24 @@ export function vru15kvtBottom() {
       <div className="container mx-auto ">
         {/* Технический стандарт и расчёт */}
         <section className="space-y-6">
+          <p className="text-muted-foreground text-text leading-relaxed">
+            В зависимости от потребностей доступны проверенные конфигурации – от
+            базовой с трёхфазным счётчиком и противопожарным УЗО на 300 мА до
+            «Премиум» с грозозащитой (УЗИП класс B+C) и «Умный дом» со
+            сплит-счётчиком и GSM‑модемом для автоматической передачи показаний,
+            а для тех, кому прибор учёта бесплатно ставит сетевая организация,
+            предусмотрен вариант «Эконом» без счётчика.
+          </p>
+          <p className="text-muted-foreground text-text leading-relaxed">
+            Внутренний монтаж выполнен негорючим медным проводом ПуГВ,
+            алюминиевые жилы СИП оконцованы гильзами ГАМ, автоматы имеют
+            отключающую способность 6 кА, что полностью исключает риск пожара
+            при коротком замыкании, при этом каждая сборка сопровождается
+            однолинейной схемой, паспортом и свежей поверкой счётчика, закрывая
+            как технические, так и регуляторные требования, а значит, вы
+            получаете безопасное и полностью согласованное с сетевой
+            организацией решение «под ключ».
+          </p>
           <h2 className="text-2xl md:text-3xl font-bold">
             Технический стандарт: почему мы ставим автомат на 25А?
           </h2>

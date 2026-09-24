@@ -2,12 +2,28 @@
 
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Modal from "@/components/ui/modal";
 import useFormSubmit from "hooks/useFormSubmit";
 import PopularNaborVru from "@/components/PopularNaborVru";
 import { MathJaxContext, MathJax } from "better-react-mathjax";
+
+const QUICK_LINKS = [
+  {
+    href: "/catalog/vru-21",
+    label: "Серия ВРУ 21",
+  },
+  {
+    href: "/catalog/vvodno-raspredelitelnye-ustrojstva-vru-s-avr",
+    label: "ВРУ с АВР",
+  },
+  {
+    href: "/catalog/vvodno-raspredelitelnye-ustrojstva-vru-na-kontaktorakh",
+    label: "ВРУ на контакторах",
+  },
+];
 
 export function vru4Top() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -81,8 +97,26 @@ export function vru4Top() {
             </div>
           </div>
         </div>
+        <div className="mt-8 border-t border-border/40 px-2 pt-6">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+            <span className="whitespace-nowrap text-base font-semibold text-text/70 lg:text-lg">
+              Смотрите также:
+            </span>
+            <div className="flex flex-wrap gap-2.5 text-base">
+              {QUICK_LINKS.map(({ href, label }) => (
+                <Link
+                  key={href}
+                  href={href}
+                  className="inline-flex items-center rounded-full border border-border bg-card/50 px-4 py-1.5 font-medium text-text transition-colors hover:border-accent hover:bg-accent/10 hover:text-accent"
+                >
+                  {label}
+                </Link>
+              ))}
+            </div>
+          </div>
+        </div>
       </section>
-      <PopularNaborVru />
+      {/* <PopularNaborVru /> */}
       <Modal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}

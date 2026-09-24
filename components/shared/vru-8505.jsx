@@ -8,6 +8,21 @@ import Modal from "@/components/ui/modal";
 import useFormSubmit from "hooks/useFormSubmit";
 import FaqVru8505 from "@/components/faqVru-8505";
 
+const QUICK_LINKS = [
+  {
+    href: "/catalog/vru-8504",
+    label: "Серия ВРУ 8504",
+  },
+  {
+    href: "/catalog/vvodno-raspredelitelnye-ustrojstva-vru-ip-65",
+    label: "ВРУ IP65",
+  },
+  {
+    href: "/catalog/vvodno-raspredelitelnye-ustrojstva-vru-vvodnye-paneli-vp",
+    label: "Вводно-распределительные панели",
+  },
+];
+
 export function vru8505Top() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalContent, setModalContent] = useState("");
@@ -24,10 +39,10 @@ export function vru8505Top() {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-8 animate-fade-in-up">
             <div className="space-y-4 px-2">
-              <h1 className="text-2xl lg:text-5xl font-bold text-balance leading-tight">
+              <h1 className="text-text pb-4 text-2xl lg:text-5xl font-bold text-balance leading-tight">
                 Вводно-распределительные устройства ВРУ 8505
               </h1>
-              <p className="text-muted-foreground text-balance leading-relaxed">
+              <p className="text-text/80 leading-relaxed">
                 <strong>
                   Вводно-распределительные устройства (ВРУ) серии 8505
                 </strong>{" "}
@@ -49,7 +64,7 @@ export function vru8505Top() {
               <Button
                 onClick={() => handleButtonClick("Получить бесплатный расчёт")}
                 size="lg"
-                className="bg-accent hover:bg-accent/90 text-accent-foreground text-xl py-8"
+                className="bg-accent hover:bg-accent/90 text-background text-xl py-8"
               >
                 Получить бесплатный расчёт
                 <ArrowRight className="ml-2 h-4 w-4" />
@@ -69,7 +84,27 @@ export function vru8505Top() {
                 fill
                 className="object-contain hover:scale-105 transition-transform duration-500 p-2 md:p-4"
                 sizes="(max-width: 768px) 100vw, (max-width: 1024px) 450px, 500px"
+                preload={true}
               />
+            </div>
+          </div>
+        </div>
+        {/* Blok bystrykh ssylok vo vsyu shirinu pod dvukhkolonochnym blokom */}
+        <div className="mt-8 border-t border-border/40 px-2 pt-6">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+            <span className="whitespace-nowrap text-base font-semibold text-text/70 lg:text-lg">
+              Смотрите также:
+            </span>
+            <div className="flex flex-wrap gap-2.5 text-base">
+              {QUICK_LINKS.map(({ href, label }) => (
+                <Link
+                  key={href}
+                  href={href}
+                  className="inline-flex items-center rounded-full border border-border bg-card/50 px-4 py-1.5 font-medium text-text transition-colors hover:border-accent hover:bg-accent/10 hover:text-accent"
+                >
+                  {label}
+                </Link>
+              ))}
             </div>
           </div>
         </div>

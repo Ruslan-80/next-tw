@@ -1,9 +1,28 @@
 // next-sitemap.config.js
 import fs from "fs";
 import path from "path";
+import nextConfig from "./next.config.mjs";
 
 const siteUrl = "https://electroshit-pro.ru";
 
+/* ------------------------------------------------------------------ */
+/*  Вытаскиваем source-URL из next.config.mjs                         */
+/* ------------------------------------------------------------------ */
+
+// redirects() → эти URL попадут в exclude (в sitemap им не место)
+const redirectSources = ((await nextConfig.redirects?.()) ?? [])
+  .map((r) => r.source)
+  .filter(Boolean);
+
+// rewrites() → эти URL попадут в additionalPaths как публичные страницы
+// (например: /catalog/uerk, /promotions и т.д.)
+const rewriteSources = ((await nextConfig.rewrites?.()) ?? [])
+  .map((r) => r.source)
+  .filter((s) => s && !s.includes(":")); // без динамических сегментов
+
+/* ------------------------------------------------------------------ */
+/*  Утилита безопасного чтения JSON                                   */
+/* ------------------------------------------------------------------ */
 const readJson = (relPath, fallback) => {
   const abs = path.resolve(process.cwd(), relPath);
   if (!fs.existsSync(abs)) return fallback;
@@ -19,6 +38,10 @@ const config = {
   generateRobotsTxt: true,
   sitemapSize: 7000,
   outDir: "./public",
+
+  /* ------------------------------------------------------------------ */
+  /*  Исключения                                                        */
+  /* ------------------------------------------------------------------ */
   exclude: [
     "/*?*",
     "/admin*",
@@ -28,10 +51,15 @@ const config = {
     "/vng*",
     "/api*",
     "/blogs*",
+
+    // source-URL из redirects() в next.config.mjs
+    ...redirectSources,
   ],
 
+  /* ------------------------------------------------------------------ */
+  /*  Дополнительные пути                                               */
+  /* ------------------------------------------------------------------ */
   additionalPaths: async () => {
-    /* ---------- Загрузка JSON ---------- */
     const products = readJson("public/products.json", []);
     const categoriesData = readJson("public/categories.json", {
       categories: [],
@@ -62,7 +90,7 @@ const config = {
 
     /* ---------- Фильтры (ручные + SEO-фильтры + combinations) ----------
      *   Берём всё из sitemapPaths, кроме уже добавленных категорий.
-     *   Для lastmod используем "стабильную" дату — начало текущего месяца,
+     *   Для lastmod используем стабильную дату — начало текущего месяца,
      *   чтобы sitemap не показывал «всё обновилось сегодня».
      */
     const stableFilterLastmod = (() => {
@@ -81,6 +109,17 @@ const config = {
         changefreq: "monthly",
       }));
 
+    /* ---------- Rewrite-URL из next.config.mjs ----------
+     *   Публичные адреса вроде /catalog/uerk, /promotions и т.д.
+     *   Они отдают 200 — индексируем.
+     */
+    const rewritePaths = rewriteSources.map((s) => ({
+      loc: `${siteUrl}${s}`,
+      lastmod: nowIso,
+      priority: 0.8,
+      changefreq: "weekly",
+    }));
+
     /* ---------- Блоги ---------- */
     const blogPaths = (blogsData.sitemapPaths || []).map((p) => ({
       loc: `${siteUrl}${p}`,
@@ -89,13 +128,15 @@ const config = {
       changefreq: "monthly",
     }));
 
-    /* ---------- Мерж + дедуп на всякий случай ---------- */
+    /* ---------- Мерж + дедуп ---------- */
     const all = [
       ...productPaths,
       ...categoryPaths,
       ...filterPaths,
+      ...rewritePaths,
       ...blogPaths,
     ];
+
     const seen = new Set();
     return all.filter((entry) => {
       if (seen.has(entry.loc)) return false;
@@ -104,7 +145,9 @@ const config = {
     });
   },
 
-  /* ---------- Robots.txt ---------- */
+  /* ------------------------------------------------------------------ */
+  /*  Robots.txt                                                        */
+  /* ------------------------------------------------------------------ */
   robotsTxtOptions: {
     policies: [
       {
@@ -122,15 +165,17 @@ const config = {
     ],
   },
 
-  /* ---------- Трансформация для авто-обнаруженных страниц ----------
-   *   Не трогаем lastmod, если он уже есть — оставляем его undefined,
-   *   чтобы next-sitemap сам поставил дату сборки, а не стёр поле.
-   */
-  transform: async (cfg, path) => ({
+  /* ------------------------------------------------------------------ */
+  /*  Трансформация для авто-обнаруженных страниц                       */
+  /*  Не перезатираем priority / changefreq / lastmod, если они уже     */
+  /*  пришли из additionalPaths. Иначе все записи получат одинаковые    */
+  /*  значения 0.7 / daily / today.                                     */
+  /* ------------------------------------------------------------------ */
+  transform: async (cfg, path, page) => ({
     loc: path,
-    changefreq: "daily",
-    priority: 0.7,
-    lastmod: new Date().toISOString(),
+    changefreq: page?.changefreq || "daily",
+    priority: page?.priority ?? 0.7,
+    lastmod: page?.lastmod || new Date().toISOString(),
   }),
 };
 

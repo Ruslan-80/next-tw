@@ -10,6 +10,21 @@ import useFormSubmit from "hooks/useFormSubmit";
 import FaqVru8504 from "@/components/faqVru-8504";
 import PopularNaborVru from "@/components/PopularNaborVru";
 
+const QUICK_LINKS = [
+  {
+    href: "/catalog/vru-8505",
+    label: "Серия ВРУ 8505",
+  },
+  {
+    href: "/catalog/vvodno-raspredelitelnye-ustrojstva-vru-ip-55",
+    label: "ВРУ IP55",
+  },
+  {
+    href: "/catalog/vvodno-raspredelitelnye-ustrojstva-vru-avtomaticheskij-vyklyuchatel",
+    label: "На автоматах",
+  },
+];
+
 export function vru8504Top() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalContent, setModalContent] = useState("");
@@ -81,12 +96,31 @@ export function vru8504Top() {
                 fill
                 className="object-contain hover:scale-105 transition-transform duration-500 p-2 md:p-4"
                 sizes="(max-width: 768px) 100vw, (max-width: 1024px) 450px, 500px"
+                preload={true}
               />
             </div>
           </div>
         </div>
+        <div className="mt-8 border-t border-border/40 px-2 pt-6">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+            <span className="whitespace-nowrap text-base font-semibold text-text/70 lg:text-lg">
+              Смотрите также:
+            </span>
+            <div className="flex flex-wrap gap-2.5 text-base">
+              {QUICK_LINKS.map(({ href, label }) => (
+                <Link
+                  key={href}
+                  href={href}
+                  className="inline-flex items-center rounded-full border border-border bg-card/50 px-4 py-1.5 font-medium text-text transition-colors hover:border-accent hover:bg-accent/10 hover:text-accent"
+                >
+                  {label}
+                </Link>
+              ))}
+            </div>
+          </div>
+        </div>
       </section>
-      <PopularNaborVru />
+      {/* <PopularNaborVru /> */}
       <Modal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}

@@ -6,6 +6,7 @@ import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Modal from "@/components/ui/modal";
 import useFormSubmit from "hooks/useFormSubmit";
+import Link from "next/link";
 
 const CONSULTATION_LABEL = "Получить консультацию или заказать";
 const PHONE_LABEL = "Позвонить";
@@ -13,6 +14,20 @@ const PHONE = "+74993901467";
 const REQUEST_LABEL = "Оставить заявку";
 
 const H2 = "text-2xl md:text-3xl font-bold";
+const QUICK_LINKS = [
+  {
+    href: "/catalog/vvodno-raspredelitelnye-ustrojstva-vru-40a",
+    label: "ВРУ 40А",
+  },
+  {
+    href: "/catalog/vvodno-raspredelitelnye-ustrojstva-vru-63a",
+    label: "ВРУ 63А",
+  },
+  {
+    href: "vvodno-raspredelitelnye-ustrojstva-vru-navesnye",
+    label: "Навесные щиты",
+  },
+];
 const FAQ = [
   {
     q: "Какую максимальную мощность выдержит вводной автомат на 32 А?",
@@ -89,6 +104,25 @@ export function vru32ATop() {
                 sizes="(max-width: 768px) 100vw, (max-width: 1024px) 450px, 500px"
                 className="rounded-3xl object-contain transition-transform duration-500 hover:scale-105"
               />
+            </div>
+          </div>
+        </div>
+        {/* Blok bystrykh ssylok vo vsyu shirinu pod dvukhkolonochnym blokom */}
+        <div className="mt-8 border-t border-border/40 px-2 pt-6">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+            <span className="whitespace-nowrap text-base font-semibold text-text/70 lg:text-lg">
+              Смотрите также:
+            </span>
+            <div className="flex flex-wrap gap-2.5 text-base">
+              {QUICK_LINKS.map(({ href, label }) => (
+                <Link
+                  key={href}
+                  href={href}
+                  className="inline-flex items-center rounded-full border border-border bg-card/50 px-4 py-1.5 font-medium text-text transition-colors hover:border-accent hover:bg-accent/10 hover:text-accent"
+                >
+                  {label}
+                </Link>
+              ))}
             </div>
           </div>
         </div>

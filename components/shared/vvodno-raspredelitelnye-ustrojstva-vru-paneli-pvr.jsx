@@ -1,24 +1,30 @@
 "use client";
 
-import {
-  Cable,
-  Server,
-  Shield,
-  Home,
-  Zap,
-  ArrowRight,
-  CheckCircle,
-} from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import Modal from "@/components/ui/modal";
 import useFormSubmit from "hooks/useFormSubmit";
 import FaqVru from "@/components/faqVru";
 import PopularNaborVru from "@/components/PopularNaborVru";
+
+const QUICK_LINKS = [
+  {
+    href: "/catalog/vvodno-raspredelitelnye-ustrojstva-vru-vvodnye-paneli-vp",
+    label: "Вводные панели",
+  },
+  {
+    href: "/catalog/vvodno-raspredelitelnye-ustrojstva-vru-paneli-rp",
+    label: "Распределительные панели",
+  },
+  {
+    href: "/catalog/vvodno-raspredelitelnye-ustrojstva-vru-so-schetchikami",
+    label: "Со счетчиком",
+  },
+];
 
 export function VruPaneliPvrTop() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -81,9 +87,28 @@ export function VruPaneliPvrTop() {
             </div>
           </div>
         </div>
+        {/* Blok bystrykh ssylok vo vsyu shirinu pod dvukhkolonochnym blokom */}
+        <div className="mt-8 border-t border-border/40 px-2 pt-6">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+            <span className="whitespace-nowrap text-base font-semibold text-text/70 lg:text-lg">
+              Смотрите также:
+            </span>
+            <div className="flex flex-wrap gap-2.5 text-base">
+              {QUICK_LINKS.map(({ href, label }) => (
+                <Link
+                  key={href}
+                  href={href}
+                  className="inline-flex items-center rounded-full border border-border bg-card/50 px-4 py-1.5 font-medium text-text transition-colors hover:border-accent hover:bg-accent/10 hover:text-accent"
+                >
+                  {label}
+                </Link>
+              ))}
+            </div>
+          </div>
+        </div>
       </section>
 
-      <PopularNaborVru />
+      {/* <PopularNaborVru /> */}
 
       <Modal
         isOpen={isModalOpen}

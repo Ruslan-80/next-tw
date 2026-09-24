@@ -51,6 +51,21 @@
       "updatedAt": "2026-09-14T13:36:39.898Z"
     },
     {
+      "id": 12,
+      "slug": "ustroystva-etazhnye",
+      "updatedAt": "2026-09-14T13:36:39.901Z"
+    },
+    {
+      "id": 13,
+      "slug": "uerm",
+      "updatedAt": "2026-09-14T13:36:39.902Z"
+    },
+    {
+      "id": 14,
+      "slug": "uerv",
+      "updatedAt": "2026-09-14T13:36:39.904Z"
+    },
+    {
       "id": 18,
       "slug": "schity-etazhnye-i-ustroystva-podezdnye",
       "updatedAt": "2026-09-14T13:36:39.909Z"
@@ -188,6 +203,9 @@
     "/catalog/paneli-upravleniya",
     "/catalog/ustrojstva-kompensacii-reaktivnoj-moshnosti-ukrm",
     "/catalog/shity-etazhnye-she",
+    "/catalog/ustroystva-etazhnye",
+    "/catalog/uerm",
+    "/catalog/uerv",
     "/catalog/schity-etazhnye-i-ustroystva-podezdnye",
     "/catalog/nakladki-shitov-etazhnyh-she",
     "/catalog/kozhuh-she-dlya-etazhnogo-shita",
