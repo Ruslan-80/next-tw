@@ -46,6 +46,7 @@ export default function RandomObjects() {
                         fill
                         className="object-cover"
                         sizes="(max-width: 768px) 100vw, 50vw"
+                        preload={true}
                       />
                     </div>
                   ) : (

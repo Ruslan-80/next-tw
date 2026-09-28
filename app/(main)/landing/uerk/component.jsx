@@ -103,6 +103,9 @@ export default function ComponentUERK() {
             <meta itemProp="position" content="4" />
           </div>
         </nav>
+        {/* <h1 className="text-3xl font-bold mb-6 text-gray-800">
+          Устройство этажное распределительное с кабельным отсеком УЭРК
+        </h1> */}
       </section>
       <div className="container mx-auto py-6 bg-background text-xl lg:text-2xl">
         <section className="container mx-auto p-4 bg-background text-xl lg:text-2xl">
@@ -112,10 +115,10 @@ export default function ComponentUERK() {
                 <Badge variant="secondary" className="text-sm font-medium">
                   Модульное решение
                 </Badge>
-                <h2 className="text-2xl lg:text-5xl font-bold text-balance leading-tight">
+                <h1 className="text-2xl lg:text-5xl font-bold text-balance leading-tight">
                   Устройство этажное распределительное с кабельным отсеком{" "}
                   <span className="text-accent">УЭРК</span>
-                </h2>
+                </h1>
                 <p className="text-muted-foreground text-balance leading-relaxed">
                   Современное модульное устройство для приема, распределения и
                   учета электроэнергии в многоквартирных домах с защитой от
@@ -168,6 +171,7 @@ export default function ComponentUERK() {
                   fill
                   className="object-contain hover:scale-105 transition-transform duration-500 p-2 md:p-4"
                   sizes="(max-width: 768px) 100vw, (max-width: 1024px) 450px, 500px"
+                  preload={true}
                 />
               </div>
             </div>

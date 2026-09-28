@@ -83,6 +83,7 @@ export function KozhukhTop() {
                 width={1000}
                 height={1000}
                 className="object-contain hover:scale-105 transition-transform duration-500"
+                preload={true}
               />
             </div>
           </div>

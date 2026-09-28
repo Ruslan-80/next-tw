@@ -1,12 +1,13 @@
 "use client";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Phone, Mail, MapPin, Send } from "lucide-react";
+import { Phone, Mail, MapPin, Send, Maximize2, X, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import Link from "next/link";
 import useFormSubmit from "hooks/useFormSubmit";
 import { useState } from "react";
+import Image from "next/image";
 
 const ContactsComponent = () => {
   const [formData, setFormData] = useState({
@@ -18,6 +19,7 @@ const ContactsComponent = () => {
   });
 
   const [modalContent, setModalContent] = useState("");
+  const [isQrOpen, setIsQrOpen] = useState(false); // Состояние для модального окна QR-кода
   const { handleFormSubmit, error } = useFormSubmit();
 
   const handleChange = (e) => {
@@ -74,7 +76,7 @@ const ContactsComponent = () => {
 
       {/* Контактная информация */}
       <section className="py-4">
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           <Card>
             <CardHeader className="flex flex-row items-center gap-3">
               <Phone className="h-8 w-8 text-accent" />
@@ -156,7 +158,7 @@ const ContactsComponent = () => {
                 href="https://yandex.ru/maps/213/moscow/category/electrical_products/184107066/?utm_medium=mapframe&utm_source=maps"
                 style={{
                   color: "#eee",
-                  fontSize: "12px", // font-size -> fontSize
+                  fontSize: "12px",
                   position: "absolute",
                   top: "14px",
                 }}
@@ -190,16 +192,7 @@ const ContactsComponent = () => {
           </CardContent>
         </Card>
       </section>
-      {/* <section className="bg-gray-50 dark:bg-gray-900 py-10 px-6 rounded-xl shadow-md">
-        <h2 className="text-2xl font-semibold mb-6">Реквизиты компании</h2>
-        <div className="flex items-center text-lg">
-          <span className="font-semibold">Название компании</span>
 
-          <span className="flex-1 mx-3 border-b border-dotted border-gray-400"></span>
-
-          <span>ООО «Ромашка»</span>
-        </div>
-      </section> */}
       <section className="container mx-auto text-cardForeground lg:px-4 py-8 md:py-12">
         <h2 className="text-2xl text-center font-bold mb-6">
           Реквизиты компании
@@ -212,15 +205,10 @@ const ContactsComponent = () => {
                 key={index}
                 className="flex flex-col lg:flex-row items-baseline text-xl font-medium"
               >
-                {/* Название */}
                 <dt className="text-sm lg:text-xl shrink-0 pr-2">
                   {item.name}
                 </dt>
-
-                {/* Точки или линия */}
                 <dd className="flex-grow border-b border-dotted border-gray-400 mx-1 mb-1" />
-
-                {/* Значение */}
                 <dd className="text-sm lg:text-xl shrink-0 lg:pl-2 text-left lg:text-right font-semibold">
                   {item.value}
                 </dd>
@@ -230,16 +218,9 @@ const ContactsComponent = () => {
         </div>
         <div className="text-center mt-8">
           <Link
-            // Ссылка на файл в папке public
             href="/docs/kapital_stroy.pdf"
-            // Атрибут download заставляет браузер скачать файл, а не открыть его
             download
-            // Стиль Tailwind: синяя кнопка с тенью
             className="btn-gold inline-flex items-center justify-center px-8 py-3"
-            // className="inline-flex items-center justify-center px-8 py-3
-            //          border border-transparent text-base font-medium rounded-md
-            //          bg-accent shadow-lg
-            //          hover:bg-accenthover transition duration-300 ease-in-out"
           >
             <svg
               className="w-5 h-5 mr-2"
@@ -316,6 +297,83 @@ const ContactsComponent = () => {
           </CardContent>
         </Card>
       </section>
+      {/* Карточка Отзывы с увеличением QR-кода */}
+      <Card className="flex flex-col justify-between">
+        <CardHeader className="flex flex-row items-center gap-3">
+          <Star className="h-8 w-8 text-accent" />
+          <CardTitle className="text-2xl">Отзывы</CardTitle>
+        </CardHeader>
+        <CardContent className="flex flex-col items-center gap-3 text-center">
+          <div
+            onClick={() => setIsQrOpen(true)}
+            className="relative group cursor-pointer overflow-hidden rounded-xl border bg-white p-2 shadow-sm hover:shadow-md transition-all"
+            title="Нажмите, чтобы увеличить"
+          >
+            <Image
+              src="/YQR.png"
+              alt="QR-код для отзывов Электрощит Pro"
+              width={110}
+              height={110}
+              className="rounded"
+            />
+            <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center rounded text-white gap-1 text-xs font-medium">
+              <Maximize2 className="w-4 h-4" />
+              Увеличить
+            </div>
+          </div>
+          <p className="text-xs text-muted-foreground">
+            Нажмите на QR-код для увеличения
+          </p>
+        </CardContent>
+      </Card>
+
+      {/* Модальное окно для увеличенного QR-кода */}
+      {isQrOpen && (
+        <div
+          className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 transition-all"
+          onClick={() => setIsQrOpen(false)}
+        >
+          <div
+            className="relative bg-background p-6 rounded-2xl max-w-sm w-full flex flex-col items-center gap-4 shadow-2xl border text-center"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Кнопка закрытия */}
+            <button
+              onClick={() => setIsQrOpen(false)}
+              className="absolute top-3 right-3 p-2 rounded-full hover:bg-secondary text-muted-foreground transition-colors"
+              aria-label="Закрыть"
+            >
+              <X className="w-6 h-6" />
+            </button>
+
+            <h3 className="text-2xl font-bold mt-2">Отсканируйте QR-код</h3>
+            <p className="text-sm text-muted-foreground">
+              Наведите камеру телефона, чтобы оставить отзыв на Яндекс Картах
+            </p>
+
+            {/* Увеличенный QR-код */}
+            <div className="bg-white p-4 rounded-xl border shadow-inner">
+              <Image
+                src="/YQR.png"
+                alt="QR-код для отзывов Электрощит Pro"
+                width={300}
+                height={300}
+                className="rounded-lg"
+              />
+            </div>
+
+            {/* Кнопка прямого перехода */}
+            <a
+              href="https://yandex.ru/maps/org/elektroshchit_pro/43074692917/reviews/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full btn-gold py-3 rounded-lg text-center text-base font-medium transition-transform hover:scale-[1.02]"
+            >
+              Перейти к отзывам
+            </a>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

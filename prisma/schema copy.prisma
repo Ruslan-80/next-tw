@@ -1,0 +1,360 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("MYSQL_URL")
+}
+
+model User {
+  id               Int               @id @default(autoincrement())
+  fullName         String
+  email            String            @unique
+  password         String
+  role             UserRole          @default(USER)
+  verified         DateTime          @default(now())
+  provider         String?
+  providerId       String?
+  cart             Cart?             @relation(fields: [cartId], references: [id], onDelete: Cascade)
+  cartId           Int?              @unique
+  orders           Order[]
+  verificationCode VerificationCode?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([email, role])
+  @@map("user")
+}
+
+model Cart {
+  id          Int        @id @default(autoincrement())
+  token       String     @unique
+  totalAmount Int        @default(0)
+  user        User?      @relation
+  userId      Int?       @unique
+  items       CartItem[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  @@map("cart")
+}
+
+model CartItem {
+  id            Int              @id @default(autoincrement())
+  productItem   ProductVariation @relation(fields: [productItemId], references: [id], onDelete: Cascade)
+  productItemId Int
+  quantity      Int              @default(1)
+  cart          Cart             @relation(fields: [cartId], references: [id], onDelete: Cascade)
+  cartId        Int
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  @@map("cartitem")
+}
+
+model Order {
+  id           Int         @id @default(autoincrement())
+  token        String      @unique
+  totalAmount  Int
+  status       OrderStatus @default(PENDING)
+  paymentId    String?
+  items        Json
+  customerInfo Json
+  fullName     String
+  address      String
+  email        String
+  phone        String
+  comment      String?
+  user         User?       @relation(fields: [userId], references: [id], onDelete: SetNull)
+  userId       Int?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([userId, status])
+  @@map("orders")
+}
+
+model VerificationCode {
+  id        Int      @id @default(autoincrement())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    Int      @unique
+  code      String
+  expiresAt DateTime @default(now())
+
+  @@unique([userId, code])
+}
+
+model TopSlider {
+  id        Int      @id @default(autoincrement())
+  imageUrl  String
+  slug      String   @unique
+  text      String?
+  order     Int?     @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  @@map("topslider")
+}
+
+model Category {
+  id              Int           @id @default(autoincrement())
+  parentId        Int?
+  name            String
+  fullName        String
+  slug            String        @unique
+  description     String?
+  fullDescription String?
+  imageUrl        String?
+  titleSeo        String?
+  descriptionSeo  String?
+  visibility      Boolean       @default(true)
+  children        Category[]    @relation("CategoryToParent")
+  parent          Category?     @relation("CategoryToParent", fields: [parentId], references: [id], onDelete: SetNull)
+  products        Product[]
+  tags            Tag[]
+  filters         Json          @default("[]")
+
+  // Связи с доп. таблицами по category.slug
+  categoryDescription CategoryDescription?
+  faqs                Faq[]
+  worksObjects        WorksObject[]
+  worksBeforeAfter    WorkBeforeAfter[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([parentId, slug])
+  @@map("category")
+}
+
+model CategoryDescription {
+  id                 Int      @id @default(autoincrement())
+  categorySlug       String   @unique
+  top_description    String?  @db.Text
+  bottom_description String?  @db.Text
+  
+  category           Category @relation(fields: [categorySlug], references: [slug], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("category_description")
+}
+
+model Faq {
+  id           Int      @id @default(autoincrement())
+  categorySlug String
+  question     String   @db.Text
+  answer       String   @db.Text
+  
+  category     Category @relation(fields: [categorySlug], references: [slug], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([categorySlug])
+  @@map("faq")
+}
+
+model WorksObject {
+  id           Int      @id @default(autoincrement())
+  categorySlug String
+  address      String?
+  alt          String?
+  imageUrl     String
+  text         String?  @db.Text
+  
+  category     Category @relation(fields: [categorySlug], references: [slug], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([categorySlug])
+  @@map("works_object")
+}
+
+model WorkBeforeAfter {
+  id           Int      @id @default(autoincrement())
+  categorySlug String
+  imageUrl     String   @map("image_url")
+  name         String
+  description  String?  @db.Text
+
+  category     Category @relation(fields: [categorySlug], references: [slug], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([categorySlug])
+  @@map("works_before_after")
+}
+
+model Product {
+  id                Int                @id @default(autoincrement())
+  categoryId        Int
+  categorySlug      String
+  article           String             @unique
+  name              String
+  slug              String             @unique
+  description       String?            @db.Text
+  titleSeo          String?
+  descriptionSeo    String?            @db.VarChar(255)
+  seoBlock          String?            @db.Text
+  usp               Json?            
+  multiplicity      Int                @default(1)
+  basePrice         Int
+  manufacturingTime String
+  stock             Int
+  visibility        Boolean            @default(true)
+  category          Category           @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  variations        ProductVariation[]
+  attributes        ProductAttribute[]
+  mediaFiles        MediaFile[]
+  tags              ProductTag[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([categoryId, slug])
+  @@fulltext([name, description, article])
+  @@map("product")
+}
+
+model ProductVariation {
+  id             Int        @id @default(autoincrement())
+  productId      Int
+  sku            String     @unique
+  variationValue String
+  titleSeo       String?
+  descriptionSeo String?    @db.VarChar(255)
+  price          Int
+  stock          Int
+  isDefault      Boolean    @default(false)
+  product        Product    @relation(fields: [productId], references: [id], onDelete: Cascade)
+  cartItem       CartItem[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([productId, sku])
+  @@map("productvariation")
+}
+
+model Tag {
+  id           Int          @id @default(autoincrement())
+  categorySlug String
+  name         String
+  slug         String       @unique
+  visibility   Boolean      @default(true)
+  category     Category     @relation(fields: [categorySlug], references: [slug], onDelete: Cascade)
+  products     ProductTag[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([name, slug])
+  @@index([categorySlug])
+  @@map("tag")
+}
+
+model ProductTag {
+  id        Int     @id @default(autoincrement())
+  productId Int
+  tagId     Int
+  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+  tag       Tag     @relation(fields: [tagId], references: [id], onDelete: Cascade)
+
+  @@unique([productId, tagId])
+  @@map("producttag")
+}
+
+model Attribute {
+  id       Int                @id @default(autoincrement())
+  name     String             @unique
+  slug     String             @unique
+  unitName String?
+  visibility Boolean          @default(true)
+  values   AttributeValue[]
+  products ProductAttribute[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  @@map("attribute")
+}
+
+model AttributeValue {
+  id               Int                @id @default(autoincrement())
+  attributeId      Int
+  name             String
+  slug             String
+  unitName         String?
+  attribute        Attribute          @relation(fields: [attributeId], references: [id], onDelete: Cascade)
+  ProductAttribute ProductAttribute[]
+
+  @@unique([attributeId, name])
+  @@map("attributevalue")
+}
+
+model ProductAttribute {
+  id               Int            @id @default(autoincrement())
+  productId        Int
+  attributeId      Int
+  attributeValueId Int
+  product          Product        @relation(fields: [productId], references: [id], onDelete: Cascade)
+  attribute        Attribute      @relation(fields: [attributeId], references: [id], onDelete: Cascade)
+  attributeValue   AttributeValue @relation(fields: [attributeValueId], references: [id], onDelete: Cascade)
+  attributeName      String
+  attributeValueName String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([productId, attributeId, attributeValueId])
+  @@index([attributeName, attributeValueName])
+  @@map("productattribute")
+}
+
+model MediaFile {
+  id        Int      @id @default(autoincrement())
+  productId Int
+  type      FileType
+  url       String
+  isMain    Boolean  @default(false)
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Индекс по productId и isMain поможет быстро находить главное изображение товара
+  @@index([productId, isMain])
+  @@map("mediafile")
+}
+
+model MessageQueue {
+  id        Int      @id @default(autoincrement())
+  contact   String
+  data      Json     // Здесь храним email, message, productName
+  status    String   @default("pending") // pending, sent, failed
+  error     String?  // Текст ошибки, если отправка не удалась
+  createdAt DateTime @default(now())
+}
+
+enum FileType {
+  IMAGE
+  VIDEO
+  DOCUMENT
+}
+
+enum OrderStatus {
+  PENDING
+  PROCESSING
+  COMPLETED
+  CANCELLED
+}
+
+enum UserRole {
+  USER
+  ADMIN
+}

@@ -1,64 +1,209 @@
-export default function ReviewsTab() {
+"use client";
+
+import { useState } from "react";
+import { Star } from "lucide-react";
+
+export default function ReviewsTab({ reviews = [], productId, onReviewAdded }) {
+  const [formData, setFormData] = useState({
+    authorName: "",
+    rating: 5,
+    comment: "",
+  });
+  const [hoverRating, setHoverRating] = useState(0);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitSuccess, setSubmitSuccess] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!formData.authorName.trim() || !formData.comment.trim()) {
+      setErrorMessage("Пожалуйста, заполните имя и текст отзыва.");
+      return;
+    }
+
+    setIsSubmitting(true);
+    setErrorMessage("");
+
+    try {
+      const res = await fetch("/api/reviews", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          ...formData,
+          productId,
+        }),
+      });
+
+      if (!res.ok) {
+        throw new Error("Ошибка при отправке отзыва");
+      }
+
+      setSubmitSuccess(true);
+      setFormData({ authorName: "", rating: 5, comment: "" });
+
+      if (onReviewAdded) {
+        onReviewAdded();
+      }
+    } catch (err) {
+      setErrorMessage(
+        err.message || "Не удалось отправить отзыв. Попробуйте позже.",
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
-    <div className="text-center py-6 ">
-      <div
-        style={{
-          maxWidth: "560px", // Значения в строках
-          height: "890px",
-          overflow: "hidden",
-          position: "relative",
-          margin: "0 auto 40px",
-        }}
-      >
-        <iframe
-          // 2. Исправлено: Свойства CSS в camelCase (например, 'border-radius' => 'borderRadius')
-          style={{
-            width: "100%",
-            height: "100%",
-            border: "1px solid #e6e6e6",
-            borderRadius: "8px", // camelCase
-            boxSizing: "border-box", // camelCase
-          }}
-          src="https://yandex.ru/maps-reviews-widget/43074692917?comments"
-          title="Yandex Reviews Widget" // Рекомендуется добавить для доступности
-        ></iframe>
-      </div>
-      <div className="text-xl font-bold mb-4 flex items-center">
-        Отзывы
-        <div className="flex ml-2">
-          {[1, 2, 3, 4, 5].map((star) => (
-            <svg
-              key={star}
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="text-text"
-            >
-              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-            </svg>
-          ))}
-        </div>
+    <div className="space-y-8 text-text">
+      {/* Список отзывов */}
+      <div className="space-y-4">
+        <h3 className="text-text text-xl font-bold mb-4">
+          Отзывы покупателей ({reviews.length})
+        </h3>
+
+        {reviews.length === 0 ? (
+          <p className="text-textMuted py-4">
+            У этого товара пока нет отзывов. Будьте первыми, кто оставит отзыв!
+          </p>
+        ) : (
+          <div className="grid grid-cols-1 gap-4">
+            {reviews.map((review, index) => {
+              const formattedDate = review.createdAt
+                ? new Date(review.createdAt).toLocaleDateString("ru-RU", {
+                    day: "2-digit",
+                    month: "2-digit",
+                    year: "numeric",
+                  })
+                : "Давнее время";
+
+              return (
+                <div
+                  key={review.id || index}
+                  className="card-glass p-5 rounded-2xl border border-border bg-card space-y-3"
+                >
+                  <div className="flex items-center justify-between flex-wrap gap-2">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-full bg-accent/20 text-accent font-bold flex items-center justify-center text-base">
+                        {(review.authorName ||
+                          review.name ||
+                          "А")[0].toUpperCase()}
+                      </div>
+                      <div>
+                        <div className="font-bold text-base">
+                          {review.authorName || review.userName || "Аноним"}
+                        </div>
+                        <div className="text-xs text-textMuted">
+                          {formattedDate}
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Звезды рейтинга */}
+                    <div className="flex items-center gap-1">
+                      {[1, 2, 3, 4, 5].map((star) => (
+                        <Star
+                          key={star}
+                          className={`w-4 h-4 ${
+                            star <= (review.rating || 5)
+                              ? "text-yellow-400 fill-yellow-400"
+                              : "text-gray-400"
+                          }`}
+                        />
+                      ))}
+                    </div>
+                  </div>
+
+                  <p className="text-sm leading-relaxed text-text/90">
+                    {review.comment || review.text || review.content}
+                  </p>
+                </div>
+              );
+            })}
+          </div>
+        )}
       </div>
 
-      <div className="p-4 rounded-md mb-6">
-        <p className="text-center text-text">
-          Станьте первым, кто оставит отзыв об этом товаре.
-        </p>
-      </div>
+      {/* Форма добавления отзыва */}
+      <div className="card-glass p-6 rounded-2xl border border-border bg-card">
+        <h4 className="text-lg font-bold mb-4">Оставить отзыв</h4>
 
-      <div className="p-4 rounded-md">
-        <p className="text-center text-text">
-          <a href="#" className="text-text font-medium hover:underline">
-            Авторизуйтесь
-          </a>{" "}
-          на сайте, чтобы добавить отзыв.
-        </p>
+        {submitSuccess && (
+          <div className="mb-4 p-4 rounded-xl bg-green-500/10 border border-green-500/30 text-green-400 text-sm">
+            Спасибо! Ваш отзыв успешно отправлен и появится после проверки.
+          </div>
+        )}
+
+        {errorMessage && (
+          <div className="mb-4 p-4 rounded-xl bg-red-500/10 border border-red-500/30 text-red-400 text-sm">
+            {errorMessage}
+          </div>
+        )}
+
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div>
+            <label className="block text-sm font-medium mb-1">
+              Ваша оценка
+            </label>
+            <div className="flex items-center gap-1">
+              {[1, 2, 3, 4, 5].map((star) => (
+                <button
+                  type="button"
+                  key={star}
+                  className="p-1 focus:outline-none transition-transform hover:scale-110"
+                  onMouseEnter={() => setHoverRating(star)}
+                  onMouseLeave={() => setHoverRating(0)}
+                  onClick={() =>
+                    setFormData((prev) => ({ ...prev, rating: star }))
+                  }
+                >
+                  <Star
+                    className={`w-6 h-6 ${
+                      star <= (hoverRating || formData.rating)
+                        ? "text-yellow-400 fill-yellow-400"
+                        : "text-gray-400"
+                    }`}
+                  />
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium mb-1">Ваше имя</label>
+            <input
+              type="text"
+              required
+              value={formData.authorName}
+              onChange={(e) =>
+                setFormData((prev) => ({ ...prev, authorName: e.target.value }))
+              }
+              placeholder="Иван И."
+              className="w-full px-4 py-2.5 rounded-xl bg-background border border-border focus:border-accent focus:outline-none text-sm"
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium mb-1">Отзыв</label>
+            <textarea
+              required
+              rows={4}
+              value={formData.comment}
+              onChange={(e) =>
+                setFormData((prev) => ({ ...prev, comment: e.target.value }))
+              }
+              placeholder="Расскажите о качестве товара и сроках доставки..."
+              className="w-full px-4 py-2.5 rounded-xl bg-background border border-border focus:border-accent focus:outline-none text-sm resize-y"
+            />
+          </div>
+
+          <button
+            type="submit"
+            disabled={isSubmitting}
+            className="btn-gold py-3 px-6 rounded-xl font-bold text-sm disabled:opacity-50 transition-all"
+          >
+            {isSubmitting ? "Отправка..." : "Оставить отзыв"}
+          </button>
+        </form>
       </div>
     </div>
   );

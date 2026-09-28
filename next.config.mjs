@@ -6,7 +6,7 @@ const nextConfig = {
   images: {
     formats: ["image/avif", "image/webp"],
   },
-  allowedDevOrigins: ["http://172.16.10.216:3000", "http://localhost:3000"],
+  allowedDevOrigins: ["172.16.10.226", "localhost"],
   async headers() {
     return [
       {

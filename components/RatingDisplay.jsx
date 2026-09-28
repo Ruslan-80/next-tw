@@ -17,7 +17,7 @@ export default function RatingDisplay({ ratingValue = 0, ratingCount = 0 }) {
 
   return (
     // Контейнер с общей разметкой Product или другой сущности
-    <div className="flex items-center bg-yellow-50 p-4 rounded-xl mb-6 dark:bg-gray-900 dark:text-white">
+    <div className="flex items-center text-text p-4 rounded-xl mb-6">
       {/* Блок микроразметки AggregateRating (скрыт, но доступен для поисковиков) 
         Используйте itemProp="aggregateRating" на родительском элементе, который имеет itemType="https://schema.org/Product"
       */}
@@ -41,20 +41,18 @@ export default function RatingDisplay({ ratingValue = 0, ratingCount = 0 }) {
               <Star
                 className="text-yellow-400 fill-current"
                 fill="currentColor"
-                size={20}
+                size={16}
               />
             ) : (
               // Пустая звезда
-              <Star className="text-gray-300 dark:text-gray-700" size={20} />
+              <Star className="text-gray-300 dark:text-gray-700" size={16} />
             )}
           </div>
         ))}
       </div>
 
       {/* Текстовое описание рейтинга */}
-      <span className="text-gray-700 font-medium dark:text-gray-300">
-        {ratingText}
-      </span>
+      <span className="font-medium">{ratingText}</span>
     </div>
   );
 }

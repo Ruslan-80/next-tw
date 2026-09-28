@@ -39,9 +39,9 @@ export function vru8505Top() {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-8 animate-fade-in-up">
             <div className="space-y-4 px-2">
-              <h1 className="text-text pb-4 text-2xl lg:text-5xl font-bold text-balance leading-tight">
+              <h2 className="text-text pb-4 text-2xl lg:text-5xl font-bold text-balance leading-tight">
                 Вводно-распределительные устройства ВРУ 8505
-              </h1>
+              </h2>
               <p className="text-text/80 leading-relaxed">
                 <strong>
                   Вводно-распределительные устройства (ВРУ) серии 8505

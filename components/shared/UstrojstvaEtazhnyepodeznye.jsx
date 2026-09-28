@@ -13,6 +13,7 @@ export function UstrojstvaEtazhnyepodeznyeTop() {
               height={1000}
               width={1000}
               alt="Этажные электрические щиты (ЩЭ)"
+              preload={true}
             />
           </div>
 

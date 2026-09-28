@@ -20,8 +20,14 @@ const QUICK_LINKS = [
     href: "/catalog/vvodno-raspredelitelnye-ustrojstva-vru-navesnye",
     label: "Навесные щиты",
   },
-  { href: "/catalog/vvodno-raspredelitelnye-ustrojstva-vru-630a", label: "ВРУ 630А" },
-  { href: "/catalog/vvodno-raspredelitelnye-ustrojstva-vru-800a", label: "ВРУ 800А" },
+  {
+    href: "/catalog/vvodno-raspredelitelnye-ustrojstva-vru-630a",
+    label: "ВРУ 630А",
+  },
+  {
+    href: "/catalog/vvodno-raspredelitelnye-ustrojstva-vru-800a",
+    label: "ВРУ 800А",
+  },
 ];
 
 const MODELS_TABLE = [
@@ -123,7 +129,7 @@ export function vruNapolnyeTop() {
                 src="/images/categories/vru-all.webp"
                 alt="Напольные шкафы ВРУ"
                 fill
-                priority
+                preload={true}
                 sizes="(max-width: 768px) 100vw, (max-width: 1024px) 450px, 500px"
                 className="rounded-3xl object-contain transition-transform duration-500 hover:scale-105"
               />

@@ -142,10 +142,22 @@ export default function Header() {
 
                   {/* Кнопка раскрытия */}
                   <button
-                    onClick={() => setIsOpentelephone(!isOpentelephone)}
-                    className={`p-1 bg-card hover:bg-card/40 rounded-full transition-transform ${isOpentelephone ? "rotate-180" : ""}`}
+                    type="button"
+                    onClick={() => setIsOpentelephone((prev) => !prev)}
+                    aria-expanded={isOpentelephone}
+                    aria-controls="telephone-details"
+                    aria-label={
+                      isOpentelephone ? "Скрыть телефон" : "Показать телефон"
+                    }
+                    className={`p-1 bg-card hover:bg-card/40 rounded-full transition-transform ${
+                      isOpentelephone ? "rotate-180" : ""
+                    }`}
                   >
-                    <ChevronDown size={14} className="text-text" />
+                    <ChevronDown
+                      size={14}
+                      className="text-text"
+                      aria-hidden="true"
+                    />
                   </button>
                 </div>
 
@@ -205,10 +217,11 @@ export default function Header() {
                 />
                 <button
                   type="submit"
+                  aria-label="Поиск"
                   className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 
-                 hover:text-slate-900 transition-colors p-1"
+             hover:text-slate-900 transition-colors p-1"
                 >
-                  <Search size={18} strokeWidth={1.5} />
+                  <Search size={18} strokeWidth={1.5} aria-hidden="true" />
                 </button>
               </form>
 
@@ -240,6 +253,7 @@ export default function Header() {
                                     alt={product.name}
                                     fill
                                     className="object-contain p-1 group-hover:scale-110 transition-transform duration-500"
+                                    preload={true}
                                   />
                                 </div>
                               ) : (

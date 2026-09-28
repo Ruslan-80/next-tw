@@ -15,6 +15,7 @@ export function ShityEtazhnyeTop() {
             fill
             className="object-cover"
             sizes="(max-width: 768px) 100vw, 500px"
+            preload={true}
           />
         </div>
 

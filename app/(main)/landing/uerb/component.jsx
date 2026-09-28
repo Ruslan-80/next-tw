@@ -167,12 +167,11 @@ export default function ComponentUERB() {
               <div className="relative w-full max-w-[350px] md:max-w-[450px] lg:max-w-[500px] aspect-square bg-card rounded-3xl p-4 md:p-6 lg:p-8 shadow-2xl flex justify-center mx-auto">
                 <Image
                   src="/images/landing/uerb.png"
-                  alt="УЭРК - Устройство этажное распределительное блочное"
+                  alt="УЭРБ - Устройство этажное распределительное блочное"
                   fill
                   className="object-contain hover:scale-105 transition-transform duration-500 p-2 md:p-4"
-                  sizes="(max-width: 768px) 100vw,
-                       (max-width: 1024px) 450px,
-                       500px"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 450px, 500px"
+                  preload={true}
                 />
               </div>
             </div>

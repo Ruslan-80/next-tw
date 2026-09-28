@@ -57,7 +57,6 @@ export default function ProductList({ products = [], totalProducts = 0 }) {
       </div>
     );
   }
-
   return (
     <div className="mb-8 lg:sticky lg:top-6 self-start px-2">
       <div className=" flex justify-between items-center mb-6">

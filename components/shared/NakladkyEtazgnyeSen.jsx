@@ -78,6 +78,7 @@ export function NakladkyEtazhnyeTop() {
                 width={500}
                 height={500}
                 className="object-contain hover:scale-105 transition-transform duration-500"
+                preload={true}
               />
             </div>
           </div>
@@ -427,6 +428,7 @@ export function NakladkyEtazhnyeBottom() {
               width={1200}
               height={400}
               className="w-full h-auto object-cover rounded-xl shadow-lg"
+              preload={true}
             />
           </div>
         </div>

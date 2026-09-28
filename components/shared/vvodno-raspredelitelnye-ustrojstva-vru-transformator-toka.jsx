@@ -20,8 +20,14 @@ const QUICK_LINKS = [
     href: "/catalog/vvodno-raspredelitelnye-ustrojstva-vru-so-schetchikami",
     label: "Со счетчиками",
   },
-  { href: "/catalog/vvodno-raspredelitelnye-ustrojstva-vru-250a", label: "ВРУ 250А" },
-  { href: "/catalog/vvodno-raspredelitelnye-ustrojstva-vru-400a", label: "ВРУ 400А" },
+  {
+    href: "/catalog/vvodno-raspredelitelnye-ustrojstva-vru-250a",
+    label: "ВРУ 250А",
+  },
+  {
+    href: "/catalog/vvodno-raspredelitelnye-ustrojstva-vru-400a",
+    label: "ВРУ 400А",
+  },
 ];
 
 const MODELS_TABLE = [
@@ -124,7 +130,7 @@ export function vruTransformatorTokaTop() {
                 src="/images/categories/vru-all.webp"
                 alt="Вводно-распределительные устройства ВРУ с трансформаторами тока"
                 fill
-                priority
+                preload={true}
                 sizes="(max-width: 768px) 100vw, (max-width: 1024px) 450px, 500px"
                 className="rounded-3xl object-contain transition-transform duration-500 hover:scale-105"
               />

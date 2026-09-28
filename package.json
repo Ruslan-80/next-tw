@@ -14,6 +14,7 @@
     "build": "next build",
     "postbuild": "cpy public .next/standalone --recursive && cpy .next/static .next/standalone/.next --recursive",
     "dbsync": "powershell -ExecutionPolicy Bypass -File scripts/sync-local.ps1",
+    "reviews": "node prisma/import-reviews.js",
     "postinstall": "prisma generate",
     "buildsitemap": "node scripts/generate-categories.js && node scripts/generate-products.js && next-sitemap --config next-sitemap.config.js"
   },
@@ -80,6 +81,7 @@
     "transliteration": "^2.3.5",
     "tw-animate-css": "^1.2.5",
     "vaul": "^1.1.2",
+    "xlsx": "^0.18.5",
     "zod": "^3.25.67",
     "zustand": "^5.0.8"
   },

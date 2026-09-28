@@ -16,8 +16,14 @@ const REQUEST_LABEL = "Оставить заявку";
 const H2 = "text-2xl md:text-3xl font-bold";
 
 const QUICK_LINKS = [
-  { href: "/catalog/vvodno-raspredelitelnye-ustrojstva-vru-1000a", label: "ВРУ 1000А" },
-  { href: "/catalog/vvodno-raspredelitelnye-ustrojstva-vru-s-avr", label: "С АВР" },
+  {
+    href: "/catalog/vvodno-raspredelitelnye-ustrojstva-vru-1000a",
+    label: "ВРУ 1000А",
+  },
+  {
+    href: "/catalog/vvodno-raspredelitelnye-ustrojstva-vru-s-avr",
+    label: "С АВР",
+  },
   {
     href: "/catalog/vvodno-raspredelitelnye-ustrojstva-vru-na-kontaktorakh",
     label: "На контакторах",
@@ -109,7 +115,7 @@ export function vru1600Top() {
                 src="/images/categories/vru-all.webp"
                 alt="Вводно-распределительные устройства ВРУ на 1600 А"
                 fill
-                priority
+                preload={true}
                 sizes="(max-width: 768px) 100vw, (max-width: 1024px) 450px, 500px"
                 className="rounded-3xl object-contain transition-transform duration-500 hover:scale-105"
               />

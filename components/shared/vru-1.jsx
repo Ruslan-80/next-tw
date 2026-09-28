@@ -528,26 +528,26 @@ export function vru1Bottom() {
                 <div>
                   <label className="block text-sm font-medium mb-1">
                     Расчетная мощность, P (кВт):
+                    <input
+                      type="number"
+                      value={power}
+                      onChange={handlePowerChange}
+                      className="w-full border border-accent rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    />
                   </label>
-                  <input
-                    type="number"
-                    value={power}
-                    onChange={handlePowerChange}
-                    className="w-full border border-accent rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  />
                 </div>
 
                 <div>
                   <label className="block text-sm font-medium mb-1">
                     Напряжение сети, U (кВ):
+                    <input
+                      type="number"
+                      value={voltage}
+                      step="0.01"
+                      onChange={handleVoltageChange}
+                      className="w-full border border-accent rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    />
                   </label>
-                  <input
-                    type="number"
-                    value={voltage}
-                    step="0.01"
-                    onChange={handleVoltageChange}
-                    className="w-full border border-accent rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  />
                   <small className="text-slate-500 text-xs">
                     * 0.38 кВ = 380 В (стандартная трехфазная сеть)
                   </small>
@@ -556,14 +556,14 @@ export function vru1Bottom() {
                 <div>
                   <label className="block text-sm font-medium mb-1">
                     Коэфф. мощности, cos(φ):
+                    <input
+                      type="number"
+                      value={cosPhi}
+                      step="0.01"
+                      onChange={handleCosChange}
+                      className="w-full border border-accent rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    />
                   </label>
-                  <input
-                    type="number"
-                    value={cosPhi}
-                    step="0.01"
-                    onChange={handleCosChange}
-                    className="w-full border border-accent rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  />
                 </div>
               </div>
 

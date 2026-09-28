@@ -155,8 +155,6 @@ export default function ProductPageClient({
     return null;
   };
 
-  // console.log(product);
-
   return (
     // <div className="antialiased bg-[#0a0f1a] bg-radial-[at_50%_50%] from-[#1e2a44] via-[#0a0f1a] to-[#05080f] text-text">
     // <div className="antialiased bg-[#f8fafc] bg-radial-[at_50%_50%] from-[#e2e8f0] via-[#f8fafc] to-[#ffffff] text-[#0f172a]">
@@ -189,7 +187,7 @@ export default function ProductPageClient({
                         width={800}
                         className="object-contain w-full h-full transition-transform duration-700 hover:scale-110 cursor-zoom-in"
                         onClick={() => handleImageZoom(selectedImageIndex)}
-                        priority
+                        preload={true}
                       />
                     </>
                   ) : (
@@ -686,85 +684,6 @@ export default function ProductPageClient({
                 </button>
               </div>
 
-              {/* Инфо-карточки (сетка 2х2) */}
-              {/* <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mx-4">
-                {[
-                  {
-                    label: "Оплата",
-                    val: "Любые способы",
-                    icon: "M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z",
-                    color: "text-green-600",
-                    bg: "bg-green-100",
-                  },
-                  {
-                    label: "Гарантия",
-                    val: "От производителя",
-                    icon: "M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z",
-                    color: "text-blue-600",
-                    bg: "bg-blue-50",
-                  },
-                ].map((item, i) => (
-                  <div
-                    key={i}
-                    className="flex items-center p-4 rounded-2xl bg-surface-low border border-border"
-                  >
-                    <div
-                      className={`${item.bg} ${item.color} p-3 rounded-xl mr-4`}
-                    >
-                      <svg
-                        className="w-6 h-6"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth="2"
-                          d={item.icon}
-                        />
-                      </svg>
-                    </div>
-                    <div>
-                      <div className="font-bold text-sm">{item.label}</div>
-                      <div className="text-xs text-textMuted">{item.val}</div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-              {product.attributes
-                .filter((attr) =>
-                  allowed.some((word) =>
-                    attr.attributeName.toLowerCase().includes(word),
-                  ),
-                )
-                .map((attr) => (
-                  <div
-                    key={`${product.id}-${attr.attributeName}-${attr.attributeValueName}`}
-                    className="flex justify-between my-4 px-2 mx-4"
-                  >
-                    <span className="font-medium dark:text-white">
-                      {attr.attributeName}:
-                    </span>
-                    <span className=" dark:text-white">
-                      {attr.attributeValueName}
-                    </span>
-                  </div>
-                ))}
-              {product.attributes.length > 3 && (
-                <button
-                  onClick={() => {
-                    setActiveTab("characteristics");
-                    characteristicsRef.current?.scrollIntoView({
-                      behavior: "smooth",
-                    });
-                  }}
-                  className="text-xl text-blue-500 hover:text-gray-700 mx-4 mb-4"
-                >
-                  Все характеристики ({product.attributes.length})
-                </button>
-              )} */}
-
               {/* Share and Production Time */}
               <div className="border-t border-accent/40 pt-6 mx-4">
                 <div className="flex flex-col md:flex-col justify-between gap-4 text-xl">
@@ -903,7 +822,10 @@ export default function ProductPageClient({
               )}
               {activeTab === "reviews" && (
                 <div className="prose prose-lg max-w-none">
-                  <ReviewsTab reviews={product.reviews || []} />
+                  <ReviewsTab
+                    reviews={product.reviews || []}
+                    productId={product.id}
+                  />
                 </div>
               )}
             </div>

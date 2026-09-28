@@ -16,8 +16,14 @@ const REQUEST_LABEL = "Оставить заявку";
 const H2 = "text-2xl md:text-3xl font-bold";
 
 const QUICK_LINKS = [
-  { href: "/catalog/vvodno-raspredelitelnye-ustrojstva-vru-125a", label: "ВРУ 125А" },
-  { href: "/catalog/vvodno-raspredelitelnye-ustrojstva-vru-400a", label: "ВРУ 400А" },
+  {
+    href: "/catalog/vvodno-raspredelitelnye-ustrojstva-vru-125a",
+    label: "ВРУ 125А",
+  },
+  {
+    href: "/catalog/vvodno-raspredelitelnye-ustrojstva-vru-400a",
+    label: "ВРУ 400А",
+  },
   {
     href: "/catalog/vvodno-raspredelitelnye-ustrojstva-vru-transformator-toka",
     label: "Трансформаторы тока",
@@ -123,7 +129,7 @@ export function vru250Top() {
                 src="/images/categories/vru-all.webp"
                 alt="Вводно-распределительные устройства ВРУ на 250 А"
                 fill
-                priority
+                preload={true}
                 sizes="(max-width: 768px) 100vw, (max-width: 1024px) 450px, 500px"
                 className="rounded-3xl object-contain transition-transform duration-500 hover:scale-105"
               />

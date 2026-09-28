@@ -83,7 +83,7 @@ export default function CatalogUI({ categories, text }) {
                     height={158}
                     style={{ width: "auto" }}
                     alt={category.name}
-                    priority={true}
+                    preload={true}
                   />
                   <div className="catalog__circle"></div>
                 </div>

@@ -11,6 +11,7 @@ import { useForm } from "react-hook-form";
 import { Skeleton } from "../../components/ui/skeleton";
 import { useCartStore } from "../../lib/store/testCartStore";
 import Markdown from "react-markdown";
+import RatingDisplay from "@/components/RatingDisplay";
 
 import Modal from "@/components/ui/modal";
 import useFormSubmit from "hooks/useFormSubmit";
@@ -133,6 +134,7 @@ export default function CardItem({ product, view }) {
                       src={product.image}
                       alt={product.name}
                       fill
+                      preload={true}
                       className="object-contain rounded-lg transition-transform duration-300 hover:scale-105 p-4 text-text"
                       sizes={
                         (view || "grid") === "grid"
@@ -164,6 +166,10 @@ export default function CardItem({ product, view }) {
                   <span itemProp="name">{product.name}</span>
                   <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-accent/30 transition-all duration-300 group-hover:w-full text-text" />
                 </h4>
+                <RatingDisplay
+                  ratingValue={product.rating}
+                  ratingCount={product.reviewsCount}
+                />
                 <p className="text-sm text-text mb-2">
                   Артикул:{" "}
                   <span itemProp="sku">{product.article || "N/A"}</span> <br />

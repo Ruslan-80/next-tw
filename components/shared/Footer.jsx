@@ -216,9 +216,10 @@ export default function Footer() {
                   href="https://www.youtube.com/@electroshit-pro/shorts"
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-label="YouTube Shorts (откроется в новой вкладке)"
                   className="bg-background p-2 rounded-full hover:bg-red-600 transition-colors"
                 >
-                  <Youtube size={20} />
+                  <Youtube size={20} aria-hidden="true" />
                 </a>
               </div>
             </div>

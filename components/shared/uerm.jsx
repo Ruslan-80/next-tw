@@ -96,6 +96,7 @@ export function uermTop() {
                 fill
                 className="object-contain hover:scale-105 transition-transform duration-500 p-2 md:p-4"
                 sizes="(max-width: 768px) 100vw, (max-width: 1024px) 450px, 500px"
+                preload={true}
               />
             </div>
           </div>

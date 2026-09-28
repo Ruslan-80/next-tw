@@ -4,7 +4,6 @@ import { prisma } from "@/lib/prisma";
 import ProductPageClient from "./ProductPageClient";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import JsonLd from "@/components/JsonLdComponent";
-// import getProductJsonLd from "@/lib/productJsonLd";
 import metaDescriptions from "@/app/data/metaDescriptions.json";
 
 // Функция для получения данных о продукте
@@ -19,7 +18,10 @@ async function getProductData(slug) {
       },
       attributes: true,
       variations: true,
-      mediaFiles: true,
+      reviews: {
+        where: { isApproved: true },
+        orderBy: { createdAt: "desc" },
+      },
       category: {
         include: {
           parent: {
@@ -32,20 +34,37 @@ async function getProductData(slug) {
     },
   });
 }
-// Функция для получения контекста страницы продукта
 
+// Функция для получения контекста страницы продукта
 const getProductPageContext = cache(async (slug) => {
   const product = await getProductData(slug);
 
   if (!product) return null;
 
   const pool = metaDescriptions.metaDescriptions.product;
-  // Теперь этот random сработает только 1 раз за запрос
   const randomDescription = pool[Math.floor(Math.random() * pool.length)];
   const randomDescriptionSeo = pool[Math.floor(Math.random() * pool.length)];
 
-  const ratingValue = (Math.random() * (5 - 4) + 4).toFixed(1);
-  const ratingCount = Math.floor(Math.random() * (100 - 10 + 1)) + 10;
+  // Запрашиваем реальный рейтинг и количество отзывов из БД
+  const reviewStats = await prisma.review.aggregate({
+    where: {
+      productId: product.id,
+      isApproved: true, // Считаем только одобренные отзывы
+    },
+    _avg: {
+      rating: true,
+    },
+    _count: {
+      _all: true,
+    },
+  });
+
+  // Если у товара нет отзывов, рейтинг равен 0, иначе округляем до 1 знака после запятой
+  const rawAvg = reviewStats._avg.rating;
+  const ratingValue = rawAvg ? rawAvg.toFixed(1) : "0";
+  const ratingCount = reviewStats._count._all;
+
+  // console.log(product);
 
   return {
     product,
@@ -60,7 +79,6 @@ const getProductPageContext = cache(async (slug) => {
 export async function generateMetadata({ params }) {
   const resolvedParams = await params;
   const { slug } = resolvedParams;
-  // const { slug } = await params;
 
   const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL;
 
@@ -73,30 +91,29 @@ export async function generateMetadata({ params }) {
     };
   }
 
-  const { product, randomDescription, randomDescriptionSeo } = ctx;
+  const { product, randomDescription } = ctx;
 
   const seoDescriptionText = product.descriptionSeo?.trim()
     ? `${product.name} ${product.descriptionSeo.trim()}`
     : `Купить ${product.name} ${randomDescription}`;
 
-  // const title = `${product.name} ${randomDescription}`;
   const title = product.titleSeo || `${product.name} | ЭЛЕКТРОЩИТ-ПРО`;
   const description = seoDescriptionText;
   const canonicalUrl = `${BASE_URL}/product/${slug}`;
   const imageUrl =
-    `${BASE_URL}${product.mediaFiles[0]?.url}` || "/default-og-image.jpg"; // Используем первое изображение или заглушку
+    `${BASE_URL}${product.mediaFiles[0]?.url}` || "/default-og-image.jpg";
 
   return {
     title,
     description,
     alternates: {
-      canonical: canonicalUrl, // Относительный путь, так как metadataBase задан
+      canonical: canonicalUrl,
     },
     openGraph: {
       title,
       description,
       url: canonicalUrl,
-      type: "website", // Используем валидный тип Open Graph
+      type: "website",
       images: [
         {
           url: imageUrl,
@@ -113,7 +130,7 @@ export async function generateMetadata({ params }) {
       images: [imageUrl],
     },
     robots: {
-      index: true, // Разрешаем индексацию
+      index: true,
       follow: true,
     },
   };
@@ -122,14 +139,12 @@ export async function generateMetadata({ params }) {
 export default async function Page({ params }) {
   const resolvedParams = await params;
   const { slug } = resolvedParams;
-  // const { slug } = await params;
 
   const ctx = await getProductPageContext(slug);
   if (!ctx) return <p className="text-center py-8">Товар не найден</p>;
 
   const { product, randomDescription, ratingValue, ratingCount } = ctx;
 
-  // Далее всё как было
   const breadcrumbs = [];
   let currentCategory = product.category;
   while (currentCategory) {
@@ -145,7 +160,7 @@ export default async function Page({ params }) {
     slug,
     randomDescription = "",
     currentCategory = null,
-    ratingValue = 5,
+    ratingValue = 0,
     ratingCount = 0,
   }) => {
     if (!product) return null;
@@ -154,14 +169,12 @@ export default async function Page({ params }) {
       process.env.NEXT_PUBLIC_SITE_URL || "https://electroshit-pro.ru";
     const BASE_URL = rawBaseUrl.replace(/\/$/, "");
 
-    // Имя товара
     const name = (
       product.name ||
       product.title ||
       "Товар ЭЛЕКТРОЩИТ-ПРО"
     ).trim();
 
-    // Описание
     const cleanRandDesc =
       typeof randomDescription === "string" ? randomDescription.trim() : "";
     let description = "";
@@ -176,7 +189,6 @@ export default async function Page({ params }) {
       description = `Купить ${name} с гарантией и доставкой по Москве и области.`;
     }
 
-    // Очистка от экранирования кавычек и переходов строк для корректного JSON
     description = description.replace(/"/g, '\"').replace(/\s+/g, " ").trim();
 
     const priceValidUntil = new Date();
@@ -266,7 +278,7 @@ export default async function Page({ params }) {
     if (ratingCount && Number(ratingCount) > 0) {
       jsonLd.aggregateRating = {
         "@type": "AggregateRating",
-        ratingValue: Number(ratingValue) || 5,
+        ratingValue: Number(ratingValue),
         ratingCount: Number(ratingCount),
         reviewCount: Number(ratingCount),
         worstRating: 1,
@@ -294,16 +306,14 @@ export default async function Page({ params }) {
     ratingCount,
   });
 
-  // console.log(product);
-
   return (
     <>
       <JsonLd data={productJsonLd} script_name="product-jsonld" />
       <Breadcrumbs items={breadcrumbs} productName={product.name} />
       <ProductPageClient
         product={product}
-        ratingValue={ratingValue}
-        ratingCount={ratingCount}
+        ratingValue={Number(ratingValue)}
+        ratingCount={Number(ratingCount)}
       />
     </>
   );

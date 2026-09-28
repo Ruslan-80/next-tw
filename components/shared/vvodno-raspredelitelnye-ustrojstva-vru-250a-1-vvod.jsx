@@ -25,8 +25,8 @@ const QUICK_LINKS = [
     label: "ВРУ 630А 2 ввода",
   },
   {
-    href: "/catalog/vvodno-raspredelitelnye-ustrojstva-vru-250a-1-vvod",
-    label: "ВРУ 250А 1 ввод",
+    href: "/catalog/vvodno-raspredelitelnye-ustrojstva-vru-250a-2-vvoda",
+    label: "ВРУ 250А 2 ввода",
   },
 ];
 
@@ -59,9 +59,9 @@ export function vru250a1VvodTop() {
           {/* Levaya kolonka — tekst */}
           <div className="animate-fade-in-up space-y-8 px-2">
             <div className="space-y-4">
-              <h1 className="text-text pb-4 text-2xl font-bold leading-tight lg:text-5xl">
+              <h2 className="text-text pb-4 text-2xl font-bold leading-tight lg:text-5xl">
                 Вводно-распределительные устройства ВРУ 250А (1 ввод)
-              </h1>
+              </h2>
               <p className="text-text/80 leading-relaxed">
                 <strong>
                   Вводно-распределительные устройства (ВРУ) 250А на один ввод
@@ -98,7 +98,7 @@ export function vru250a1VvodTop() {
                 src="/images/categories/vru-all.webp"
                 alt="Вводно-распределительные устройства ВРУ 250А (1 ввод)"
                 fill
-                priority
+                preload={true}
                 sizes="(max-width: 768px) 100vw, (max-width: 1024px) 450px, 500px"
                 className="rounded-3xl object-contain transition-transform duration-500 hover:scale-105"
               />

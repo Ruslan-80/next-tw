@@ -59,9 +59,9 @@ export function vru400a2VvodaTop() {
           {/* Levaya kolonka — tekst */}
           <div className="animate-fade-in-up space-y-8 px-2">
             <div className="space-y-4">
-              <h1 className="text-text pb-4 text-2xl font-bold leading-tight lg:text-5xl">
+              <h2 className="text-text pb-4 text-2xl font-bold leading-tight lg:text-5xl">
                 Вводно-распределительные устройства ВРУ 400А (2 ввода)
-              </h1>
+              </h2>
               <p className="text-text/80 leading-relaxed">
                 <strong>
                   Вводно-распределительные устройства ВРУ 400А на два ввода
@@ -101,7 +101,7 @@ export function vru400a2VvodaTop() {
                 src="/images/categories/vru-all.webp"
                 alt="Вводно-распределительные устройства ВРУ 400А (2 ввода)"
                 fill
-                priority
+                preload={true}
                 sizes="(max-width: 768px) 100vw, (max-width: 1024px) 450px, 500px"
                 className="rounded-3xl object-contain transition-transform duration-500 hover:scale-105"
               />

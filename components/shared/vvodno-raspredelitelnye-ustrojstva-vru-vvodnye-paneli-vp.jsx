@@ -43,9 +43,9 @@ export function VruPaneliVpTop() {
         <div className="grid lg:grid-cols-2 gap-2 items-center">
           <div className="space-y-8 animate-fade-in-up">
             <div className="space-y-4 px-2">
-              <h1 className="text-2xl lg:text-5xl font-bold text-text leading-tight">
+              <h2 className="text-2xl lg:text-5xl font-bold text-text leading-tight">
                 Вводные панели ВРУ (ВП)
-              </h1>
+              </h2>
               <p className="text-muted-foreground text-text leading-relaxed">
                 <strong>Вводные панели ВРУ</strong> (маркировка 11–19) служат
                 главным принимающим узлом системы электроснабжения зданий и
@@ -81,7 +81,7 @@ export function VruPaneliVpTop() {
                 fill
                 className="object-contain hover:scale-105 transition-transform duration-500 p-2 md:p-4"
                 sizes="(max-width: 768px) 100vw, (max-width: 1024px) 450px, 500px"
-                priority
+                preload={true}
               />
             </div>
           </div>

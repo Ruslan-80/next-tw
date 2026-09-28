@@ -24,6 +24,7 @@ export function UstroystvaEtazhnyeTop() {
               height={1000}
               width={1000}
               className="rounded object-cover"
+              preload={true}
             />
           </div>
 

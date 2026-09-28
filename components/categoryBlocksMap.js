@@ -16,11 +16,7 @@ const categoryComponents = {
     "ShityEtazhnyeTop",
     "ShityEtazhnyeBottom",
   ),
-  "vvodno-raspredelitelnye-ustrojstva-vru": lazyPair(
-    () => import("./shared/vru"),
-    "vruTop",
-    "vruBottom",
-  ),
+
   "vru-1": lazyPair(() => import("./shared/vru-1"), "vru1Top", "vru1Bottom"),
   "vru-3": lazyPair(() => import("./shared/vru-3"), "vru3Top", "vru3Bottom"),
   "vru-4": lazyPair(() => import("./shared/vru-4"), "vru4Top", "vru4Bottom"),
@@ -216,6 +212,12 @@ const categoryComponents = {
     "vru250a1VvodTop",
     "vru250a1VvodBottom",
   ),
+  "vvodno-raspredelitelnye-ustrojstva-vru-250a-2-vvoda": lazyPair(
+    () =>
+      import("./shared/vvodno-raspredelitelnye-ustrojstva-vru-250a-2-vvoda"),
+    "vru250a2VvodaTop",
+    "vru250a2VvodaBottom",
+  ),
   "vvodno-raspredelitelnye-ustrojstva-vru-250a-s-avr": lazyPair(
     () => import("./shared/vvodno-raspredelitelnye-ustrojstva-vru-250a-s-avr"),
     "vru250aSAvrTop",
@@ -237,6 +239,11 @@ const categoryComponents = {
     "vru400aSavrTop",
     "vru400aSavrBottom",
   ),
+  "vvodno-raspredelitelnye-ustrojstva-vru-630a-1-vvod": lazyPair(
+    () => import("./shared/vvodno-raspredelitelnye-ustrojstva-vru-630a-1-vvod"),
+    "vru630a1VvodTop",
+    "vru630a1VvodBottom",
+  ),
   "vvodno-raspredelitelnye-ustrojstva-vru-630a-2-vvoda": lazyPair(
     () =>
       import("./shared/vvodno-raspredelitelnye-ustrojstva-vru-630a-2-vvoda"),
@@ -254,7 +261,11 @@ const categoryComponents = {
     "vru800a2VvodaTop",
     "vru800a2VvodaBottom",
   ),
-
+  "vvodno-raspredelitelnye-ustrojstva-vru": lazyPair(
+    () => import("./shared/vru"),
+    "vruTop",
+    "vruBottom",
+  ),
   "nakladki-shitov-etazhnyh-she": lazyPair(
     () => import("./shared/NakladkyEtazgnyeSen"),
     "NakladkyEtazhnyeTop",

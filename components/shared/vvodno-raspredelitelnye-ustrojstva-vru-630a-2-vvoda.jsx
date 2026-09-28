@@ -59,9 +59,9 @@ export function vru630a2VvodaTop() {
           {/* Levaya kolonka — tekst */}
           <div className="animate-fade-in-up space-y-8 px-2">
             <div className="space-y-4">
-              <h1 className="text-text pb-4 text-2xl font-bold leading-tight lg:text-5xl">
+              <h2 className="text-text pb-4 text-2xl font-bold leading-tight lg:text-5xl">
                 Вводно-распределительные устройства ВРУ 630А (2 ввода)
-              </h1>
+              </h2>
               <p className="text-text/80 leading-relaxed">
                 <strong>
                   Двухфидерные вводно-распределительные устройства ВРУ 630А

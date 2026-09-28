@@ -1,6 +1,6 @@
 "use server";
 
-import { prisma } from "../../../../lib/prisma";
+import { prisma } from "@/lib/prisma";
 import defaultImage from "../../../../public/images/product/713680920.webp";
 
 export async function getProductsByCategory(slug, searchParams = {}) {
@@ -44,8 +44,6 @@ export async function getProductsByCategory(slug, searchParams = {}) {
   const filterEntries = Object.entries(resolvedSearchParams).filter(
     ([key, value]) => key !== "page" && value !== undefined && value !== "",
   );
-
-  // console.log("filterEntries:", filterEntries);
 
   if (filterEntries.length > 0) {
     const attributeConditions = filterEntries.map(([attributeSlug, value]) => {
@@ -101,6 +99,9 @@ export async function getProductsByCategory(slug, searchParams = {}) {
     image: product.mediaFiles[0]?.url || defaultImage.src,
     description: product.description || null,
     stock: product.stock,
+    // Добавлены поля рейтинга и количества отзывов
+    rating: product.rating || 0.0,
+    reviewsCount: product.reviewsCount || 0,
     variations: product.variations.map((variation) => ({
       id: variation.id,
       sku: variation.sku,

@@ -86,6 +86,7 @@ export function vru3Top() {
                 fill
                 className="object-contain hover:scale-105 transition-transform duration-500 p-2 md:p-4"
                 sizes="(max-width: 768px) 100vw, (max-width: 1024px) 450px, 500px"
+                preload={true}
               />
             </div>
           </div>
@@ -624,9 +625,9 @@ export function vru3Bottom() {
         </p>
         <div className="grid md:grid-cols-3 gap-8">
           <div className="border p-6 rounded-xl">
-            <h4 className="font-bold text-lg mb-2">
+            <h3 className="font-bold text-lg mb-2">
               Оптимизация сметы и выбор комплектующих
-            </h4>
+            </h3>
             <ul className="list-disc pl-5 space-y-2 text-base">
               <li>
                 <strong>Свободный выбор брендов:</strong> Комплектуем ВРУ-3

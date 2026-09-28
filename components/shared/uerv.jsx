@@ -80,6 +80,7 @@ export function uervTop() {
                 width={500}
                 height={500}
                 className="object-contain hover:scale-105 transition-transform duration-500"
+                preload={true}
               />
             </div>
           </div>

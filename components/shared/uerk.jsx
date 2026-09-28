@@ -37,10 +37,10 @@ export function uermTop() {
               <Badge variant="secondary" className="text-sm font-medium">
                 Модульное решение
               </Badge>
-              <h2 className="text-2xl lg:text-5xl font-bold text-balance leading-tight">
+              <h1 className="text-2xl lg:text-5xl font-bold text-balance leading-tight">
                 Устройство этажное распределительное модульное{" "}
                 <span className="text-accent">УЭРМ</span>
-              </h2>
+              </h1>
               <p className="text-muted-foreground text-balance leading-relaxed">
                 Современное модульное устройство для приема, распределения и
                 учета электроэнергии в многоквартирных домах с защитой от
@@ -95,9 +95,8 @@ export function uermTop() {
                 alt="УЭРМ - Устройство этажное распределительное модульное"
                 fill
                 className="object-contain hover:scale-105 transition-transform duration-500 p-2 md:p-4"
-                sizes="(max-width: 768px) 100vw,
-             (max-width: 1024px) 450px,
-             500px"
+                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 450px, 500px"
+                preload={true}
               />
             </div>
           </div>

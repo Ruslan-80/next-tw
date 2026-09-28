@@ -41,9 +41,9 @@ export function vru8504Top() {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-8 animate-fade-in-up">
             <div className="space-y-4 px-2">
-              <h1 className="text-2xl lg:text-5xl font-bold text-text leading-tight">
+              <h2 className="text-2xl lg:text-5xl font-bold text-text leading-tight">
                 Вводно-распределительные устройства ВРУ 8504 в Москве
-              </h1>
+              </h2>
               <p className="text-muted-foreground text-text leading-relaxed">
                 <strong className="text-accent">
                   Вводно-распределительные устройства (ВРУ) серии 8504

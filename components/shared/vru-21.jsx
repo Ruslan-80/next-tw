@@ -38,9 +38,9 @@ export function vru21Top() {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-8 animate-fade-in-up">
             <div className="space-y-4 px-2">
-              <h1 className="text-2xl lg:text-5xl font-bold text-balance leading-tight">
+              <h2 className="text-2xl lg:text-5xl font-bold text-balance leading-tight">
                 Щиты ВРУ-21: купить в Москве с доставкой (сборка по ГОСТ)
-              </h1>
+              </h2>
               <p className="text-muted-foreground text-balance leading-relaxed">
                 <strong>Вводно-распределительные устройства ВРУ-21</strong> —
                 это низковольтное комплектное устройство (НКУ), предназначенное

@@ -135,7 +135,7 @@ export function vruAvtomaticheskijVyklyuchatelTop() {
                 src="/images/categories/vru-all.webp"
                 alt="ВРУ на автоматических выключателях"
                 fill
-                priority
+                preload={true}
                 sizes="(max-width: 768px) 100vw, (max-width: 1024px) 450px, 500px"
                 className="rounded-3xl object-contain transition-transform duration-500 hover:scale-105"
               />
