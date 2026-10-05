@@ -14,6 +14,58 @@ export default function AdminProducts() {
     jsonImport: false, // Состояние загрузки для JSON
   });
 
+  const [reviewFile, setReviewFile] = useState(null);
+  const [isReviewsLoading, setIsReviewsLoading] = useState(false);
+
+  const handleReviewsImport = async () => {
+    if (!reviewFile) {
+      toast.error("Please select an XLSX file");
+      return;
+    }
+
+    setIsReviewsLoading(true);
+
+    const formData = new FormData();
+    formData.append("file", reviewFile);
+
+    try {
+      const response = await fetch("/api/admin/reviews/import", {
+        method: "POST",
+        body: formData,
+      });
+
+      const result = await response.json().catch(() => null);
+
+      if (!response.ok) {
+        throw new Error(result?.error || `Ошибка сервера (${response.status})`);
+      }
+
+      toast.success(result?.message || "Импорт завершён");
+
+      const stats = result?.stats;
+      if (stats) {
+        if (stats.duplicatesCount > 0) {
+          toast.warning(`Дубликатов пропущено: ${stats.duplicatesCount}`);
+          console.warn("Duplicates:", result.duplicates);
+        }
+        if (stats.skippedCount > 0) {
+          toast.warning(`Ошибок/пропусков: ${stats.skippedCount}`);
+          console.warn("Skipped rows:", result.skipped);
+        }
+      }
+    } catch (error) {
+      const message = error instanceof Error ? error.message : "Unknown error";
+      toast.error(`Ошибка: ${message}`);
+    } finally {
+      setIsReviewsLoading(false);
+      setReviewFile(null);
+
+      // сбрасываем input, чтобы можно было загрузить тот же файл повторно
+      const input = document.getElementById("reviews-import-input");
+      if (input) input.value = "";
+    }
+  };
+
   // --- Существующая логика XLSX ---
   const handleExport = async () => {
     setIsLoading((prev) => ({ ...prev, export: true }));
@@ -219,7 +271,7 @@ export default function AdminProducts() {
             type="file"
             accept=".json"
             onChange={(e) => setJsonFile(e.target.files?.[0] || null)}
-            className="bg-white"
+            className="bg-background"
           />
           <Button
             onClick={handleJsonImport}
@@ -244,7 +296,7 @@ export default function AdminProducts() {
             type="file"
             accept=".json"
             onChange={(e) => setJsonFile(e.target.files?.[0] || null)}
-            className="bg-white"
+            className="bg-background"
           />
           <Button
             onClick={handleJsonImportOpisanie}
@@ -271,6 +323,33 @@ export default function AdminProducts() {
               {isLoading.import ? "Importing..." : "Import XLSX"}
             </Button>
           </div>
+        </div>
+      </section>
+      {/* Секция импорта отзывов */}
+      <section className="p-4 border border-accent rounded-lg bg-card">
+        <h2 className="text-lg font-semibold mb-3 text-blue-900">
+          Импорт отзывов (XLSX)
+        </h2>
+        <p className="text-sm text-text mb-4">
+          Файл должен содержать колонки: <b>Артикул</b>, <b>Имя</b>,{" "}
+          <b>Отзыв</b>, <b>Рейтинг</b>, <b>Дата</b>. Отзывы будут добавлены как
+          одобренные, а рейтинг товаров пересчитается автоматически.
+        </p>
+        <div className="flex items-center space-x-4">
+          <Input
+            id="reviews-import-input"
+            type="file"
+            accept=".xlsx"
+            onChange={(e) => setReviewFile(e.target.files?.[0] || null)}
+            className="bg-background"
+          />
+          <Button
+            onClick={handleReviewsImport}
+            disabled={isReviewsLoading || !reviewFile}
+            className="bg-blue-600 hover:bg-blue-700"
+          >
+            {isReviewsLoading ? "Импорт..." : "Загрузить отзывы"}
+          </Button>
         </div>
       </section>
     </div>

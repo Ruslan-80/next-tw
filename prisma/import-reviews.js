@@ -5,7 +5,7 @@ import path from "path";
 const prisma = new PrismaClient();
 
 // Путь к XLSX файлу в корне проекта
-const FILE_PATH = path.join(process.cwd(), "vru_reviews_wide.xlsx");
+const FILE_PATH = path.join(process.cwd(), "vru_reviews_long.xlsx");
 
 // Вспомогательная функция для парсинга даты из Excel
 function parseDate(dateValue) {

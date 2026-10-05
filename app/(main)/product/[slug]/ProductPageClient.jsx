@@ -71,10 +71,21 @@ export default function ProductPageClient({
   // const averageRating = product.yandexRating || 4.5;
   // const totalReviews = product.yandexReviewCount || 15;
 
-  const images =
-    product.mediaFiles && Array.isArray(product.mediaFiles)
-      ? product.mediaFiles.map((file) => file.url)
-      : [mainImage.src];
+  // Определяем тип медиа по расширению
+  const VIDEO_EXT = /\.(mp4|webm|ogg|mov|m4v|avi)$/i;
+
+  const media =
+    product.mediaFiles &&
+    Array.isArray(product.mediaFiles) &&
+    product.mediaFiles.length
+      ? product.mediaFiles.map((file) => ({
+          url: file.url,
+          type: VIDEO_EXT.test(file.url) ? "video" : "image",
+        }))
+      : [{ url: mainImage.src, type: "image" }];
+
+  // Оставляем отдельно для удобства (используется в Schema/зуме)
+  const imageMedia = media.filter((m) => m.type === "image");
 
   const handleAddToCart = async () => {
     if (!product) return alert("Вариант товара недоступен");
@@ -121,6 +132,7 @@ export default function ProductPageClient({
   };
 
   const handleImageZoom = (index) => {
+    if (media[index]?.type === "video") return; // видео зумить не нужно
     setSelectedImageIndex(index);
     setIsImageZoomed(true);
   };
@@ -131,15 +143,11 @@ export default function ProductPageClient({
   };
 
   const handlePrevImage = () => {
-    setSelectedImageIndex((prev) =>
-      prev === 0 ? images.length - 1 : prev - 1,
-    );
+    setSelectedImageIndex((prev) => (prev === 0 ? media.length - 1 : prev - 1));
   };
 
   const handleNextImage = () => {
-    setSelectedImageIndex((prev) =>
-      prev === images.length - 1 ? 0 : prev + 1,
-    );
+    setSelectedImageIndex((prev) => (prev === media.length - 1 ? 0 : prev + 1));
   };
 
   const getArticleNote = (article) => {
@@ -174,27 +182,40 @@ export default function ProductPageClient({
               <div className="flex flex-col gap-4 lg:sticky lg:top-24">
                 {/* Главное изображение */}
                 <div className="relative aspect-square rounded-3xl overflow-hidden shadow-inner">
-                  {images[selectedImageIndex] ? (
+                  {media[selectedImageIndex] ? (
                     <>
-                      <link
-                        itemProp="image"
-                        href={`https://electroshit-pro.ru${images[selectedImageIndex] || mainImage}`}
-                      />
-                      <Image
-                        src={images[selectedImageIndex] || mainImage}
-                        alt={product.name || "Продукт"}
-                        height={800}
-                        width={800}
-                        className="object-contain w-full h-full transition-transform duration-700 hover:scale-110 cursor-zoom-in"
-                        onClick={() => handleImageZoom(selectedImageIndex)}
-                        preload={true}
-                      />
+                      {media[selectedImageIndex].type === "image" && (
+                        <link
+                          itemProp="image"
+                          href={`https://electroshit-pro.ru${media[selectedImageIndex].url}`}
+                        />
+                      )}
+
+                      {media[selectedImageIndex].type === "image" ? (
+                        <Image
+                          src={media[selectedImageIndex].url}
+                          alt={product.name || "Продукт"}
+                          height={800}
+                          width={800}
+                          className="object-contain w-full h-full transition-transform duration-700 hover:scale-110 cursor-zoom-in"
+                          onClick={() => handleImageZoom(selectedImageIndex)}
+                          preload={true}
+                        />
+                      ) : (
+                        <video
+                          src={media[selectedImageIndex].url}
+                          controls
+                          playsInline
+                          preload="metadata"
+                          className="object-contain w-full h-full bg-black"
+                        />
+                      )}
                     </>
                   ) : (
                     <Skeleton className="w-full h-full rounded-3xl" />
                   )}
 
-                  {/* Бейджи */}
+                  {/* Бейджи и артикул — оставляем без изменений */}
                   <div className="absolute top-4 left-4 flex flex-col gap-2">
                     <span className="bg-green-600 text-white text-[10px] lg:text-xs font-bold px-3 py-1.5 rounded-lg shadow-lg uppercase tracking-wider">
                       Новинка
@@ -211,7 +232,7 @@ export default function ProductPageClient({
 
                 {/* Миниатюры */}
                 <div className="flex gap-3 overflow-x-auto pb-2 no-scrollbar">
-                  {images.map((img, index) => (
+                  {media.map((item, index) => (
                     <button
                       key={index}
                       className={`relative flex-shrink-0 w-20 h-20 rounded-xl overflow-hidden border-2 transition-all duration-200 ${
@@ -221,13 +242,32 @@ export default function ProductPageClient({
                       }`}
                       onClick={() => setSelectedImageIndex(index)}
                     >
-                      <Image
-                        src={img}
-                        alt={`Preview ${index}`}
-                        fill
-                        sizes="(max-width: 768px) 100vw, 50vw"
-                        className="object-contain p-1"
-                      />
+                      {item.type === "image" ? (
+                        <Image
+                          src={item.url}
+                          alt={`Preview ${index}`}
+                          fill
+                          sizes="80px"
+                          className="object-contain p-1"
+                        />
+                      ) : (
+                        <>
+                          {/* Затемнённый блок + иконка Play */}
+                          <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
+                            <svg
+                              className="w-8 h-8 text-white drop-shadow-lg"
+                              viewBox="0 0 24 24"
+                              fill="currentColor"
+                            >
+                              <path d="M8 5v14l11-7z" />
+                            </svg>
+                          </div>
+                          {/* Подпись VIDEO */}
+                          <span className="absolute bottom-0.5 left-0 right-0 text-[8px] text-white text-center bg-black/60 font-bold uppercase">
+                            video
+                          </span>
+                        </>
+                      )}
                     </button>
                   ))}
                 </div>
@@ -857,13 +897,15 @@ export default function ProductPageClient({
               <h2 className="text-2xl font-bold mb-8 text-text">
                 {product.name}
               </h2>
-              <Image
-                src={images[selectedImageIndex] || mainImage}
-                alt={product.name || "Продукт"}
-                width={800}
-                height={800}
-                className="w-full max-w-[80vw] max-h-[60vh] object-contain rounded-lg transform transition-all duration-500 ease-in-out scale-100 hover:scale-105"
-              />
+              {media[selectedImageIndex]?.type === "image" && (
+                <Image
+                  src={media[selectedImageIndex].url}
+                  alt={product.name || "Продукт"}
+                  width={800}
+                  height={800}
+                  className="w-full max-w-[80vw] max-h-[60vh] object-contain rounded-lg transform transition-all duration-500 ease-in-out scale-100 hover:scale-105"
+                />
+              )}
               <div className="flex mt-16 mb-4 justify-around text-xs lg:text-xl">
                 <button
                   onClick={handleAddToCart}

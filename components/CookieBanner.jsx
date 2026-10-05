@@ -39,7 +39,7 @@ export default function CookieBanner() {
           onClick={acceptConsent}
           className="px-3 py-1 bg-blue-600 text-white rounded"
         >
-          Ясненько
+          Принимаю
         </button>
       </div>
     </div>
