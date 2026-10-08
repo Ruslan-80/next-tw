@@ -5,6 +5,10 @@ const nextConfig = {
   ...(process.env.NODE_ENV === "production" && { output: "standalone" }),
   images: {
     formats: ["image/avif", "image/webp"],
+    maximumDiskCacheSize: 100 * 1024 * 1024, // 100 MB — оставляем
+  },
+  experimental: {
+    imgOptTimeoutInSeconds: 30, // было 7 секунд по умолчанию
   },
   allowedDevOrigins: ["172.16.10.226", "localhost"],
   async headers() {

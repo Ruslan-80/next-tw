@@ -1,4 +1,4 @@
-FROM node:20.20.2-alpine AS base
+FROM node:22-alpine AS base
 
 # --- Слой зависимостей ---
 FROM base AS deps
@@ -34,7 +34,7 @@ ENV HOSTNAME="0.0.0.0"
 
 # 1. Устанавливаем prisma глобально в финальном слое
 # Это гарантирует наличие бинарников и движков (engines) в системе
-RUN npm install -g prisma@6.17.0
+RUN npm install -g prisma@6.18.0
 
 # 2. Копируем результаты сборки Next.js
 COPY --from=builder /app/public ./public
