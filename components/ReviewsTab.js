@@ -76,6 +76,31 @@ export default function ReviewsTab({ reviews = [], productId, onReviewAdded }) {
                   })
                 : "Давнее время";
 
+              const formattedReplyDate = review.adminReplyAt
+                ? new Date(review.adminReplyAt).toLocaleDateString("ru-RU", {
+                    day: "2-digit",
+                    month: "2-digit",
+                    year: "numeric",
+                  })
+                : null;
+
+              // adminImages может прийти как массив, JSON-строка или null
+              let adminImages = [];
+              if (Array.isArray(review.adminImages)) {
+                adminImages = review.adminImages;
+              } else if (typeof review.adminImages === "string") {
+                try {
+                  const parsed = JSON.parse(review.adminImages);
+                  if (Array.isArray(parsed)) adminImages = parsed;
+                } catch {
+                  // ignore
+                }
+              }
+
+              const hasAdminReply = Boolean(
+                review.adminReply && review.adminReply.trim(),
+              );
+
               return (
                 <div
                   key={review.id || index}
@@ -84,13 +109,11 @@ export default function ReviewsTab({ reviews = [], productId, onReviewAdded }) {
                   <div className="flex items-center justify-between flex-wrap gap-2">
                     <div className="flex items-center gap-3">
                       <div className="w-10 h-10 rounded-full bg-accent/20 text-accent font-bold flex items-center justify-center text-base">
-                        {(review.authorName ||
-                          review.name ||
-                          "А")[0].toUpperCase()}
+                        {(review.userName?.[0] || "А").toUpperCase()}
                       </div>
                       <div>
                         <div className="font-bold text-base">
-                          {review.authorName || review.userName || "Аноним"}
+                          {review.userName || "Аноним"}
                         </div>
                         <div className="text-xs text-textMuted">
                           {formattedDate}
@@ -113,9 +136,48 @@ export default function ReviewsTab({ reviews = [], productId, onReviewAdded }) {
                     </div>
                   </div>
 
-                  <p className="text-sm leading-relaxed text-text/90">
-                    {review.comment || review.text || review.content}
+                  <p className="text-sm leading-relaxed text-text/90 whitespace-pre-line">
+                    {review.text}
                   </p>
+
+                  {hasAdminReply && (
+                    <div className="mt-3 ml-4 pl-4 border-l-2 border-accent/50 bg-accent/5 rounded-r-xl py-3 pr-3 space-y-2">
+                      <div className="flex items-center gap-2 flex-wrap">
+                        <span className="text-xs font-bold text-accent uppercase tracking-wide">
+                          Ответ магазина
+                        </span>
+                        {formattedReplyDate && (
+                          <span className="text-xs text-textMuted">
+                            · {formattedReplyDate}
+                          </span>
+                        )}
+                      </div>
+
+                      <p className="text-sm leading-relaxed text-text/90 whitespace-pre-line">
+                        {review.adminReply}
+                      </p>
+
+                      {adminImages.length > 0 && (
+                        <div className="flex flex-wrap gap-2 pt-1">
+                          {adminImages.map((src, i) => (
+                            <a
+                              key={i}
+                              href={src}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="block"
+                            >
+                              <img
+                                src={src}
+                                alt={`Ответ магазина ${i + 1}`}
+                                className="w-20 h-20 object-cover rounded-lg border border-border hover:opacity-80 transition"
+                              />
+                            </a>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  )}
                 </div>
               );
             })}

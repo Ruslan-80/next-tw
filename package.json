@@ -19,7 +19,7 @@
     "buildsitemap": "node scripts/generate-categories.js && node scripts/generate-products.js && next-sitemap --config next-sitemap.config.js"
   },
   "engines": {
-    "node": ">=20.9.0"
+    "node": ">=20.20.2"
   },
   "dependencies": {
     "@dnd-kit/core": "^6.3.1",

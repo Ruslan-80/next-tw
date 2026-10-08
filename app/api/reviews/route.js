@@ -14,13 +14,31 @@ export async function GET(request) {
       );
     }
 
+    const parsedProductId = Number(productId);
+    if (!Number.isInteger(parsedProductId)) {
+      return NextResponse.json(
+        { error: "productId должен быть числом" },
+        { status: 400 },
+      );
+    }
+
     const reviews = await prisma.review.findMany({
       where: {
-        productId: Number(productId),
-        isApproved: true, // Загружаем только одобренные отзывы
+        productId: parsedProductId,
+        isApproved: false,
       },
-      orderBy: {
-        createdAt: "desc",
+      orderBy: { createdAt: "desc" },
+      // Отдаём только то, что нужно фронту
+      select: {
+        id: true,
+        rating: true,
+        text: true,
+        userName: true,
+        images: true,
+        adminReply: true,
+        adminImages: true,
+        adminReplyAt: true,
+        createdAt: true,
       },
     });
 
@@ -40,46 +58,71 @@ export async function POST(request) {
     const body = await request.json();
     const { productId, authorName, rating, comment } = body;
 
-    if (!productId || !authorName || !rating || !comment) {
+    const parsedProductId = Number(productId);
+    const parsedRating = Number(rating);
+
+    if (
+      !Number.isInteger(parsedProductId) ||
+      typeof authorName !== "string" ||
+      !authorName.trim() ||
+      !Number.isFinite(parsedRating) ||
+      parsedRating < 1 ||
+      parsedRating > 5 ||
+      typeof comment !== "string" ||
+      !comment.trim()
+    ) {
       return NextResponse.json(
-        { error: "Заполните все обязательные поля" },
+        { error: "Заполните все обязательные поля корректно" },
         { status: 400 },
       );
     }
 
-    const parsedProductId = Number(productId);
-    const parsedRating = Number(rating);
+    // Проверим, что товар существует
+    const product = await prisma.product.findUnique({
+      where: { id: parsedProductId },
+      select: { id: true },
+    });
+    if (!product) {
+      return NextResponse.json({ error: "Товар не найден" }, { status: 404 });
+    }
 
-    // 1. Создаем новый отзыв в БД
     const newReview = await prisma.review.create({
       data: {
         productId: parsedProductId,
-        userName: authorName,
+        userName: authorName.trim(),
         rating: parsedRating,
-        text: comment,
-        isApproved: true, // По умолчанию true (или false, если нужна предварительная модерация)
+        text: comment.trim(),
+        isApproved: false, // включи модерацию — тогда сообщение в форме честное
+        // Если хочешь публиковать сразу — поставь true и убери текст
+        // "появится после проверки" из ReviewsTab.
+      },
+      select: {
+        id: true,
+        rating: true,
+        text: true,
+        userName: true,
+        adminReply: true,
+        adminImages: true,
+        adminReplyAt: true,
+        createdAt: true,
       },
     });
 
-    // 2. Агрегируем и обновляем денормализованный рейтинг в Product
+    // Пересчитываем рейтинг товара только по одобренным отзывам
     const aggregate = await prisma.review.aggregate({
       where: {
         productId: parsedProductId,
         isApproved: true,
       },
-      _avg: {
-        rating: true,
-      },
-      _count: {
-        id: true,
-      },
+      _avg: { rating: true },
+      _count: { id: true },
     });
 
     await prisma.product.update({
       where: { id: parsedProductId },
       data: {
-        rating: aggregate._avg.rating || 0.0,
-        reviewsCount: aggregate._count.id || 0,
+        rating: aggregate._avg.rating ?? 0,
+        reviewsCount: aggregate._count.id ?? 0,
       },
     });
 
