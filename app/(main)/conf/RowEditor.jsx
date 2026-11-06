@@ -20,7 +20,7 @@ export const DEVICE_TYPES = [
 ];
 
 const DEVICE_COLOR = Object.fromEntries(
-  DEVICE_TYPES.map((d) => [d.value, d.color]),
+  DEVICE_TYPES.map((d) => [d.value, d.color])
 );
 
 // Бренды для каждого типа устройства
@@ -414,7 +414,7 @@ export default function RowEditor({
         <div className="flex items-end gap-2 flex-wrap text-xs">
           {rowNumber != null && (
             <span
-              className="text-[10px] font-bold w-5 h-5 rounded flex items-center justify-center flex-shrink-0 mb-0.5"
+              className="text-[10px] font-bold w-5 h-5 rounded flex items-center justify-center shrink-0 mb-0.5"
               style={{
                 backgroundColor: accentColor + "33",
                 color: accentColor,
@@ -630,12 +630,12 @@ export default function RowEditor({
               <ShieldCheck
                 size={15}
                 style={{ color: accentColor }}
-                className="flex-shrink-0"
+                className="shrink-0"
               />
               <span className="text-xs truncate">{item.product.header}</span>
             </div>
 
-            <div className="flex items-center gap-4 flex-shrink-0">
+            <div className="flex items-center gap-4 shrink-0">
               <div className="flex items-center rounded overflow-hidden border border-slate-700">
                 <button
                   type="button"
@@ -644,7 +644,7 @@ export default function RowEditor({
                 >
                   <Minus size={11} />
                 </button>
-                <span className="px-3 py-1 bg-cardBackground text-xs font-medium min-w-[32px] text-center">
+                <span className="px-3 py-1 bg-cardBackground text-xs font-medium min-w-8 text-center">
                   {localQty}
                 </span>
                 <button
@@ -661,7 +661,7 @@ export default function RowEditor({
                 style={{ color: accentColor }}
               >
                 {Math.round(localQty * item.product.price).toLocaleString(
-                  "ru-RU",
+                  "ru-RU"
                 )}{" "}
                 ₽
               </span>

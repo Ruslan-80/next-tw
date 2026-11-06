@@ -1,9 +1,6 @@
 "use client";
-import Link from "next/link";
 import ShieldConfigurator from "./configurator";
-// import ShieldConfigurator from "./ShieldConfigurator";
 import SchemaUploader from "./SchemaUploader";
-import { useState } from "react";
 
 export default function FAQ() {
   // const FaqJsonLd = FAQPageJSONLD();

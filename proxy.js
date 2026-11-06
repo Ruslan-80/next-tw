@@ -54,7 +54,7 @@ export function proxy(request) {
       .map((c) => {
         const [k, ...v] = c.split("=");
         return [k, v.join("=")];
-      }),
+      })
   );
 
   let token = cookies.cartToken;
@@ -74,7 +74,7 @@ export function proxy(request) {
         "SameSite=Lax",
       ]
         .filter(Boolean)
-        .join("; "),
+        .join("; ")
     );
   }
 

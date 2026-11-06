@@ -1,0 +1,7 @@
+npx prisma studio
+
+удалить папку .next
+npx rimraf .next
+
+Дополнительная очистка кэша Node.js
+npm cache clean --force

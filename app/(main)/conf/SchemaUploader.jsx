@@ -43,7 +43,7 @@ async function pdfToPngs(file) {
   if (typeof Map.prototype.getOrInsertComputed !== "function") {
     Map.prototype.getOrInsertComputed = function polyfillGetOrInsertComputed(
       key,
-      computeFn,
+      computeFn
     ) {
       if (this.has(key)) return this.get(key);
       const value = computeFn(key);
@@ -76,7 +76,7 @@ async function pdfToPngs(file) {
     const blob = await new Promise((resolve, reject) => {
       canvas.toBlob(
         (b) => (b ? resolve(b) : reject(new Error("toBlob failed"))),
-        "image/png",
+        "image/png"
       );
     });
 
@@ -233,7 +233,7 @@ export default function SchemaUploader() {
           form.append(
             "file",
             blob,
-            label.replace(/[^a-zA-Zа-яА-Я0-9._-]/g, "_") + ".png",
+            label.replace(/[^a-zA-Zа-яА-Я0-9._-]/g, "_") + ".png"
           );
 
           // const res = await fetch("/api/v1/analyze-schema", {
@@ -276,7 +276,7 @@ export default function SchemaUploader() {
     <div className="bg-cardBackground border border-slate-800 rounded-xl p-5 space-y-4">
       {/* Заголовок */}
       <div className="flex items-center gap-3">
-        <div className="w-1 h-6 rounded-full bg-amber-500 flex-shrink-0" />
+        <div className="w-1 h-6 rounded-full bg-amber-500 shrink-0" />
         <h2 className="text-base font-semibold text-amber-400">Анализ схемы</h2>
         <span className="text-[10px] text-slate-500 uppercase tracking-wider">
           AI

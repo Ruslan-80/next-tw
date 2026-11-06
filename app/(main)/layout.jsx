@@ -29,7 +29,7 @@ export default function MainLayout({ children }) {
               <MobileSearch />
             </div>
 
-            <main className="flex-1 pt-[60px] md:pt-0">{children}</main>
+            <main className="flex-1 pt-15 md:pt-0">{children}</main>
             <Footer />
             <div className="block md:hidden">
               <BottomNavigation />
