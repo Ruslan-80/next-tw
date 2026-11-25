@@ -128,8 +128,8 @@ export default function Blog() {
               </div>
 
               {/* Right Media */}
-              <div className="order-1 lg:order-2 relative h-96 lg:h-full lg:min-h-[400px]">
-                <div className="absolute inset-0 bg-gradient-to-br from-accent/20 to-primary/20 blur-3xl rounded-2xl" />
+              <div className="order-1 lg:order-2 relative h-96 lg:h-full lg:min-h-100">
+                <div className="absolute inset-0 bg-linear-to-br from-accent/20 to-primary/20 blur-3xl rounded-2xl" />
                 <Image
                   src={banner}
                   alt="Щиты ВРУ на 1 ввод"
@@ -190,9 +190,7 @@ export default function Blog() {
                     key={i}
                     className="flex gap-4 text-xl lg:text-2xl leading-relaxed text-text/90"
                   >
-                    <span className="text-accent font-bold flex-shrink-0">
-                      •
-                    </span>
+                    <span className="text-accent font-bold shrink-0">•</span>
                     <span>
                       <span className="font-semibold text-text">
                         {item.title}
@@ -261,7 +259,7 @@ export default function Blog() {
                 </p>
               </div>
 
-              <div className="relative aspect-[16/9] w-full overflow-hidden rounded-2xl border border-border bg-card shadow-lg mt-8">
+              <div className="relative aspect-video w-full overflow-hidden rounded-2xl border border-border bg-card shadow-lg mt-8">
                 <Image
                   src="/images/blogs/vru-photo-1.jpeg"
                   alt="Внутреннее устройство шкафа ВРУ: медные сборные шины, защитная аппаратура и нижний ввод кабеля"
@@ -284,7 +282,7 @@ export default function Blog() {
               </p>
               <ul className="space-y-4 pl-4 mb-8">
                 <li className="flex gap-4 text-xl lg:text-2xl leading-relaxed text-text/90">
-                  <span className="text-accent font-bold flex-shrink-0">✓</span>
+                  <span className="text-accent font-bold shrink-0">✓</span>
                   <span>
                     Для зданий высотой до 5 этажей применяются компактные
                     однопанельные ВРУ (номинальные токи на вводе ограничены 160
@@ -292,7 +290,7 @@ export default function Blog() {
                   </span>
                 </li>
                 <li className="flex gap-4 text-xl lg:text-2xl leading-relaxed text-text/90">
-                  <span className="text-accent font-bold flex-shrink-0">✓</span>
+                  <span className="text-accent font-bold shrink-0">✓</span>
                   <span>
                     Для жилых комплексов свыше 5 этажей монтируются
                     многопанельные ВРУ.
@@ -333,7 +331,7 @@ export default function Blog() {
                 ))}
               </div>
 
-              <div className="relative aspect-[16/9] w-full overflow-hidden rounded-2xl border border-border bg-card shadow-lg">
+              <div className="relative aspect-video w-full overflow-hidden rounded-2xl border border-border bg-card shadow-lg">
                 <Image
                   src="/images/blogs/vru-photo-2.jpeg"
                   alt="Схема многопанельного ВРУ для многоквартирного дома с панелями АВР и распределения"
@@ -445,16 +443,14 @@ export default function Blog() {
                       key={i}
                       className="flex gap-4 text-xl lg:text-2xl text-text/90 leading-relaxed"
                     >
-                      <span className="text-accent font-bold flex-shrink-0">
-                        ✓
-                      </span>
+                      <span className="text-accent font-bold shrink-0">✓</span>
                       <span>{item}</span>
                     </li>
                   ))}
                 </ul>
               </div>
 
-              <div className="relative aspect-[16/9] w-full overflow-hidden rounded-2xl border border-border bg-card shadow-lg">
+              <div className="relative aspect-video w-full overflow-hidden rounded-2xl border border-border bg-card shadow-lg">
                 <Image
                   src="/images/blogs/vru-photo-3.jpeg"
                   alt="Пример технического чертежа однолинейной схемы ВРУ для расчета стоимости"

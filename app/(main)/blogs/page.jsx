@@ -57,7 +57,7 @@ export default async function BlogsList() {
         image: module.metadata?.image || "/images/blog-placeholder.jpg",
         href: `/blogs/${slug}`,
       };
-    }),
+    })
   );
 
   // Сортировка по дате с использованием парсера (от новых к старым)
@@ -66,7 +66,7 @@ export default async function BlogsList() {
   return (
     <main id="main-content" role="main">
       {/* Breadcrumbs */}
-      <section className="sticky top-0 z-50 border-b border-card bg-card backdrop-blur supports-[backdrop-filter]:bg-card/60">
+      <section className="sticky top-0 z-50 border-b border-card bg-card backdrop-blur supports-backdrop-filter:bg-card/60">
         <nav
           className="container mx-auto px-6 py-2 text-sm text-text"
           itemScope

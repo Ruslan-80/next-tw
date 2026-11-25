@@ -70,7 +70,13 @@ export async function generateMetadata({ params, searchParams }) {
   if (page > 1) title = `${title} - Страница ${page}`;
 
   const canonicalUrl =
-    page >= 1 ? `/catalog/${slug}` : `/catalog/${slug}?page=${page}`;
+    page > 1
+      ? `${process.env.NEXT_PUBLIC_SITE_URL}/catalog/${slug}?page=${page}`
+      : `${process.env.NEXT_PUBLIC_SITE_URL}/catalog/${slug}`;
+
+  // const canonicalUrl =
+  //   page > 1 ? `/catalog/${slug}` : `/catalog/${slug}?page=${page}`;
+  // page > 1 ? `/catalog/${slug}?page=${page}` : `...`;
 
   const imgCategoryUrl = category.imageUrl
     ? `${process.env.NEXT_PUBLIC_SITE_URL}${category.imageUrl}`
@@ -160,8 +166,8 @@ export default async function CategoryPage({ params, searchParams }) {
     selectedAttribute === "kolichestvo-kvartir-schetchikov"
       ? ` на ${selectedValue} квартиры`
       : !h1Text && selectedValue
-        ? ` (${selectedValue})`
-        : "";
+      ? ` (${selectedValue})`
+      : "";
   const finalH1 = h1Text || `${category.fullName}${displaySuffix}`;
 
   const breadcrumbs = [];
@@ -200,7 +206,7 @@ export default async function CategoryPage({ params, searchParams }) {
     products,
     baseSlug,
     page,
-    canonicalUrl,
+    canonicalUrl
   );
 
   return (

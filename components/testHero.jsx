@@ -20,7 +20,7 @@ export default function Hero() {
   return (
     <section className="h-screen flex items-center justify-center relative overflow-hidden">
       {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black via-black/80 to-black" />
+      <div className="absolute inset-0 bg-linear-to-b from-black via-black/80 to-black" />
 
       {/* Big text */}
       <h1

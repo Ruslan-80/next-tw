@@ -57,6 +57,7 @@ export default function Support() {
           <input
             type="text"
             placeholder="Ваше имя"
+            aria-label="Ваше имя"
             className="w-full p-2 mb-4 border rounded"
           />
           <input
@@ -66,6 +67,7 @@ export default function Support() {
           />
           <textarea
             placeholder="Ваше сообщение"
+            aria-label="Ваше сообщение"
             className="w-full p-2 mb-4 border rounded"
             rows={5}
           ></textarea>

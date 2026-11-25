@@ -56,6 +56,7 @@ export default function ConfLoginPage() {
               onChange={(e) => setLogin(e.target.value)}
               className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent dark:bg-background dark:border-gray-700 text-foreground"
               placeholder="Введите логин"
+              label="Логин"
             />
           </div>
 
@@ -70,6 +71,7 @@ export default function ConfLoginPage() {
               onChange={(e) => setPassword(e.target.value)}
               className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent dark:bg-background dark:border-gray-700 text-foreground"
               placeholder="••••••••"
+              label="Пароль"
             />
           </div>
 

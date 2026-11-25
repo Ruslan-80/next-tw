@@ -54,6 +54,7 @@ export default function FooterSubscribeForm() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="Ваш email"
+            label="Ваш email"
             className="bg-background border border-accent/30 rounded-l-lg px-4 py-2 w-full focus:outline-none focus:border-accent text-sm text-foreground"
           />
           <button
@@ -75,6 +76,7 @@ export default function FooterSubscribeForm() {
           <input
             type="checkbox"
             id="footer_privacy"
+            aria-label="Согласие на обработку персональных данных"
             checked={agreed}
             onChange={(e) => setAgreed(e.target.checked)}
             className="mt-1 h-3.5 w-3.5 rounded border-gray-300 text-accent focus:ring-accent cursor-pointer"

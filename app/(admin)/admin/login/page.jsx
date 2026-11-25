@@ -56,6 +56,7 @@ export default function AdminLoginPage() {
             <input
               id="admin_login"
               type="text"
+              label="Логин"
               required
               value={login}
               onChange={(e) => setLogin(e.target.value)}
@@ -74,6 +75,7 @@ export default function AdminLoginPage() {
             <input
               id="admin_password"
               type="password"
+              label="Пароль"
               required
               value={password}
               onChange={(e) => setPassword(e.target.value)}

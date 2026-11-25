@@ -78,6 +78,7 @@ export default function MobileSearch() {
             name="query"
             type="text"
             placeholder="Поиск товаров..."
+            aria-label="Поиск товаров"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             className="w-full bg-card border-none rounded-2xl px-5 py-2.5 pr-12 text-sm focus:ring-2 focus:ring-blue-500/20 transition-all"
@@ -94,7 +95,7 @@ export default function MobileSearch() {
         {isOpen && (
           <div
             ref={dropdownRef}
-            className="fixed inset-x-0 top-[60px] bottom-0 bg-white z-50 overflow-y-auto absolute top-full bottom-auto inset-x-0 mt-3 w-full max-h-[60vh] rounded-3xl shadow-2xl border border-slate-100"
+            className="fixed inset-x-0 top-15 bottom-0 bg-white z-50 overflow-y-auto mt-3 w-full max-h-[60vh] rounded-3xl shadow-2xl border border-slate-100"
           >
             <div className="flex flex-col h-full">
               <div className="flex-1 overflow-y-auto custom-scrollbar">
@@ -111,7 +112,7 @@ export default function MobileSearch() {
                           className="flex items-center gap-4 p-4 hover:bg-slate-50 transition-colors group"
                         >
                           {product.image ? (
-                            <div className="relative w-12 h-12 flex-shrink-0 bg-white border border-slate-100 rounded-xl overflow-hidden">
+                            <div className="relative w-12 h-12 shrink-0 bg-white border border-slate-100 rounded-xl overflow-hidden">
                               <Image
                                 src={product.image}
                                 alt={product.name}

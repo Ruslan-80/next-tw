@@ -52,7 +52,11 @@ export async function generateMetadata({ params, searchParams }) {
     title = `${title} - Страница ${page}`;
   }
 
-  const canonicalUrl = `/catalog/${slug}${page > 1 ? `?page=${page}` : ""}`;
+  // const canonicalUrl = `/catalog/${slug}${page > 1 ? `?page=${page}` : ""}`;
+  const canonicalUrl =
+    page > 1
+      ? `${process.env.NEXT_PUBLIC_SITE_URL}/catalog/${slug}?page=${page}`
+      : `${process.env.NEXT_PUBLIC_SITE_URL}/catalog/${slug}`;
 
   return {
     metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL),

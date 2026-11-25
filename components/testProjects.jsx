@@ -14,7 +14,7 @@ export default function Projects() {
           >
             <img
               src={p.img}
-              className="w-full h-[400px] object-cover transition-transform duration-700 group-hover:scale-110"
+              className="w-full h-100 object-cover transition-transform duration-700 group-hover:scale-110"
             />
 
             <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition" />

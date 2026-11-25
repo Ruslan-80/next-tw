@@ -22,7 +22,7 @@ export default function CartClient({ cartData, items, item }) {
   const totalPrice = items.reduce(
     (sum, item) => sum + item.product.basePrice * item.quantity,
     0,
-    0,
+    0
   );
 
   // Валидация телефона
@@ -90,7 +90,7 @@ export default function CartClient({ cartData, items, item }) {
         return { success: false, error: error.message };
       }
     },
-    { success: true },
+    { success: true }
   );
 
   return (
@@ -239,6 +239,7 @@ export default function CartClient({ cartData, items, item }) {
                   <textarea
                     id="comment"
                     name="comment"
+                    label="Комментарий к заказу"
                     rows={4}
                     className="block w-full border border-gray-300 rounded-lg p-3 focus:ring-orange-400 focus:border-orange-400"
                     placeholder="Особенности доставки, пожелания и т.д."
@@ -273,7 +274,7 @@ export default function CartClient({ cartData, items, item }) {
 // Компонент для отдельного товара в корзине
 function CartItem({ item }) {
   const [optimisticQuantity, setOptimisticQuantity] = useOptimistic(
-    item.quantity,
+    item.quantity
   );
   const { setCart } = useCartStore();
 
@@ -297,7 +298,7 @@ function CartItem({ item }) {
         return { success: false, error: error.message };
       }
     },
-    { success: true },
+    { success: true }
   );
 
   const [deleteState, deleteAction, deletePending] = useActionState(
@@ -312,7 +313,7 @@ function CartItem({ item }) {
         return { success: false, error: error.message };
       }
     },
-    { success: true },
+    { success: true }
   );
 
   return (
@@ -321,7 +322,7 @@ function CartItem({ item }) {
       <div className="flex items-center justify-between md:hidden">
         {/* Изображение и название */}
         <div className="flex items-center space-x-3">
-          <div className="w-16 h-16 flex-shrink-0">
+          <div className="w-16 h-16 shrink-0">
             {item.product.mediaFiles?.[0]?.url ? (
               <div className="relative w-full h-full">
                 <Image
@@ -352,7 +353,7 @@ function CartItem({ item }) {
         <div className="text-right">
           <p className="text-textForeground font-medium">
             {(item.product.basePrice * optimisticQuantity).toLocaleString(
-              "ru-RU",
+              "ru-RU"
             )}{" "}
             ₽
           </p>
@@ -477,7 +478,7 @@ function CartItem({ item }) {
         <div className="col-span-1 flex flex-col justify-center items-start">
           <p className="text-textForeground">
             {(item.product.basePrice * optimisticQuantity).toLocaleString(
-              "ru-RU",
+              "ru-RU"
             )}{" "}
             ₽
           </p>

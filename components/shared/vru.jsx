@@ -74,7 +74,7 @@ export function vruTop() {
           </div>
 
           <div className="relative animate-slide-in-right">
-            <div className="absolute inset-0 bg-gradient-to-br from-accent/20 to-primary/20 rounded-3xl blur-3xl"></div>
+            <div className="absolute inset-0 bg-linear-to-br from-accent/20 to-primary/20 rounded-3xl blur-3xl"></div>
             <div className="relative w-full max-w-[350px] md:max-w-[450px] lg:max-w-[500px] aspect-square rounded-3xl p-4 md:p-6 lg:p-8 shadow-2xl flex justify-center mx-auto">
               <Image
                 src="/images/categories/vru-all.webp"
@@ -423,28 +423,44 @@ export function vruBottom() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 mb-6">
             <Button
               variant={activeTab === "tab-1" ? "default" : "outline"}
-              className={`h-auto py-3 px-4 text-sm font-bold justify-center ${activeTab === "tab-1" ? "bg-accent text-background hover:bg-accent/90" : ""}`}
+              className={`h-auto py-3 px-4 text-sm font-bold justify-center ${
+                activeTab === "tab-1"
+                  ? "bg-accent text-background hover:bg-accent/90"
+                  : ""
+              }`}
               onClick={() => setActiveTab("tab-1")}
             >
               Расшифровка маркировки
             </Button>
             <Button
               variant={activeTab === "tab-2" ? "default" : "outline"}
-              className={`h-auto py-3 px-4 text-sm font-bold justify-center ${activeTab === "tab-2" ? "bg-accent text-background hover:bg-accent/90" : ""}`}
+              className={`h-auto py-3 px-4 text-sm font-bold justify-center ${
+                activeTab === "tab-2"
+                  ? "bg-accent text-background hover:bg-accent/90"
+                  : ""
+              }`}
               onClick={() => setActiveTab("tab-2")}
             >
               Тип ВРУ
             </Button>
             <Button
               variant={activeTab === "tab-3" ? "default" : "outline"}
-              className={`h-auto py-3 px-4 text-sm font-bold justify-center ${activeTab === "tab-3" ? "bg-accent text-background hover:bg-accent/90" : ""}`}
+              className={`h-auto py-3 px-4 text-sm font-bold justify-center ${
+                activeTab === "tab-3"
+                  ? "bg-accent text-background hover:bg-accent/90"
+                  : ""
+              }`}
               onClick={() => setActiveTab("tab-3")}
             >
               Номинальный ток
             </Button>
             <Button
               variant={activeTab === "tab-4" ? "default" : "outline"}
-              className={`h-auto py-3 px-4 text-sm font-bold justify-center ${activeTab === "tab-4" ? "bg-accent text-background hover:bg-accent/90" : ""}`}
+              className={`h-auto py-3 px-4 text-sm font-bold justify-center ${
+                activeTab === "tab-4"
+                  ? "bg-accent text-background hover:bg-accent/90"
+                  : ""
+              }`}
               onClick={() => setActiveTab("tab-4")}
             >
               Схема ввода
@@ -464,6 +480,7 @@ export function vruBottom() {
                     value={markInput}
                     onChange={(e) => setMarkInput(e.target.value)}
                     placeholder="Например: ВРУ-1-21-10 УХЛ4"
+                    aria-label="Маркировка ВРУ"
                     className="w-full border border-accent rounded-lg px-3 py-2 text-sm bg-background focus:outline-none focus:ring-2 focus:ring-accent"
                   />
                   <span className="block mt-1 text-xs text-muted-foreground">
@@ -481,7 +498,11 @@ export function vruBottom() {
 
               {markResult && (
                 <div
-                  className={`p-4 rounded-lg border-l-4 ${markResult.error ? "bg-destructive/10 border-destructive text-destructive" : "bg-card border-accent"}`}
+                  className={`p-4 rounded-lg border-l-4 ${
+                    markResult.error
+                      ? "bg-destructive/10 border-destructive text-destructive"
+                      : "bg-card border-accent"
+                  }`}
                 >
                   {markResult.error ? (
                     <p className="text-sm font-semibold">{markResult.error}</p>
@@ -633,7 +654,11 @@ export function vruBottom() {
 
               {typeResult && (
                 <div
-                  className={`p-4 rounded-lg border-l-4 ${typeResult.error ? "bg-destructive/10 border-destructive text-destructive" : "bg-card border-accent"}`}
+                  className={`p-4 rounded-lg border-l-4 ${
+                    typeResult.error
+                      ? "bg-destructive/10 border-destructive text-destructive"
+                      : "bg-card border-accent"
+                  }`}
                 >
                   {typeResult.error ? (
                     <p className="text-sm font-semibold">{typeResult.error}</p>
@@ -701,6 +726,7 @@ export function vruBottom() {
                       value={power}
                       onChange={(e) => setPower(e.target.value)}
                       placeholder="Например: 50"
+                      label="Расчетная мощность, кВт"
                       className="w-full border border-accent rounded-lg px-3 py-2 text-sm bg-background focus:outline-none focus:ring-2 focus:ring-accent"
                     />
                   </div>
@@ -744,7 +770,11 @@ export function vruBottom() {
 
               {calcCurrentResult && (
                 <div
-                  className={`p-4 rounded-lg border-l-4 ${calcCurrentResult.error ? "bg-destructive/10 border-destructive text-destructive" : "bg-card border-accent"}`}
+                  className={`p-4 rounded-lg border-l-4 ${
+                    calcCurrentResult.error
+                      ? "bg-destructive/10 border-destructive text-destructive"
+                      : "bg-card border-accent"
+                  }`}
                 >
                   {calcCurrentResult.error ? (
                     <p className="text-sm font-semibold">
@@ -847,7 +877,11 @@ export function vruBottom() {
 
               {schemeResult && (
                 <div
-                  className={`p-4 rounded-lg border-l-4 ${schemeResult.error ? "bg-destructive/10 border-destructive text-destructive" : "bg-card border-accent"}`}
+                  className={`p-4 rounded-lg border-l-4 ${
+                    schemeResult.error
+                      ? "bg-destructive/10 border-destructive text-destructive"
+                      : "bg-card border-accent"
+                  }`}
                 >
                   {schemeResult.error ? (
                     <p className="text-sm font-semibold">

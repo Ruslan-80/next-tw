@@ -46,7 +46,7 @@ export default function ReviewsTab({ reviews = [], productId, onReviewAdded }) {
       }
     } catch (err) {
       setErrorMessage(
-        err.message || "Не удалось отправить отзыв. Попробуйте позже.",
+        err.message || "Не удалось отправить отзыв. Попробуйте позже."
       );
     } finally {
       setIsSubmitting(false);
@@ -98,7 +98,7 @@ export default function ReviewsTab({ reviews = [], productId, onReviewAdded }) {
               }
 
               const hasAdminReply = Boolean(
-                review.adminReply && review.adminReply.trim(),
+                review.adminReply && review.adminReply.trim()
               );
 
               return (
@@ -240,6 +240,7 @@ export default function ReviewsTab({ reviews = [], productId, onReviewAdded }) {
                 setFormData((prev) => ({ ...prev, authorName: e.target.value }))
               }
               placeholder="Иван И."
+              label="Ваше имя"
               className="w-full px-4 py-2.5 rounded-xl bg-background border border-border focus:border-accent focus:outline-none text-sm"
             />
           </div>
@@ -254,6 +255,7 @@ export default function ReviewsTab({ reviews = [], productId, onReviewAdded }) {
                 setFormData((prev) => ({ ...prev, comment: e.target.value }))
               }
               placeholder="Расскажите о качестве товара и сроках доставки..."
+              label="Отзыв"
               className="w-full px-4 py-2.5 rounded-xl bg-background border border-border focus:border-accent focus:outline-none text-sm resize-y"
             />
           </div>

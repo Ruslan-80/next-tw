@@ -83,7 +83,7 @@ export function vru4Top() {
 
           <div className="relative animate-slide-in-right">
             {/* Светящееся размытие позади */}
-            <div className="absolute inset-0 bg-gradient-to-br from-accent/20 to-primary/20 rounded-3xl blur-3xl"></div>
+            <div className="absolute inset-0 bg-linear-to-br from-accent/20 to-primary/20 rounded-3xl blur-3xl"></div>
 
             {/* Адаптивный контейнер */}
             <div className="relative w-full max-w-[350px] md:max-w-[450px] lg:max-w-[500px] aspect-square rounded-3xl p-4 md:p-6 lg:p-8 shadow-2xl flex justify-center mx-auto">
@@ -360,7 +360,7 @@ export function vru4Bottom() {
   const totalPages = Math.ceil(products.length / rowsPerPage);
   const currentProducts = products.slice(
     (currentPage - 1) * rowsPerPage,
-    currentPage * rowsPerPage,
+    currentPage * rowsPerPage
   );
 
   // Инициализация MathJax
@@ -594,7 +594,7 @@ export function vru4Bottom() {
       multiPanel: "многопанельное ВРУ",
     };
     const nominalCurrent = nominalSets[vruType].find(
-      (item) => item >= currentWithReserve,
+      (item) => item >= currentWithReserve
     );
 
     setCurrentResult({
@@ -740,6 +740,7 @@ export function vru4Bottom() {
                     id="vru-mark-input"
                     className="w-full p-3 border rounded-lg text-base"
                     placeholder="Например: ВРУ-1-21-10 УХЛ4"
+                    aria-label="Маркировка ВРУ"
                     value={markInput}
                     onChange={(e) => setMarkInput(e.target.value)}
                   />
@@ -755,7 +756,11 @@ export function vru4Bottom() {
 
               {markResult && (
                 <div
-                  className={`mt-6 p-4 rounded-lg border text-base ${markResult.isError ? "border-red-300 bg-red-50 text-red-800" : "border-blue-200 bg-blue-50 text-blue-900"}`}
+                  className={`mt-6 p-4 rounded-lg border text-base ${
+                    markResult.isError
+                      ? "border-red-300 bg-red-50 text-red-800"
+                      : "border-blue-200 bg-blue-50 text-blue-900"
+                  }`}
                 >
                   {markResult.isError ? (
                     <div>
@@ -907,6 +912,7 @@ export function vru4Bottom() {
                       min="1"
                       max="100"
                       placeholder="Например: 9"
+                      aria-label="Этажность"
                       value={typeForm.floors}
                       onChange={(e) =>
                         setTypeForm({ ...typeForm, floors: e.target.value })
@@ -962,7 +968,11 @@ export function vru4Bottom() {
 
               {typeResult && (
                 <div
-                  className={`mt-6 p-4 rounded-lg border text-base ${typeResult.isError ? "border-red-300 bg-red-50 text-red-800" : "border-blue-200 bg-blue-50 text-blue-900"}`}
+                  className={`mt-6 p-4 rounded-lg border text-base ${
+                    typeResult.isError
+                      ? "border-red-300 bg-red-50 text-red-800"
+                      : "border-blue-200 bg-blue-50 text-blue-900"
+                  }`}
                 >
                   {typeResult.isError ? (
                     <div>
@@ -1072,6 +1082,7 @@ export function vru4Bottom() {
                       min="0.1"
                       step="0.1"
                       placeholder="Например: 50"
+                      aria-label="Расчетная мощность, кВт"
                       value={currentForm.power}
                       onChange={(e) =>
                         setCurrentForm({
@@ -1136,7 +1147,11 @@ export function vru4Bottom() {
 
               {currentResult && (
                 <div
-                  className={`mt-6 p-4 rounded-lg border text-base ${currentResult.isError ? "border-red-300 bg-red-50 text-red-800" : "border-blue-200 bg-blue-50 text-blue-900"}`}
+                  className={`mt-6 p-4 rounded-lg border text-base ${
+                    currentResult.isError
+                      ? "border-red-300 bg-red-50 text-red-800"
+                      : "border-blue-200 bg-blue-50 text-blue-900"
+                  }`}
                 >
                   {currentResult.isError ? (
                     <div>
@@ -1290,7 +1305,11 @@ export function vru4Bottom() {
 
               {schemeResult && (
                 <div
-                  className={`mt-6 p-4 rounded-lg border text-base ${schemeResult.isError ? "border-red-300 bg-red-50 text-red-800" : "border-blue-200 bg-blue-50 text-blue-900"}`}
+                  className={`mt-6 p-4 rounded-lg border text-base ${
+                    schemeResult.isError
+                      ? "border-red-300 bg-red-50 text-red-800"
+                      : "border-blue-200 bg-blue-50 text-blue-900"
+                  }`}
                 >
                   {schemeResult.isError ? (
                     <div>

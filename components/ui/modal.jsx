@@ -64,7 +64,7 @@ export default function Modal({
   // Удаление файла из списка перед отправкой
   const handleRemoveFile = (indexToRemove) => {
     setFiles((prevFiles) =>
-      prevFiles.filter((_, index) => index !== indexToRemove),
+      prevFiles.filter((_, index) => index !== indexToRemove)
     );
   };
 
@@ -178,6 +178,7 @@ export default function Modal({
                 value={formData.contact}
                 onChange={handleChange}
                 placeholder="Телефон или email"
+                label="Телефон или email"
                 className="w-full p-3 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300 dark:bg-gray-800 dark:border-gray-600 dark:text-white"
               />
               <textarea
@@ -185,6 +186,7 @@ export default function Modal({
                 value={formData.message}
                 onChange={handleChange}
                 placeholder="Сообщение (опционально)"
+                label="Сообщение (опционально)"
                 rows={3}
                 className="w-full p-3 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300 dark:bg-gray-800 dark:border-gray-600 dark:text-white"
               />
@@ -196,6 +198,9 @@ export default function Modal({
                 </label>
                 <input
                   type="file"
+                  id="files"
+                  name="files"
+                  label="Прикрепить файлы"
                   multiple
                   onChange={handleFileChange}
                   accept="image/*,.pdf,.doc,.docx,.xls,.xlsx,.zip,.txt"
@@ -210,11 +215,10 @@ export default function Modal({
                         key={index}
                         className="flex items-center justify-between text-xs bg-gray-100 dark:bg-gray-800 p-2 rounded"
                       >
-                        <span className="truncate max-w-[200px]">
-                          {file.name}
-                        </span>
+                        <span className="truncate max-w-50">{file.name}</span>
                         <button
                           type="button"
+                          aria-label="Удалить файл"
                           onClick={() => handleRemoveFile(index)}
                           className="text-red-500 hover:text-red-700 ml-2 font-bold"
                         >
@@ -229,6 +233,7 @@ export default function Modal({
               <input
                 type="text"
                 name="name"
+                label="Имя"
                 value={formData.name}
                 onChange={handleChange}
                 style={{ display: "none" }}
@@ -236,6 +241,7 @@ export default function Modal({
               <input
                 type="text"
                 name="productName"
+                label="Название продукта"
                 value={formData.productName}
                 onChange={handleChange}
                 style={{ display: "none" }}
@@ -245,6 +251,7 @@ export default function Modal({
                 <input
                   type="checkbox"
                   id="privacy"
+                  aria-label="Согласие на обработку персональных данных"
                   checked={agreed}
                   onChange={(e) => setAgreed(e.target.checked)}
                   className="mt-1 h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500 cursor-pointer"

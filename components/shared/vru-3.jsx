@@ -76,10 +76,10 @@ export function vru3Top() {
 
           <div className="relative animate-slide-in-right">
             {/* Светящееся размытие позади */}
-            <div className="absolute inset-0 bg-gradient-to-br from-accent/20 to-primary/20 rounded-3xl blur-3xl"></div>
+            <div className="absolute inset-0 bg-linear-to-br from-accent/20 to-primary/20 rounded-3xl blur-3xl"></div>
 
             {/* Адаптивный контейнер */}
-            <div className="relative w-full max-w-[350px] md:max-w-[450px] lg:max-w-[500px] aspect-square rounded-3xl p-4 md:p-6 lg:p-8 shadow-2xl flex justify-center mx-auto">
+            <div className="relative w-full max-w-87.5 md:max-w-112.5 lg:max-w-125 aspect-square rounded-3xl p-4 md:p-6 lg:p-8 shadow-2xl flex justify-center mx-auto">
               <Image
                 src="/images/categories/vvodno-raspredelitelnye-ustrojstva-vru.webp"
                 alt="Вводно-распределительные устройства ВРУ-1"
@@ -186,7 +186,7 @@ export function vru3Bottom() {
           номинальному току, количеству вводов и климатическому исполнению.
         </p>
         <div className="overflow-x-auto rounded-xl border border-text shadow-lg">
-          <table className="w-full text-sm min-w-[900px]">
+          <table className="w-full text-sm min-w-225">
             <thead className="text-left">
               <tr>
                 {[
@@ -522,6 +522,7 @@ export function vru3Bottom() {
                     onChange={(e) => handlePowerChange(e.target.value)}
                     className="w-full p-2 border rounded"
                     placeholder="100"
+                    aria-label="Мощность, P (кВт)"
                   />
                 </div>
                 <div>
@@ -535,6 +536,7 @@ export function vru3Bottom() {
                     onChange={(e) => handleVoltageChange(e.target.value)}
                     className="w-full p-2 border rounded"
                     placeholder="0.38"
+                    aria-label="Напряжение, U (кВ)"
                   />
                   <small className="text-gray-500 block mt-1">
                     * 0.38 кВ = 380 В
@@ -551,6 +553,7 @@ export function vru3Bottom() {
                     onChange={(e) => handleCosPhiChange(e.target.value)}
                     className="w-full p-2 border rounded"
                     placeholder="0.95"
+                    aria-label="Коэфф. мощности, cos(φ)"
                   />
                 </div>
                 <div className="p-4 font-bold text-blue-800 border-l-4 border-blue-600 rounded">

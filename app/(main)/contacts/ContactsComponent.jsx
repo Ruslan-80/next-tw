@@ -85,13 +85,13 @@ const ContactsComponent = () => {
             <CardContent className="flex flex-col gap-2">
               <Link
                 href="tel:+74993901467"
-                className="text-muted-foreground pl-[2rem]"
+                className="text-muted-foreground pl-8"
               >
                 +7 (499) 390-14-67
               </Link>
               <Link
                 href="tel:+79299759489"
-                className="text-muted-foreground pl-[2rem]"
+                className="text-muted-foreground pl-8"
               >
                 +7 (929) 975-94-89
               </Link>
@@ -208,7 +208,7 @@ const ContactsComponent = () => {
                 <dt className="text-sm lg:text-xl shrink-0 pr-2">
                   {item.name}
                 </dt>
-                <dd className="flex-grow border-b border-dotted border-gray-400 mx-1 mb-1" />
+                <dd className="grow border-b border-dotted border-gray-400 mx-1 mb-1" />
                 <dd className="text-sm lg:text-xl shrink-0 lg:pl-2 text-left lg:text-right font-semibold">
                   {item.value}
                 </dd>
@@ -252,6 +252,7 @@ const ContactsComponent = () => {
               <Input
                 name="name"
                 placeholder="Ваше имя"
+                label="Ваше имя"
                 value={formData.name}
                 onChange={handleChange}
                 required
@@ -260,6 +261,7 @@ const ContactsComponent = () => {
               <Input
                 name="contact"
                 placeholder="Ваше имя"
+                label="Ваше имя"
                 value={formData.contact}
                 onChange={handleChange}
                 required
@@ -267,6 +269,7 @@ const ContactsComponent = () => {
               <Input
                 type="email"
                 name="email"
+                label="Email"
                 placeholder="Email"
                 value={formData.email}
                 onChange={handleChange}
@@ -275,6 +278,7 @@ const ContactsComponent = () => {
               <Textarea
                 name="message"
                 placeholder="Сообщение"
+                label="Сообщение"
                 value={formData.message}
                 onChange={handleChange}
                 required

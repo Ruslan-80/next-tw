@@ -25,7 +25,7 @@ export default function ShieldConfigurator() {
   const [isBulkLoading, setIsBulkLoading] = useState(false);
 
   const calculatedCurrent = Math.round(
-    totalLineCurrent(shield.lines) * demandFactor,
+    totalLineCurrent(shield.lines) * demandFactor
   );
 
   // ─── «Подобрать всё»: параллельный подбор по всем секциям ──────────────────
@@ -42,7 +42,7 @@ export default function ShieldConfigurator() {
             section,
             itemId: item.id,
             product: await fetchDefaultProduct(item),
-          })),
+          }))
       );
 
       const results = await Promise.all(tasks);
@@ -91,6 +91,7 @@ export default function ShieldConfigurator() {
           onChange={(e) => setName(e.target.value)}
           className="bg-cardBackground border border-slate-700 text-foreground px-3 py-1.5 rounded text-sm"
           placeholder="Название щита"
+          aria-label="Название щита"
         />
       </div>
 

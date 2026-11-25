@@ -220,8 +220,8 @@ export default function Blog() {
               </div>
 
               {/* Right Image */}
-              <div className="order-1 lg:order-2 relative h-96 lg:h-full lg:min-h-[400px]">
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-200/30 via-transparent to-gray-100 rounded-2xl" />
+              <div className="order-1 lg:order-2 relative h-96 lg:h-full lg:min-h-100">
+                <div className="absolute inset-0 bg-linear-to-br from-blue-200/30 via-transparent to-gray-100 rounded-2xl" />
                 <video
                   src="/video/Box.mp4"
                   autoPlay
@@ -270,9 +270,7 @@ export default function Blog() {
                     "Размещение слаботочных сетей — интернет, домофон, ТВ, охранная сигнализация",
                   ].map((item, i) => (
                     <li key={i} className="flex gap-4 text-2xl leading-relaxed">
-                      <span className="text-accent font-bold flex-shrink-0">
-                        •
-                      </span>
+                      <span className="text-accent font-bold shrink-0">•</span>
                       <span>{item}</span>
                     </li>
                   ))}
@@ -340,7 +338,7 @@ export default function Blog() {
                       <ul className="space-y-3">
                         {section.items.map((item, i) => (
                           <li key={i} className="text-xl flex gap-3">
-                            <span className="text-accent flex-shrink-0">✓</span>
+                            <span className="text-accent shrink-0">✓</span>
                             <span>{item}</span>
                           </li>
                         ))}
@@ -414,13 +412,13 @@ export default function Blog() {
                       key={idx}
                       className="bg-card border border-accent/40 rounded-lg p-8 hover:border-accent transition-colors"
                     >
-                      <h4 className="text-2xl font-semibold mb-6 text-accent">
+                      <h3 className="text-2xl font-semibold mb-6 text-accent">
                         {section.title}
-                      </h4>
+                      </h3>
                       <ul className="space-y-3">
                         {section.items.map((item, i) => (
                           <li className="text-sm lg:text-xl flex gap-3" key={i}>
-                            <span className="text-accent flex-shrink-0">✓</span>
+                            <span className="text-accent shrink-0">✓</span>
                             <span className="font-medium">
                               {item.label}:
                             </span>{" "}
@@ -472,13 +470,13 @@ export default function Blog() {
                       key={idx}
                       className="bg-card border border-accent/40 rounded-lg p-4 lg:p-8 hover:border-accent transition-colors"
                     >
-                      <h4 className="text-2xl font-semibold mb-6 text-accent">
+                      <h3 className="text-2xl font-semibold mb-6 text-accent">
                         {section.title}
-                      </h4>
+                      </h3>
                       <ul className="space-y-3">
                         {section.items.map((item, i) => (
                           <li key={i} className="text-xl flex gap-3">
-                            <span className="text-accent flex-shrink-0">✓</span>
+                            <span className="text-accent shrink-0">✓</span>
                             <span>{item}</span>
                           </li>
                         ))}
@@ -526,20 +524,17 @@ export default function Blog() {
                         Автоматические выключатели соответствующих номиналов
                       </li>
                       <li>
-                        УЗО и дифференциальные автоматы для защиты от
-                        утечек{" "}
+                        УЗО и дифференциальные автоматы для защиты от утечек{" "}
                       </li>
                       <li>
                         Соединительные гребенки (шинопроводы) для фазных
                         соединений
                       </li>
                       <li>
-                        Провода ПуГВ для внутренних соединений сечением 6
-                        мм²{" "}
+                        Провода ПуГВ для внутренних соединений сечением 6 мм²{" "}
                       </li>
                       <li>
-                        Наконечники НШВИ для опрессовки многожильных
-                        проводов{" "}
+                        Наконечники НШВИ для опрессовки многожильных проводов{" "}
                       </li>
                       <li>Кабельные стяжки и маркировочные элементы </li>
                     </ul>
@@ -667,9 +662,9 @@ export default function Blog() {
 
                 <div className="space-y-6">
                   <div className="border-l-4 border-error/40 hover:border-error hover:bg-card transition-colors p-6 rounded-r-lg">
-                    <h4 className="text-2xl font-semibold mb-3 text-error">
+                    <h3 className="text-2xl font-semibold mb-3 text-error">
                       Ошибки выбора оборудования
-                    </h4>
+                    </h3>
                     <ul className="list-disc list-inside space-y-2 pl-4 text-gray-700 dark:text-gray-300 mb-6 text-xl leading-relaxed">
                       <li>
                         Использование некачественных автоматических выключателей
@@ -690,9 +685,9 @@ export default function Blog() {
                     </p> */}
                   </div>
                   <div className="border-l-4 border-error/40 hover:border-error hover:bg-card transition-colors p-6 rounded-r-lg">
-                    <h4 className="text-2xl font-semibold mb-3 text-error">
+                    <h3 className="text-2xl font-semibold mb-3 text-error">
                       Ошибки монтажа
-                    </h4>
+                    </h3>
                     <ul className="list-disc list-inside space-y-2 pl-4 text-gray-700 dark:text-gray-300 mb-6 text-xl leading-relaxed">
                       <li>
                         <span className="font-medium">
@@ -711,9 +706,9 @@ export default function Blog() {
                     </ul>
                   </div>
                   <div className="border-l-4 border-error/40 hover:border-error hover:bg-card transition-colors p-6 rounded-r-lg">
-                    <h4 className="text-2xl font-semibold mb-3 text-error">
+                    <h3 className="text-2xl font-semibold mb-3 text-error">
                       Ошибки в расключении
-                    </h4>
+                    </h3>
                     <ul className="list-disc list-inside space-y-2 pl-4 text-gray-700 dark:text-gray-300 mb-6 text-xl leading-relaxed">
                       <li>
                         <span className="font-medium">

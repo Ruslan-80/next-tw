@@ -69,6 +69,7 @@ export default async function ProductsPageAdmin() {
           <textarea
             name="articles"
             placeholder="Введите артикулы через запятую или с новой строки..."
+            aria-label="Введите артикулы для удаления"
             rows={2}
             className="w-full p-2 border rounded-md text-sm bg-card focus:outline-none focus:ring-2 focus:ring-blue-500"
             required

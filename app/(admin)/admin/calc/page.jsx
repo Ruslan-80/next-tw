@@ -26,15 +26,11 @@ export default function ProfitCalculator() {
     const vP = values.sellPrice - values.buyPrice;
     const vPExVat = vP * (100 / 122);
     const netProfit = vPExVat * 0.75;
-    const directX =
-      ((netProfit - values.delivery * 1.07) / 2) / 1.07;
+    const directX = (netProfit - values.delivery * 1.07) / 2 / 1.07;
 
     // === ОБРАТНЫЙ РАСЧЕТ ===
     const reverseSell =
-      (((values.maxTax * 1.07 * 2) +
-        values.delivery * 1.07) /
-        0.75) *
-        1.22 +
+      ((values.maxTax * 1.07 * 2 + values.delivery * 1.07) / 0.75) * 1.22 +
       values.buyPrice;
 
     setResult({
@@ -55,9 +51,7 @@ export default function ProfitCalculator() {
 
   return (
     <div className="max-w-md min-w-[450px] mx-auto mt-10 p-6 bg-white rounded-xl shadow-lg border border-gray-200">
-      <h2 className="text-2xl font-bold mb-6 text-gray-800">
-        Калькулятор
-      </h2>
+      <h2 className="text-2xl font-bold mb-6 text-gray-800">Калькулятор</h2>
 
       <div className="space-y-4">
         <div className="pt-4 border-t">
@@ -67,11 +61,7 @@ export default function ProfitCalculator() {
           <input
             type="number"
             name="sellPrice"
-            value={
-              isReverse
-                ? result.requiredSellPrice
-                : values.sellPrice
-            }
+            value={isReverse ? result.requiredSellPrice : values.sellPrice}
             onChange={handleInputChange}
             disabled={isReverse}
             className={`w-full p-2 border rounded-md ${
@@ -113,6 +103,7 @@ export default function ProfitCalculator() {
           <input
             type="number"
             name="maxTax"
+            label="Включить обратный расчет"
             value={values.maxTax}
             onChange={handleInputChange}
             className="w-full p-2 border rounded-md border-green-300 focus:ring-green-500"

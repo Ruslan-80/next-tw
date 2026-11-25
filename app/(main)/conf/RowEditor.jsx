@@ -430,6 +430,7 @@ export default function RowEditor({
             <input
               type="text"
               placeholder="Линия..."
+              label="Название линии"
               value={localLabel}
               onChange={(e) => setLocalLabel(e.target.value)}
               onBlur={() => onChange("label", localLabel)}
@@ -542,6 +543,7 @@ export default function RowEditor({
               <input
                 type="text"
                 placeholder="Параметр"
+                label="Название параметра"
                 value={customKey}
                 onChange={(e) => setCustomKey(e.target.value)}
                 className="bg-cardBackground border border-slate-700 text-foreground p-1 rounded text-xs w-24"
@@ -550,6 +552,7 @@ export default function RowEditor({
               <input
                 type="text"
                 placeholder="Значение"
+                label="Значение параметра"
                 value={customValue}
                 onChange={(e) => setCustomValue(e.target.value)}
                 onKeyDown={(e) => e.key === "Enter" && addCustomParam(e)}

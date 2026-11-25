@@ -396,7 +396,7 @@ export default function Blog() {
                     <ul className="space-y-3 text-text/80 text-sm md:text-base">
                       {section.items.map((item, i) => (
                         <li key={i} className="flex gap-2">
-                          <span className="text-accent flex-shrink-0">✓</span>
+                          <span className="text-accent shrink-0">✓</span>
                           <span>
                             <span className="font-semibold text-text">
                               {item.label}:

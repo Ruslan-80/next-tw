@@ -163,7 +163,7 @@ export default function Header() {
 
                 {/* Выпадающий список */}
                 {isOpentelephone && (
-                  <div className="absolute top-full right-0 mt-2 bg-card shadow-lg border border-card rounded-md py-2 z-50 min-w-[180px]">
+                  <div className="absolute top-full right-0 mt-2 bg-card shadow-lg border border-card rounded-md py-2 z-50 min-w-45">
                     <Link
                       alt="telephone"
                       href="tel:+79299759489" // Замените на нужный номер
@@ -192,7 +192,7 @@ export default function Header() {
                   style={{ width: "140px", height: "60px" }}
                 />
               </Link> */}
-              <Link href="/" className="flex-shrink-1">
+              <Link href="/" className="shrink">
                 {" "}
                 <span className="font-bold text-xl text-text">
                   ЭЛЕКТРОЩИТ-ПРО
@@ -208,6 +208,7 @@ export default function Header() {
                   name="query"
                   type="text"
                   placeholder="Поиск по артикулу или названию..."
+                  aria-label="Поиск по артикулу или названию"
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
                   className="w-full bg-card border border-accent rounded-full px-6 py-3 pr-12 
@@ -233,7 +234,7 @@ export default function Header() {
                  rounded-3xl shadow-2xl shadow-slate-900/10 z-50 overflow-hidden 
                  animate-in fade-in slide-in-from-top-2 duration-300"
                 >
-                  <div className="max-h-[400px] overflow-y-auto custom-scrollbar">
+                  <div className="max-h-100 overflow-y-auto custom-scrollbar">
                     {results.length > 0 ? (
                       <ul className="divide-y divide-accent">
                         {results.map((product) => (
@@ -247,7 +248,7 @@ export default function Header() {
                               className="flex items-center gap-4 p-4 hover:text-card transition-colors group"
                             >
                               {product.image ? (
-                                <div className="relative w-12 h-12 flex-shrink-0 bg-background border border-accent rounded-xl overflow-hidden">
+                                <div className="relative w-12 h-12 shrink-0 bg-background border border-accent rounded-xl overflow-hidden">
                                   <Image
                                     src={product.image}
                                     alt={product.name}
