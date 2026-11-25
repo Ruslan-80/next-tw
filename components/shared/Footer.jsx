@@ -23,7 +23,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
           {/* Лого и контакты */}
           <div>
-            <Link href="/" className="flex-shrink-1">
+            <Link href="/" className="shrink">
               <span className="font-bold text-3xl text-text">
                 ЭЛЕКТРОЩИТ-PRO
               </span>
@@ -57,11 +57,10 @@ export default function Footer() {
               <div className="flex items-center gap-2">
                 <Mail size={16} className="text-gray-400" />
                 <a
-                  itemProp="email"
                   href="mailto:info@electroshit-pro.ru"
                   className="hover:text-text transition-colors"
                 >
-                  info@electroshit-pro.ru
+                  <span itemProp="email">info@electroshit-pro.ru</span>
                 </a>
               </div>
               <div className="flex items-start gap-2 mt-3">
@@ -83,8 +82,13 @@ export default function Footer() {
                     className="text-gray-400 mt-1 flex-shrink-0"
                   />
                   <span>
-                    <span itemProp="addressLocality">г. Москва</span>,{" "}
-                    <span itemProp="streetAddress">улица Чермянская, 1с1</span>
+                    <span itemProp="postalCode">127081</span>,{" "}
+                    <span itemProp="addressLocality">Москва</span>,{" "}
+                    <span itemProp="streetAddress">
+                      ул. Чермянская, д. 1, стр. 1
+                    </span>
+                    <meta itemProp="addressCountry" content="RU" />
+                    <meta itemProp="addressRegion" content="Москва" />
                   </span>
                 </div>
               </div>
