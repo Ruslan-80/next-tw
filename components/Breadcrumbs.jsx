@@ -85,8 +85,6 @@ export default function Breadcrumbs({ items, productName }) {
     <section className="hidden md:block sticky top-0 z-50 bg-gradient-metal animate-metal text-text backdrop-blur ">
       <nav
         className="container mx-auto px-6 py-2 flex flex-wrap items-center text-sm text-gray-600"
-        itemScope
-        itemType="https://schema.org/BreadcrumbList"
         aria-label="Breadcrumb"
       >
         {breadcrumbItems.map((item, index) => {
@@ -94,36 +92,26 @@ export default function Breadcrumbs({ items, productName }) {
           const position = index + 1;
 
           return (
-            <div
-              key={index}
-              className="flex items-center"
-              itemProp="itemListElement"
-              itemScope
-              itemType="https://schema.org/ListItem"
-            >
+            <div key={index} className="flex items-center">
               {!isLast ? (
                 <>
                   <Link
                     href={item.href}
                     className="text-muted hover:text-text transition-colors break-words"
-                    itemProp="item"
                     title={item.name}
                   >
-                    <span itemProp="name">{item.name}</span>
+                    <span>{item.name}</span>
                   </Link>
-                  <meta itemProp="position" content={position} />
                   <span className="mx-1 text-text">/</span>
                 </>
               ) : (
                 <>
                   <span
                     className="text-muted font-medium break-words"
-                    itemProp="name"
                     title={item.name}
                   >
                     {item.name}
                   </span>
-                  <meta itemProp="position" content={position} />
                 </>
               )}
             </div>

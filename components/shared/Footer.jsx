@@ -6,19 +6,7 @@ import FooterSubscribeForm from "./FooterSubscribeForm"; // или укажит�
 
 export default function Footer() {
   return (
-    <footer
-      className="bg-card text-foreground pt-12 pb-6 text-sm lg:text-xl border-t border-t-accent/40"
-      itemScope
-      itemType="https://schema.org/Store"
-    >
-      <meta itemProp="name" content="ЭЛЕКТРОЩИТ-ПРО" />
-      <meta itemProp="telephone" content="+74993901467" />
-      <meta itemProp="priceRange" content="1000-50000 RUB" />
-
-      <meta
-        itemProp="image"
-        content="https://electroshit-pro.ru/mainLogo.svg"
-      />
+    <footer className="bg-card text-foreground pt-12 pb-6 text-sm lg:text-xl border-t border-t-accent/40">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
           {/* Лого и контакты */}
@@ -37,7 +25,6 @@ export default function Footer() {
               <div className="flex items-center gap-2">
                 <Phone size={16} className="text-gray-400" />
                 <a
-                  itemProp="telephone"
                   href="tel:+74993901467"
                   className="hover:text-text transition-colors"
                 >
@@ -47,7 +34,6 @@ export default function Footer() {
               <div className="flex items-center gap-2">
                 <Phone size={16} className="text-gray-400" />
                 <a
-                  itemProp="telephone"
                   href="tel:+79262762415"
                   className="hover:text-text transition-colors"
                 >
@@ -60,7 +46,7 @@ export default function Footer() {
                   href="mailto:info@electroshit-pro.ru"
                   className="hover:text-text transition-colors"
                 >
-                  <span itemProp="email">info@electroshit-pro.ru</span>
+                  info@electroshit-pro.ru
                 </a>
               </div>
               <div className="flex items-start gap-2 mt-3">
@@ -71,25 +57,12 @@ export default function Footer() {
                 <span>Режим работы: Пн-Пт 9:00 - 18:00</span>
               </div>
               <div className="flex items-start gap-2 mt-3">
-                <div
-                  itemProp="address"
-                  itemScope
-                  itemType="https://schema.org/PostalAddress"
-                  className="flex items-start gap-2"
-                >
+                <div className="flex items-start gap-2">
                   <MapPin
                     size={16}
                     className="text-gray-400 mt-1 flex-shrink-0"
                   />
-                  <span>
-                    <span itemProp="postalCode">127081</span>,{" "}
-                    <span itemProp="addressLocality">Москва</span>,{" "}
-                    <span itemProp="streetAddress">
-                      ул. Чермянская, д. 1, стр. 1
-                    </span>
-                    <meta itemProp="addressCountry" content="RU" />
-                    <meta itemProp="addressRegion" content="Москва" />
-                  </span>
+                  <span>127081, Москва, ул. Чермянская, д. 1, стр. 1</span>
                 </div>
               </div>
             </div>

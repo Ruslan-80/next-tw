@@ -84,7 +84,7 @@ export default function ProductPageClient({
         }))
       : [{ url: mainImage.src, type: "image" }];
 
-  // Оставляем отдельно для удобства (используется в Schema/зуме)
+  // Оставляем отдельно для удобства (используется в зуме)
   const imageMedia = media.filter((m) => m.type === "image");
 
   const handleAddToCart = async () => {
@@ -168,10 +168,9 @@ export default function ProductPageClient({
     // <div className="antialiased bg-[#f8fafc] bg-radial-[at_50%_50%] from-[#e2e8f0] via-[#f8fafc] to-[#ffffff] text-[#0f172a]">
     <section>
       {/* <ProductCard /> */}
-      <div itemScope itemType="https://schema.org/Product">
+      <div>
         {/* <h1
           className="text-2xl lg:text-4xl font-extrabold mb-6 tracking-tight text-textForeground max-w-[1000px]"
-          itemProp="name"
         >
           {product.name || "Продукт"}
         </h1> */}
@@ -184,13 +183,6 @@ export default function ProductPageClient({
                 <div className="relative aspect-square rounded-3xl overflow-hidden shadow-inner">
                   {media[selectedImageIndex] ? (
                     <>
-                      {media[selectedImageIndex].type === "image" && (
-                        <link
-                          itemProp="image"
-                          href={`https://electroshit-pro.ru${media[selectedImageIndex].url}`}
-                        />
-                      )}
-
                       {media[selectedImageIndex].type === "image" ? (
                         <Image
                           src={media[selectedImageIndex].url}
@@ -276,47 +268,17 @@ export default function ProductPageClient({
 
             {/* Product Details */}
             <div className="lg:col-span-6 py-6 bg-card text-text rounded-2xl">
-              <meta itemProp="sku" content={product.article || "N/A"} />
-              <Link
-                itemProp="url"
-                content={`https://electroshit-pro.ru/product/${product.slug}`}
-                href={`/product/${product.slug}`}
-              />
+              <Link href={`/product/${product.slug}`} className="hidden" />
               <div className="mb-8">
                 {/* Price and Actions */}
                 {/* <div className="flex flex-col lg:flex-row items-center gap-4 mb-6 mx-4">
                   <h1
                     className="w-full text-xl lg:text-2xl font-extrabold mb-6 tracking-tight text-text"
-                    itemProp="name"
                   >
                     {product.name || "Продукт"}
                   </h1>
                   <span className="text-xl font-bold text-accent">от</span>
-                  <div
-                    className="text-3xl font-bold text-accent"
-                    itemProp="offers"
-                    itemScope
-                    itemType="https://schema.org/Offer"
-                  >
-                    <meta itemProp="priceCurrency" content="RUB" />
-                    <meta
-                      itemProp="price"
-                      content={
-                        product.basePrice ? product.basePrice.toString() : "0"
-                      }
-                    />
-                    <link
-                      itemProp="availability"
-                      href={
-                        product.stock > 0
-                          ? "https://schema.org/InStock"
-                          : "https://schema.org/OutOfStock"
-                      }
-                    />
-                    <link
-                      itemProp="itemCondition"
-                      href="https://schema.org/NewCondition"
-                    />
+                  <div className="text-3xl font-bold text-accent">
                     {product.basePrice
                       ? `${product.basePrice.toLocaleString("ru-RU")} руб.`
                       : "Запросить стоимость"}
@@ -342,45 +304,15 @@ export default function ProductPageClient({
                 </div> */}
                 <div className="flex flex-col gap-4 mb-6 mx-4">
                   {/* 1. Название в одну строчку наверху */}
-                  <h1
-                    className="w-full text-xl lg:text-2xl font-extrabold tracking-tight text-text"
-                    itemProp="name"
-                  >
+                  <h1 className="w-full text-xl lg:text-2xl font-extrabold tracking-tight text-text">
                     {product.name || "Продукт"}
                   </h1>
                   <div className="text-text font-extrabold text-[18px] py-1.5">
                     Артикул: {product.article || "N/A"}
                   </div>
 
-                  {/* 2. Блок стоимости с разметкой Schema.org */}
-                  <div
-                    itemProp="offers"
-                    itemScope
-                    itemType="https://schema.org/Offer"
-                    className="flex items-baseline gap-2"
-                  >
-                    <meta itemProp="priceCurrency" content="RUB" />
-                    <meta
-                      itemProp="price"
-                      content={
-                        product.basePrice && product.basePrice > 0
-                          ? product.basePrice.toString()
-                          : "0"
-                      }
-                    />
-                    <link
-                      itemProp="availability"
-                      href={
-                        product.stock > 0
-                          ? "https://schema.org/InStock"
-                          : "https://schema.org/OutOfStock"
-                      }
-                    />
-                    <link
-                      itemProp="itemCondition"
-                      href="https://schema.org/NewCondition"
-                    />
-
+                  {/* 2. Блок стоимости */}
+                  <div className="flex items-baseline gap-2">
                     {product.basePrice && product.basePrice > 0 ? (
                       <>
                         <span className="text-xl font-bold text-accent">
@@ -401,7 +333,7 @@ export default function ProductPageClient({
                         type="button"
                         onClick={() =>
                           handleButtonClick(
-                            `Запросить стоимость: ${product.name}`,
+                            `Запросить стоимость: ${product.name}`
                           )
                         }
                         className="text-2xl font-bold text-accent hover:scale-105 text-left cursor-pointer transition-all"
@@ -433,28 +365,10 @@ export default function ProductPageClient({
               </div>
 
               {/* Rating */}
-              <div
-                itemProp="aggregateRating"
-                itemScope
-                itemType="https://schema.org/AggregateRating"
-                style={{ display: "none" }}
-              >
-                <span itemProp="ratingValue">{parseFloat(ratingValue)}</span>
-                <span itemProp="reviewCount">{parseInt(ratingCount)}</span>
-              </div>
               <RatingDisplay
                 ratingValue={parseFloat(ratingValue)}
                 ratingCount={parseInt(ratingCount)}
               />
-              <div>
-                <span
-                  itemProp="brand"
-                  itemScope
-                  itemType="https://schema.org/Brand"
-                >
-                  <meta itemProp="name" content="Electroshit-PRO" />
-                </span>
-              </div>
 
               {/* Info Cards */}
               {/* <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8 ">
@@ -666,7 +580,7 @@ export default function ProductPageClient({
                 <button
                   onClick={() =>
                     handleButtonClick(
-                      `Заказать бесплатный расчет: ${product.name}`,
+                      `Заказать бесплатный расчет: ${product.name}`
                     )
                   }
                   // className="w-full py-3 px-6 bg-primary hover:bg-primaryLight text-white font-medium rounded-lg transition-colors duration-300"
@@ -677,7 +591,7 @@ export default function ProductPageClient({
                 <button
                   onClick={() =>
                     handleButtonClick(
-                      `Заказать бесплатный замер с выездом специалиста: ${product.name}`,
+                      `Заказать бесплатный замер с выездом специалиста: ${product.name}`
                     )
                   }
                   // className="w-full py-3 px-6 bg-accent hover:bg-accentHover text-white font-medium rounded-lg transition-colors duration-300"
@@ -702,8 +616,8 @@ export default function ProductPageClient({
                           allowed.some((word) =>
                             attr.attributeName
                               .toLowerCase()
-                              .includes(word.toLowerCase()),
-                          ),
+                              .includes(word.toLowerCase())
+                          )
                         )
                         .slice(0, 6) // Увеличил до 6, так как в вашем примере было 6 строк
                         .map((attr) => (
@@ -738,7 +652,7 @@ export default function ProductPageClient({
                     <span className="font-semibold">
                       Срок изготовления:{" "}
                       {product.attributes?.find(
-                        (a) => a.attributeName === "Срок изготовления",
+                        (a) => a.attributeName === "Срок изготовления"
                       )?.attributeValueName ?? "10-14 дней"}
                     </span>
                   </div>
@@ -749,14 +663,10 @@ export default function ProductPageClient({
           <div className="my-2 lg:my-8 rounded-2xl shadow-xl p-2">
             {/* <div
               className="container mx-auto text-textForeground text-sm lg:text-xl text-justify lg:indent-30 px-2 lg:px-8"
-              itemProp="description"
             >
               {product.description}
             </div> */}
-            <div
-              className="container mx-auto text-text px-2 pb-10 lg:px-8"
-              itemProp="description"
-            >
+            <div className="container mx-auto text-text px-2 pb-10 lg:px-8">
               {/* 1. СЕТКА USP: 1 колонка на мобильных, 2 колонки на ПК (md:) + Компактный вид */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-2.5 mb-6">
                 {Array.isArray(product.usp) &&
@@ -918,7 +828,7 @@ export default function ProductPageClient({
                 <button
                   onClick={() =>
                     handleButtonClick(
-                      `Заказ бесплатного расчета по товару ${product.name}`,
+                      `Заказ бесплатного расчета по товару ${product.name}`
                     )
                   }
                   className="inline-flex items-center justify-center border-0 bg-blue-500  text-white px-8 py-3 cursor-pointer rounded-3xl hover:bg-blue-600 transition-all duration-300"

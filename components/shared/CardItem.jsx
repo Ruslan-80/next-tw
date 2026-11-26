@@ -100,14 +100,8 @@ export default function CardItem({ product, view }) {
             ? "border border-border text-text rounded-xl shadow-md hover:shadow-xl transition-all duration-300  overflow-hidden transform hover:-translate-y-1"
             : "border border-border text-text rounded-xl shadow-md hover:shadow-xl hover:border-accent/30 transition-all duration-300  flex flex-col md:flex-row"
         }
-        itemScope
-        itemType="https://schema.org/Product"
       >
-        <Link
-          href={`/product/${product.slug}`}
-          className="block flex-1"
-          itemProp="url"
-        >
+        <Link href={`/product/${product.slug}`} className="block flex-1">
           <div
             className={
               view === "grid"
@@ -124,25 +118,18 @@ export default function CardItem({ product, view }) {
                 }
               >
                 {product.image ? (
-                  <>
-                    <link
-                      itemProp="image"
-                      href={`https://electroshit-pro.ru${product.image}`}
-                    />
-
-                    <Image
-                      src={product.image}
-                      alt={product.name}
-                      fill
-                      preload={true}
-                      className="object-contain rounded-lg transition-transform duration-300 hover:scale-105 p-4 text-text"
-                      sizes={
-                        (view || "grid") === "grid"
-                          ? "(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                          : "(max-width: 768px) 100vw, 192px"
-                      }
-                    />
-                  </>
+                  <Image
+                    src={product.image}
+                    alt={product.name}
+                    fill
+                    preload={true}
+                    className="object-contain rounded-lg transition-transform duration-300 hover:scale-105 p-4 text-text"
+                    sizes={
+                      (view || "grid") === "grid"
+                        ? "(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        : "(max-width: 768px) 100vw, 192px"
+                    }
+                  />
                 ) : (
                   <Skeleton className="w-full h-full rounded-lg" />
                 )}
@@ -163,7 +150,7 @@ export default function CardItem({ product, view }) {
                       : "text-2xl font-semibold text-text mb-2 group relative text-text"
                   }
                 >
-                  <span itemProp="name">{product.name}</span>
+                  <span>{product.name}</span>
                   <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-accent/30 transition-all duration-300 group-hover:w-full text-text" />
                 </h4>
                 <RatingDisplay
@@ -171,9 +158,8 @@ export default function CardItem({ product, view }) {
                   ratingCount={product.reviewsCount}
                 />
                 <p className="text-sm text-text mb-2">
-                  Артикул:{" "}
-                  <span itemProp="sku">{product.article || "N/A"}</span> <br />
-                  ID: <span itemProp="productID">{product.id || "N/A"}</span>
+                  Артикул: <span>{product.article || "N/A"}</span> <br />
+                  ID: <span>{product.id || "N/A"}</span>
                 </p>
 
                 {/* {product.description && (
@@ -183,14 +169,12 @@ export default function CardItem({ product, view }) {
                         ? "text-sm text-text mb-3 line-clamp-2 text-text"
                         : "text-sm text-text mb-3 line-clamp-4 text-text"
                     }
-                    itemProp="description"
                   >
                     {product.description}
                   </p>
                 )} */}
                 {product.description && (
                   <div
-                    itemProp="description"
                     className={`markdown-content text-sm text-text mb-3 leading-relaxed space-y-3 ${
                       view === "grid" ? "line-clamp-2" : "line-clamp-4"
                     } [&_p]:mb-2 [&_ul]:list-disc [&_ul]:pl-5 [&_ol]:list-decimal [&_ol]:pl-5 [&_h2]:text-lg [&_h2]:font-bold [&_h2]:mt-4 [&_a]:text-primary [&_a]:underline`}
@@ -198,51 +182,13 @@ export default function CardItem({ product, view }) {
                     <Markdown>{product.description}</Markdown>
                   </div>
                 )}
-                {/* Бренд */}
-                <div
-                  itemProp="brand"
-                  itemScope
-                  itemType="https://schema.org/Brand"
-                >
-                  <meta itemProp="name" content="Electroshit-PRO" />
-                </div>
-                {/* AggregateRating */}
-                <div
-                  itemProp="aggregateRating"
-                  itemScope
-                  itemType="https://schema.org/AggregateRating"
-                >
-                  <meta itemProp="ratingValue" content="4.5" />
-                  <meta itemProp="reviewCount" content="25" />
-                </div>
-                {/* Цена и оффер */}
-                <div
-                  itemProp="offers"
-                  itemScope
-                  itemType="https://schema.org/Offer"
-                  className="mb-3"
-                >
+                {/* Цена */}
+                <div className="mb-3">
                   <p className="text-lg font-bold text-text mb-3 text-text">
                     {product.basePrice == 0
                       ? "По запросу"
                       : `${product.basePrice.toLocaleString("ru-RU")} ₽`}
                   </p>
-                  {/* Микроразметка оффера */}
-                  <meta
-                    itemProp="price"
-                    content={
-                      product.basePrice ? product.basePrice.toFixed(2) : "0.00"
-                    }
-                  />
-                  <meta itemProp="priceCurrency" content="RUB" />
-                  <link
-                    itemProp="availability"
-                    href={
-                      product.stock > 0
-                        ? "https://schema.org/InStock"
-                        : "https://schema.org/PreOrder"
-                    }
-                  />
                 </div>
                 {/* Статус наличия */}
                 <p
@@ -284,19 +230,8 @@ export default function CardItem({ product, view }) {
                         {product.attributes.map((attr) => (
                           <div
                             key={`${product.id}-${attr.attributeName}-${attr.attributeValueName}`}
-                            itemProp="additionalProperty"
-                            itemScope
-                            itemType="https://schema.org/PropertyValue"
                             className="flex"
                           >
-                            <meta
-                              itemProp="name"
-                              content={attr.attributeName}
-                            />
-                            <meta
-                              itemProp="value"
-                              content={attr.attributeValueName}
-                            />
                             <span className="font-medium text-text">
                               {attr.attributeName}:
                             </span>
@@ -342,7 +277,7 @@ export default function CardItem({ product, view }) {
           <Button
             onClick={() =>
               handleButtonClick(
-                `Запросить индивидуальный расчет: ${product.name}`,
+                `Запросить индивидуальный расчет: ${product.name}`
               )
             }
             className="w-full bg-primary mb-2 px-4 text-accent font-medium rounded-lg py-2 transition-all duration-300"
@@ -356,8 +291,8 @@ export default function CardItem({ product, view }) {
               adding
                 ? "bg-orange-400 opacity-50"
                 : product.basePrice > 0
-                  ? "btn-gold w-full mb-2"
-                  : "bg-gray-400 cursor-not-allowed"
+                ? "btn-gold w-full mb-2"
+                : "bg-gray-400 cursor-not-allowed"
             }`}
           >
             {adding ? "Добавление..." : "В корзину"}
@@ -393,19 +328,19 @@ CardItem.propTypes = {
         stock: PropTypes.number.isRequired,
         variationValue: PropTypes.string.isRequired,
         isDefault: PropTypes.bool.isRequired,
-      }),
+      })
     ).isRequired,
     tags: PropTypes.arrayOf(
       PropTypes.shape({
         name: PropTypes.string.isRequired,
         slug: PropTypes.string.isRequired,
-      }),
+      })
     ),
     attributes: PropTypes.arrayOf(
       PropTypes.shape({
         attributeName: PropTypes.string.isRequired,
         attributeValueName: PropTypes.string.isRequired,
-      }),
+      })
     ),
   }).isRequired,
   view: PropTypes.oneOf(["grid", "list"]).isRequired,
